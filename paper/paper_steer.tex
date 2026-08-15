@@ -192,7 +192,7 @@ Because pits are derived directly from model weights---computed as
 $s(T) = \operatorname{softmax}(W \cdot h_T)[T]$ with a permanence test over the
 vocabulary---each model's pits are unique to its tokenizer and LM head geometry.
 The accompanying code release (\texttt{pit\_engine.py}) provides a full scan
-that finds all pits for any model.
+that finds pits for any model.
 
 The pits can be used as a defensive primitive: embedding pit triggers into data
 causes any model that processes it to fall into a fixed-point loop rather than
