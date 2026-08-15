@@ -1,0 +1,10 @@
+*.pyc
+__pycache__/
+*.aux
+*.log
+*.out
+*.json
+models/
+results/
+dist/
+.DS_Store

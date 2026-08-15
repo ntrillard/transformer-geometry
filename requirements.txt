@@ -1,0 +1,12 @@
+torch>=2.0.0
+transformers>=4.41.0
+accelerate>=0.30.0
+datasets>=2.19.0
+sentencepiece>=0.2.0
+protobuf>=3.20.0
+llama-cpp-python>=0.2.70; platform_system == "Linux"
+numpy>=1.24.0
+pyyaml>=6.0.1
+tqdm>=4.66.0
+bitsandbytes>=0.43.0
+lm-eval>=0.4.8
