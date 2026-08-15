@@ -35,20 +35,6 @@ The LM head gives every token a direction on that sphere. **A single tangent ste
 
 ---
 
-## The Geometry in 3D
-
-PCA projection of Qwen2.5-7B's actual hidden-state geometry (95% variance in 3D):
-
-![Hidden-state geometry](paper/geometry3d.png)
-
-- **Blue dots** — 400 sampled LM head directions (token space)
-- **Crimson line** — hidden-state trajectory across 28 layers
-- **Green arrow** — BOS axis
-- **Orange arrow** — the steering tangent `g_t`
-- **Orange star** — the steered point `h'`
-
----
-
 ## Cow Tipping
 
 Some tokens are self-reinforcing: feeding them to the model induces indefinite repetition.
