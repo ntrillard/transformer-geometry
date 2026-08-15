@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+authors:
+  - family-names: Trillard
+    given-names: N.
+title: "Steer on a Sphere: Geometric Control of Transformer Outputs"
+date-released: 2026-08-15
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.21954871
+repository-code: "https://github.com/ntrillard/transformer-geometry"
+license: CC-BY-4.0

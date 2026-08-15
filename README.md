@@ -1,59 +1,60 @@
-# Steer on a Sphere: Geometric Control of Transformer Outputs
+<div align="center">
 
-**N. Trillard — August 15, 2026**
+# Steer on a Sphere
+### Geometric Control of Transformer Outputs
 
-Code and data accompanying the paper *Steer on a Sphere: Geometric Control of Transformer Outputs*.
+**N. Trillard** — August 15, 2026
 
-## Paper
+[![Zenodo](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21954871-blue)](https://doi.org/10.5281/zenodo.21954871)
+[![License](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](LICENSE)
 
-- [`paper/paper_steer.pdf`](paper/paper_steer.pdf) — compiled paper
-- [`paper/paper_steer.tex`](paper/paper_steer.tex) — LaTeX source
+</div>
+
+---
+
+## About
+
+Transformer hidden states live on a sphere, and that geometry can be *used*.
+
+We show that layer normalization constrains hidden states to a sphere of radius $\|\gamma_l\|$ per layer, that a single tangent step reaches **any** of the 152,064 vocabulary tokens with 91–98% reliability, and that certain self-reinforcing tokens ("pits") trap the model in indefinite repetition — exploitable as a **defensive encoding** against LLM scraping.
 
 ## Findings
 
-1. **The Sphere.** Post-normalization hidden states float near a sphere of radius $\|\gamma_l\|$ per layer (not the textbook $\sqrt{d}$). The radius varies across architectures at the same dimension.
+| # | Finding | Evidence |
+|---|---------|----------|
+| 1 | **The Sphere** — hidden states float near a sphere of radius $\|\gamma_l\|$ | 4 model families |
+| 2 | **Tangent Traversal** — one tangent step reaches 91–98% of tokens at rank 1, 100% never lower | 4 models × 1,000 tokens |
+| 3 | **Cow Tipping** — self-reinforcing tokens lock into repetition ($p=0.974$, $\cos\approx1$) | 7 pits, 15-step permanence |
+| 4 | **Defensive Encoding** — NULL bytes / repeated tokens collapse scrapers | 3 encodings verified |
+| 5 | **Edge of Chaos** — Lyapunov rate clusters near $\lambda\cdot L\approx0.5$ | 13 architectures |
 
-2. **Tangent Traversal.** A single tangent step along the LM head direction reaches any of the 152,064 vocabulary tokens with 91--98\% reliability and never lowers the target token's rank (100\% improvement). Verified across Qwen2.5-7B, DeepSeek-7B, Mistral-7B, and Qwen2-1.5B.
+## Paper
 
-3. **Cow Tipping.** Some tokens are self-reinforcing fixed points: feeding them to the model induces indefinite self-generation. The digit-zero token (`000`, `000-000-0000`) locks with $p = 0.974$ and $\cos \approx 1.0$. Seven pits discovered on Qwen2.5-7B; the phenomenon generalizes across models with vocabulary-specific tokens.
+- 📄 [`paper/paper_steer.pdf`](paper/paper_steer.pdf) — compiled PDF
+- 📝 [`paper/paper_steer.tex`](paper/paper_steer.tex) — LaTeX source
 
-4. **Defensive Encoding.** Pits can be embedded into data as a defense: any model that reads a chunk terminating in a pit trigger falls into a repetition loop. NULL bytes (`\x00\x00\x00`), repeated sub-tokens (`cut cut cut`), and terminal phone numbers (`000-000-0000`) are all verified to collapse generation. Because pits are derived from model weights, they can be computed for any architecture without retraining.
+**Cite as:**
 
-5. **Edge of Chaos.** A theory of perturbation dynamics: the per-layer Lyapunov exponent clusters near $\lambda \cdot L \approx 0.5$ for the Gemma, GPT-2, and mid-Qwen families (6 of 13 tested architectures), consistent with edge-of-chaos dynamics.
+> Trillard, N. (2026). *Steer on a Sphere: Geometric Control of Transformer Outputs*. Zenodo. https://doi.org/10.5281/zenodo.21954871
 
 ## Code
 
-### `pit_engine.py`
-Reverse-engineer self-consistent tokens ("pits") from model weights and encode them into data as a defensive measure.
-
-```bash
-python pit_engine.py --model Qwen/Qwen2.5-7B-Instruct --scan
-python pit_engine.py --model Qwen/Qwen2.5-7B-Instruct --encode data.txt
-```
-
-- `PitReverseEngineer` — full vocabulary scan, self-consistency scores, permanence testing, isolation analysis.
-- `PitEncoder` — frames data with pit triggers so truncation boundaries land inside a pit basin.
-
-### `steer_sphere_proof.py`
-Reproduce sphere steering: tangent step, renormalization, hidden-state hooking, and generation. Produces the GSM8K steering results.
-
-### `sphere_test_suite.py`
-Batch verification of the sphere geometry (per-layer norms, attention contraction, Lyapunov profiles, steering) across cached models.
-
-### `safety_toolkit.py`
-Geometric diagnostics: Lyapunov health check, fine-tuning monitor, sphere steer-away, and per-zone stability report.
-
-## Install
+| File | Purpose |
+|------|---------|
+| `pit_engine.py` | Reverse-engineer self-consistent tokens ("pits") from weights + encode into data |
+| `steer_sphere_proof.py` | Sphere steering: tangent step + hidden-state hooking |
+| `sphere_test_suite.py` | Batch geometry verification (norms, contraction, Lyapunov) |
+| `safety_toolkit.py` | Geometric diagnostics (λ health check, steer-away) |
 
 ```bash
 pip install -r requirements.txt
+python pit_engine.py --model Qwen/Qwen2.5-7B-Instruct --scan
 ```
 
 ## Notes
 
-This is a preprint. The geometric picture is approximate and is presented as a framework organizing measurements, not a theorem.
-Steering is a white-box traversal primitive that does not distinguish censored from uncensored paths.
+Preprint. The geometric picture is approximate and presented as a framework, not a theorem. Steering is a white-box traversal primitive that does not distinguish censored from uncensored paths.
 
 ## License
 
-CC BY 4.0
+[CC BY 4.0](LICENSE)
