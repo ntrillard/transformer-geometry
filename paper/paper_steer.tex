@@ -18,8 +18,7 @@
 
 \begin{abstract}
 Layer normalization constrains transformer hidden states to a sphere whose
-radius is a measured quantity, $\|\gamma_l\|$ per layer (not the textbook
-$\sqrt{d}$). Within this sphere, a single tangent step toward any token's LM
+radius is $\|\gamma_l\|$ per layer (not the textbook $\sqrt{d}$). Within this sphere, a single tangent step toward any token's LM
 head direction reaches that token with 91--98\% reliability across four model
 families and never lowers its rank (100\% improvement). We propose a theory of edge-of-chaos dynamics: the per-model Lyapunov
 rate clusters near $\lambda \cdot L_{\mathrm{comp}} \approx 0.5$ for the Gemma,
@@ -30,10 +29,11 @@ degenerate limit of the dynamics at $\lambda \to 0$---with narrow basins that
 can be encoded into data as a defense against LLM scraping. All measurements on
 Qwen2.5-7B with spot-checks on DeepSeek-7B and Mistral-7B. Full reproduction
 steps provided. Cow tipping occurs on all tested models, with
-vocabulary-specific pit tokens.
+vocabulary-specific pit tokens. Because the pits are derived from model weights, they can be
+computed for any architecture without retraining or data.
 \end{abstract}
 
-\section{The Sphere: A New Measurement}
+\section{The Sphere}
 
 RMSNorm maps hidden states to a sphere whose expected radius is $\|\gamma_l\|$:
 \[
@@ -187,6 +187,12 @@ vocabulary-dependent. All pits have narrow basins---any trailing token disrupts
 the fixed point.
 
 \subsection{Defensive Encoding}
+
+Because pits are derived directly from model weights---computed as
+$s(T) = \operatorname{softmax}(W \cdot h_T)[T]$ with a permanence test over the
+vocabulary---each model's pits are unique to its tokenizer and LM head geometry.
+The accompanying code release (\texttt{pit\_engine.py}) provides a full scan
+that finds all pits for any model.
 
 The pits can be used as a defensive primitive: embedding pit triggers into data
 causes any model that processes it to fall into a fixed-point loop rather than
