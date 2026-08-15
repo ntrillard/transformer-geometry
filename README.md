@@ -14,9 +14,9 @@
 
 ## How It Works
 
-Every transformer layer uses RMSNorm, which forces hidden states onto a sphere of radius $\|\gamma_l\|$ — a learned value, not $\sqrt{d}$.
+Every transformer layer uses RMSNorm, which constrains hidden states near a sphere of radius $\|\gamma_l\|$ — a learned value, not $\sqrt{d}$.
 
-The LM head gives every token a direction on that sphere. **A single tangent step reaches any of them.**
+The LM head gives every token a direction on that sphere. **A single tangent step reaches 91–98% of them at rank 1, and never lowers any token's rank.**
 
 ```
   Hidden state h
@@ -31,13 +31,13 @@ The LM head gives every token a direction on that sphere. **A single tangent ste
   logits → 91–98% chance t ranks #1
 ```
 
-**Why this matters:** anyone with weight access can steer generation toward any token — no training, no data, no retraining.
+**Why this matters:** with weight access, generation can be biased toward any token direction — no training, no data, no retraining.
 
 ---
 
 ## Cow Tipping
 
-Some tokens are self-reinforcing: feed them to the model and it repeats them forever.
+Some tokens are self-reinforcing: feeding them to the model induces indefinite repetition.
 
 | Token | Triggers a loop of... | Real-world example |
 |-------|----------------------|-------------------|
@@ -46,7 +46,7 @@ Some tokens are self-reinforcing: feed them to the model and it repeats them for
 | `cut` | `cut cut cut...` | Repeated delimiter |
 | `ere` | `ereereere...` | Common substring |
 
-**Defensive encoding:** put a pit trigger at the end of your page → any LLM scraper falls into a repetition loop. Invisible to humans (NULL bytes), catastrophic for crawlers.
+**Defensive encoding:** put a pit trigger at the end of a page and a scraper that terminates on it falls into a repetition loop. Invisible to humans (NULL bytes), it degrades automated scraping without affecting human readers.
 
 ---
 
@@ -62,27 +62,42 @@ Some tokens are self-reinforcing: feed them to the model and it repeats them for
 
 ---
 
-## Code
+## Repository Layout
 
-```bash
-pip install -r requirements.txt
-
-# Find all pits on any model
-python pit_engine.py --model Qwen/Qwen2.5-7B-Instruct --scan
-
-# Reproduce sphere steering
-python steer_sphere_proof.py
-
-# Run geometry verification suite
-python sphere_test_suite.py
+```
+.
+├── paper/
+│   ├── paper_steer.pdf      # compiled 5-page preprint
+│   ├── paper_steer.tex      # LaTeX source (compiles with pdflatex)
+│   └── steeronasphere.png   # the cow
+├── pit_engine.py            # ★ reverse-engineer pits + defensive encoding
+├── steer_sphere_proof.py    # sphere steering reproduction
+├── sphere_test_suite.py     # batch geometry verification
+├── safety_toolkit.py        # λ diagnostics + steer-away
+├── requirements.txt         # pip dependencies
+├── CITATION.cff             # machine-readable citation
+└── LICENSE                  # CC BY 4.0
 ```
 
-| File | Purpose |
-|------|---------|
-| `pit_engine.py` | Reverse-engineer pits from weights + defensive encoding |
-| `steer_sphere_proof.py` | Tangent traversal on the sphere |
-| `sphere_test_suite.py` | Batch geometry verification |
-| `safety_toolkit.py` | Diagnostics (λ health, steer-away) |
+### `pit_engine.py` — the core tool
+Reverse-engineers self-consistent tokens ("pits") from model weights and encodes them into data.
+
+```bash
+python pit_engine.py --model Qwen/Qwen2.5-7B-Instruct --scan
+python pit_engine.py --model Qwen/Qwen2.5-7B-Instruct --encode data.txt
+```
+
+- `PitReverseEngineer` — scans the vocabulary, computes `s(T) = softmax(W·h_T)[T]`, tests 15-step permanence, finds minimal triggers.
+- `PitEncoder` — frames data chunks with pit triggers so any truncation boundary falls into a fixed-point loop.
+
+### `steer_sphere_proof.py` — sphere steering
+Reproduces the tangent traversal: computes `g_t = W_t − (W_t·ĥ)ĥ`, steps, renormalizes, and hooks the hidden state to steer the first generated token. Produces the GSM8K results.
+
+### `sphere_test_suite.py` — geometry verification
+Batch-checks the sphere geometry across cached models: per-layer norms (Proof 1), attention contraction (Proof 2), Lyapunov λ (Proof 3), and steering (Proof 5).
+
+### `safety_toolkit.py` — diagnostics
+Geometric safety tools: Lyapunov health check, fine-tuning monitor, sphere steer-away, and per-zone stability report.
 
 ---
 
