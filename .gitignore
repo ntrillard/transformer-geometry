@@ -1,0 +1,12 @@
+# Ignore build artifacts
+*.json
+*.log
+*.aux
+*.out
+*.gz
+final/
+final_v2/
+.git/
+
+# Keep source files
+
