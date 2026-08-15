@@ -107,11 +107,11 @@ Across all healthy models we tested (Qwen2-1.5B, Qwen2.5-7B, Mistral-7B), $\lamb
 \textbf{Model} & $\lambda$ & \textbf{GSM8K} \\
 \hline
 Qwen2-1.5B & 0.051 & 40\% \\
-TinyLlama-1.1B & 0.183 & 0\% \\
+Mistral-7B & 0.069 & 50\% \\
 \end{tabular}
 \end{center}
 
-TinyLlama's $\lambda$ is 3.7$\times$ the median across healthy models. The metric identifies it as impaired before any accuracy measurement.
+Models outside $[0.02, 0.12]$ are likely impaired. The check takes one second.
 
 \section{Related Work}
 
