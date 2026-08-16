@@ -1,12 +1,30 @@
 #!/usr/bin/env python3
 """Rotation-scan chunk extraction — VRAM-safe revision.
 
-GPU usage is REDUCED to the minimum: only ONE batched hidden-state forward per
-chunk (tiny). All the heavy H·X matmuls run in CPU numpy BLAS, so VRAM stays
-~1.1GB and we never collide with the desktop compositor (the cause of the
-earlier driver hang).
+What is rotated:
+  For each token, the final-layer residual-stream hidden state h is rotated
+  within the 2D plane spanned by {h, t} where t is the SELF-TANGENT —
+  the component of that token's own LM-head (unembedding) row w_tid
+  that is perpendicular to h (i.e. the "steer toward self" direction
+  from the steering proof).
 
-logits(θ) = cosθ·(H·v0) + sinθ·(H·tn)   (two matmuls once, then cheap mix)
+  At angle θ the steered hidden state is:
+    x(θ) = cosθ·h + sinθ·(t·‖h‖)
+  and the logits are:
+    logits(θ) = H·x(θ) = cosθ·G0 + sinθ·G1
+  where G0 = H·h (true logits) and G1 = H·(t·‖h‖).
+
+  θ=0°    → true hidden state (real predictions)
+  θ=90°   → pure self-tangent (maximizes own logit)
+  θ=180°  → antipode −h
+  θ=270°  → anti-tangent −t
+
+  This is NOT a RoPE/positional rotation — no positional encoding is touched.
+  The input is just a vocab-ordered token sequence; each position's h is
+  rotated independently in its own {h, t} 2-plane.
+
+GPU usage is reduced: only ONE batched hidden-state forward per chunk (tiny).
+All heavy H·X matmuls run in CPU numpy BLAS.
 """
 import sys, os
 import numpy as np
