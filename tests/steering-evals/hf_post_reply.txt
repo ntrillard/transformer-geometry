@@ -1,0 +1,26 @@
+Thanks both — genuinely useful, and most of it we now reproduce or can place exactly. Summary reply point-by-point.
+
+**On the geometry/rotation branch (John6666):** your four-part decomposition is the right frame, and our harness now exports the observables behind it. All measurements: linear bias-free final LM head, full vocab, fp32 head eval, seed 42, identical settings across 5 families (Qwen2-1.5B, Qwen2-0.5B, GPT-2, SmolLM-135M, Pythia-160m), 4 contexts x depth-adaptive layers.
+
+- Endpoint equivalence: verified numerically — (u + αg)/||..|| == cosδ·u + sinδ·τ, 200/200 pairs, max dev < 1e-10, so α=0.3 ⇒ δ ≤ atan(0.3) ≈ 16.7°. We use the θ framing now.
+- Your matched controls replicate: correct tangent 27.9–99.2% across families, wrong tangent ~0–1.6%, random tangent 0%; same-score/same-norm off-arc: random residual benign (66.8–99%), competitor-boosted residual destroys rank (2.5–34.8%), competitor-suppressed restores (70.1–100%). So "same target score ≠ same rank," exactly as you found.
+- theta_author vs theta_cell (your new gauge): implemented. Qwen2-0.5B, 48 pairs, full-vocab active-set projection for theta_cell, analytic first-crossing for theta_author (validated vs 200-step scan, 0 mismatch): median 10.0° vs 9.5°, Δ0.4°, ratio 1.04×. Arc ≈ shortest-path into the decision region, with real exceptions — incl. pairs where the arc never reaches rank-1 but the cone does (6/48). So: arc is a strong default route, not the unique one.
+- First rank-1 crossing angle: now a first-class observable (replaces fixed-α flags). Family medians 8.0–12.1°, consistent with your ~8.46°. We record per case: initial rank, first-crossing angle, margin vs best-other, blocking-competitor identity, and margin at crossing (blocking competitor provably changes along the arc — m_j(θ)=r(A_j cosθ + B_j sinθ), full vocab).
+- Context-as-axis: 4 contexts x 4 depth layers per family. Top-1 rate is stable across contexts (~94–99% for Qwen2-1.5B); the rank-1 angle shifts by several degrees between contexts — robust phenomenon, context-dependent distance. Agreed on all four of your "don't collapse" cautions; we restrict every claim to the linear final-head assay (bias-free head verified), norm is a control, not a mechanism.
+- Literature: you've found the right adjacent map; will add Stolen Probability / Unargmaxable / Predicting-Where-Steering / Angle-Norm citations (paper currently cites only Ba/Vaswani/Xiao) and position the contribution as token-rank steering rather than concept steering.
+
+**Cow-tipping robustness + defensive-encoding mitigation (corechek) — measured:**
+
+| axis | result |
+|---|---|
+| fp16 → bf16 | repeated-`0` loop persists (24→30) |
+| fp16 → int8 (bitsandbytes) | persists (30) |
+| greedy / temp 0.8 | persists (24/24) |
+| temp 1.0, top-p .9 sampling | breaks (≈0 trailing) |
+| chat-template-wrapped trigger | breaks (0) — narrow basin |
+
+So the degenerate self-loop is stable to weight precision and 8-bit quantization, survives low-temp greedy, and is broken by meaningful-temperature sampling or any non-terminal wrapping. Formal "pit" self-consistency (s(T) ≥ 0.4) still only appears at 7B-class vocabularies (top s ≈ 0.04 on the 0.5B), so the strict fixed-point robustness matrix needs the 7B models — happy to run those (they were used for the paper).
+
+Mitigations: control-character sanitization alone fails on printable triggers (34 vs 35 trailing tokens); repetition-loop detection works and is harmless (halt after ≥4 identical tokens: exactly 4 emitted; normal-generation harm = 0 median tokens over ordinary prompts). A short threat-model + mitigation section is in the works for the paper based on these numbers.
+
+Everything is reproducible; the per-case boundary/cones CSVs are in the repo, and the eval scripts are check-in-able. Happy to open-source the complete probe if that's useful.
