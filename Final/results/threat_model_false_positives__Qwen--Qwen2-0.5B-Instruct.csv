@@ -1,7 +1,0 @@
-mitigation,median_truncation_tokens,max_truncation_tokens
-repetition-detector-thresh-3,0.0,0
-repetition-detector-thresh-4,0.0,0
-repetition-detector-thresh-5,0.0,0
-entropy-floor-0.5,0.0,0
-entropy-floor-1.0,0.0,0
-entropy-floor-1.5,0.0,0

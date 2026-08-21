@@ -1,2 +1,0 @@
-greedy,temp=1.0 top-p=.9,temp=0.8,template,sanitized_loop,detector_loop,emitted_before_halt,normal_harm_median
-0.0,0.0,0.0,0,34,9,4,0.0

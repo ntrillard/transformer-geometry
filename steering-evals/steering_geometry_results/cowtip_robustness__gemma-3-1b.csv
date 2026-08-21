@@ -1,7 +1,0 @@
-config,token,s,permanence,cos
-fp16~full,pit,0.955,1.0,
-fp16~full,control,0.984,1.0,
-bf16~full,pit,0.957,1.0,
-bf16~full,control,0.986,1.0,
-fp16~int8,pit,0.976,1.0,
-fp16~int8,control,0.978,1.0,
