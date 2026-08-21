@@ -15,13 +15,15 @@ The corrected contracts show that:
 1. **Endpoint identity** holds: tangent step + renormalization equals a
    same-target great-circle rotation.
 2. **Target specificity** holds: a self-excluding wrong-target control reaches
-   rank 1 exactly 0% of the time.
+   rank 1 close to 0% of the time.
 3. **Competitor geometry** dominates off-arc behavior: at fixed norm and fixed
    target score, residual direction toward or away from the strongest blocker
    determines whether the target wins the rank competition.
 4. **Shortest route** is modelable: projection onto the raw LM-head rank-1 cone
    gives shorter routes than the target-tangent arc, with an internal
    certificate (`theta_cell <= theta_author`).
+5. **No mid-arc loss**: in 2,560 cross-family cases, any target that became
+   rank-1 along the tangent arc remained rank-1 at the arc endpoint.
 
 ## Folder layout
 
@@ -33,6 +35,7 @@ Final/
 ├── technique/
 │   ├── steering_geometry_test.py      # specificity + competitor geometry + arc angles
 │   ├── eval_boundary_instruments.py   # theta_author vs theta_cell
+│   ├── eval_manifold_geometry.py      # sphere vs ellipsoid vs natural activation manifold
 │   └── verify_identity.py             # endpoint-identity unit check
 ├── cow-tipping/
 │   ├── eval_pit_robustness.py         # decoder-contract robustness matrix
@@ -40,6 +43,7 @@ Final/
 │   ├── eval_defense.py                # defensive-encoding baseline
 │   └── eval_threat_model.py           # mitigations + false-positive eval
 ├── results/
+│   ├── cross_family_summary.{csv,md}  # 5-model cross-family summary
 │   ├── Qwen--Qwen2-0.5B-Instruct__t64c4_lf0-0.33-0.67-0.99_fp16.csv
 │   ├── Qwen--Qwen2-1.5B-Instruct__t64c4_lf0-0.33-0.67-0.99_fp16.csv
 │   ├── google--gemma-3-1b-it__t128c4_lf0-0.33-0.67-0.99_fp16.csv
@@ -49,18 +53,26 @@ Final/
 │   ├── pit_robustness__google--gemma-3-1b-it.csv
 │   ├── strict_pit_gate__Qwen--Qwen2.5-7B-Instruct.csv
 │   ├── threat_model_mitigations__Qwen--Qwen2-0.5B-Instruct.csv
-│   └── threat_model_false_positives__Qwen--Qwen2-0.5B-Instruct.csv
+│   ├── threat_model_false_positives__Qwen--Qwen2-0.5B-Instruct.csv
+│   ├── threat_model_mitigations__google--gemma-3-1b-it.csv
+│   ├── threat_model_false_positives__google--gemma-3-1b-it.csv
+│   ├── manifold_natural__Qwen--Qwen2-0.5B-Instruct_L8.csv
+│   └── manifold_steering__Qwen--Qwen2-0.5B-Instruct_L8.csv
 └── THREAT_MODEL.md
 ```
 
 ## Quick reproduction
 
 ```bash
-# specificity + competitor geometry
-python technique/steering_geometry_test.py --model Qwen/Qwen2-0.5B-Instruct --targets 64 --contexts 4 --layer-fracs 0.0,0.33,0.67,0.99
+# specificity + competitor geometry (cross-family)
+python technique/steering_geometry_test.py --model Qwen/Qwen2-0.5B-Instruct \
+       --targets 64 --contexts 2 --layer-fracs 0.0,0.33,0.67,0.99
 
 # theta_author vs theta_cell
 python technique/eval_boundary_instruments.py --model Qwen/Qwen2-0.5B-Instruct
+
+# natural activation manifold
+python technique/eval_manifold_geometry.py --model Qwen/Qwen2-0.5B-Instruct --layer-idx 8
 
 # decoder-contract pit robustness
 python cow-tipping/eval_pit_robustness.py --model Qwen/Qwen2-0.5B-Instruct --seeds 64
@@ -74,13 +86,15 @@ python cow-tipping/eval_threat_model.py --model Qwen/Qwen2-0.5B-Instruct --pit-i
 
 ## Key corrected results
 
-### Steering geometry (target rank-1 rates)
+### Cross-family steering geometry (t64 c2, identical settings, fp16)
 
-| Model | Target tangent | Wrong target | Random tangent | Toward blocker | Away blocker |
-|---|---|---|---|---|---|
-| Qwen2-0.5B | 95.8% | 0.0% | 0.0% | 15.9% | 100.0% |
-| Qwen2-1.5B | 99.0% | 0.0% | 0.0% | 37.0% | 100.0% |
-| Gemma-3-1B | 37.7% | 0.0% | 0.0% | 1.9% | 48.8% |
+| Model | Arc-reach | Target | Wrong | Random | Toward blocker | Away blocker | Median ° |
+|---|---|---:|---:|---:|---:|---:|---:|
+| Qwen2-1.5B | 99.2% | 99.2% | 1.6% | 0.0% | 34.8% | 100.0% | 8.00° |
+| Qwen2-0.5B | 97.3% | 97.3% | 1.6% | 0.0% | 13.7% | 100.0% | 10.60° |
+| GPT-2 | 90.8% | 90.8% | 1.0% | 0.0% | 5.9% | 99.2% | 11.60° |
+| SmolLM-135M | 67.2% | 67.2% | 0.4% | 0.0% | 2.5% | 96.7% | 9.84° |
+| Pythia-160M | 27.9% | 27.9% | 0.4% | 0.0% | 9.0% | 70.1% | 2.64° |
 
 ### Shortest route (median degrees)
 
@@ -88,6 +102,13 @@ python cow-tipping/eval_threat_model.py --model Qwen/Qwen2-0.5B-Instruct --pit-i
 |---|---|---|---|
 | Qwen2-0.5B | 10.02° | 8.45° | 1.25x |
 | Gemma-3-1B | 14.20° | 10.28° | 1.37x |
+
+### Natural activation manifold (Qwen2-0.5B, layer 8, 52 prompts)
+
+- Mean post-LN norm: 13.81; std: 0.96 (~7% variation)
+- Top 16 PCs explain 56% of variance
+- Controlled tangent step (α=0.5): 26.57°
+- Actual next-token step: 57°–69° (~2×–2.6× larger)
 
 ### Cow tipping — decoder contract
 
@@ -100,9 +121,21 @@ python cow-tipping/eval_threat_model.py --model Qwen/Qwen2-0.5B-Instruct --pit-i
 | Top-p 0.9, T=0.8 uniform | 0.16 | 30.0 |
 | Chat-template wrapped | 0 | 0 |
 
-The 0.5B loop is a decoder-dependent repetition basin; the 7B strict pit
-survives greedy and standard nucleus sampling and is broken only by the chat
-template context.
+### Mitigations (Qwen2-0.5B `"0"` pit, baseline loop 29)
+
+| Mitigation | Loop after mitigation | Median FP truncation |
+|---|---|---|
+| Repetition detector ≥3 | 3 | 0 tokens |
+| Repetition detector ≥4 | 4 | 0 tokens |
+| Output collapse repeats | 2 | — |
+| Entropy floor 1.0 + pit penalty | 1 | 0 tokens |
+| Pit-away steering (last layer, α=0.3) | 0 | 0 tokens |
+| N-gram detector (4-gram, ≥2) | 8 | 23 tokens |
+| Periodicity detector (≥0.85) | 29 (no break) | 24 tokens |
+
+Pit-away steering and output collapse are the most reliable; N-gram and
+periodicity detectors break the loop but generate too many false positives on
+normal text.
 
 ## Citation
 

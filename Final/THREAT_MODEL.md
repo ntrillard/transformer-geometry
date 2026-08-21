@@ -35,17 +35,36 @@ quality or causing denial of service.
 
 Baseline greedy loop length: 29 tokens.
 
-| Mitigation | Mean loop length | Loop broken? |
-|---|---|---|
-| Repetition detector (≥3 same pit) | 3 | Yes |
-| Repetition detector (≥4 same pit) | 4 | Yes |
-| Repetition detector (≥5 same pit) | 5 | Yes |
-| Entropy floor 0.5 | 6 | Partial |
-| Entropy floor 1.0 | 1 | Yes |
-| Entropy floor 1.5 | 2 | Yes |
-| Input sanitize repeated pit | 18 | Partial |
-| Multinomial T=1.0 | 0 | Yes |
-| Top-p 0.9, T=1.0 weighted | 0.94 | Yes |
+| Mitigation | Loop length | Loop broken? | Median FP truncation |
+|---|---|---|---|
+| Repetition detector (≥3 same pit) | 3 | Yes | 0 tokens |
+| Repetition detector (≥4 same pit) | 4 | Yes | 0 tokens |
+| Repetition detector (≥5 same pit) | 5 | Yes | 0 tokens |
+| Output collapse repeats | 2 | Yes | — |
+| Entropy floor 1.0 + pit penalty | 1 | Yes | 0 tokens |
+| Entropy floor 1.5 + pit penalty | 0 | Yes | 0 tokens |
+| Pit-away steering (last layer, α=0.3) | 0 | Yes | 0 tokens |
+| Input sanitize repeated pit | 18 | Partial | — |
+| Multinomial T=1.0 | 0 | Yes | — |
+| Top-p 0.9, T=1.0 weighted | 0.94 | Yes | — |
+| N-gram detector (4-gram, ≥2) | 8 | Yes | 23 tokens |
+| Periodicity detector (≥0.85) | 29 | No | 24 tokens |
+
+### Gemma-3-1B `<mask>` pit
+
+Baseline greedy loop length: 35 tokens.
+
+| Mitigation | Loop length | Loop broken? | Median FP truncation |
+|---|---|---|---|
+| Repetition detector (≥3 same pit) | 8 | Yes | 0 tokens |
+| Output collapse repeats | 0 | Yes | — |
+| Multinomial T=1.0 | 0 | Yes | — |
+| Top-p 0.9, T=1.0 weighted | 0 | Yes | — |
+| Pit-away steering (last layer, α=0.3) | 0 | Yes | 0 tokens |
+| Entropy floor 1.0 + pit penalty | 35 | No | 0 tokens |
+
+The Gemma pit is not low-entropy, so entropy monitoring does not fire; pit-away
+steering and output collapse remain effective.
 
 ### Qwen2.5-7B "0" pit (strict fixed point)
 
@@ -73,9 +92,22 @@ for shallower basins.
 tokens. On Qwen2-0.5B this breaks the loop with 0 median-token truncation on
 ordinary prompts for thresholds 3, 4, and 5.
 
+**Output collapse.** After generation halts, collapse trailing runs of the pit
+token to a small number. Breaks both Qwen2-0.5B and Gemma pits with no measured
+false positives (because it is applied only after a loop is already detected).
+
 **Entropy monitor.** If the output distribution entropy drops below a floor,
-intervene (e.g., force the second-highest logit). Entropy floor 1.0 breaks the
-0.5B loop with no measured false positives on 20 normal prompts.
+apply a soft penalty to the pit logit. Entropy floor 1.0 with a pit penalty of
+5.0 breaks the Qwen2-0.5B loop with no measured false positives, but does not
+fire on the Gemma pit.
+
+### Active steering defense
+
+**Pit-away steering.** Register a forward hook on the last layer that projects
+the hidden state away from the pit's LM-head direction. This breaks both the
+Qwen2-0.5B and Gemma-3-1B pits with loop length 0 and 0 false positives on 20
+normal prompts. It is the most reliable single defense tested, though it
+requires white-box access to the model.
 
 ### Input-side sanitization
 
@@ -88,27 +120,35 @@ intervene (e.g., force the second-highest logit). Entropy floor 1.0 breaks the
 ### Decoder changes
 
 - Higher temperature and standard nucleus sampling break shallow repetition
-  basins (Qwen2-0.5B) but not strict 7B pits.
+  basins (Qwen2-0.5B, Gemma-3-1B) but not strict 7B pits.
 - Uniform-over-nucleus sampling flattens in-nucleus ratios and can break some
   basins more aggressively, at the cost of output quality.
+
+### Detectors to avoid as primary defenses
+
+- **N-gram repetition detector** and **periodicity detector** break the loop but
+  generate high false-positive truncation on normal text (10–24 tokens median).
+  Use them only as secondary signals combined with repetition or entropy checks.
 
 ### Architecture / alignment
 
 - **Pit-aware steering:** detect the pit direction and steer the hidden state
-  away from it.
+  away from it (see active steering defense above).
 - **Supervised fine-tuning:** penalize self-prediction loops during training.
 
 ## Recommended deployment strategy
 
 1. **Identify pits** for each deployed model (one-time scan).
-2. **Deploy output detectors** (repetition + entropy) with thresholds calibrated
-   on normal generation.
-3. **Sanitize inputs** that are known to terminate in pit triggers, especially
+2. **Deploy output detectors** (repetition + output collapse + entropy) with
+   thresholds calibrated on normal generation.
+3. **Use pit-away steering** when white-box access is available; it is the most
+   reliable single mitigation.
+4. **Sanitize inputs** that are known to terminate in pit triggers, especially
    for untrusted documents.
-4. **Add trailing context** to prompts when possible, since strict pits often
+5. **Add trailing context** to prompts when possible, since strict pits often
    break when the trigger is not the final content.
-5. **Do not rely solely on sampling** for strict pits; use context and
-   detection instead.
+6. **Do not rely solely on sampling** for strict pits; use context, detection,
+   and steering instead.
 
 ## Responsible framing
 

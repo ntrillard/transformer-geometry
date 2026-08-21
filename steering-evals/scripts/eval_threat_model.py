@@ -6,10 +6,21 @@ For a known or discovered pit token, measures:
   - loop-break rate of input/output mitigations
   - false-positive rate of each mitigation on ordinary prompts
 
-Run: python eval_threat_model.py --model Qwen/Qwen2-0.5B-Instruct
+Mitigations tested:
+  - repetition detector (consecutive identical tokens)
+  - n-gram repetition detector
+  - entropy / concentration monitor
+  - periodicity detector
+  - input sanitization (repeated tokens, control chars)
+  - output sanitization (collapse repeated tokens)
+  - pit-specific steering defense (steer hidden state away from pit direction)
+  - decoder changes (temperature / top-p)
+
+Run: python eval_threat_model.py --model Qwen/Qwen2-0.5B-Instruct --pit-id 15
 """
 import argparse
 import math
+from collections import Counter
 from pathlib import Path
 
 import numpy as np
@@ -32,27 +43,134 @@ def entropy_of_logits(logits):
     return -(probs * log_probs).sum().item()
 
 
+def max_ngram_repeat(ids, n=4):
+    """Length of the longest trailing run of a repeated n-gram."""
+    if len(ids) < n:
+        return 0
+    counts = Counter()
+    best = 0
+    for i in range(len(ids) - n + 1):
+        gram = tuple(ids[i:i + n])
+        counts[gram] += 1
+    for i in range(len(ids) - n, -1, -1):
+        gram = tuple(ids[i:i + n])
+        if counts.get(gram, 0) > 1:
+            # count how many consecutive repeats of this gram end at the tail
+            run = 0
+            j = len(ids) - n
+            while j >= 0 and tuple(ids[j:j + n]) == gram:
+                run += 1
+                j -= n
+            return run
+    return 0
+
+
+def periodicity_score(ids, max_lag=8):
+    """Simple autocorrelation periodicity: max normalized correlation over lags."""
+    if len(ids) < max_lag + 2:
+        return 0.0
+    seq = np.array(ids)
+    mean = seq.mean()
+    var = seq.var()
+    if var < 1e-6:
+        return 0.0
+    best = 0.0
+    for lag in range(1, max_lag + 1):
+        c = np.corrcoef(seq[:-lag], seq[lag:])[0, 1]
+        if not np.isnan(c):
+            best = max(best, abs(c))
+    return best
+
+
 @torch.no_grad()
 def gen_with_mitigations(model, tok, head, prompt_ids, pit, max_new=MAX_NEW,
-                         stop_on_repeat=None, entropy_floor=None):
-    """Autoregressive loop with optional repetition and entropy mitigations."""
+                         stop_on_repeat=None, entropy_floor=None,
+                         ngram_n=None, ngram_thresh=None,
+                         periodicity_thresh=None,
+                         pit_penalty=None, steer_away=None,
+                         output_sanitize=False):
+    """Autoregressive loop with optional output-side mitigations.
+
+    pit_penalty: subtract this value from the pit logit when entropy is low.
+    steer_away: dict with keys {layer, alpha, head_weight} that steers the
+                hidden state at `layer` away from the pit LM-head direction.
+    """
     ids = list(prompt_ids)
     consec = 0
     alerts = 0
-    for _ in range(max_new):
-        h = E.state_after_tokens(model, ids)
-        logits = h.float() @ head.T
-        top = int(logits.argmax().item())
-        # entropy monitor
-        if entropy_floor is not None and entropy_of_logits(logits) < entropy_floor:
-            alerts += 1
-            # mitigation: force a non-pit token (the second-highest logit)
-            top = int(torch.topk(logits, k=2).indices[1].item())
-        ids.append(top)
-        consec = consec + 1 if stop_on_repeat is not None and top == pit else 0
-        if stop_on_repeat is not None and consec >= stop_on_repeat:
-            break
+    handle = None
+
+    if steer_away:
+        layer = steer_away["layer"]
+        alpha = steer_away["alpha"]
+        pit_dir = head[pit].float()  # (V,) on device
+        pit_dir = pit_dir / pit_dir.norm()
+
+        def hook(module, inp, out):
+            # out is (1, seq, d); steer the last position away from pit direction
+            h = out[0, -1, :].float()
+            proj = (h @ pit_dir) * pit_dir
+            perp = h - proj
+            # move toward perp component: h' = h - alpha * proj
+            h2 = h - alpha * proj
+            out2 = out.clone()
+            out2[0, -1, :] = h2.to(out.dtype)
+            return out2
+
+        target_layer = model.model.layers[layer]
+        handle = target_layer.register_forward_hook(hook)
+
+    try:
+        for _ in range(max_new):
+            h = E.state_after_tokens(model, ids)
+            logits = h.float() @ head.T
+
+            # entropy / concentration monitor
+            ent = entropy_of_logits(logits)
+            if entropy_floor is not None and ent < entropy_floor:
+                alerts += 1
+                # soft mitigation: penalize the pit logit
+                if pit_penalty is not None:
+                    logits = logits.clone()
+                    logits[pit] -= pit_penalty
+
+            top = int(logits.argmax().item())
+            ids.append(top)
+
+            # repetition detector
+            if stop_on_repeat is not None:
+                consec = consec + 1 if top == pit else 0
+                if consec >= stop_on_repeat:
+                    break
+
+            # n-gram detector
+            if ngram_n is not None and ngram_thresh is not None:
+                if max_ngram_repeat(ids, n=ngram_n) >= ngram_thresh:
+                    alerts += 1
+                    break
+
+            # periodicity detector
+            if periodicity_thresh is not None:
+                if periodicity_score(ids) >= periodicity_thresh:
+                    alerts += 1
+                    break
+
+        # output sanitization: collapse trailing repeated tokens
+        if output_sanitize:
+            ids = collapse_trailing_repeats(ids, pit, max_repeat=2)
+    finally:
+        if handle is not None:
+            handle.remove()
+
     return ids, alerts
+
+
+def collapse_trailing_repeats(ids, pit, max_repeat=2):
+    """Collapse trailing runs of the pit token to at most max_repeat."""
+    out = list(ids)
+    while len(out) >= max_repeat + 1 and all(t == pit for t in out[-(max_repeat + 1):]):
+        out.pop()
+    return out
 
 
 def sanitize_repeated_tokens(tok, ids, pit, max_repeat=3):
@@ -82,12 +200,18 @@ def main():
     ap.add_argument("--model", default=MODEL)
     ap.add_argument("--pit-id", type=int, default=None,
                     help="optional known pit token id; if omitted, scan for one")
+    ap.add_argument("--steer-layer", type=int, default=-1,
+                    help="layer at which to apply pit-away steering defense")
+    ap.add_argument("--steer-alpha", type=float, default=0.3,
+                    help="strength of pit-away steering")
     args = ap.parse_args()
 
     print(f"Loading {args.model} ...")
     model, tok = M.load_model(args.model, dtype="fp16")
     head = torch.as_tensor(model.lm_head.weight.detach().float().cpu().numpy(),
                            device=model.device)
+    n_layers = len(model.model.layers)
+    steer_layer = args.steer_layer if args.steer_layer >= 0 else n_layers + args.steer_layer
 
     # Discover or use known pit
     if args.pit_id is not None:
@@ -124,19 +248,46 @@ def main():
         })
         print(f"  repetition detector (>= {thresh} same pit): loop = {loop}")
 
-    # 2. Entropy monitor
-    for floor in [0.5, 1.0, 1.5]:
-        ids, alerts = gen_with_mitigations(model, tok, head, trig, pit, entropy_floor=floor)
+    # 2. N-gram repetition detector
+    for n, thresh in [(3, 3), (4, 2)]:
+        ids, alerts = gen_with_mitigations(model, tok, head, trig, pit,
+                                           ngram_n=n, ngram_thresh=thresh)
         loop = E.count_run(ids, pit)
         rows.append({
-            "mitigation": f"entropy-floor-{floor}",
+            "mitigation": f"{n}-gram-detector-thresh-{thresh}",
             "loop_length": loop,
             "loop_broken": int(loop < baseline),
             "alerts": alerts,
         })
-        print(f"  entropy floor {floor}: loop = {loop}, alerts = {alerts}")
+        print(f"  {n}-gram detector (>= {thresh} repeats): loop = {loop}, alerts = {alerts}")
 
-    # 3. Input sanitization
+    # 3. Entropy monitor with soft penalty
+    for floor, penalty in [(0.5, 5.0), (1.0, 5.0), (1.5, 5.0)]:
+        ids, alerts = gen_with_mitigations(model, tok, head, trig, pit,
+                                           entropy_floor=floor, pit_penalty=penalty)
+        loop = E.count_run(ids, pit)
+        rows.append({
+            "mitigation": f"entropy-floor-{floor}-penalty-{penalty}",
+            "loop_length": loop,
+            "loop_broken": int(loop < baseline),
+            "alerts": alerts,
+        })
+        print(f"  entropy floor {floor} + penalty {penalty}: loop = {loop}, alerts = {alerts}")
+
+    # 4. Periodicity detector
+    for thresh in [0.85, 0.95]:
+        ids, alerts = gen_with_mitigations(model, tok, head, trig, pit,
+                                           periodicity_thresh=thresh)
+        loop = E.count_run(ids, pit)
+        rows.append({
+            "mitigation": f"periodicity-thresh-{thresh}",
+            "loop_length": loop,
+            "loop_broken": int(loop < baseline),
+            "alerts": alerts,
+        })
+        print(f"  periodicity detector (>= {thresh}): loop = {loop}, alerts = {alerts}")
+
+    # 5. Input sanitization
     sanitized = sanitize_repeated_tokens(tok, trig, pit, max_repeat=2)
     loop = E.count_run(E.gen_with_detector(model, tok, head, sanitized, pit, max_new=MAX_NEW), pit)
     rows.append({"mitigation": "input-sanitize-repeated-pit", "loop_length": loop, "loop_broken": int(loop < baseline)})
@@ -147,7 +298,24 @@ def main():
     rows.append({"mitigation": "input-sanitize-control-chars", "loop_length": loop, "loop_broken": int(loop < baseline)})
     print(f"  input sanitize control chars: loop = {loop}")
 
-    # 4. Decoder change
+    # 6. Output sanitization
+    ids, _ = gen_with_mitigations(model, tok, head, trig, pit, output_sanitize=True)
+    loop = E.count_run(ids, pit)
+    rows.append({"mitigation": "output-collapse-repeats", "loop_length": loop, "loop_broken": int(loop < baseline)})
+    print(f"  output collapse repeats: loop = {loop}")
+
+    # 7. Pit-specific steering defense
+    ids, _ = gen_with_mitigations(model, tok, head, trig, pit,
+                                  steer_away={"layer": steer_layer, "alpha": args.steer_alpha})
+    loop = E.count_run(ids, pit)
+    rows.append({
+        "mitigation": f"pit-away-steer-L{steer_layer}-alpha{args.steer_alpha}",
+        "loop_length": loop,
+        "loop_broken": int(loop < baseline),
+    })
+    print(f"  pit-away steering (layer {steer_layer}, alpha {args.steer_alpha}): loop = {loop}")
+
+    # 8. Decoder changes
     for label, kw in [("multinomial T=1.0", dict(temperature=1.0)),
                       ("top-p 0.9 T=1.0 weighted", dict(temperature=1.0, top_p=0.9, top_p_mode="weighted"))]:
         runs = [E.count_run(E.gen_with_detector(model, tok, head, trig, pit, max_new=MAX_NEW, **kw), pit)
@@ -160,36 +328,58 @@ def main():
         })
         print(f"  {label}: mean loop = {np.mean(runs):.2f}, max = {max(runs)}")
 
+    # 9. Combined defense
+    ids, alerts = gen_with_mitigations(model, tok, head, trig, pit,
+                                       stop_on_repeat=4,
+                                       entropy_floor=1.0, pit_penalty=5.0,
+                                       output_sanitize=True)
+    loop = E.count_run(ids, pit)
+    rows.append({
+        "mitigation": "combined-rep4-entropy1.0-output-collapse",
+        "loop_length": loop,
+        "loop_broken": int(loop < baseline),
+        "alerts": alerts,
+    })
+    print(f"  combined defense: loop = {loop}, alerts = {alerts}")
+
     # False-positive evaluation on normal prompts
     print(f"\nFalse-positive evaluation on {NORMAL_PROMPTS} normal prompts:")
     norms = [tok(p, add_special_tokens=False).input_ids[:10] for p in M.PROMPTS[:NORMAL_PROMPTS]]
     fp_rows = []
 
-    for thresh in [3, 4, 5]:
+    def measure_fp(mit_fn, label):
         truncations = []
         for nids in norms:
             full_len = len(E.gen_with_detector(model, tok, head, nids, pit, max_new=MAX_NEW))
-            det_len = len(gen_with_mitigations(model, tok, head, nids, pit, stop_on_repeat=thresh)[0])
+            det_len = len(mit_fn(nids))
             truncations.append(full_len - det_len)
         fp_rows.append({
-            "mitigation": f"repetition-detector-thresh-{thresh}",
+            "mitigation": label,
             "median_truncation_tokens": float(np.median(truncations)),
             "max_truncation_tokens": int(max(truncations)),
         })
-        print(f"  repetition detector (>= {thresh}): median truncation = {np.median(truncations):.0f} tokens")
+        print(f"  {label}: median truncation = {np.median(truncations):.0f} tokens, max = {max(truncations)}")
 
-    for floor in [0.5, 1.0, 1.5]:
-        truncations = []
-        for nids in norms:
-            full_len = len(E.gen_with_detector(model, tok, head, nids, pit, max_new=MAX_NEW))
-            det_len = len(gen_with_mitigations(model, tok, head, nids, pit, entropy_floor=floor)[0])
-            truncations.append(full_len - det_len)
-        fp_rows.append({
-            "mitigation": f"entropy-floor-{floor}",
-            "median_truncation_tokens": float(np.median(truncations)),
-            "max_truncation_tokens": int(max(truncations)),
-        })
-        print(f"  entropy floor {floor}: median truncation = {np.median(truncations):.0f} tokens")
+    for thresh in [3, 4, 5]:
+        measure_fp(lambda nids: gen_with_mitigations(model, tok, head, nids, pit, stop_on_repeat=thresh)[0],
+                   f"repetition-detector-thresh-{thresh}")
+
+    for n, thresh in [(3, 3), (4, 2)]:
+        measure_fp(lambda nids: gen_with_mitigations(model, tok, head, nids, pit, ngram_n=n, ngram_thresh=thresh)[0],
+                   f"{n}-gram-detector-thresh-{thresh}")
+
+    for floor, penalty in [(0.5, 5.0), (1.0, 5.0), (1.5, 5.0)]:
+        measure_fp(lambda nids: gen_with_mitigations(model, tok, head, nids, pit,
+                                                     entropy_floor=floor, pit_penalty=penalty)[0],
+                   f"entropy-floor-{floor}-penalty-{penalty}")
+
+    for thresh in [0.85, 0.95]:
+        measure_fp(lambda nids: gen_with_mitigations(model, tok, head, nids, pit, periodicity_thresh=thresh)[0],
+                   f"periodicity-thresh-{thresh}")
+
+    measure_fp(lambda nids: gen_with_mitigations(model, tok, head, nids, pit,
+                                                 steer_away={"layer": steer_layer, "alpha": args.steer_alpha})[0],
+               f"pit-away-steer-L{steer_layer}-alpha{args.steer_alpha}")
 
     safe = args.model.replace("/", "--")
     OUT.mkdir(parents=True, exist_ok=True)
