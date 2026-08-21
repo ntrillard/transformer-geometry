@@ -47,8 +47,8 @@ Baseline greedy loop length: 29 tokens.
 | Input sanitize repeated pit | 18 | Partial | — |
 | Multinomial T=1.0 | 0 | Yes | — |
 | Top-p 0.9, T=1.0 weighted | 0.94 | Yes | — |
-| N-gram detector (4-gram, ≥2) | 8 | Yes | 23 tokens |
-| Periodicity detector (≥0.85) | 29 | No | 24 tokens |
+| N-gram detector (4-gram, ≥2) | 8 | Yes | 0 tokens |
+| Periodicity detector (≥0.85) | 29 | No | 24.5 tokens |
 
 ### Gemma-3-1B `<mask>` pit
 
@@ -149,8 +149,11 @@ require multi-layer or per-step steering.
 
 ### Detectors to avoid as primary defenses
 
-- **N-gram repetition detector** and **periodicity detector** break the loop but
-  generate high false-positive truncation on normal text (10–24 tokens median).
+- **Periodicity detector** breaks the loop but generates high false-positive
+  truncation on normal text on both models (24–25 tokens median); the **n-gram
+  detector** is clean on Qwen2-0.5B but truncates normal Gemma output (10–23
+  tokens median). Use them only as secondary signals combined with repetition
+  or entropy checks.
   Use them only as secondary signals combined with repetition or entropy checks.
 
 ### Architecture / alignment

@@ -197,7 +197,7 @@ On 24 targets $\times$ 2 contexts:
 \toprule
 Model & $\theta_{\mathrm{author}}$ & $\theta_{\mathrm{cell}}$ & ratio \\
 \midrule
-Qwen2-0.5B & 10.02$^\circ$ & 8.45$^\circ$ & 1.25$\times$ \\
+Qwen2-0.5B & 10.02$^\circ$ & 8.30$^\circ$ & 1.25$\times$ \\
 Gemma-3-1B & 14.20$^\circ$ & 10.28$^\circ$ & 1.37$\times$ \\
 \bottomrule
 \end{tabular}
@@ -402,8 +402,8 @@ Repetition detector ($\geq 4$ same pit) & yes (loop 4) & 0 tokens \\
 Output collapse repeats & yes (loop 2) & 0 tokens$^*$ \\
 Entropy floor $1.0$ + pit penalty & yes (loop 1) & 0 tokens \\
 Pit-away steering (last layer, $\alpha=0.3$) & yes (loop 0) & 0 tokens \\
-N-gram detector ($4$-gram, $\geq 2$) & yes (loop 8) & 23 tokens \\
-Periodicity detector ($\geq 0.85$) & no & 24 tokens \\
+N-gram detector ($4$-gram, $\geq 2$) & yes (loop 8) & 0 tokens \\
+Periodicity detector ($\geq 0.85$) & no & 24.5 tokens \\
 \bottomrule
 \end{tabular}
 \caption{Qwen2-0.5B mitigation results. $^*$Output-collapse false positives were
@@ -435,8 +435,9 @@ Repetition detection, output collapse, entropy monitoring, and pit-away steering
 break the loop with no measurable false positives on ordinary generation in this
 small set. The detector can be deployed either as an input filter (collapsing
 repeated pit tokens) or as an output guard (halting generation once $N$
-identical tokens are emitted). N-gram and periodicity detectors also break the
-loop but generate unacceptable false positives on normal text. Input
+identical tokens are emitted). The periodicity detector generates unacceptable
+false positives on normal text on both models; the n-gram detector is clean on
+Qwen2-0.5B but truncates normal Gemma output (10--23 tokens median). Input
 sanitization alone is less reliable: stripping repeated pit tokens reduces the
 loop length but does not always break it. Decoder changes (higher temperature,
 standard top-p) are effective on shallow basins but not on the strict 7B pit;

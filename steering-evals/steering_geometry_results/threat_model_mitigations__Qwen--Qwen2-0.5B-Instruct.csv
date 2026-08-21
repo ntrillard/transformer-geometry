@@ -2,10 +2,17 @@ mitigation,loop_length,loop_broken,alerts,max_repeat
 repetition-detector-thresh-3,3.0,1,,
 repetition-detector-thresh-4,4.0,1,,
 repetition-detector-thresh-5,5.0,1,,
-entropy-floor-0.5,6.0,1,1.0,
-entropy-floor-1.0,1.0,1,6.0,
-entropy-floor-1.5,2.0,1,19.0,
+3-gram-detector-thresh-3,9.0,1,1.0,
+4-gram-detector-thresh-2,8.0,1,1.0,
+entropy-floor-0.5-penalty-5.0,6.0,1,1.0,
+entropy-floor-1.0-penalty-5.0,1.0,1,6.0,
+entropy-floor-1.5-penalty-5.0,0.0,1,20.0,
+periodicity-thresh-0.85,29.0,0,0.0,
+periodicity-thresh-0.95,29.0,0,0.0,
 input-sanitize-repeated-pit,18.0,1,,
 input-sanitize-control-chars,29.0,0,,
+output-collapse-repeats,2.0,1,,
+pit-away-steer-L23-alpha0.3,0.0,1,,
 multinomial T=1.0,0.0,1,,0.0
-top-p 0.9 T=1.0 weighted,0.9375,1,,8.0
+top-p 0.9 T=1.0 weighted,1.5625,1,,20.0
+combined-rep4-entropy1.0-output-collapse,2.0,1,0.0,
