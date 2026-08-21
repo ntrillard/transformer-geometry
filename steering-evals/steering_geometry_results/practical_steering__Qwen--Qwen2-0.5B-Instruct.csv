@@ -1,0 +1,13 @@
+test,prompt,occurrences,conf,diversity,sample
+T1-grid a=0.1 k=4,Once upon a time,3.3333333333333335,,0.6955128205128206,x3.3+/-4.8 | Once upon a time， there was a apple tree． It had（1） apple tree on it． When people saw it， 
+T1-grid a=0.1 k=6,Once upon a time,0.16666666666666666,,0.7948717948717948,x0.2+/-0.4 | Once upon a time， there was a little （66） B ． He liked going fishing very much． He went to
+T1-grid a=0.2 k=4,Once upon a time,15.333333333333334,,0.4807692307692308,x15.3+/-2.2 | Once upon a time apple hung from the apple tree. It apple dangled so apple rested on a app
+T1-grid a=0.2 k=6,Once upon a time,11.5,,0.5512820512820512,"x11.5+/-3.1 | Once upon a time apple hung from the apple tree apple wore a yellow shirt.
+ apple rested o"
+T1-grid a=0.3 k=4,Once upon a time,15.333333333333334,,0.4807692307692308,x15.3+/-2.2 | Once upon a time apple hung from the apple tree. It apple dangled so apple rested on a app
+T1-grid a=0.3 k=6,Once upon a time,11.5,,0.5512820512820512,"x11.5+/-3.1 | Once upon a time apple hung from the apple tree apple wore a yellow shirt.
+ apple rested o"
+T2-suppress-world,Tell me something interesting:,0.0,,0.4339622641509434,"Tell me something interesting: A deadly, invisible, slippery, foul-smelling, untested, organism. 5,913,933,999.1113.3. (1.113.333"
+T2-summary,Tell me something interesting:,0.0,,,baseline x0.3 -> steered x0.0
+T3-phrase-choc-cake,Once upon a time,0.0,0.37163915547231835,0.6730769230769231,"Once upon a time chocolate and Lego were considered to cake to do with little ones cake to do with adults. cake and littles can be cake in the poppyseed cake a sundae and just chocolate. What a delicious surprise cake!
+In addition to the"
