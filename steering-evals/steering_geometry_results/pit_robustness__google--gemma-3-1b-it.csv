@@ -1,0 +1,10 @@
+config,trailing_repeat,note,max_repeat,n
+fp16~full,30.0,,,
+bf16~full,,OOM,,
+fp16~int8,,OOM,,
+greedy,30.0,,30.0,64.0
+multinomial T=0.8,0.0,,0.0,64.0
+top-p 0.9 T=1.0 weighted,0.0,,0.0,64.0
+top-p 0.9 T=0.8 weighted,0.0,,0.0,64.0
+top-p 0.9 T=0.8 uniform,0.0,,0.0,64.0
+chat-template-wrapped,1.0,,,

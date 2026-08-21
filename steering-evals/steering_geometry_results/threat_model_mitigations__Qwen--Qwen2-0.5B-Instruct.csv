@@ -1,0 +1,11 @@
+mitigation,loop_length,loop_broken,alerts,max_repeat
+repetition-detector-thresh-3,3.0,1,,
+repetition-detector-thresh-4,4.0,1,,
+repetition-detector-thresh-5,5.0,1,,
+entropy-floor-0.5,6.0,1,1.0,
+entropy-floor-1.0,1.0,1,6.0,
+entropy-floor-1.5,2.0,1,19.0,
+input-sanitize-repeated-pit,18.0,1,,
+input-sanitize-control-chars,29.0,0,,
+multinomial T=1.0,0.0,1,,0.0
+top-p 0.9 T=1.0 weighted,0.9375,1,,8.0
