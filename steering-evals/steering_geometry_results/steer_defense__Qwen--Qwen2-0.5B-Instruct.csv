@@ -1,0 +1,4 @@
+config,n_layers,alpha,loop_length,broken,mean_token_change,max_token_change
+single,1,0.3,0,1,0.6431566951566952,1.0
+last-4,4,0.3,0,1,0.4277720797720798,1.0
+all,24,0.3,0,1,0.23517948717948717,0.6666666666666666

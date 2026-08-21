@@ -124,13 +124,21 @@ fire on the Gemma pit.
 
 ### Active steering defense
 
-**Pit-away steering.** Register a forward hook on the last layer that projects
-the hidden state away from the pit's LM-head direction. This breaks both the
-Qwen2-0.5B and Gemma-3-1B pits with loop length 0 and 0 false positives on 20
-normal prompts. It is the most reliable single defense for shallow basins, but
-it does NOT break the Qwen2.5-7B strict pit (loop stays at baseline even at
-α=1.0): a single perturbed layer is re-absorbed by the fixed point. Strict pits
-require multi-layer or per-step steering.
+**Pit-away steering.** Register a forward hook that projects the hidden state
+away from the pit's LM-head direction during generation. Effectiveness depends
+entirely on pit type:
+
+| Model | Hook layers | Loop before→after | Token change on normal prompts |
+|---|---|---|---|
+| Gemma-3-1B (`<mask>`) | last 1 / 4 / all | 35→0 / 0 / 0 | 0% / 0% / 9.6% |
+| Qwen2-0.5B (`0`) | last 1 / 4 / all | 29→0 / 0 / 0 | 64% / 43% / 24% |
+| Qwen2.5-7B `0` (nf4, strict) | last 1 / 4 / 8 / all | 35 / 35 / 35 / 35 (unbroken) | 78% / 78% / 78% / 68% |
+
+For shallow basins this is the cleanest defense (Gemma: loop removed with zero
+interference). Against the strict 7B fixed point it fails even when every
+layer is hooked, at a 68–78% token-change cost to ordinary generation —
+steering adds generation damage without breaking the loop. Strict pits
+require truncation guards and context changes.
 
 ### Input-side sanitization
 

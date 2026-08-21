@@ -25,7 +25,9 @@ sampling instead of temperature-rescaled argmax), a five-family cross-family
 table with analytic first rank-1 angles and a no-mid-arc-loss verification,
 rank-cone projections ($\theta_{\mathrm{author}}$ vs $\theta_{\mathrm{cell}}$),
 natural-manifold measurements, a strict-pit gate on Qwen2.5-7B, and an expanded
-threat model with false-positive rates for each defense.
+threat model with false-positive rates for each defense. These revisions were
+developed through public review on the Hugging Face
+Forums~\cite{hfthread}, including independent third-party reproduction.
 
 \begin{abstract}
 Layer normalization constrains transformer hidden states to a sphere whose
@@ -59,7 +61,7 @@ data.
 
 \section{The Sphere}
 
-RMSNorm maps hidden states to a sphere whose expected radius is $\|\gamma_l\|$:
+RMSNorm~\cite{zhang2019rmsnorm} maps hidden states to a sphere whose expected radius is $\|\gamma_l\|$:
 \[
 \|\operatorname{RMSNorm}(h)\|^2 = \sum_{i=1}^d \gamma_{l,i}^2 \left(\frac{h_i}{\operatorname{RMS}(h)}\right)^2
 \]
@@ -427,9 +429,15 @@ and the combined defense leaves 2 tokens with 4 alerts --- but entropy penalties
 $\alpha=1.0$ leave the loop intact at 35, and top-p $T=1.0$ never breaks it.
 Single-layer steering away from the pit LM-head direction defeats shallow
 basins but not the strict fixed point: the trajectory re-converges after the
-perturbed layer. For strict pits the reliable defenses are truncation-style
-guards (repetition cap, output collapse) plus context changes; steering-based
-defense would need multi-layer or per-step application.
+perturbed layer. Multi-layer projection does not close this gap: hooks on the
+last 8 layers, or on every layer simultaneously, leave the strict 7B loop at
+35 ($\alpha=0.3$) while ordinary generation changes 68--78\% of its tokens
+under the same hooks. The identical hook is decisive on shallow basins: on
+Gemma-3-1B a single-layer hook removes the loop entirely (35$\to$0) with 0\%
+token change on ordinary prompts; on Qwen2-0.5B it breaks the loop at a
+24--64\% token-change cost. For strict pits the reliable defenses remain
+truncation-style guards (repetition cap, output collapse) plus context
+changes; steering adds generation damage without breaking the loop.
 
 Repetition detection, output collapse, entropy monitoring, and pit-away steering
 break the loop with no measurable false positives on ordinary generation in this
@@ -461,41 +469,47 @@ sub-tokens, and terminal phone-number-like strings. A crawler reading a page
 that terminates in one of these triggers stops producing useful output and
 repeats the pit token instead.
 
-\section{Edge of Chaos: A Theory}
+\section{Edge of Chaos: Measurements}
 
-The residual stream is a dynamical system $h_{l+1} = h_l + f_l(h_l)$. Its
-per-layer Lyapunov exponent measures how perturbations grow:
+The residual stream is a dynamical system $h_{l+1} = h_l + f_l(h_l)$. We
+measure its per-layer Lyapunov exponent by perturbing the input embeddings by
+$\varepsilon = 10^{-2}$ along a random direction, propagating both
+trajectories, and computing $\lambda_l = \ln(\|\Delta h_{l+1}\| /
+\|\Delta h_l\|)$, averaged over 8 prompts $\times$ 3 seeds. The profile is
+strongly non-uniform (per-layer $\lambda$ spans $-3.1$ to $+2.7$ across
+models), so we summarize by the median over middle layers times the layer
+count:
 
-\[
-\lambda_l = \ln\frac{\|h_{l+1}^{\mathrm{pert}} - h_{l+1}^{\mathrm{ref}}\|}{\|h_l^{\mathrm{pert}} - h_l^{\mathrm{ref}}\|}
-\]
-
-A perturbation that neither explodes nor vanishes during computation would place
-the system at the edge of chaos, corresponding to $\lambda \cdot
-L_{\mathrm{comp}} \approx 0.5$ (one e-fold of total expansion). We measured the
-per-layer rate across 13 model families:
-
-\small
 \begin{center}
-\begin{tabular}{llc}
+\begin{tabular}{lcc}
 \toprule
-Cluster & Models & $\lambda \cdot L_{\mathrm{comp}}$ \\
+Model & $\lambda_{\mathrm{mid}}$ & $\lambda \cdot L$ \\
 \midrule
-$\approx 0.5$ & Gemma-2-2B, Gemma-2-9B, GPT-2, DS-R1-7B, Qwen-1.5B, Qwen2.5-7B & 0.37--0.57 \\
-$\approx 0.8$ & SmolLM2-360M, DeepSeek-7B & 0.76--0.88 \\
-$\approx 1.0$ & Phi-3.5-mini, Mistral-7B & 1.00--1.47 \\
-$\approx 0.1$ & Qwen2.5-0.5B, Qwen2.5-3B & 0.01--0.10 \\
+Qwen2-0.5B & 0.025 & 0.60 \\
+Qwen2-1.5B & 0.023 & 0.64 \\
+GPT-2 & 0.122 & 1.47 \\
+SmolLM-135M & 0.062 & 1.87 \\
+Pythia-160M & 0.051 & 0.61 \\
 \bottomrule
 \end{tabular}
 \end{center}
-\normalsize
 
-The edge-of-chaos balance ($\lambda \cdot L \approx 0.5$) holds for roughly
-half the models---notably the Gemma family, GPT-2, and mid-sized Qwen---but is
-not universal. We present it as a theory that captures a subset of
-architectures, not as a scaling law. Cow tipping (Section~4) is the degenerate
-limit of this balance: a fixed point where $\lambda_l \to 0$ and the trajectory
-stops changing entirely.
+Under this explicit definition, the $v_1$ clustering (13 families,
+$\lambda \cdot L \approx 0.5$ for the Gemma/GPT-2/mid-Qwen group) is
+\emph{not} recovered --- GPT-2 measures 1.47 here --- and the summary
+statistic is aggregation-sensitive. We therefore treat the edge-of-chaos
+framing as an open hypothesis rather than an established law; the $v_1$
+numbers came from earlier tooling with a different, undocumented
+normalization (recoverable from git history).
+
+The pit connection, however, is directly measurable. During a greedy pit
+loop the trajectory contracts: the step-to-step distance ratio $r_n =
+\|h_{n+2}-h_{n+1}\| / \|h_{n+1}-h_n\|$ is $0.86$ (Qwen2-0.5B) and $0.93$
+(Qwen2-1.5B), with $\cos(h_n, h_{n+1}) \approx 0.91$--$0.93$, while ordinary
+generation from matched prompts stays near $r \approx 1$ (neutral) with
+lower cosine. Pits are locally contracting fixed-point basins rather than
+exact $\lambda \to 0$ fixed points: each step loses 7--14\% of its
+displacement while the direction stays locked.
 
 \section{Reproduction}
 
@@ -547,9 +561,11 @@ git history.
 DeepSeek V4 Pro provided writing assistance.
 
 \begin{thebibliography}{99}
+\bibitem{zhang2019rmsnorm} B.~Zhang, R.~Sennrich. Root Mean Square Layer Normalization. \emph{NeurIPS}, 2019. arXiv:1910.07467.
 \bibitem{ba2016layer} J.~L.~Ba, J.~R.~Kiros, G.~E.~Hinton. Layer normalization. \emph{arXiv:1607.06450}, 2016.
 \bibitem{vaswani2017attention} A.~Vaswani et al. Attention is all you need. \emph{NeurIPS}, 2017.
 \bibitem{xiao2023efficient} G.~Xiao et al. Efficient streaming language models with attention sinks. \emph{arXiv:2309.17453}, 2023.
+\bibitem{hfthread} N.~Trillard, ``Steer on a Sphere: Geometric Control of Transformer Outputs,'' Hugging Face Forums (Research), Aug.\ 2026. Public review and third-party reproduction thread. \url{https://discuss.huggingface.co/t/steer-on-a-sphere-geometric-control-of-transformer-outputs/178732} (accessed Aug.\ 21, 2026).
 \end{thebibliography}
 
 \end{document}
