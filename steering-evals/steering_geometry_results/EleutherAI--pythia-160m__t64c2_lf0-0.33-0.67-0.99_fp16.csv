@@ -1,0 +1,513 @@
+model,context,layer,target_id,target_text,rank_target_tangent,rank_wrong_tangent,rank_random_tangent,rank_offarc_random,rank_offarc_toward,rank_offarc_away,first_rank1_angle
+EleutherAI/pythia-160m,The capital of France is,0,60,[,5692,42495,40980,3379,38806,38,
+EleutherAI/pythia-160m,The capital of France is,0,75,j,2762,29777,26717,3134,27941,20,
+EleutherAI/pythia-160m,The capital of France is,0,80,o,798,32099,37015,1636,27289,1,
+EleutherAI/pythia-160m,The capital of France is,0,81,p,1568,28881,40676,1388,24867,4,
+EleutherAI/pythia-160m,The capital of France is,0,264,ed,4783,47393,49947,3431,43060,1,
+EleutherAI/pythia-160m,The capital of France is,0,268, p,787,16270,13578,676,15027,4,
+EleutherAI/pythia-160m,The capital of France is,0,270, b,1216,17682,18711,1950,16087,18,
+EleutherAI/pythia-160m,The capital of France is,0,324,ad,946,31524,35262,804,25906,1,
+EleutherAI/pythia-160m,The capital of France is,0,351,od,28,9306,13733,28,8825,1,
+EleutherAI/pythia-160m,The capital of France is,0,359, we,522,18087,17654,544,14397,1,
+EleutherAI/pythia-160m,The capital of France is,0,369, was,4108,25669,27795,3269,22170,252,
+EleutherAI/pythia-160m,The capital of France is,0,389, com,7,3026,15127,9,2109,1,
+EleutherAI/pythia-160m,The capital of France is,0,398,ers,23,16368,21514,21,12609,1,
+EleutherAI/pythia-160m,The capital of France is,0,416, R,862,12978,13909,1069,15568,3,
+EleutherAI/pythia-160m,The capital of France is,0,419, ha,618,19778,17101,269,16282,1,
+EleutherAI/pythia-160m,The capital of France is,0,451,ial,955,40003,33267,732,31166,1,
+EleutherAI/pythia-160m,The capital of France is,0,494,able,9353,48296,50060,9041,45786,30,
+EleutherAI/pythia-160m,The capital of France is,0,495, 3,1775,15368,22659,1853,16307,58,
+EleutherAI/pythia-160m,The capital of France is,0,528,ous,3118,45121,47991,2788,37391,2,
+EleutherAI/pythia-160m,The capital of France is,0,598, up,56,10025,18911,50,5792,1,
+EleutherAI/pythia-160m,The capital of France is,0,606,ang,3229,42424,45138,3911,38209,2,
+EleutherAI/pythia-160m,The capital of France is,0,609,are,3961,39664,43836,4158,37643,8,
+EleutherAI/pythia-160m,The capital of France is,0,684,ates,1618,39778,44931,1695,32700,1,
+EleutherAI/pythia-160m,The capital of France is,0,695,ric,198,22242,24107,212,21360,1,
+EleutherAI/pythia-160m,The capital of France is,0,720,ject,2252,41547,47656,3285,36721,1,
+EleutherAI/pythia-160m,The capital of France is,0,723,ings,3736,48281,49877,5432,43999,1,
+EleutherAI/pythia-160m,The capital of France is,0,778, may,2680,22783,35768,3922,21511,80,
+EleutherAI/pythia-160m,The capital of France is,0,807, year,2,1843,2862,4,1246,1,
+EleutherAI/pythia-160m,The capital of France is,0,864,hen,855,35105,30796,1093,27427,1,
+EleutherAI/pythia-160m,The capital of France is,0,883,11,2348,15401,17152,3602,18400,68,
+EleutherAI/pythia-160m,The capital of France is,0,888,ident,464,20100,28023,505,23106,1,
+EleutherAI/pythia-160m,The capital of France is,0,896, back,2,1618,4641,1,1049,1,
+EleutherAI/pythia-160m,The capital of France is,0,927, includ,54,6379,6764,120,4570,1,
+EleutherAI/pythia-160m,The capital of France is,0,977,other,718,30985,41148,1213,26690,1,
+EleutherAI/pythia-160m,The capital of France is,0,1002, produ,877,13999,20715,1146,14557,7,
+EleutherAI/pythia-160m,The capital of France is,0,1052, 200,303,4863,4242,276,6314,1,
+EleutherAI/pythia-160m,The capital of France is,0,1077, very,2,224,169,1,197,1,
+EleutherAI/pythia-160m,The capital of France is,0,1080,ator,119,19186,20922,201,13971,1,
+EleutherAI/pythia-160m,The capital of France is,0,1104,ients,15079,48303,50118,13833,47867,28,
+EleutherAI/pythia-160m,The capital of France is,0,1123,ave,3465,43318,45579,4377,37285,4,
+EleutherAI/pythia-160m,The capital of France is,0,1138,""">",1495,25416,21824,2193,24876,3,
+EleutherAI/pythia-160m,The capital of France is,0,1140, tra,6,2586,6404,5,1748,1,
+EleutherAI/pythia-160m,The capital of France is,0,1149, gu,2,867,4150,2,786,1,
+EleutherAI/pythia-160m,The capital of France is,0,1185, dire,2716,36026,40783,3399,30016,10,
+EleutherAI/pythia-160m,The capital of France is,0,1219, Al,143,8388,7020,200,6443,1,
+EleutherAI/pythia-160m,The capital of France is,0,1223, while,103,14816,11901,82,10608,1,
+EleutherAI/pythia-160m,The capital of France is,0,1239, read,2,1315,5434,2,655,1,
+EleutherAI/pythia-160m,The capital of France is,0,1251,ng,1427,35400,44029,1084,28805,1,
+EleutherAI/pythia-160m,The capital of France is,0,1427,ulation,359,23332,28735,320,21188,1,
+EleutherAI/pythia-160m,The capital of France is,0,1434,acter,343,32637,29583,386,25945,1,
+EleutherAI/pythia-160m,The capital of France is,0,1450,::,29,20453,18524,20,10827,1,
+EleutherAI/pythia-160m,The capital of France is,0,1453, control,7,6230,7767,5,3663,1,
+EleutherAI/pythia-160m,The capital of France is,0,1460, pur,5,2305,9107,4,1739,1,
+EleutherAI/pythia-160m,The capital of France is,0,1525,99,536,13329,11191,399,13000,2,
+EleutherAI/pythia-160m,The capital of France is,0,1546,ural,133,20548,31251,305,19474,1,
+EleutherAI/pythia-160m,The capital of France is,0,1592,fer,552,31129,41855,508,26554,1,
+EleutherAI/pythia-160m,The capital of France is,0,1603,}(,1731,27037,24651,1933,26295,3,
+EleutherAI/pythia-160m,The capital of France is,0,1710,gram,865,32183,43065,1311,27991,1,
+EleutherAI/pythia-160m,The capital of France is,0,1740, four,9,843,1659,11,1350,1,
+EleutherAI/pythia-160m,The capital of France is,0,1751,ene,186,23884,25218,152,20811,1,
+EleutherAI/pythia-160m,The capital of France is,0,1768,bs,5407,44427,44005,6859,41209,10,
+EleutherAI/pythia-160m,The capital of France is,0,1779,Ch,14872,39112,42166,14917,41478,646,
+EleutherAI/pythia-160m,The capital of France is,0,1788,lection,2848,40343,44012,1717,39857,1,
+EleutherAI/pythia-160m,The capital of France is,0,1813,icro,199,22963,27009,190,21795,1,
+EleutherAI/pythia-160m,The capital of France is,4,60,[,3239,31497,36555,3220,27987,20,
+EleutherAI/pythia-160m,The capital of France is,4,75,j,10278,37082,41521,9305,35710,510,
+EleutherAI/pythia-160m,The capital of France is,4,80,o,648,21996,25937,793,18443,1,
+EleutherAI/pythia-160m,The capital of France is,4,81,p,4320,30119,32359,3864,28137,68,
+EleutherAI/pythia-160m,The capital of France is,4,264,ed,7852,46680,50225,8241,42237,33,
+EleutherAI/pythia-160m,The capital of France is,4,268, p,2559,19258,25946,3019,18567,75,
+EleutherAI/pythia-160m,The capital of France is,4,270, b,1010,10919,15279,787,10631,20,
+EleutherAI/pythia-160m,The capital of France is,4,324,ad,658,20846,33515,650,14925,1,
+EleutherAI/pythia-160m,The capital of France is,4,351,od,42,5278,9599,69,5285,1,
+EleutherAI/pythia-160m,The capital of France is,4,359, we,1210,17071,17364,1294,12497,25,
+EleutherAI/pythia-160m,The capital of France is,4,369, was,5218,23117,27865,6143,20842,622,
+EleutherAI/pythia-160m,The capital of France is,4,389, com,35,3801,10650,56,3228,1,
+EleutherAI/pythia-160m,The capital of France is,4,398,ers,1198,31218,36505,1542,24284,1,
+EleutherAI/pythia-160m,The capital of France is,4,416, R,4711,22688,24490,6155,23772,225,
+EleutherAI/pythia-160m,The capital of France is,4,419, ha,114,5360,8008,170,4789,1,
+EleutherAI/pythia-160m,The capital of France is,4,451,ial,1391,32702,40897,1597,26849,1,
+EleutherAI/pythia-160m,The capital of France is,4,494,able,3134,43259,43526,2593,32110,8,
+EleutherAI/pythia-160m,The capital of France is,4,495, 3,1627,11171,11365,1556,11406,87,
+EleutherAI/pythia-160m,The capital of France is,4,528,ous,2181,35917,45269,1552,28704,4,
+EleutherAI/pythia-160m,The capital of France is,4,598, up,14,2810,5152,14,1736,1,
+EleutherAI/pythia-160m,The capital of France is,4,606,ang,889,26801,31020,789,18887,1,
+EleutherAI/pythia-160m,The capital of France is,4,609,are,520,17950,20469,492,16309,1,
+EleutherAI/pythia-160m,The capital of France is,4,684,ates,2944,35846,46077,2202,30897,5,
+EleutherAI/pythia-160m,The capital of France is,4,695,ric,1001,23850,23256,1117,23992,1,
+EleutherAI/pythia-160m,The capital of France is,4,720,ject,3398,37220,29945,2716,31148,14,
+EleutherAI/pythia-160m,The capital of France is,4,723,ings,8141,48219,49855,9446,43922,25,
+EleutherAI/pythia-160m,The capital of France is,4,778, may,895,10407,15571,1132,7975,39,
+EleutherAI/pythia-160m,The capital of France is,4,807, year,9,1745,5195,7,1394,1,
+EleutherAI/pythia-160m,The capital of France is,4,864,hen,2203,32558,40089,2823,26423,8,
+EleutherAI/pythia-160m,The capital of France is,4,883,11,5021,18492,25284,4700,21522,396,
+EleutherAI/pythia-160m,The capital of France is,4,888,ident,3722,29360,32982,4047,31338,13,
+EleutherAI/pythia-160m,The capital of France is,4,896, back,1,570,3348,1,292,1,15.209827423095703
+EleutherAI/pythia-160m,The capital of France is,4,927, includ,101,4799,3102,102,3658,1,
+EleutherAI/pythia-160m,The capital of France is,4,977,other,250,14844,21562,243,12725,1,
+EleutherAI/pythia-160m,The capital of France is,4,1002, produ,3801,19932,24947,3836,20999,144,
+EleutherAI/pythia-160m,The capital of France is,4,1052, 200,1315,8088,8963,1154,9827,56,
+EleutherAI/pythia-160m,The capital of France is,4,1077, very,1,92,464,1,122,1,15.175771713256836
+EleutherAI/pythia-160m,The capital of France is,4,1080,ator,126,12601,16903,224,9680,1,
+EleutherAI/pythia-160m,The capital of France is,4,1104,ients,14160,47875,49995,16856,46623,95,
+EleutherAI/pythia-160m,The capital of France is,4,1123,ave,603,22379,28868,574,18460,1,
+EleutherAI/pythia-160m,The capital of France is,4,1138,""">",11908,37951,38951,10375,36006,917,
+EleutherAI/pythia-160m,The capital of France is,4,1140, tra,286,9843,12122,275,8180,1,
+EleutherAI/pythia-160m,The capital of France is,4,1149, gu,186,6647,13280,199,5934,1,
+EleutherAI/pythia-160m,The capital of France is,4,1185, dire,8311,39475,42287,7318,34818,278,
+EleutherAI/pythia-160m,The capital of France is,4,1219, Al,900,12596,10451,1071,8887,25,
+EleutherAI/pythia-160m,The capital of France is,4,1223, while,34,5414,6156,34,2399,1,
+EleutherAI/pythia-160m,The capital of France is,4,1239, read,26,4002,2890,45,2400,1,
+EleutherAI/pythia-160m,The capital of France is,4,1251,ng,4351,36249,37847,6276,30554,50,
+EleutherAI/pythia-160m,The capital of France is,4,1427,ulation,1143,22892,20398,1296,21506,1,
+EleutherAI/pythia-160m,The capital of France is,4,1434,acter,2455,35979,41121,2686,31825,2,
+EleutherAI/pythia-160m,The capital of France is,4,1450,::,139,19484,14457,120,12486,1,
+EleutherAI/pythia-160m,The capital of France is,4,1453, control,211,13876,12407,148,10577,1,
+EleutherAI/pythia-160m,The capital of France is,4,1460, pur,39,3399,4006,49,3014,1,
+EleutherAI/pythia-160m,The capital of France is,4,1525,99,2668,18871,18425,2049,19518,60,
+EleutherAI/pythia-160m,The capital of France is,4,1546,ural,906,24385,37790,1393,22912,1,
+EleutherAI/pythia-160m,The capital of France is,4,1592,fer,1498,28942,26521,1686,24936,2,
+EleutherAI/pythia-160m,The capital of France is,4,1603,}(,7287,32925,28024,7718,32405,202,
+EleutherAI/pythia-160m,The capital of France is,4,1710,gram,1960,29254,34666,2051,26821,3,
+EleutherAI/pythia-160m,The capital of France is,4,1740, four,16,606,1222,26,937,2,
+EleutherAI/pythia-160m,The capital of France is,4,1751,ene,1321,28020,37190,1771,26127,1,
+EleutherAI/pythia-160m,The capital of France is,4,1768,bs,5219,38441,43839,5192,33466,74,
+EleutherAI/pythia-160m,The capital of France is,4,1779,Ch,15388,35903,43593,16815,38264,1556,
+EleutherAI/pythia-160m,The capital of France is,4,1788,lection,6764,40362,42207,7243,38919,44,
+EleutherAI/pythia-160m,The capital of France is,4,1813,icro,1626,28573,27770,1590,26854,2,
+EleutherAI/pythia-160m,The capital of France is,7,60,[,334,20428,22335,385,17189,1,
+EleutherAI/pythia-160m,The capital of France is,7,75,j,11750,36550,41731,8828,35248,376,
+EleutherAI/pythia-160m,The capital of France is,7,80,o,1561,29882,36289,1148,26563,1,
+EleutherAI/pythia-160m,The capital of France is,7,81,p,1589,25110,26237,1313,23647,1,
+EleutherAI/pythia-160m,The capital of France is,7,264,ed,1223,36724,44326,1102,30574,1,
+EleutherAI/pythia-160m,The capital of France is,7,268, p,401,9968,13899,297,9042,1,
+EleutherAI/pythia-160m,The capital of France is,7,270, b,312,7494,11066,345,6307,2,
+EleutherAI/pythia-160m,The capital of France is,7,324,ad,387,22169,24826,327,18284,1,
+EleutherAI/pythia-160m,The capital of France is,7,351,od,5,4627,6386,6,4863,1,
+EleutherAI/pythia-160m,The capital of France is,7,359, we,1273,21066,23703,1183,18758,5,
+EleutherAI/pythia-160m,The capital of France is,7,369, was,703,10837,15431,949,10472,6,
+EleutherAI/pythia-160m,The capital of France is,7,389, com,1,830,1847,1,447,1,15.192082405090332
+EleutherAI/pythia-160m,The capital of France is,7,398,ers,487,27982,32960,362,24883,1,
+EleutherAI/pythia-160m,The capital of France is,7,416, R,327,6278,10976,350,8818,1,
+EleutherAI/pythia-160m,The capital of France is,7,419, ha,61,5607,10021,58,4571,1,
+EleutherAI/pythia-160m,The capital of France is,7,451,ial,5801,43000,47986,5009,37151,8,
+EleutherAI/pythia-160m,The capital of France is,7,494,able,655,33678,40585,439,27003,1,
+EleutherAI/pythia-160m,The capital of France is,7,495, 3,290,5169,6565,531,4998,4,
+EleutherAI/pythia-160m,The capital of France is,7,528,ous,632,28949,32765,531,24758,1,
+EleutherAI/pythia-160m,The capital of France is,7,598, up,16,5217,3511,22,3136,1,
+EleutherAI/pythia-160m,The capital of France is,7,606,ang,8112,41292,38111,9096,37257,33,
+EleutherAI/pythia-160m,The capital of France is,7,609,are,3722,32537,38721,4178,30758,5,
+EleutherAI/pythia-160m,The capital of France is,7,684,ates,3550,36863,41093,2190,31650,5,
+EleutherAI/pythia-160m,The capital of France is,7,695,ric,2611,32539,37960,2420,31305,1,
+EleutherAI/pythia-160m,The capital of France is,7,720,ject,5976,40270,47049,4299,36299,4,
+EleutherAI/pythia-160m,The capital of France is,7,723,ings,12901,48331,50218,13461,45788,9,
+EleutherAI/pythia-160m,The capital of France is,7,778, may,302,8057,10498,289,6793,1,
+EleutherAI/pythia-160m,The capital of France is,7,807, year,3,3020,3516,2,2285,1,
+EleutherAI/pythia-160m,The capital of France is,7,864,hen,1650,31691,32872,2062,27247,1,
+EleutherAI/pythia-160m,The capital of France is,7,883,11,10053,26870,28958,10526,28020,997,
+EleutherAI/pythia-160m,The capital of France is,7,888,ident,8997,37460,43615,7787,36709,72,
+EleutherAI/pythia-160m,The capital of France is,7,896, back,1,1520,5269,2,1171,1,15.345242500305176
+EleutherAI/pythia-160m,The capital of France is,7,927, includ,852,18061,13139,751,15316,2,
+EleutherAI/pythia-160m,The capital of France is,7,977,other,3427,34532,37339,3514,30922,6,
+EleutherAI/pythia-160m,The capital of France is,7,1002, produ,1736,16856,22407,1653,17482,20,
+EleutherAI/pythia-160m,The capital of France is,7,1052, 200,780,7073,7631,695,8386,23,
+EleutherAI/pythia-160m,The capital of France is,7,1077, very,1,159,940,1,91,1,13.267293930053711
+EleutherAI/pythia-160m,The capital of France is,7,1080,ator,495,23757,32219,638,20764,1,
+EleutherAI/pythia-160m,The capital of France is,7,1104,ients,22922,48293,50066,24234,47437,246,
+EleutherAI/pythia-160m,The capital of France is,7,1123,ave,3008,35497,39971,3534,31868,2,
+EleutherAI/pythia-160m,The capital of France is,7,1138,""">",11370,35188,45170,10671,35033,260,
+EleutherAI/pythia-160m,The capital of France is,7,1140, tra,4,2199,3790,4,1296,1,
+EleutherAI/pythia-160m,The capital of France is,7,1149, gu,1,541,881,1,518,1,14.979301452636719
+EleutherAI/pythia-160m,The capital of France is,7,1185, dire,1147,23452,28679,1326,17854,4,
+EleutherAI/pythia-160m,The capital of France is,7,1219, Al,82,4686,10609,97,3934,1,
+EleutherAI/pythia-160m,The capital of France is,7,1223, while,146,14834,18998,155,9132,1,
+EleutherAI/pythia-160m,The capital of France is,7,1239, read,3,3543,8744,5,2493,1,
+EleutherAI/pythia-160m,The capital of France is,7,1251,ng,10790,42514,46252,10072,39100,86,
+EleutherAI/pythia-160m,The capital of France is,7,1427,ulation,6203,35405,37955,7487,34387,17,
+EleutherAI/pythia-160m,The capital of France is,7,1434,acter,3338,37662,34697,3845,33770,2,
+EleutherAI/pythia-160m,The capital of France is,7,1450,::,218,25846,21597,287,18617,1,
+EleutherAI/pythia-160m,The capital of France is,7,1453, control,2,3826,3933,1,2270,1,
+EleutherAI/pythia-160m,The capital of France is,7,1460, pur,1,891,1545,1,533,1,15.229641914367676
+EleutherAI/pythia-160m,The capital of France is,7,1525,99,6627,27751,29505,6945,27961,190,
+EleutherAI/pythia-160m,The capital of France is,7,1546,ural,1463,30349,39349,2034,28714,1,
+EleutherAI/pythia-160m,The capital of France is,7,1592,fer,3514,34688,39583,4493,30904,4,
+EleutherAI/pythia-160m,The capital of France is,7,1603,}(,9022,33781,30237,9864,33171,156,
+EleutherAI/pythia-160m,The capital of France is,7,1710,gram,2427,32391,43142,2397,30018,1,
+EleutherAI/pythia-160m,The capital of France is,7,1740, four,9,561,1371,6,40,1,
+EleutherAI/pythia-160m,The capital of France is,7,1751,ene,3380,36475,37798,3446,33258,1,
+EleutherAI/pythia-160m,The capital of France is,7,1768,bs,1396,28742,43267,706,27473,1,
+EleutherAI/pythia-160m,The capital of France is,7,1779,Ch,14363,32964,43844,14605,34710,915,
+EleutherAI/pythia-160m,The capital of France is,7,1788,lection,5978,38311,44891,6824,36570,3,
+EleutherAI/pythia-160m,The capital of France is,7,1813,icro,7655,40943,43343,8810,38474,7,
+EleutherAI/pythia-160m,The capital of France is,11,60,[,1,10944,9867,1,2,1,2.033838987350464
+EleutherAI/pythia-160m,The capital of France is,11,75,j,1,1374,18262,1,2,1,3.4390275478363037
+EleutherAI/pythia-160m,The capital of France is,11,80,o,1,8629,25541,1,1,1,2.6045970916748047
+EleutherAI/pythia-160m,The capital of France is,11,81,p,1,18551,2196,1,2,1,2.8192152976989746
+EleutherAI/pythia-160m,The capital of France is,11,264,ed,1,18678,17268,1,1,1,1.8044198751449585
+EleutherAI/pythia-160m,The capital of France is,11,268, p,1,762,1649,1,2,1,1.779653549194336
+EleutherAI/pythia-160m,The capital of France is,11,270, b,1,1371,928,1,2,1,1.5690720081329346
+EleutherAI/pythia-160m,The capital of France is,11,324,ad,1,23379,20464,1,2,1,3.0476577281951904
+EleutherAI/pythia-160m,The capital of France is,11,351,od,1,1076,20738,1,1,1,3.0994579792022705
+EleutherAI/pythia-160m,The capital of France is,11,359, we,1,721,4304,1,2,1,2.212632894515991
+EleutherAI/pythia-160m,The capital of France is,11,369, was,1,1720,12489,1,2,1,2.1121268272399902
+EleutherAI/pythia-160m,The capital of France is,11,389, com,1,2029,14804,1,1,1,2.3255975246429443
+EleutherAI/pythia-160m,The capital of France is,11,398,ers,1,78,19878,1,2,1,2.3089864253997803
+EleutherAI/pythia-160m,The capital of France is,11,416, R,1,411,960,1,2,1,1.3365108966827393
+EleutherAI/pythia-160m,The capital of France is,11,419, ha,1,1453,11309,1,1,1,1.8380311727523804
+EleutherAI/pythia-160m,The capital of France is,11,451,ial,1,1293,15389,1,2,1,2.5584523677825928
+EleutherAI/pythia-160m,The capital of France is,11,494,able,1,993,22368,1,1,1,2.223896026611328
+EleutherAI/pythia-160m,The capital of France is,11,495, 3,1,3291,487,1,2,1,1.7938809394836426
+EleutherAI/pythia-160m,The capital of France is,11,528,ous,1,1614,34127,1,2,1,2.035430431365967
+EleutherAI/pythia-160m,The capital of France is,11,598, up,1,1370,134,1,2,1,1.205521583557129
+EleutherAI/pythia-160m,The capital of France is,11,606,ang,1,30927,24060,1,1,1,3.1891586780548096
+EleutherAI/pythia-160m,The capital of France is,11,609,are,1,6109,33924,1,1,1,3.068243980407715
+EleutherAI/pythia-160m,The capital of France is,11,684,ates,1,24105,28685,1,2,1,3.165403366088867
+EleutherAI/pythia-160m,The capital of France is,11,695,ric,1,3026,30532,1,2,1,3.074712038040161
+EleutherAI/pythia-160m,The capital of France is,11,720,ject,1,35015,30665,1,1,1,4.093878746032715
+EleutherAI/pythia-160m,The capital of France is,11,723,ings,1,31466,15285,1,1,1,1.9917651414871216
+EleutherAI/pythia-160m,The capital of France is,11,778, may,1,294,1620,1,2,1,2.41162371635437
+EleutherAI/pythia-160m,The capital of France is,11,807, year,1,2730,11755,1,2,1,1.9312769174575806
+EleutherAI/pythia-160m,The capital of France is,11,864,hen,1,1402,32899,1,2,1,3.226424217224121
+EleutherAI/pythia-160m,The capital of France is,11,883,11,1,7675,30283,1,2,1,5.338181972503662
+EleutherAI/pythia-160m,The capital of France is,11,888,ident,1,2491,37062,1,1,1,4.575174808502197
+EleutherAI/pythia-160m,The capital of France is,11,896, back,1,132,17392,1,2,1,1.4439566135406494
+EleutherAI/pythia-160m,The capital of France is,11,927, includ,1,35127,27636,1,2,1,2.703723669052124
+EleutherAI/pythia-160m,The capital of France is,11,977,other,1,9149,29554,1,2,1,3.8564271926879883
+EleutherAI/pythia-160m,The capital of France is,11,1002, produ,1,12468,22897,1,2,1,3.564955711364746
+EleutherAI/pythia-160m,The capital of France is,11,1052, 200,1,2497,4924,1,2,1,2.370915651321411
+EleutherAI/pythia-160m,The capital of France is,11,1077, very,1,150,870,1,1,1,1.0190505981445312
+EleutherAI/pythia-160m,The capital of France is,11,1080,ator,1,15850,29224,1,2,1,3.1059670448303223
+EleutherAI/pythia-160m,The capital of France is,11,1104,ients,1,15024,41131,1,2,1,4.562300205230713
+EleutherAI/pythia-160m,The capital of France is,11,1123,ave,1,17720,17087,1,2,1,3.3947885036468506
+EleutherAI/pythia-160m,The capital of France is,11,1138,""">",1,18895,30501,1,2,1,3.9396257400512695
+EleutherAI/pythia-160m,The capital of France is,11,1140, tra,1,7446,22961,1,1,1,2.0798404216766357
+EleutherAI/pythia-160m,The capital of France is,11,1149, gu,1,3973,9422,1,1,1,2.461026430130005
+EleutherAI/pythia-160m,The capital of France is,11,1185, dire,1,12263,12994,1,1,1,2.3789138793945312
+EleutherAI/pythia-160m,The capital of France is,11,1219, Al,1,31259,13747,1,2,1,1.9501556158065796
+EleutherAI/pythia-160m,The capital of France is,11,1223, while,1,10379,6880,1,2,1,2.014284372329712
+EleutherAI/pythia-160m,The capital of France is,11,1239, read,1,771,2050,1,2,1,1.372506022453308
+EleutherAI/pythia-160m,The capital of France is,11,1251,ng,1,1988,30881,1,1,1,3.1990420818328857
+EleutherAI/pythia-160m,The capital of France is,11,1427,ulation,1,25945,30632,1,2,1,4.277801990509033
+EleutherAI/pythia-160m,The capital of France is,11,1434,acter,1,44356,35064,1,1,1,5.234383583068848
+EleutherAI/pythia-160m,The capital of France is,11,1450,::,1,31329,25602,1,1,1,2.513885259628296
+EleutherAI/pythia-160m,The capital of France is,11,1453, control,1,2428,646,1,2,1,1.9470547437667847
+EleutherAI/pythia-160m,The capital of France is,11,1460, pur,1,2039,18220,1,1,1,2.095057964324951
+EleutherAI/pythia-160m,The capital of France is,11,1525,99,1,30340,29426,1,2,1,5.516661643981934
+EleutherAI/pythia-160m,The capital of France is,11,1546,ural,1,1478,15671,1,2,1,3.1386358737945557
+EleutherAI/pythia-160m,The capital of France is,11,1592,fer,1,24972,26295,1,1,1,3.4163103103637695
+EleutherAI/pythia-160m,The capital of France is,11,1603,}(,1,40452,47023,1,2,1,8.498769760131836
+EleutherAI/pythia-160m,The capital of France is,11,1710,gram,1,2759,35340,1,2,1,3.321357011795044
+EleutherAI/pythia-160m,The capital of France is,11,1740, four,1,217,1715,1,3,1,1.8402373790740967
+EleutherAI/pythia-160m,The capital of France is,11,1751,ene,1,1015,25653,1,1,1,2.9129321575164795
+EleutherAI/pythia-160m,The capital of France is,11,1768,bs,1,1198,32063,1,1,1,3.1331169605255127
+EleutherAI/pythia-160m,The capital of France is,11,1779,Ch,1,7172,31903,1,2,1,6.747079372406006
+EleutherAI/pythia-160m,The capital of France is,11,1788,lection,1,30425,46125,1,2,1,4.99587345123291
+EleutherAI/pythia-160m,The capital of France is,11,1813,icro,1,34094,44401,1,1,1,5.15938138961792
+EleutherAI/pythia-160m,The quick brown fox,0,60,[,43,19374,19619,27,12694,1,
+EleutherAI/pythia-160m,The quick brown fox,0,75,j,115,12127,20828,146,12161,1,
+EleutherAI/pythia-160m,The quick brown fox,0,80,o,138,27084,36613,92,18778,1,
+EleutherAI/pythia-160m,The quick brown fox,0,81,p,8,6441,8793,6,1395,1,
+EleutherAI/pythia-160m,The quick brown fox,0,264,ed,1,9289,14350,1,96,1,14.675474166870117
+EleutherAI/pythia-160m,The quick brown fox,0,268, p,19,4222,12420,26,2408,1,
+EleutherAI/pythia-160m,The quick brown fox,0,270, b,305,12996,17706,390,8160,5,
+EleutherAI/pythia-160m,The quick brown fox,0,324,ad,18980,47535,49400,16744,45485,378,
+EleutherAI/pythia-160m,The quick brown fox,0,351,od,65,18792,20664,27,13936,1,
+EleutherAI/pythia-160m,The quick brown fox,0,359, we,4,2639,5317,3,78,1,
+EleutherAI/pythia-160m,The quick brown fox,0,369, was,16,2401,1766,28,1948,1,
+EleutherAI/pythia-160m,The quick brown fox,0,389, com,2,1438,2930,2,402,1,
+EleutherAI/pythia-160m,The quick brown fox,0,398,ers,17,20243,38129,9,7359,1,
+EleutherAI/pythia-160m,The quick brown fox,0,416, R,446,13291,14153,463,13632,3,
+EleutherAI/pythia-160m,The quick brown fox,0,419, ha,6,3180,4954,6,1649,1,
+EleutherAI/pythia-160m,The quick brown fox,0,451,ial,27,23820,34490,43,14660,1,
+EleutherAI/pythia-160m,The quick brown fox,0,494,able,124,37709,40915,93,11943,1,
+EleutherAI/pythia-160m,The quick brown fox,0,495, 3,212,7563,8468,180,6065,5,
+EleutherAI/pythia-160m,The quick brown fox,0,528,ous,147,33114,40853,412,14959,1,
+EleutherAI/pythia-160m,The quick brown fox,0,598, up,51,17514,22443,39,9473,1,
+EleutherAI/pythia-160m,The quick brown fox,0,606,ang,13255,47435,49684,12880,43905,136,
+EleutherAI/pythia-160m,The quick brown fox,0,609,are,6624,43256,48768,7296,39274,40,
+EleutherAI/pythia-160m,The quick brown fox,0,684,ates,5143,45606,43731,3301,40619,13,
+EleutherAI/pythia-160m,The quick brown fox,0,695,ric,13,12898,13964,10,8788,1,
+EleutherAI/pythia-160m,The quick brown fox,0,720,ject,1,3268,1897,1,855,1,12.617169380187988
+EleutherAI/pythia-160m,The quick brown fox,0,723,ings,1,18331,23980,1,851,1,15.850143432617188
+EleutherAI/pythia-160m,The quick brown fox,0,778, may,5,1413,1580,8,1101,1,
+EleutherAI/pythia-160m,The quick brown fox,0,807, year,1,2643,6429,1,656,1,16.55500602722168
+EleutherAI/pythia-160m,The quick brown fox,0,864,hen,657,37381,42412,753,26666,1,
+EleutherAI/pythia-160m,The quick brown fox,0,883,11,3548,22084,19063,4377,19096,271,
+EleutherAI/pythia-160m,The quick brown fox,0,888,ident,9,4656,6255,14,5897,1,
+EleutherAI/pythia-160m,The quick brown fox,0,896, back,9,7591,11263,16,4661,1,
+EleutherAI/pythia-160m,The quick brown fox,0,927, includ,353,21643,23026,366,14273,1,
+EleutherAI/pythia-160m,The quick brown fox,0,977,other,18142,47868,49859,14182,44823,407,
+EleutherAI/pythia-160m,The quick brown fox,0,1002, produ,3282,26793,32037,3717,15593,352,
+EleutherAI/pythia-160m,The quick brown fox,0,1052, 200,3414,22816,26686,3478,20328,166,
+EleutherAI/pythia-160m,The quick brown fox,0,1077, very,29,4500,9289,25,4109,1,
+EleutherAI/pythia-160m,The quick brown fox,0,1080,ator,259,29538,27162,177,19580,1,
+EleutherAI/pythia-160m,The quick brown fox,0,1104,ients,14369,48291,50077,13121,46455,75,
+EleutherAI/pythia-160m,The quick brown fox,0,1123,ave,5532,45637,47224,4231,41310,13,
+EleutherAI/pythia-160m,The quick brown fox,0,1138,""">",1943,30576,37902,2005,25085,20,
+EleutherAI/pythia-160m,The quick brown fox,0,1140, tra,84,14679,19898,78,7072,1,
+EleutherAI/pythia-160m,The quick brown fox,0,1149, gu,2,1339,6282,3,684,1,
+EleutherAI/pythia-160m,The quick brown fox,0,1185, dire,12738,46427,47224,13344,40997,281,
+EleutherAI/pythia-160m,The quick brown fox,0,1219, Al,3522,36669,39242,3661,25183,70,
+EleutherAI/pythia-160m,The quick brown fox,0,1223, while,255,26072,25302,379,16845,1,
+EleutherAI/pythia-160m,The quick brown fox,0,1239, read,31,12872,23382,33,7869,1,
+EleutherAI/pythia-160m,The quick brown fox,0,1251,ng,3014,42165,44553,4904,32407,23,
+EleutherAI/pythia-160m,The quick brown fox,0,1427,ulation,2441,37972,45838,3323,32005,14,
+EleutherAI/pythia-160m,The quick brown fox,0,1434,acter,775,39777,39487,1551,31862,1,
+EleutherAI/pythia-160m,The quick brown fox,0,1450,::,38,27904,26692,31,10866,1,
+EleutherAI/pythia-160m,The quick brown fox,0,1453, control,2,4804,16325,2,1471,1,
+EleutherAI/pythia-160m,The quick brown fox,0,1460, pur,1,72,118,1,18,1,9.46828842163086
+EleutherAI/pythia-160m,The quick brown fox,0,1525,99,8306,35376,35610,8135,34026,277,
+EleutherAI/pythia-160m,The quick brown fox,0,1546,ural,9,11272,9419,6,8654,1,
+EleutherAI/pythia-160m,The quick brown fox,0,1592,fer,2232,40881,46987,2766,34123,8,
+EleutherAI/pythia-160m,The quick brown fox,0,1603,}(,4297,35708,28753,6131,31884,69,
+EleutherAI/pythia-160m,The quick brown fox,0,1710,gram,1,3890,7017,3,973,1,16.69346809387207
+EleutherAI/pythia-160m,The quick brown fox,0,1740, four,87,5308,10512,130,4984,1,
+EleutherAI/pythia-160m,The quick brown fox,0,1751,ene,687,37612,39911,610,31298,1,
+EleutherAI/pythia-160m,The quick brown fox,0,1768,bs,12076,47283,48805,12989,44470,81,
+EleutherAI/pythia-160m,The quick brown fox,0,1779,Ch,2644,25786,30426,3008,27608,27,
+EleutherAI/pythia-160m,The quick brown fox,0,1788,lection,1161,37129,38054,1465,31944,1,
+EleutherAI/pythia-160m,The quick brown fox,0,1813,icro,93,23913,31761,113,14296,1,
+EleutherAI/pythia-160m,The quick brown fox,4,60,[,5,6775,4740,6,1322,1,
+EleutherAI/pythia-160m,The quick brown fox,4,75,j,198,11714,24463,205,6183,2,
+EleutherAI/pythia-160m,The quick brown fox,4,80,o,8,8629,15964,4,1443,1,
+EleutherAI/pythia-160m,The quick brown fox,4,81,p,5,3724,3203,6,636,1,
+EleutherAI/pythia-160m,The quick brown fox,4,264,ed,2,2569,1339,2,23,1,
+EleutherAI/pythia-160m,The quick brown fox,4,268, p,15,2521,3404,24,1143,1,
+EleutherAI/pythia-160m,The quick brown fox,4,270, b,444,12670,19760,689,7969,11,
+EleutherAI/pythia-160m,The quick brown fox,4,324,ad,128,22277,36275,143,9585,1,
+EleutherAI/pythia-160m,The quick brown fox,4,351,od,18,8916,20191,22,3765,1,
+EleutherAI/pythia-160m,The quick brown fox,4,359, we,51,8648,17221,46,4212,1,
+EleutherAI/pythia-160m,The quick brown fox,4,369, was,15,1201,1846,18,470,1,
+EleutherAI/pythia-160m,The quick brown fox,4,389, com,7,4033,4462,9,1196,1,
+EleutherAI/pythia-160m,The quick brown fox,4,398,ers,2,1957,10499,2,154,1,
+EleutherAI/pythia-160m,The quick brown fox,4,416, R,165,6533,10721,249,5331,1,
+EleutherAI/pythia-160m,The quick brown fox,4,419, ha,22,5126,4238,17,2366,1,
+EleutherAI/pythia-160m,The quick brown fox,4,451,ial,35,22596,35521,23,8212,1,
+EleutherAI/pythia-160m,The quick brown fox,4,494,able,2,9851,20353,5,1867,1,
+EleutherAI/pythia-160m,The quick brown fox,4,495, 3,315,7306,6012,464,4628,15,
+EleutherAI/pythia-160m,The quick brown fox,4,528,ous,10,12101,17892,13,2812,1,
+EleutherAI/pythia-160m,The quick brown fox,4,598, up,56,14905,28276,55,5553,1,
+EleutherAI/pythia-160m,The quick brown fox,4,606,ang,4732,45639,48254,6124,38346,40,
+EleutherAI/pythia-160m,The quick brown fox,4,609,are,657,30926,39140,869,18397,3,
+EleutherAI/pythia-160m,The quick brown fox,4,684,ates,3452,45405,45904,2301,34719,35,
+EleutherAI/pythia-160m,The quick brown fox,4,695,ric,28,12443,17414,22,6125,1,
+EleutherAI/pythia-160m,The quick brown fox,4,720,ject,2,4671,5078,2,541,1,
+EleutherAI/pythia-160m,The quick brown fox,4,723,ings,2,26889,22918,2,3364,1,
+EleutherAI/pythia-160m,The quick brown fox,4,778, may,5,843,3328,5,419,1,
+EleutherAI/pythia-160m,The quick brown fox,4,807, year,7,4446,9257,7,1201,1,
+EleutherAI/pythia-160m,The quick brown fox,4,864,hen,83,20509,19495,110,9862,1,
+EleutherAI/pythia-160m,The quick brown fox,4,883,11,1343,12747,15830,1368,9605,115,
+EleutherAI/pythia-160m,The quick brown fox,4,888,ident,21,5041,8173,21,3037,1,
+EleutherAI/pythia-160m,The quick brown fox,4,896, back,2,2025,11117,4,683,1,
+EleutherAI/pythia-160m,The quick brown fox,4,927, includ,316,18654,21292,396,10364,3,
+EleutherAI/pythia-160m,The quick brown fox,4,977,other,16779,47982,50192,18260,46870,489,
+EleutherAI/pythia-160m,The quick brown fox,4,1002, produ,7281,34706,41769,7838,32364,564,
+EleutherAI/pythia-160m,The quick brown fox,4,1052, 200,5919,29066,28581,6639,24407,832,
+EleutherAI/pythia-160m,The quick brown fox,4,1077, very,41,3764,5463,21,2677,1,
+EleutherAI/pythia-160m,The quick brown fox,4,1080,ator,1588,38889,38831,1787,27640,11,
+EleutherAI/pythia-160m,The quick brown fox,4,1104,ients,9479,48153,50173,8941,46729,52,
+EleutherAI/pythia-160m,The quick brown fox,4,1123,ave,2485,43628,49862,2691,35192,10,
+EleutherAI/pythia-160m,The quick brown fox,4,1138,""">",1280,27161,31466,1321,18961,23,
+EleutherAI/pythia-160m,The quick brown fox,4,1140, tra,303,19396,29609,410,10767,2,
+EleutherAI/pythia-160m,The quick brown fox,4,1149, gu,21,4928,11532,37,2295,1,
+EleutherAI/pythia-160m,The quick brown fox,4,1185, dire,10667,46669,48605,11307,42586,393,
+EleutherAI/pythia-160m,The quick brown fox,4,1219, Al,141,10958,4890,160,4764,2,
+EleutherAI/pythia-160m,The quick brown fox,4,1223, while,130,19547,22159,152,8351,1,
+EleutherAI/pythia-160m,The quick brown fox,4,1239, read,408,23853,24027,171,14446,5,
+EleutherAI/pythia-160m,The quick brown fox,4,1251,ng,3319,43237,48235,3081,35176,24,
+EleutherAI/pythia-160m,The quick brown fox,4,1427,ulation,144,20193,14671,148,11445,1,
+EleutherAI/pythia-160m,The quick brown fox,4,1434,acter,284,34868,38051,611,19690,1,
+EleutherAI/pythia-160m,The quick brown fox,4,1450,::,18,20966,26431,19,5655,1,
+EleutherAI/pythia-160m,The quick brown fox,4,1453, control,2,3491,4561,3,668,1,
+EleutherAI/pythia-160m,The quick brown fox,4,1460, pur,1,489,630,2,147,1,15.402411460876465
+EleutherAI/pythia-160m,The quick brown fox,4,1525,99,3492,28749,29610,3472,25450,134,
+EleutherAI/pythia-160m,The quick brown fox,4,1546,ural,18,10421,19927,9,4073,1,
+EleutherAI/pythia-160m,The quick brown fox,4,1592,fer,2,5323,3015,2,875,1,
+EleutherAI/pythia-160m,The quick brown fox,4,1603,}(,1069,25454,14552,1113,17528,19,
+EleutherAI/pythia-160m,The quick brown fox,4,1710,gram,2,2117,2843,2,434,1,
+EleutherAI/pythia-160m,The quick brown fox,4,1740, four,99,4354,7877,231,3686,2,
+EleutherAI/pythia-160m,The quick brown fox,4,1751,ene,269,30263,38279,386,15977,2,
+EleutherAI/pythia-160m,The quick brown fox,4,1768,bs,791,34705,43010,618,22221,3,
+EleutherAI/pythia-160m,The quick brown fox,4,1779,Ch,655,13633,14640,906,9844,17,
+EleutherAI/pythia-160m,The quick brown fox,4,1788,lection,747,33189,37917,811,25928,2,
+EleutherAI/pythia-160m,The quick brown fox,4,1813,icro,14,8717,13298,15,4429,1,
+EleutherAI/pythia-160m,The quick brown fox,7,60,[,57,18024,23474,110,13116,1,
+EleutherAI/pythia-160m,The quick brown fox,7,75,j,198,12321,20774,359,13611,1,
+EleutherAI/pythia-160m,The quick brown fox,7,80,o,34,17662,21640,25,11960,1,
+EleutherAI/pythia-160m,The quick brown fox,7,81,p,11,8311,4837,13,5908,1,
+EleutherAI/pythia-160m,The quick brown fox,7,264,ed,2,15478,16618,2,5709,1,
+EleutherAI/pythia-160m,The quick brown fox,7,268, p,13,2791,2343,19,1889,1,
+EleutherAI/pythia-160m,The quick brown fox,7,270, b,231,9148,9427,174,6386,5,
+EleutherAI/pythia-160m,The quick brown fox,7,324,ad,140,22738,29873,139,15931,1,
+EleutherAI/pythia-160m,The quick brown fox,7,351,od,4,5749,8280,4,4813,1,
+EleutherAI/pythia-160m,The quick brown fox,7,359, we,37,8064,21755,28,6411,1,
+EleutherAI/pythia-160m,The quick brown fox,7,369, was,19,1953,3923,22,1930,1,
+EleutherAI/pythia-160m,The quick brown fox,7,389, com,2,729,2968,2,251,1,
+EleutherAI/pythia-160m,The quick brown fox,7,398,ers,2,5557,8828,1,4229,1,
+EleutherAI/pythia-160m,The quick brown fox,7,416, R,524,12168,28643,747,13856,1,
+EleutherAI/pythia-160m,The quick brown fox,7,419, ha,4,2357,3880,5,1474,1,
+EleutherAI/pythia-160m,The quick brown fox,7,451,ial,32,22636,31033,25,15450,1,
+EleutherAI/pythia-160m,The quick brown fox,7,494,able,10,21660,30366,6,13638,1,
+EleutherAI/pythia-160m,The quick brown fox,7,495, 3,367,8732,16487,314,7867,1,
+EleutherAI/pythia-160m,The quick brown fox,7,528,ous,27,21609,29154,147,14464,1,
+EleutherAI/pythia-160m,The quick brown fox,7,598, up,83,16786,31010,41,10626,1,
+EleutherAI/pythia-160m,The quick brown fox,7,606,ang,11308,47235,50160,12267,44441,51,
+EleutherAI/pythia-160m,The quick brown fox,7,609,are,1084,32815,43380,1065,29918,1,
+EleutherAI/pythia-160m,The quick brown fox,7,684,ates,659,36368,41946,378,30337,1,
+EleutherAI/pythia-160m,The quick brown fox,7,695,ric,274,27477,34300,227,24943,1,
+EleutherAI/pythia-160m,The quick brown fox,7,720,ject,7,15612,9039,8,8972,1,
+EleutherAI/pythia-160m,The quick brown fox,7,723,ings,136,44540,49131,216,28847,1,
+EleutherAI/pythia-160m,The quick brown fox,7,778, may,4,872,1030,4,740,1,
+EleutherAI/pythia-160m,The quick brown fox,7,807, year,2,3647,3916,4,2504,1,
+EleutherAI/pythia-160m,The quick brown fox,7,864,hen,251,27773,33610,239,23410,1,
+EleutherAI/pythia-160m,The quick brown fox,7,883,11,2370,17168,24142,2287,20678,48,
+EleutherAI/pythia-160m,The quick brown fox,7,888,ident,85,13027,26625,128,15381,1,
+EleutherAI/pythia-160m,The quick brown fox,7,896, back,2,1745,6966,2,1083,1,
+EleutherAI/pythia-160m,The quick brown fox,7,927, includ,434,20310,18731,411,14833,1,
+EleutherAI/pythia-160m,The quick brown fox,7,977,other,7929,46116,38681,11040,42681,19,
+EleutherAI/pythia-160m,The quick brown fox,7,1002, produ,1456,19262,26247,1623,19048,7,
+EleutherAI/pythia-160m,The quick brown fox,7,1052, 200,6008,27221,31157,4923,24555,427,
+EleutherAI/pythia-160m,The quick brown fox,7,1077, very,2,548,2426,2,605,1,
+EleutherAI/pythia-160m,The quick brown fox,7,1080,ator,15,13992,9084,31,9340,1,
+EleutherAI/pythia-160m,The quick brown fox,7,1104,ients,12931,48332,50036,14110,47308,21,
+EleutherAI/pythia-160m,The quick brown fox,7,1123,ave,1461,39610,45256,2381,33562,1,
+EleutherAI/pythia-160m,The quick brown fox,7,1138,""">",4694,35271,41704,3914,34173,21,
+EleutherAI/pythia-160m,The quick brown fox,7,1140, tra,3,2979,4501,3,1176,1,
+EleutherAI/pythia-160m,The quick brown fox,7,1149, gu,2,282,199,2,182,1,
+EleutherAI/pythia-160m,The quick brown fox,7,1185, dire,4361,40731,46645,5597,32798,25,
+EleutherAI/pythia-160m,The quick brown fox,7,1219, Al,156,11308,12655,139,7564,1,
+EleutherAI/pythia-160m,The quick brown fox,7,1223, while,3,3997,2892,3,1674,1,
+EleutherAI/pythia-160m,The quick brown fox,7,1239, read,5,6229,12651,5,3967,1,
+EleutherAI/pythia-160m,The quick brown fox,7,1251,ng,3149,41779,45442,3296,35885,2,
+EleutherAI/pythia-160m,The quick brown fox,7,1427,ulation,271,24688,32319,287,22999,1,
+EleutherAI/pythia-160m,The quick brown fox,7,1434,acter,148,30994,29856,183,22101,1,
+EleutherAI/pythia-160m,The quick brown fox,7,1450,::,19,23356,15425,7,13103,1,
+EleutherAI/pythia-160m,The quick brown fox,7,1453, control,2,1835,7982,2,646,1,
+EleutherAI/pythia-160m,The quick brown fox,7,1460, pur,1,104,46,1,28,1,15.571048736572266
+EleutherAI/pythia-160m,The quick brown fox,7,1525,99,4856,30389,31686,3103,31217,52,
+EleutherAI/pythia-160m,The quick brown fox,7,1546,ural,34,18158,20620,22,15931,1,
+EleutherAI/pythia-160m,The quick brown fox,7,1592,fer,30,19781,20015,50,13830,1,
+EleutherAI/pythia-160m,The quick brown fox,7,1603,}(,1361,27178,21293,1543,26668,2,
+EleutherAI/pythia-160m,The quick brown fox,7,1710,gram,2,3217,4417,2,3012,1,
+EleutherAI/pythia-160m,The quick brown fox,7,1740, four,46,3535,5291,68,3783,2,
+EleutherAI/pythia-160m,The quick brown fox,7,1751,ene,213,27446,23668,192,23468,1,
+EleutherAI/pythia-160m,The quick brown fox,7,1768,bs,232,25527,21049,443,22305,1,
+EleutherAI/pythia-160m,The quick brown fox,7,1779,Ch,2604,24071,32671,2842,26861,14,
+EleutherAI/pythia-160m,The quick brown fox,7,1788,lection,3399,42147,45688,3485,40046,1,
+EleutherAI/pythia-160m,The quick brown fox,7,1813,icro,61,19396,10414,94,17920,1,
+EleutherAI/pythia-160m,The quick brown fox,11,60,[,1,10792,441,1,2,1,2.3869051933288574
+EleutherAI/pythia-160m,The quick brown fox,11,75,j,1,709,14911,1,2,1,2.204115629196167
+EleutherAI/pythia-160m,The quick brown fox,11,80,o,1,7831,3818,1,1,1,1.7181204557418823
+EleutherAI/pythia-160m,The quick brown fox,11,81,p,1,13315,2667,1,2,1,1.4435263872146606
+EleutherAI/pythia-160m,The quick brown fox,11,264,ed,1,15021,782,1,1,1,1.0505924224853516
+EleutherAI/pythia-160m,The quick brown fox,11,268, p,1,599,1258,1,2,1,0.9388436675071716
+EleutherAI/pythia-160m,The quick brown fox,11,270, b,1,1973,2228,1,2,1,1.8301081657409668
+EleutherAI/pythia-160m,The quick brown fox,11,324,ad,1,20484,120,1,2,1,2.270054340362549
+EleutherAI/pythia-160m,The quick brown fox,11,351,od,1,945,33699,1,1,1,2.3184666633605957
+EleutherAI/pythia-160m,The quick brown fox,11,359, we,1,592,1316,1,2,1,1.406417965888977
+EleutherAI/pythia-160m,The quick brown fox,11,369, was,1,1395,240,1,2,1,0.6674870848655701
+EleutherAI/pythia-160m,The quick brown fox,11,389, com,1,1708,4233,1,1,1,1.8326284885406494
+EleutherAI/pythia-160m,The quick brown fox,11,398,ers,1,56,728,1,2,1,1.2783997058868408
+EleutherAI/pythia-160m,The quick brown fox,11,416, R,1,479,4617,1,2,1,1.7870029211044312
+EleutherAI/pythia-160m,The quick brown fox,11,419, ha,1,1421,4016,1,1,1,1.5001554489135742
+EleutherAI/pythia-160m,The quick brown fox,11,451,ial,1,1257,23287,1,2,1,1.960209608078003
+EleutherAI/pythia-160m,The quick brown fox,11,494,able,1,2089,12762,1,1,1,2.2351863384246826
+EleutherAI/pythia-160m,The quick brown fox,11,495, 3,1,3677,940,1,2,1,2.2137327194213867
+EleutherAI/pythia-160m,The quick brown fox,11,528,ous,1,1564,6709,1,2,1,1.6631715297698975
+EleutherAI/pythia-160m,The quick brown fox,11,598, up,1,1684,120,1,1,1,0.9555093050003052
+EleutherAI/pythia-160m,The quick brown fox,11,606,ang,1,30852,35301,1,1,1,2.682891368865967
+EleutherAI/pythia-160m,The quick brown fox,11,609,are,1,4879,1386,1,1,1,2.644833564758301
+EleutherAI/pythia-160m,The quick brown fox,11,684,ates,1,24044,13599,1,2,1,3.2609713077545166
+EleutherAI/pythia-160m,The quick brown fox,11,695,ric,1,2175,21995,1,2,1,2.6392056941986084
+EleutherAI/pythia-160m,The quick brown fox,11,720,ject,1,35117,36025,1,1,1,3.0497000217437744
+EleutherAI/pythia-160m,The quick brown fox,11,723,ings,1,31052,32681,1,1,1,1.7321701049804688
+EleutherAI/pythia-160m,The quick brown fox,11,778, may,1,212,898,1,2,1,1.4595773220062256
+EleutherAI/pythia-160m,The quick brown fox,11,807, year,1,3062,2101,1,2,1,2.1660783290863037
+EleutherAI/pythia-160m,The quick brown fox,11,864,hen,1,1096,5809,1,2,1,1.6780818700790405
+EleutherAI/pythia-160m,The quick brown fox,11,883,11,1,5405,21120,1,2,1,3.6575937271118164
+EleutherAI/pythia-160m,The quick brown fox,11,888,ident,1,1222,41283,1,1,1,3.3326609134674072
+EleutherAI/pythia-160m,The quick brown fox,11,896, back,1,127,65,1,2,1,1.501487374305725
+EleutherAI/pythia-160m,The quick brown fox,11,927, includ,1,39926,9526,1,2,1,3.000720739364624
+EleutherAI/pythia-160m,The quick brown fox,11,977,other,1,8818,36583,1,2,1,3.6919288635253906
+EleutherAI/pythia-160m,The quick brown fox,11,1002, produ,1,12232,24531,1,2,1,3.542696237564087
+EleutherAI/pythia-160m,The quick brown fox,11,1052, 200,1,3942,20543,1,2,1,3.6210315227508545
+EleutherAI/pythia-160m,The quick brown fox,11,1077, very,1,199,1580,1,2,1,2.2525827884674072
+EleutherAI/pythia-160m,The quick brown fox,11,1080,ator,1,15502,19678,1,2,1,3.1745898723602295
+EleutherAI/pythia-160m,The quick brown fox,11,1104,ients,1,14751,40108,1,2,1,3.792421579360962
+EleutherAI/pythia-160m,The quick brown fox,11,1123,ave,1,12998,15696,1,2,1,2.7903714179992676
+EleutherAI/pythia-160m,The quick brown fox,11,1138,""">",1,14915,24349,1,2,1,2.942192792892456
+EleutherAI/pythia-160m,The quick brown fox,11,1140, tra,1,7410,9060,1,1,1,2.0685842037200928
+EleutherAI/pythia-160m,The quick brown fox,11,1149, gu,1,3498,201,1,1,1,1.812008261680603
+EleutherAI/pythia-160m,The quick brown fox,11,1185, dire,1,14672,29142,1,1,1,2.7489256858825684
+EleutherAI/pythia-160m,The quick brown fox,11,1219, Al,1,35023,12553,1,2,1,2.1908445358276367
+EleutherAI/pythia-160m,The quick brown fox,11,1223, while,1,10064,9172,1,2,1,2.000603437423706
+EleutherAI/pythia-160m,The quick brown fox,11,1239, read,1,867,2340,1,2,1,1.8509607315063477
+EleutherAI/pythia-160m,The quick brown fox,11,1251,ng,1,1679,9343,1,1,1,2.703190803527832
+EleutherAI/pythia-160m,The quick brown fox,11,1427,ulation,1,23759,8665,1,2,1,3.048825740814209
+EleutherAI/pythia-160m,The quick brown fox,11,1434,acter,1,44245,36334,1,1,1,4.102348327636719
+EleutherAI/pythia-160m,The quick brown fox,11,1450,::,1,31222,10067,1,1,1,2.1347551345825195
+EleutherAI/pythia-160m,The quick brown fox,11,1453, control,1,2374,12524,1,2,1,2.023422956466675
+EleutherAI/pythia-160m,The quick brown fox,11,1460, pur,1,1828,976,1,1,1,1.7250735759735107
+EleutherAI/pythia-160m,The quick brown fox,11,1525,99,1,29872,20428,1,2,1,4.355762004852295
+EleutherAI/pythia-160m,The quick brown fox,11,1546,ural,1,1087,32456,1,2,1,2.3902382850646973
+EleutherAI/pythia-160m,The quick brown fox,11,1592,fer,1,24424,9119,1,1,1,2.305393695831299
+EleutherAI/pythia-160m,The quick brown fox,11,1603,}(,1,40123,41931,1,2,1,6.417925834655762
+EleutherAI/pythia-160m,The quick brown fox,11,1710,gram,1,2126,2419,1,2,1,2.1017038822174072
+EleutherAI/pythia-160m,The quick brown fox,11,1740, four,1,284,9070,1,3,1,2.493879556655884
+EleutherAI/pythia-160m,The quick brown fox,11,1751,ene,1,1088,19999,1,1,1,3.0088281631469727
+EleutherAI/pythia-160m,The quick brown fox,11,1768,bs,1,1214,22215,1,1,1,3.330488920211792
+EleutherAI/pythia-160m,The quick brown fox,11,1779,Ch,1,7142,28056,1,2,1,3.831456184387207
+EleutherAI/pythia-160m,The quick brown fox,11,1788,lection,1,25165,45484,1,2,1,4.101795196533203
+EleutherAI/pythia-160m,The quick brown fox,11,1813,icro,1,29460,39549,1,1,1,3.8441669940948486

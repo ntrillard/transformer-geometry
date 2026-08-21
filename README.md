@@ -39,11 +39,11 @@ The LM head gives every token a direction on that sphere. **A tangent step towar
 
 | Model | Arc-reach | Wrong-target | Toward blocker | Median first rank-1 angle |
 |---|---:|---:|---:|---:|
-| Qwen2-1.5B | 99.2% | 1.6% | 34.8% | 8.0° |
-| Qwen2-0.5B | 97.3% | 1.6% | 13.7% | 10.6° |
-| GPT-2 | 90.8% | 1.0% | 5.9% | 11.6° |
-| SmolLM-135M | 67.2% | 0.4% | 2.5% | 9.8° |
-| Pythia-160M | 27.9% | 0.4% | 9.0% | 2.6° |
+| Qwen2-1.5B | 99.2% | 0.0% | 34.8% | 8.0° |
+| Qwen2-0.5B | 97.3% | 0.0% | 13.7% | 10.6° |
+| GPT-2 | 90.8% | 0.0% | 5.9% | 11.6° |
+| SmolLM-135M | 67.2% | 0.0% | 2.5% | 9.8° |
+| Pythia-160M | 27.9% | 0.0% | 9.0% | 2.6° |
 
 - Rank acquisition is governed by the LM-head decision partition, not just target alignment: rotating the residual *toward* the strongest blocker collapses success to 3–35%, *away* restores ~100%, at fixed norm and fixed target score.
 - No mid-arc loss: any target that becomes rank-1 along the arc stays rank-1 at the endpoint (verified on all 2,560 cases).

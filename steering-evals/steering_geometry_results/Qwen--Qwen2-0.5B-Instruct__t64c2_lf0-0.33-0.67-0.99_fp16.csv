@@ -1,0 +1,513 @@
+model,context,layer,target_id,target_text,rank_target_tangent,rank_wrong_tangent,rank_random_tangent,rank_offarc_random,rank_offarc_toward,rank_offarc_away,first_rank1_angle
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,350, T,1,69894,94638,1,2,1,11.08457088470459
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,467, W,1,149903,25785,1,2,1,8.271331787109375
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,492,(',1,132080,120008,1,4,1,11.504033088684082
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,607, str,1,97374,25599,1,2,1,11.015257835388184
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,660,'],1,138509,100163,1,2,1,13.137978553771973
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,680,ition,1,138295,96717,1,2,1,12.254363059997559
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,712,per,1,791,7572,1,1,1,5.540970325469971
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,718,add,1,36172,46481,1,2,1,8.4450101852417
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,737, void,1,126924,57740,1,2,1,10.672887802124023
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,818,Cont,1,18232,49448,1,2,1,10.651276588439941
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,825, one,1,36502,43249,1,2,1,10.608609199523926
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,979, when,1,103537,44960,1,2,1,8.69297981262207
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,1065,min,1,93436,53397,1,2,1,8.149344444274902
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,1104,idth,1,109633,96254,1,2,1,10.733642578125
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,1105, them,1,131546,80388,1,2,1,11.519858360290527
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,1183,"[""",1,21367,53918,1,2,1,9.528270721435547
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,1228,cript,1,40304,31233,1,2,1,7.834957599639893
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,1291,right,1,92980,66336,1,1,1,10.051968574523926
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,1302,.g,1,69653,109956,1,2,1,10.6143798828125
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,1402,AM,1,34144,1721,1,2,1,5.624640464782715
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,1489,fl,1,20184,10423,1,1,1,5.862173557281494
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,1546,sole,1,24316,26859,1,2,1,8.656007766723633
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,1619, att,1,122238,66702,1,2,1,9.835847854614258
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,1822, av,1,74827,64656,1,1,1,9.71435260772705
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,1854,uss,1,84590,116820,1,2,1,11.412972450256348
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,1890,AG,1,5731,11351,1,2,1,10.59281063079834
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,2095,utes,1,126108,128110,1,2,1,13.169438362121582
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,2100, AN,1,38344,51289,1,2,1,10.615718841552734
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,2197, document,1,119615,29062,1,2,1,10.099944114685059
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,2216,ric,1,56334,89700,1,2,1,8.79035758972168
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,2375,erg,1,88124,70406,1,2,1,9.33997631072998
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,2512,Action,1,100745,105491,1,2,1,11.621068000793457
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,2673,ically,1,129778,120383,1,2,1,11.571843147277832
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,2682,vis,1,59002,69331,1,2,1,9.531378746032715
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,2700,ponents,1,26863,55415,1,2,1,10.148397445678711
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,2752,pen,1,73735,98368,1,1,1,9.502090454101562
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,2884, design,1,78094,82759,1,2,1,11.61317253112793
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,2931,quired,1,29162,50375,1,2,1,9.599318504333496
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,3114,cribe,1,34107,48450,1,2,1,9.959105491638184
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,3182,create,1,12650,54170,1,2,1,11.446885108947754
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,3246,agn,1,39801,24392,1,2,1,8.62704849243164
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,3314,cul,1,5072,2814,1,1,1,5.342819690704346
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,3323,Token,1,34601,7885,1,2,1,9.53465747833252
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,3409, word,1,18418,16444,1,2,1,8.74839973449707
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,3425, whether,1,114820,89495,1,2,1,12.249889373779297
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,3509,node,1,20647,25576,1,2,1,9.55908203125
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,3613, members,1,48469,91810,1,4,1,12.823092460632324
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,3738, human,1,14011,3157,1,2,1,5.458858013153076
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,3751,fect,1,74743,43749,1,2,1,10.752446174621582
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,3774, unsigned,1,59870,29623,1,2,1,10.835213661193848
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,4372,avigation,1,112274,145062,1,3,1,15.151606559753418
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,4428, similar,1,6305,50871,1,2,1,9.885435104370117
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,4477,ARE,1,77352,91571,1,2,1,12.257423400878906
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,4520, Sec,1,25208,21332,1,1,1,9.68614387512207
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,4564, connect,1,20105,15924,1,2,1,8.63188362121582
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,4578,tag,1,41024,18999,1,1,1,8.915555000305176
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,4624,Repository,1,69693,69210,1,3,1,14.03598403930664
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,4738,ief,1,8891,8129,1,2,1,7.1667399406433105
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,4796, campaign,1,106465,99162,1,2,1,11.281484603881836
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,4880, shall,1,129739,49818,1,2,1,11.116583824157715
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,5206, mut,1,57686,32960,1,2,1,8.32294750213623
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,5293, notice,1,109079,89377,1,2,1,11.913591384887695
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,5332,_config,2,66797,57164,1,2,1,
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,0,5425, prote,1,33513,40795,1,2,1,12.591952323913574
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,350, T,1,17578,13620,1,2,1,9.029940605163574
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,467, W,1,134081,16539,1,2,1,7.779496669769287
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,492,(',1,115238,76715,1,4,1,13.43099308013916
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,607, str,1,21587,7633,1,2,1,8.136968612670898
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,660,'],1,110990,50622,1,2,1,13.746588706970215
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,680,ition,1,113169,116884,1,2,1,12.334495544433594
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,712,per,1,13320,34664,1,1,1,9.699251174926758
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,718,add,1,49192,36042,1,2,1,11.014069557189941
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,737, void,1,138970,100788,1,2,1,13.717963218688965
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,818,Cont,1,29093,55186,1,2,1,12.5665922164917
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,825, one,1,39918,35359,1,2,1,10.846223831176758
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,979, when,1,105394,22403,1,2,1,10.659534454345703
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,1065,min,1,96033,66197,1,2,1,10.145317077636719
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,1104,idth,1,139145,126152,1,3,1,14.937514305114746
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,1105, them,1,127169,105612,1,2,1,13.109953880310059
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,1183,"[""",1,14888,29228,1,2,1,10.622672080993652
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,1228,cript,1,143671,126988,1,2,1,13.772974014282227
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,1291,right,1,97635,52450,1,2,1,11.576549530029297
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,1302,.g,1,42136,32346,1,2,1,11.5974702835083
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,1402,AM,1,78991,22200,1,2,1,9.18008804321289
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,1489,fl,1,69378,18150,1,2,1,9.842036247253418
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,1546,sole,1,34111,67175,1,2,1,10.893482208251953
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,1619, att,1,125784,62217,1,2,1,12.307358741760254
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,1822, av,1,47518,43239,1,2,1,11.034048080444336
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,1854,uss,1,67050,83517,1,2,1,12.580121994018555
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,1890,AG,1,20212,32147,1,2,1,10.945091247558594
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,2095,utes,1,143958,141575,1,3,1,14.755892753601074
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,2100, AN,1,12555,14000,1,2,1,9.795071601867676
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,2197, document,1,113361,71314,1,2,1,11.972331047058105
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,2216,ric,1,42957,56619,1,2,1,10.085389137268066
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,2375,erg,1,105779,104134,1,2,1,10.958833694458008
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,2512,Action,1,80659,87921,1,3,1,12.422850608825684
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,2673,ically,1,144677,137757,1,3,1,14.948176383972168
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,2682,vis,1,75936,54640,1,2,1,12.035537719726562
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,2700,ponents,1,27518,49302,1,2,1,12.416696548461914
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,2752,pen,1,142953,143679,1,3,1,14.698935508728027
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,2884, design,1,14221,45046,1,2,1,13.433403968811035
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,2931,quired,1,120013,133138,1,3,1,15.569812774658203
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,3114,cribe,1,141098,144113,1,5,1,15.95062255859375
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,3182,create,1,29096,69459,1,2,1,14.579059600830078
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,3246,agn,1,74676,68670,1,2,1,12.52613639831543
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,3314,cul,1,57350,42153,1,2,1,10.706792831420898
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,3323,Token,1,51193,24255,1,2,1,11.642364501953125
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,3409, word,1,13412,22336,1,2,1,8.988391876220703
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,3425, whether,1,127445,129524,1,2,1,14.382349967956543
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,3509,node,1,98915,115835,1,4,1,15.07876968383789
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,3613, members,1,23506,58853,1,2,1,11.644632339477539
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,3738, human,1,20811,7671,1,2,1,7.804529190063477
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,3751,fect,1,79240,67007,1,2,1,11.283130645751953
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,3774, unsigned,1,114516,96335,1,2,1,15.19764232635498
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,4372,avigation,1,93376,137764,1,4,1,15.28298568725586
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,4428, similar,1,3997,29085,1,2,1,9.992485046386719
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,4477,ARE,1,97375,111298,1,3,1,15.193024635314941
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,4520, Sec,1,40085,40947,1,2,1,12.511151313781738
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,4564, connect,1,79981,63130,1,2,1,14.126395225524902
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,4578,tag,1,54490,32938,1,1,1,9.414623260498047
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,4624,Repository,1,41290,49054,1,3,1,13.709405899047852
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,4738,ief,1,39087,27195,1,2,1,10.861872673034668
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,4796, campaign,1,78234,90634,1,2,1,13.667092323303223
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,4880, shall,1,58033,27256,1,2,1,9.648933410644531
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,5206, mut,1,106289,46430,1,2,1,12.11941909790039
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,5293, notice,1,47034,29413,1,2,1,11.653497695922852
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,5332,_config,1,80254,77866,2,4,1,16.45865249633789
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,8,5425, prote,1,67146,78044,1,7,1,14.674361228942871
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,350, T,1,9394,8323,1,2,1,7.396596431732178
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,467, W,1,136070,13518,1,1,1,7.465580940246582
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,492,(',1,84299,49082,1,3,1,11.44747257232666
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,607, str,1,2191,462,1,2,1,4.0873284339904785
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,660,'],1,142828,120711,1,2,1,14.279330253601074
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,680,ition,1,129629,123883,1,2,1,11.603787422180176
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,712,per,1,25706,79434,1,1,1,9.60450267791748
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,718,add,1,55366,47537,1,2,1,9.885722160339355
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,737, void,1,117912,67913,1,2,1,10.6572265625
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,818,Cont,1,19556,42903,1,2,1,10.034804344177246
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,825, one,1,27122,22837,1,2,1,8.739930152893066
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,979, when,1,97826,41961,1,2,1,9.693097114562988
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,1065,min,1,84640,37900,1,2,1,8.757983207702637
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,1104,idth,1,68269,66244,1,2,1,8.865742683410645
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,1105, them,1,149677,132938,1,2,1,14.611072540283203
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,1183,"[""",1,8666,27454,1,2,1,9.07824993133545
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,1228,cript,1,129318,108918,1,2,1,10.785429000854492
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,1291,right,1,17296,7273,1,1,1,7.214100360870361
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,1302,.g,1,16526,24407,1,2,1,8.523188591003418
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,1402,AM,1,125158,34700,1,2,1,9.963805198669434
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,1489,fl,1,43778,27328,1,1,1,7.638890266418457
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,1546,sole,1,51891,51917,1,2,1,9.709489822387695
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,1619, att,1,108282,31983,1,2,1,9.80740737915039
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,1822, av,1,8898,7716,1,1,1,6.581345081329346
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,1854,uss,1,90421,99619,1,2,1,11.475489616394043
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,1890,AG,1,18071,27477,1,2,1,9.228631019592285
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,2095,utes,1,134757,138857,1,2,1,12.10743236541748
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,2100, AN,1,12720,18001,1,2,1,8.881526947021484
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,2197, document,1,25949,6433,1,2,1,6.772494792938232
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,2216,ric,1,53204,49015,1,2,1,9.03964614868164
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,2375,erg,1,73086,63400,1,2,1,8.889402389526367
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,2512,Action,1,97625,67353,1,3,1,11.375659942626953
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,2673,ically,1,145557,120894,1,2,1,13.250983238220215
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,2682,vis,1,50948,34536,1,2,1,9.382678985595703
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,2700,ponents,1,101428,138030,1,2,1,12.260722160339355
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,2752,pen,1,112040,123050,1,2,1,11.012600898742676
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,2884, design,1,28718,56167,1,2,1,12.196880340576172
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,2931,quired,1,34427,47792,1,2,1,9.275287628173828
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,3114,cribe,1,131395,141314,1,2,1,13.46157169342041
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,3182,create,1,16804,57330,1,2,1,11.303423881530762
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,3246,agn,1,75132,74804,1,2,1,10.602529525756836
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,3314,cul,1,112338,109153,1,2,1,11.164538383483887
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,3323,Token,1,108748,84253,1,2,1,11.91598892211914
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,3409, word,1,5878,9597,1,2,1,7.17526388168335
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,3425, whether,1,133228,129004,1,3,1,13.802118301391602
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,3509,node,1,34551,48875,1,2,1,10.468173027038574
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,3613, members,1,6681,31481,1,2,1,8.539273262023926
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,3738, human,1,51890,20112,1,2,1,7.959902286529541
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,3751,fect,1,124078,109078,1,2,1,11.435628890991211
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,3774, unsigned,1,140782,114104,1,2,1,14.103104591369629
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,4372,avigation,1,39256,77757,1,2,1,10.922087669372559
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,4428, similar,1,10202,47310,1,2,1,10.28592300415039
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,4477,ARE,1,64362,79020,1,2,1,10.531318664550781
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,4520, Sec,1,29557,27661,1,1,1,9.774253845214844
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,4564, connect,1,34132,31518,1,2,1,10.022462844848633
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,4578,tag,1,60650,28657,1,1,1,8.590800285339355
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,4624,Repository,1,12843,13606,1,2,1,9.281428337097168
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,4738,ief,1,40071,74448,1,2,1,9.433338165283203
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,4796, campaign,1,44495,32126,1,2,1,9.718730926513672
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,4880, shall,1,93817,58439,1,2,1,10.27342414855957
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,5206, mut,1,84646,25448,1,2,1,9.567066192626953
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,5293, notice,1,61889,33259,1,2,1,10.970124244689941
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,5332,_config,1,89349,86879,1,2,1,13.879347801208496
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,15,5425, prote,1,61385,77711,1,2,1,12.671469688415527
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,350, T,2,9930,6455,2,2,1,
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,467, W,2,150819,9621,2,2,1,
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,492,(',1,11585,3916,1,2,1,11.006917953491211
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,607, str,1,122920,48678,1,3,1,13.459324836730957
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,660,'],1,125653,81340,1,2,1,11.895928382873535
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,680,ition,1,17488,9129,1,1,1,7.1862945556640625
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,712,per,1,837,7672,1,1,1,7.3013081550598145
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,718,add,1,8725,8082,1,2,1,8.923471450805664
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,737, void,2,135329,55471,1,2,1,
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,818,Cont,1,882,1475,1,1,1,6.802267551422119
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,825, one,1,14388,16386,1,2,1,16.168813705444336
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,979, when,1,123670,17742,1,3,1,16.046552658081055
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,1065,min,1,68441,13954,1,2,1,9.68840503692627
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,1104,idth,1,51041,66812,1,4,1,7.5511155128479
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,1105, them,1,142054,133268,1,2,1,11.653825759887695
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,1183,"[""",1,348,1160,1,1,1,6.772460460662842
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,1228,cript,1,138891,87172,1,1,1,9.056653022766113
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,1291,right,1,4616,2995,1,2,1,6.353571891784668
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,1302,.g,1,59443,104778,1,2,1,12.129780769348145
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,1402,AM,1,70657,17782,1,2,1,8.361250877380371
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,1489,fl,1,67832,15723,1,1,1,9.195108413696289
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,1546,sole,1,33605,97477,1,2,1,8.032035827636719
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,1619, att,1,138381,34043,1,2,1,10.77811336517334
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,1822, av,1,45434,43988,1,2,1,10.216678619384766
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,1854,uss,1,38780,54333,1,1,1,8.885980606079102
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,1890,AG,1,1710,2985,1,1,1,7.692992210388184
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,2095,utes,1,7788,7881,1,1,1,6.677486419677734
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,2100, AN,1,55606,67348,1,3,1,15.574518203735352
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,2197, document,2,109541,64334,2,3,1,
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,2216,ric,1,12550,16086,1,1,1,7.289697170257568
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,2375,erg,1,31464,7410,1,1,1,7.538555145263672
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,2512,Action,1,1731,1977,1,1,1,6.964443206787109
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,2673,ically,1,106415,74882,1,1,1,9.221308708190918
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,2682,vis,1,34177,22000,1,2,1,8.951987266540527
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,2700,ponents,1,5463,18520,1,1,1,6.939048767089844
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,2752,pen,1,45096,71275,1,2,1,9.18100357055664
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,2884, design,3,29206,39306,2,3,1,
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,2931,quired,1,83488,96010,1,14,1,9.50801944732666
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,3114,cribe,1,12653,59106,1,2,1,7.736172676086426
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,3182,create,1,1203,3121,1,2,1,8.219873428344727
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,3246,agn,1,29723,40168,1,1,1,8.306275367736816
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,3314,cul,1,68483,25688,1,2,1,8.730340957641602
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,3323,Token,1,21044,24657,1,1,1,8.91675090789795
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,3409, word,1,48225,125108,1,3,1,12.249234199523926
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,3425, whether,1,46372,19709,1,3,1,14.828238487243652
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,3509,node,1,48362,101362,1,2,1,10.826225280761719
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,3613, members,1,19843,75391,1,6,1,12.58635139465332
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,3738, human,2,90114,11461,2,3,1,
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,3751,fect,1,57612,66915,1,1,1,7.92345666885376
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,3774, unsigned,1,148684,127704,1,2,1,15.972821235656738
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,4372,avigation,1,2292,8660,1,2,1,6.807492256164551
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,4428, similar,1,23092,128504,1,3,1,15.863654136657715
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,4477,ARE,1,6939,5446,1,2,1,7.039473056793213
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,4520, Sec,1,42366,28600,1,2,1,13.105903625488281
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,4564, connect,1,66178,113542,1,3,1,11.954825401306152
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,4578,tag,1,36709,20132,1,2,1,8.071958541870117
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,4624,Repository,1,3616,1515,1,1,1,7.769381046295166
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,4738,ief,1,29116,27713,1,2,1,8.506856918334961
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,4796, campaign,1,121549,119286,1,3,1,13.114768981933594
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,4880, shall,1,93822,34688,1,2,1,9.701812744140625
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,5206, mut,1,151652,147952,1,3,1,13.041932106018066
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,5293, notice,1,91906,45077,1,3,1,11.562772750854492
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,5332,_config,2,82370,95222,2,3,1,
+Qwen/Qwen2-0.5B-Instruct,The theory of relativity,23,5425, prote,1,134936,127783,1,2,1,13.218669891357422
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,350, T,1,65687,44873,1,2,1,10.892191886901855
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,467, W,1,149558,38701,1,2,1,8.188993453979492
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,492,(',1,131817,103030,1,4,1,11.457375526428223
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,607, str,1,93011,36810,1,2,1,10.561739921569824
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,660,'],1,139188,96647,1,2,1,13.410966873168945
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,680,ition,1,137520,124359,1,2,1,12.190186500549316
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,712,per,1,761,8086,1,1,1,5.613076686859131
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,718,add,1,35422,27961,1,2,1,8.556580543518066
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,737, void,1,124894,78297,1,2,1,10.550463676452637
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,818,Cont,1,18645,29184,1,2,1,10.663154602050781
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,825, one,1,34051,20876,1,2,1,10.34171199798584
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,979, when,1,103856,41731,1,2,1,8.710403442382812
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,1065,min,1,93742,50978,1,2,1,8.298843383789062
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,1104,idth,1,109737,86848,1,2,1,10.742166519165039
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,1105, them,1,132307,107156,1,2,1,11.58690357208252
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,1183,"[""",1,21470,69219,1,2,1,9.563234329223633
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,1228,cript,1,42319,19131,1,2,1,7.920191764831543
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,1291,right,1,93073,45804,1,1,1,10.05711841583252
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,1302,.g,1,67839,88643,1,2,1,10.606095314025879
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,1402,AM,1,34692,1517,1,2,1,5.649625301361084
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,1489,fl,1,18936,9902,1,1,1,5.7863311767578125
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,1546,sole,1,24132,50557,1,2,1,8.63650131225586
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,1619, att,1,120420,36936,1,2,1,9.735908508300781
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,1822, av,1,74987,66133,1,1,1,9.718812942504883
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,1854,uss,1,83080,96528,1,2,1,11.348810195922852
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,1890,AG,1,5681,16235,1,2,1,10.413286209106445
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,2095,utes,1,126899,136772,1,2,1,13.215343475341797
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,2100, AN,1,36599,61651,1,2,1,10.499427795410156
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,2197, document,1,119393,50916,1,2,1,10.090545654296875
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,2216,ric,1,56852,76144,1,2,1,8.957560539245605
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,2375,erg,1,89920,64034,1,2,1,9.396270751953125
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,2512,Action,1,99751,99299,1,2,1,11.76026725769043
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,2673,ically,1,129217,115452,1,2,1,11.534974098205566
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,2682,vis,1,56624,25836,1,2,1,9.437743186950684
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,2700,ponents,1,28386,38015,1,2,1,10.233453750610352
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,2752,pen,1,71533,64291,1,1,1,9.583540916442871
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,2884, design,1,75404,99315,1,2,1,11.682533264160156
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,2931,quired,1,29926,49115,1,2,1,9.636324882507324
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,3114,cribe,1,37250,59610,1,2,1,10.097355842590332
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,3182,create,1,12704,49573,1,2,1,11.316885948181152
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,3246,agn,1,40486,55891,1,2,1,8.69150447845459
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,3314,cul,1,5713,625,1,1,1,5.591527462005615
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,3323,Token,1,33807,14829,1,2,1,9.475528717041016
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,3409, word,1,19279,24623,1,2,1,8.970039367675781
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,3425, whether,1,115157,129111,1,2,1,12.27639102935791
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,3509,node,1,20574,65619,1,2,1,9.714242935180664
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,3613, members,1,47511,58941,1,4,1,12.759783744812012
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,3738, human,1,13473,3267,1,2,1,5.390801906585693
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,3751,fect,1,74288,65220,1,2,1,10.733580589294434
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,3774, unsigned,1,57944,18225,1,2,1,10.743184089660645
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,4372,avigation,1,112366,142378,1,3,1,15.158170700073242
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,4428, similar,1,6242,46431,1,2,1,9.836087226867676
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,4477,ARE,1,76876,84969,1,2,1,12.23338794708252
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,4520, Sec,1,24996,18850,1,1,1,9.656630516052246
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,4564, connect,1,20891,28058,1,2,1,8.679250717163086
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,4578,tag,1,41265,34808,1,1,1,8.921210289001465
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,4624,Repository,1,67508,72612,1,3,1,13.921831130981445
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,4738,ief,1,10660,14555,1,2,1,7.358115196228027
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,4796, campaign,1,106573,101622,1,2,1,11.450238227844238
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,4880, shall,1,129411,80347,1,2,1,11.261520385742188
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,5206, mut,1,56381,14861,1,2,1,8.435898780822754
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,5293, notice,1,105894,53306,1,2,1,11.836014747619629
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,5332,_config,2,66072,43053,2,2,1,
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,0,5425, prote,1,33835,30133,1,2,1,12.601296424865723
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,350, T,1,13572,31397,1,2,1,8.104634284973145
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,467, W,1,134942,14139,1,2,1,7.857422351837158
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,492,(',1,125471,90007,1,4,1,14.636514663696289
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,607, str,1,17521,7987,1,2,1,8.215795516967773
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,660,'],1,112049,62533,1,3,1,14.236839294433594
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,680,ition,1,114462,95032,1,2,1,12.855645179748535
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,712,per,1,6967,20563,1,1,1,9.25312328338623
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,718,add,1,45713,33581,1,1,1,10.809328079223633
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,737, void,1,135488,85368,1,2,1,13.86215591430664
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,818,Cont,1,25595,45219,1,2,1,12.76822566986084
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,825, one,1,34831,37548,1,2,1,11.007116317749023
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,979, when,1,108876,74800,1,2,1,11.055883407592773
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,1065,min,1,80325,45391,1,2,1,10.580072402954102
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,1104,idth,1,123501,124669,1,2,1,13.685772895812988
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,1105, them,1,114668,102091,1,2,1,12.700074195861816
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,1183,"[""",1,19543,50172,1,2,1,11.504135131835938
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,1228,cript,1,141870,138048,1,2,1,13.979279518127441
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,1291,right,1,96647,104799,1,2,1,11.983526229858398
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,1302,.g,1,36033,24906,1,2,1,11.699963569641113
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,1402,AM,1,75848,33172,1,2,1,11.0064058303833
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,1489,fl,1,66280,56927,1,2,1,10.190629005432129
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,1546,sole,1,22119,51993,1,2,1,10.090429306030273
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,1619, att,1,124723,68710,1,2,1,12.342438697814941
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,1822, av,1,44695,47634,1,2,1,11.266069412231445
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,1854,uss,1,69420,79065,1,2,1,12.69229507446289
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,1890,AG,1,33755,56817,1,2,1,12.359725952148438
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,2095,utes,1,136476,131851,1,2,1,13.95613956451416
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,2100, AN,1,17456,20621,1,2,1,10.822148323059082
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,2197, document,1,118024,71587,1,2,1,12.245340347290039
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,2216,ric,1,37208,51255,1,2,1,10.223871231079102
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,2375,erg,1,104386,79783,1,2,1,11.330300331115723
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,2512,Action,1,75580,59730,1,3,1,12.603065490722656
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,2673,ically,1,145047,141233,1,3,1,15.445564270019531
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,2682,vis,1,76751,85346,1,2,1,12.547733306884766
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,2700,ponents,1,35684,39938,1,2,1,12.906455039978027
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,2752,pen,1,136256,142368,1,3,1,14.308228492736816
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,2884, design,1,18595,24360,1,2,1,11.115975379943848
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,2931,quired,1,112649,111350,1,3,1,15.184541702270508
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,3114,cribe,1,144011,148216,2,5,1,16.835268020629883
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,3182,create,1,26769,45341,1,3,1,14.506515502929688
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,3246,agn,1,81445,90233,1,2,1,12.841705322265625
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,3314,cul,1,69412,84365,1,2,1,11.632399559020996
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,3323,Token,1,56132,42181,1,2,1,11.883429527282715
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,3409, word,1,12312,25243,1,2,1,9.255118370056152
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,3425, whether,1,127783,114269,1,3,1,14.795418739318848
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,3509,node,1,94515,96174,1,4,1,15.511680603027344
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,3613, members,1,16100,36145,1,2,1,11.369519233703613
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,3738, human,1,25448,8773,1,2,1,8.585514068603516
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,3751,fect,1,105108,76536,1,2,1,12.614581108093262
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,3774, unsigned,1,110993,61791,1,3,1,15.01425838470459
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,4372,avigation,1,110794,142007,1,5,1,16.23628807067871
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,4428, similar,1,4110,13969,1,2,1,10.446972846984863
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,4477,ARE,1,105461,131890,1,5,1,15.726578712463379
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,4520, Sec,1,36226,44093,1,2,1,12.414627075195312
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,4564, connect,1,96011,100053,1,2,1,15.29321002960205
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,4578,tag,1,54345,37369,1,1,1,9.813875198364258
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,4624,Repository,1,43716,42987,1,3,1,14.419526100158691
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,4738,ief,1,44868,59814,1,2,1,11.577259063720703
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,4796, campaign,1,55006,83145,1,2,1,12.72801685333252
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,4880, shall,1,45341,21543,1,2,1,9.515341758728027
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,5206, mut,1,93964,51973,1,2,1,12.133018493652344
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,5293, notice,1,59337,45437,1,2,1,12.76452350616455
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,5332,_config,2,76284,52902,2,7,1,
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,8,5425, prote,1,63278,48069,1,3,1,15.026067733764648
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,350, T,1,9109,3796,1,2,1,7.130696773529053
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,467, W,1,129684,12813,1,1,1,6.689371109008789
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,492,(',1,101627,83963,1,3,1,12.003661155700684
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,607, str,1,1611,170,1,2,1,4.070212364196777
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,660,'],1,136470,114771,1,2,1,14.239776611328125
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,680,ition,1,93542,83662,1,2,1,10.585174560546875
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,712,per,1,21373,59717,1,1,1,9.699298858642578
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,718,add,1,42090,46437,1,1,1,9.166120529174805
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,737, void,1,109197,57909,1,2,1,10.642971992492676
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,818,Cont,1,30971,43736,1,2,1,11.585482597351074
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,825, one,1,11212,8628,1,2,1,7.820573329925537
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,979, when,1,74816,30474,1,2,1,8.833046913146973
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,1065,min,1,78371,57231,1,2,1,9.576546669006348
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,1104,idth,1,26222,42212,1,1,1,7.713476181030273
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,1105, them,1,148088,146828,1,2,1,14.463103294372559
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,1183,"[""",1,14321,50817,1,2,1,9.621086120605469
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,1228,cript,1,107518,81664,1,2,1,10.35030460357666
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,1291,right,1,30585,41404,1,1,1,8.265874862670898
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,1302,.g,1,44310,36555,1,2,1,11.072528839111328
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,1402,AM,1,128460,46017,1,2,1,10.416263580322266
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,1489,fl,1,73494,38411,1,1,1,9.050444602966309
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,1546,sole,1,52336,72899,1,2,1,10.070089340209961
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,1619, att,1,57882,22870,1,1,1,8.271735191345215
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,1822, av,1,7082,5040,1,1,1,6.6648850440979
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,1854,uss,1,128348,130033,1,2,1,14.02973461151123
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,1890,AG,1,38918,49224,1,2,1,11.229985237121582
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,2095,utes,1,134831,143264,1,2,1,12.454146385192871
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,2100, AN,1,8290,5830,1,2,1,8.323323249816895
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,2197, document,1,62808,19907,1,2,1,8.488798141479492
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,2216,ric,1,49066,64178,1,2,1,9.461840629577637
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,2375,erg,1,77011,67781,1,2,1,9.24067211151123
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,2512,Action,1,58501,66215,1,3,1,10.424521446228027
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,2673,ically,1,147011,137663,1,2,1,14.286556243896484
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,2682,vis,1,75867,49085,1,2,1,11.01541519165039
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,2700,ponents,1,75304,81538,1,2,1,11.116802215576172
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,2752,pen,1,132458,118711,1,2,1,12.66840934753418
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,2884, design,1,71210,95617,1,2,1,12.658649444580078
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,2931,quired,1,16913,38570,1,2,1,8.772927284240723
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,3114,cribe,1,136208,149962,1,2,1,14.457106590270996
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,3182,create,1,18591,44183,1,2,1,12.134943962097168
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,3246,agn,1,59770,36975,1,2,1,10.28384017944336
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,3314,cul,1,66870,48993,1,2,1,10.164284706115723
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,3323,Token,1,109313,74840,1,2,1,12.418875694274902
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,3409, word,1,16889,28347,1,2,1,8.408679962158203
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,3425, whether,1,128532,116398,1,2,1,13.274786949157715
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,3509,node,1,39623,76573,1,2,1,11.370434761047363
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,3613, members,1,14425,41454,1,2,1,9.77453327178955
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,3738, human,1,60689,21642,1,2,1,8.943655014038086
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,3751,fect,1,121991,126698,1,2,1,11.985793113708496
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,3774, unsigned,1,133786,101904,1,2,1,13.962737083435059
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,4372,avigation,1,49595,115223,1,2,1,11.795374870300293
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,4428, similar,1,4378,36632,1,2,1,9.198468208312988
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,4477,ARE,1,89871,90467,1,2,1,12.419312477111816
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,4520, Sec,1,16929,17012,1,1,1,9.38438606262207
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,4564, connect,1,38176,49384,1,2,1,10.915318489074707
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,4578,tag,1,30901,16981,1,1,1,7.51596736907959
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,4624,Repository,1,24222,15124,1,2,1,11.162994384765625
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,4738,ief,1,53839,71647,1,2,1,10.680414199829102
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,4796, campaign,1,33822,23727,1,2,1,9.617302894592285
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,4880, shall,1,103001,65520,1,2,1,10.159510612487793
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,5206, mut,1,68480,50961,1,2,1,9.686307907104492
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,5293, notice,1,77741,52766,1,2,1,11.965644836425781
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,5332,_config,1,73291,78932,1,2,1,14.306841850280762
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,15,5425, prote,1,48640,59579,1,3,1,12.567691802978516
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,350, T,1,12018,29605,1,2,1,15.532095909118652
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,467, W,2,146799,5589,2,2,1,
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,492,(',1,29653,8997,1,2,1,11.412187576293945
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,607, str,1,83457,66322,1,2,1,11.768613815307617
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,660,'],1,75414,20768,1,2,1,9.571800231933594
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,680,ition,1,67800,54164,1,2,1,8.636815071105957
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,712,per,1,1494,4295,1,1,1,7.550418853759766
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,718,add,1,4334,6309,1,2,1,7.779824733734131
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,737, void,1,132031,67778,1,2,1,11.51675033569336
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,818,Cont,1,1573,2936,1,1,1,7.230301856994629
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,825, one,1,6450,9819,1,2,1,13.72896671295166
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,979, when,1,81507,25965,1,3,1,16.22755241394043
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,1065,min,1,48662,7315,1,2,1,9.354572296142578
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,1104,idth,1,72028,83999,1,3,1,8.392437934875488
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,1105, them,1,139187,124699,1,2,1,11.390446662902832
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,1183,"[""",1,438,606,1,1,1,6.66674280166626
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,1228,cript,1,122708,87926,1,1,1,9.239879608154297
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,1291,right,1,10111,7937,1,2,1,6.761887073516846
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,1302,.g,1,63409,59888,1,3,1,13.572944641113281
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,1402,AM,1,105391,17909,1,2,1,9.268211364746094
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,1489,fl,1,28434,5741,1,2,1,7.945197105407715
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,1546,sole,1,16640,16836,1,1,1,7.814597129821777
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,1619, att,1,140596,80429,1,2,1,10.522957801818848
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,1822, av,1,61799,73097,1,2,1,10.032816886901855
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,1854,uss,1,122063,143019,1,2,1,11.69102954864502
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,1890,AG,1,5829,31848,1,2,1,9.035103797912598
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,2095,utes,1,29944,45988,1,1,1,8.219244956970215
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,2100, AN,1,99356,123881,1,3,1,16.728744506835938
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,2197, document,1,98435,38459,1,2,1,8.48092269897461
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,2216,ric,1,23696,26503,1,2,1,7.665781021118164
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,2375,erg,1,91297,68784,1,1,1,8.335283279418945
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,2512,Action,1,10948,5707,1,2,1,7.993957996368408
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,2673,ically,1,110286,109470,1,1,1,9.548091888427734
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,2682,vis,1,7379,4176,1,1,1,6.653984069824219
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,2700,ponents,1,14192,41958,1,1,1,8.153742790222168
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,2752,pen,1,70168,70494,1,2,1,9.413346290588379
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,2884, design,2,34594,34270,2,3,1,
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,2931,quired,1,39427,41467,1,2,1,9.003453254699707
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,3114,cribe,1,129089,147468,1,2,1,11.4064359664917
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,3182,create,1,1278,4918,1,2,1,11.168554306030273
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,3246,agn,1,32829,52699,1,2,1,8.152841567993164
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,3314,cul,1,49706,13894,1,1,1,7.996833324432373
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,3323,Token,1,31915,17566,1,1,1,8.717377662658691
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,3409, word,1,33580,76885,1,3,1,10.550155639648438
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,3425, whether,1,24910,13723,1,3,1,11.96280288696289
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,3509,node,1,13934,44522,1,2,1,9.212327003479004
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,3613, members,1,17265,39272,1,4,1,10.240270614624023
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,3738, human,2,112581,12045,1,2,1,
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,3751,fect,1,12692,11429,1,1,1,7.304074287414551
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,3774, unsigned,1,146584,112428,1,2,1,15.216876029968262
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,4372,avigation,1,31006,50377,1,13,1,9.588889122009277
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,4428, similar,1,25063,63981,1,4,1,15.606319427490234
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,4477,ARE,1,14231,19695,1,2,1,8.138839721679688
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,4520, Sec,1,16785,12573,1,2,1,13.257028579711914
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,4564, connect,1,83378,53746,1,2,1,12.274375915527344
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,4578,tag,1,61084,16547,1,2,1,8.221628189086914
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,4624,Repository,1,2460,1253,1,1,1,7.105186462402344
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,4738,ief,1,85715,137619,1,2,1,9.602740287780762
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,4796, campaign,1,104878,114464,1,3,1,10.861892700195312
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,4880, shall,1,123267,37207,1,2,1,10.382781982421875
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,5206, mut,1,151320,145700,1,2,1,11.903510093688965
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,5293, notice,1,110436,50077,1,2,1,10.599435806274414
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,5332,_config,2,37821,56363,2,2,1,
+Qwen/Qwen2-0.5B-Instruct,To bake sourdough bread,23,5425, prote,1,97740,142525,1,4,1,13.114768981933594

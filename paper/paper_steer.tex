@@ -144,10 +144,15 @@ same-target great-circle rotation, so the angular budget can be made explicit
 A natural control is to steer toward a different target while measuring the
 original target's rank. In a batched implementation the wrong target must be
 sampled from the other $K-1$ targets; allowing self-draws artificially inflates
-the wrong-target success rate. With the self-exclusion fix, the wrong-target
-rank-1 rate is exactly 0\% on Qwen2-0.5B (1,024 cases), Qwen2-1.5B (1,024
-cases), and Gemma-3-1B (2,048 cases). Random tangent directions also produce 0\%
-target rank-1. The tangent direction is therefore genuinely target specific.
+the wrong-target success rate by the self-draw probability $1/K$. With the
+self-exclusion fix, the wrong-target rank-1 rate is exactly 0\% on Qwen2-0.5B
+(1,024 cases), Qwen2-1.5B (1,024 cases), and Gemma-3-1B (2,048 cases), and
+0\% on all five cross-family models (Table~\ref{tab:cross-family}). An earlier
+draft of the cross-family table reported 0.4--1.6\% wrong-target rates; we
+traced these to residual self-draws in that protocol's sampler ($1/64 \approx
+1.6\%$) and re-ran all five models with strict exclusion. Random tangent
+directions also produce 0\% target rank-1. The tangent direction is therefore
+genuinely target specific.
 
 \subsection{Competitor Geometry at Fixed Target Score}
 
@@ -207,6 +212,11 @@ Gemma-3-1B & 14.20$^\circ$ & 10.28$^\circ$ & 1.37$\times$ \\
 \end{tabular}
 \end{center}
 
+Medians are over reachable pairs (44/48 for Qwen2-0.5B, 48/48 for
+Gemma-3-1B); the ratio column is the median of per-pair ratios
+$\theta_{\mathrm{author}}/\theta_{\mathrm{cell}}$, not the ratio of medians.
+In zero pairs does the cone distance exceed the arc distance.
+
 The target-row arc is a principled and often efficient default route, but
 competitor-aware routes to the actual rank-1 region can be materially shorter.
 This gives an observable distinction between target-alignment efficiency and
@@ -222,7 +232,7 @@ approximation. Principal-component analysis shows the manifold is
 high-dimensional: the top 16 PCs explain only 56\% of the variance.
 
 When the model appends a target token, the resulting hidden-state step is much
-larger than a controlled tangent steering step of the same angular budget. With
+larger than a controlled tangent steering step of comparable size. With
 $\alpha=0.5$ (a $26.6^\circ$ tangent rotation), the actual next-token hidden
 state moves $57^\circ$--$69^\circ$ away from the original state, i.e., roughly
 $2\times$--$2.6\times$ the controlled step. This means the natural dynamics do
@@ -242,17 +252,18 @@ settings (64 targets, 2 contexts, 4 depth-adaptive layers, seed 42, fp16).
 \toprule
 Model & Arc-reach & Target & Wrong & Random & Toward & Away \\
 \midrule
-Qwen2-1.5B & 99.2\% & 99.2\% & 1.6\% & 0.0\% & 34.8\% & 100.0\% \\
-Qwen2-0.5B & 97.3\% & 97.3\% & 1.6\% & 0.0\% & 13.7\% & 100.0\% \\
-GPT-2 & 90.8\% & 90.8\% & 1.0\% & 0.0\% & 5.9\% & 99.2\% \\
-SmolLM-135M & 67.2\% & 67.2\% & 0.4\% & 0.0\% & 2.5\% & 96.7\% \\
-Pythia-160M & 27.9\% & 27.9\% & 0.4\% & 0.0\% & 9.0\% & 70.1\% \\
+Qwen2-1.5B & 99.2\% & 99.2\% & 0.0\% & 0.0\% & 34.8\% & 100.0\% \\
+Qwen2-0.5B & 97.3\% & 97.3\% & 0.0\% & 0.0\% & 13.7\% & 100.0\% \\
+GPT-2 & 90.8\% & 90.8\% & 0.0\% & 0.0\% & 5.9\% & 99.2\% \\
+SmolLM-135M & 67.2\% & 67.2\% & 0.0\% & 0.0\% & 2.5\% & 96.7\% \\
+Pythia-160M & 27.9\% & 27.9\% & 0.0\% & 0.0\% & 9.0\% & 70.1\% \\
 \bottomrule
 \end{tabular}
-\caption{Rank-1 rates under corrected contracts. Wrong-target is self-excluded;
-random is a random tangent; toward/away are fixed-score residual rotations
-pointing at or away from the strongest competitor. Arc-reach = fraction of
-cases where the target-row arc reaches rank~1 within a $17^\circ$ budget.}
+\caption{Rank-1 rates under corrected contracts. Wrong-target is strictly
+self-excluding; random is a random tangent; toward/away are fixed-score
+off-arc rotations (null-space construction) pointing at or away from the
+strongest competitor. Arc-reach = fraction of cases where the target-row arc
+reaches rank~1 within a $17^\circ$ budget.}
 \label{tab:cross-family}
 \end{table}
 
@@ -355,6 +366,13 @@ Chat-template wrapped & 0 & 0 \\
 \bottomrule
 \end{tabular}
 \end{center}
+
+Loop lengths are horizon-limited: both columns generate 25 new tokens on top
+of a five-token trigger (maximum possible trailing run 30, so values at 30
+indicate the loop filled the horizon). The mitigation section below uses a
+30-token horizon (maximum 35), so its baselines read higher (29 vs.\ 24 on the
+same 0.5B model). The 7B column is measured under 4-bit nf4 quantization due
+to GPU memory limits; the strict pit survives this compression.
 
 On Qwen2.5-7B the strict pit survives greedy decoding and both standard and
 uniform nucleus sampling; only the chat-template context breaks it. On
@@ -524,6 +542,11 @@ supports \texttt{-{}-quant nf4} on a 10\,GB GPU), and
 \texttt{eval\_threat\_model.py} for the full mitigation and false-positive
 evaluation (also supports \texttt{-{}-quant nf4} and pit-away-steering
 strength via \texttt{-{}-steer-alpha}).
+
+The sphere-radius, BOS-axis, Lyapunov, and pit-scan tables carried over from
+$v_1$ were produced by earlier exploration tooling that has since been
+consolidated out of the repository tip; it remains recoverable from the git
+history (pre-August 2026 commits).
 \end{enumerate}
 
 \section*{Acknowledgments}

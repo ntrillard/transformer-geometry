@@ -334,7 +334,7 @@ def _batched_block(u, W_t, Wn_t, tid_idx, max_angle, seed):
     own0 = v0L.gather(1, tid_idx[:, None]).squeeze(1)
     r_tan = _rank_batched(v0L, own0)
 
-    kw = rng.integers(0, len(tid_idx), size=len(tid_idx))
+    kw = (np.arange(len(tid_idx)) + rng.integers(1, len(tid_idx), size=len(tid_idx))) % len(tid_idx)
     tau_w = _bn(S[kw] - (S[kw] @ un)[:, None] * un)
     tauwL = tau_w @ WT
     vwL = cosd * uL[None, :] + sind * tauwL
@@ -428,7 +428,7 @@ def run_model(model_id, seed=42, n_targets=N_TARGETS, n_contexts=N_CONTEXTS,
                     tau = tangent_direction(u, s)
                     v_tan = rotate_toward(u, tau, max_angle)
                     r_tan = rank_of(logits(v_tan, W), tid)
-                    wrong_tid = rng.choice(target_ids)
+                    wrong_tid = target_ids[(target_ids.index(tid) + rng.integers(1, len(target_ids))) % len(target_ids)]
                     s_wrong = W_n[wrong_tid]
                     tau_wrong = tangent_direction(u, s_wrong)
                     v_wrong = rotate_toward(u, tau_wrong, max_angle)
