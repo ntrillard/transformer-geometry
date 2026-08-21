@@ -289,6 +289,23 @@ reflects a subset of very easy tokens.}
 \label{tab:angles}
 \end{table}
 
+\subsection{Depth Dependence and Decision Cells}
+
+Arc-reach depends far more on \emph{depth} than on model family. Resolving
+the cross-family protocol by layer fraction, final-layer states are steerable
+in every family (91--100\%), while mid-layer reachability collapses for some
+architectures (Pythia-160M: 2--5\% at fractions $0$--$0.67$; SmolLM-135M:
+15.6\% at $0.67$). Decision-cell geometry does not explain this: active-set
+projections place every tested state within $17^\circ$ of nearly all targets'
+cones at every depth (cell-reach $\geq 99\%$; median $\theta_{\mathrm{cell}}$
+$6$--$13^\circ$), so the mid-layer failures are not distance effects. What
+fails is incidence: the particular great circle of the tangent step misses the
+target's cone entirely, though nearby in angle. Two consequences: (i)
+steering interventions should be applied at late layers, where reachability is
+near-universal, as our generation demonstrations do; (ii) among reachable
+pairs, $\theta_{\mathrm{cell}}$ remains an excellent per-case predictor of the
+crossing angle ($r = 0.83$--$0.93$ across families).
+
 \subsection{Qualitative Demonstration}
 
 On Qwen2.5-7B, steering open-ended prompts produces visible output shifts. At
