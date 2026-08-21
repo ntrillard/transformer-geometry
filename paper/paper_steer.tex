@@ -165,8 +165,12 @@ with $r \perp s$ and rotate only the residual component:
 v(\epsilon) = \gamma s + \rho\bigl(\cos\epsilon\, r + \sin\epsilon\, q\bigr),
 \quad q \perp s,\ q \perp r.
 \]
-This preserves both $\|v\|$ and the target score $v \cdot s$ (and hence the
-raw target logit). On Qwen2-0.5B (64 targets, 4 contexts, 4 layers, 8$^\circ$
+For the random residual direction this preserves $\|v\|$ and the target score
+$v \cdot s$ exactly by construction. The toward/away rotations preserve
+$v \cdot s$ to within a common renormalization factor, and are exact mirror
+images of each other ($q \to -q$), so any toward-vs-away difference in rank is
+attributable purely to competitor direction rather than to norm or score
+perturbations. On Qwen2-0.5B (64 targets, 4 contexts, 4 layers, 8$^\circ$
 residual rotation):
 
 \begin{center}
@@ -224,12 +228,13 @@ rank-acquisition efficiency.
 
 \subsection{Natural Activation Manifold}
 
-Natural hidden states at a fixed layer lie near a spherical shell whose radius
-is the learned RMSNorm scale. Measured on 52 ordinary prompts at layer 8 of
-Qwen2-0.5B, the post-layer-norm hidden-state norm has mean $13.81$ and standard
-deviation $0.96$ ($\approx$7\% of the mean), confirming the spherical
-approximation. Principal-component analysis shows the manifold is
-high-dimensional: the top 16 PCs explain only 56\% of the variance.
+Residual-stream states at a fixed layer lie near a tightly concentrated
+spherical shell, though its radius is an emergent layer-dependent scale rather
+than the RMSNorm parameter norm itself. Measured on 52 ordinary prompts at
+layer 8 of Qwen2-0.5B, the hidden-state norm has mean $13.81$ and standard
+deviation $0.96$ ($\approx$7\% of the mean). Principal-component analysis
+shows the manifold is high-dimensional: the top 16 PCs explain only 56\% of
+the variance.
 
 When the model appends a target token, the resulting hidden-state step is much
 larger than a controlled tangent steering step of comparable size. With
@@ -516,6 +521,15 @@ raw-head rank-cone projection with NNLS dual, and the corrected decoder
 samplers. The null-space off-arc variant used for the cross-family table is
 \texttt{steering\_geometry\_test\_offarc.py}. The procedure:
 
+\paragraph{Head assay.} All rank and logit claims are computed by applying the
+raw LM head to the unit-normalized last-layer state ($\hat{h} \cdot W_t$), a
+scale-invariant geometric assay rather than the model's sampling distribution.
+We verified this surrogate against the true forward pass (final RMSNorm +
+head) on Qwen2-0.5B: identical argmax on all tested states, each metric's top
+token is rank~1 under the other, and the ``$\mathtt{0}$''-pit greedy loop is
+byte-identical under both (24-token horizon run three times). Rank-based
+conclusions therefore transfer to the model's actual output distribution.
+
 \begin{enumerate}
 \item \textbf{Sphere radius.} Extract $\gamma_l$ from model state dict. Feed
 prompts, record post-LN hidden state norms per layer. Compare to $\|\gamma_l\|$.
@@ -531,7 +545,10 @@ $\|\gamma_L\|$, then feed $h'$ as the first-generation hidden state. Use
 geometry, and shortest-route measurements;
 \texttt{eval\_boundary\_instruments.py} for the $\theta_{\mathrm{author}}$ vs
 $\theta_{\mathrm{cell}}$ comparison; and \texttt{eval\_manifold\_geometry.py}
-for the natural-manifold probe.
+for the natural-manifold probe. First rank-1 angles are computed analytically
+from per-competitor sinusoid margins; equivalence with a 200-step scan was
+verified on 400 random configurations and re-spot-checked here (25/25 within
+$0.1^\circ$).
 
 \item \textbf{Cow tipping.} For token~$t$, decode, re-encode, forward-pass to
 get $h_T$. Compute $s(T)$. If $s(T) > 0.01$, feed $t$ three times and check
