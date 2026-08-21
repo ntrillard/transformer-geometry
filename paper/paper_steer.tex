@@ -322,6 +322,20 @@ Steering does not distinguish censored from uncensored paths. It is a
 white-box traversal primitive: with access to the model weights, anyone can move
 $h$ toward any token direction on the sphere without retraining or fine-tuning.
 
+\paragraph{Sustained generation.} Rank control at one decision point does not
+extend to coherent multi-token generation. On Qwen2-0.5B (48-token greedy
+continuations), a single-shot tangent hook at the final layer inserts the
+target token once or twice before the model recovers; holding the same hook at
+every step captures all 48 positions (mean top-1 probability $1.00$,
+distinct-token ratio $0.10$) --- producing \texttt{appleappleapple\dots},
+i.e., persistent tangent steering \emph{constructs} a repetition pit of the
+kind analyzed in Section~4 rather than steered prose. At depth $0.67$, weak
+persistence alters the continuation without target adherence, and stronger
+persistence collapses into the same loop. The tangent step is therefore a
+single-decision primitive: sustained lexical control degenerates into pit
+induction, and topical control over a continuation would require
+concept-level directions rather than individual head rows.
+
 \section{Cow Tipping}
 
 Some tokens generate themselves when fed repeatedly. A token~$T$ is
