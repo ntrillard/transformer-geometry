@@ -1,0 +1,2049 @@
+model,context,layer,target_id,target_text,rank_target_tangent,rank_wrong_tangent,rank_random_tangent,rank_offarc_random,rank_offarc_toward,rank_offarc_away,first_rank1_angle
+google/gemma-3-1b-it,To bake sourdough bread,0,322,T,3251,261228,260353,3370,4073,3111,
+google/gemma-3-1b-it,To bake sourdough bread,0,605,us,1,2048,1898,1,5,1,12.138837814331055
+google/gemma-3-1b-it,To bake sourdough bread,0,806,ous,1,63480,26044,1,10,1,13.996663093566895
+google/gemma-3-1b-it,To bake sourdough bread,0,850, app,1,21987,20841,1,2,1,14.00966739654541
+google/gemma-3-1b-it,To bake sourdough bread,0,1049,inal,1,77603,44328,1,11,1,14.947035789489746
+google/gemma-3-1b-it,To bake sourdough bread,0,1143,cept,8,217985,207566,7,11,1,
+google/gemma-3-1b-it,To bake sourdough bread,0,1176, said,1,530,924,1,1,1,9.726462364196777
+google/gemma-3-1b-it,To bake sourdough bread,0,1240,riv,1,1445,6385,1,8,1,12.647037506103516
+google/gemma-3-1b-it,To bake sourdough bread,0,1276, Re,1,119,88,1,2,1,8.896656036376953
+google/gemma-3-1b-it,To bake sourdough bread,0,1382, aut,1,67283,98367,1,2,1,15.879281044006348
+google/gemma-3-1b-it,To bake sourdough bread,0,1417,wn,1,14753,25805,1,11,1,16.193634033203125
+google/gemma-3-1b-it,To bake sourdough bread,0,1428, equ,1,13239,14214,1,11,1,14.550393104553223
+google/gemma-3-1b-it,To bake sourdough bread,0,1844,uf,1,42374,22898,1,11,1,13.715265274047852
+google/gemma-3-1b-it,To bake sourdough bread,0,1911, var,1,6513,4912,1,2,1,12.815326690673828
+google/gemma-3-1b-it,To bake sourdough bread,0,1916,rc,1,27562,25366,1,11,1,13.904434204101562
+google/gemma-3-1b-it,To bake sourdough bread,0,2048, prote,1,73903,43584,1,11,1,15.982246398925781
+google/gemma-3-1b-it,To bake sourdough bread,0,2124,++,2,94103,47218,1,11,1,
+google/gemma-3-1b-it,To bake sourdough bread,0,2233, invest,1,41905,46616,1,4,1,14.388489723205566
+google/gemma-3-1b-it,To bake sourdough bread,0,2247, put,1,103699,95246,1,2,1,14.856194496154785
+google/gemma-3-1b-it,To bake sourdough bread,0,2423,ino,1,3448,5674,1,5,1,12.372593879699707
+google/gemma-3-1b-it,To bake sourdough bread,0,2582,EXT,2,98392,84415,1,11,1,
+google/gemma-3-1b-it,To bake sourdough bread,0,2669,ending,6,184165,205350,6,11,1,
+google/gemma-3-1b-it,To bake sourdough bread,0,2802, access,1,93022,127566,1,11,1,15.481553077697754
+google/gemma-3-1b-it,To bake sourdough bread,0,3155, house,1,11458,17555,1,2,1,12.671332359313965
+google/gemma-3-1b-it,To bake sourdough bread,0,3210, thing,1,183973,96328,1,11,1,15.289433479309082
+google/gemma-3-1b-it,To bake sourdough bread,0,3631,font,1,30254,16332,1,9,1,13.290946960449219
+google/gemma-3-1b-it,To bake sourdough bread,0,3633,aur,1,32173,15285,1,10,1,13.872476577758789
+google/gemma-3-1b-it,To bake sourdough bread,0,3803, God,1,1391,495,1,4,1,11.759024620056152
+google/gemma-3-1b-it,To bake sourdough bread,0,3834,At,2,6150,9252,2,2,1,
+google/gemma-3-1b-it,To bake sourdough bread,0,4111,idge,4,180070,214347,6,11,1,
+google/gemma-3-1b-it,To bake sourdough bread,0,4340,OC,1,36292,46094,1,11,1,14.441157341003418
+google/gemma-3-1b-it,To bake sourdough bread,0,4648, tim,1,36497,99597,1,11,1,16.62468719482422
+google/gemma-3-1b-it,To bake sourdough bread,0,4680, cand,1,48561,37358,1,11,1,15.2874116897583
+google/gemma-3-1b-it,To bake sourdough bread,0,4754,My,2,35939,14804,2,2,1,
+google/gemma-3-1b-it,To bake sourdough bread,0,4981, status,1,77715,105418,1,11,1,15.713464736938477
+google/gemma-3-1b-it,To bake sourdough bread,0,5083, dro,6,218415,196624,6,12,1,
+google/gemma-3-1b-it,To bake sourdough bread,0,5380, va,1,34558,68421,2,11,1,16.972732543945312
+google/gemma-3-1b-it,To bake sourdough bread,0,5512, pun,3,110209,161648,6,11,1,
+google/gemma-3-1b-it,To bake sourdough bread,0,5628, located,1,7753,3059,1,3,1,11.556905746459961
+google/gemma-3-1b-it,To bake sourdough bread,0,5732, nicht,1,7134,60171,1,11,1,14.707255363464355
+google/gemma-3-1b-it,To bake sourdough bread,0,5912, See,1,97695,53695,1,11,1,14.868939399719238
+google/gemma-3-1b-it,To bake sourdough bread,0,6060, handle,1,67794,19131,1,2,1,14.469264030456543
+google/gemma-3-1b-it,To bake sourdough bread,0,6204,miss,1,152363,117509,1,11,1,16.586992263793945
+google/gemma-3-1b-it,To bake sourdough bread,0,6254, tor,1,81301,89802,1,11,1,15.594250679016113
+google/gemma-3-1b-it,To bake sourdough bread,0,6478, session,1,15661,2365,1,2,1,12.291007041931152
+google/gemma-3-1b-it,To bake sourdough bread,0,6486, Sur,1,9053,7746,1,8,1,12.78644847869873
+google/gemma-3-1b-it,To bake sourdough bread,0,6540, culture,1,23235,4816,1,2,1,11.805702209472656
+google/gemma-3-1b-it,To bake sourdough bread,0,6541, capacity,1,11556,10958,1,2,1,12.133749008178711
+google/gemma-3-1b-it,To bake sourdough bread,0,7568,pop,1,4133,12395,1,2,1,12.427447319030762
+google/gemma-3-1b-it,To bake sourdough bread,0,7652,enz,1,33581,32323,1,11,1,14.042466163635254
+google/gemma-3-1b-it,To bake sourdough bread,0,7808, moved,1,26579,17760,1,9,1,13.381481170654297
+google/gemma-3-1b-it,To bake sourdough bread,0,7876, ven,1,29457,17469,1,11,1,14.40889835357666
+google/gemma-3-1b-it,To bake sourdough bread,0,7902,double,1,90786,59213,1,2,1,15.931641578674316
+google/gemma-3-1b-it,To bake sourdough bread,0,8021,allow,1,52400,48895,1,11,1,14.09605598449707
+google/gemma-3-1b-it,To bake sourdough bread,0,8313, Kh,1,1436,4704,1,2,1,12.363380432128906
+google/gemma-3-1b-it,To bake sourdough bread,0,8448, interval,1,54336,102749,1,11,1,15.005911827087402
+google/gemma-3-1b-it,To bake sourdough bread,0,9166, vez,1,53803,32797,1,11,1,15.51183795928955
+google/gemma-3-1b-it,To bake sourdough bread,0,9208,These,2,100389,71787,2,2,1,
+google/gemma-3-1b-it,To bake sourdough bread,0,9415,Eng,1,33407,63669,1,2,1,15.343186378479004
+google/gemma-3-1b-it,To bake sourdough bread,0,9438,dt,1,39565,41846,1,11,1,15.04056167602539
+google/gemma-3-1b-it,To bake sourdough bread,0,9577, tou,2,107652,150958,2,11,1,
+google/gemma-3-1b-it,To bake sourdough bread,0,9697, feedback,1,175731,186651,1,11,1,16.449417114257812
+google/gemma-3-1b-it,To bake sourdough bread,0,9744, village,1,2301,9611,1,2,1,12.53384780883789
+google/gemma-3-1b-it,To bake sourdough bread,0,10480,match,1,26384,7397,1,2,1,13.7803373336792
+google/gemma-3-1b-it,To bake sourdough bread,0,10702, Gi,1,3845,2873,1,9,1,12.753746032714844
+google/gemma-3-1b-it,To bake sourdough bread,0,10746,"""));",1,100588,57745,1,2,1,14.174650192260742
+google/gemma-3-1b-it,To bake sourdough bread,0,10770, Thank,1,4490,2367,1,2,1,12.51615047454834
+google/gemma-3-1b-it,To bake sourdough bread,0,11055, charged,1,45272,46516,1,11,1,14.524977684020996
+google/gemma-3-1b-it,To bake sourdough bread,0,11278, aid,1,12335,19657,1,2,1,13.189491271972656
+google/gemma-3-1b-it,To bake sourdough bread,0,11397, dal,1,9215,6533,1,10,1,13.820027351379395
+google/gemma-3-1b-it,To bake sourdough bread,0,11526,BI,1,31024,26309,1,11,1,14.74636459350586
+google/gemma-3-1b-it,To bake sourdough bread,0,11664,unes,1,64558,30597,1,11,1,14.907666206359863
+google/gemma-3-1b-it,To bake sourdough bread,0,11668,username,8,184233,192217,8,11,1,
+google/gemma-3-1b-it,To bake sourdough bread,0,11699, eleg,1,79521,52251,1,11,1,14.977880477905273
+google/gemma-3-1b-it,To bake sourdough bread,0,11833,aders,1,55277,23236,1,11,1,14.388381004333496
+google/gemma-3-1b-it,To bake sourdough bread,0,12248, Environment,1,43313,63838,1,11,1,15.723546028137207
+google/gemma-3-1b-it,To bake sourdough bread,0,12396, findings,1,166867,132399,1,11,1,15.315668106079102
+google/gemma-3-1b-it,To bake sourdough bread,0,12429,wait,1,72496,89024,1,11,1,14.695104598999023
+google/gemma-3-1b-it,To bake sourdough bread,0,12708, vie,1,56410,92274,1,11,1,16.557512283325195
+google/gemma-3-1b-it,To bake sourdough bread,0,12730, Support,1,23994,26760,1,2,1,13.980795860290527
+google/gemma-3-1b-it,To bake sourdough bread,0,12800, remained,1,1910,1389,1,1,1,10.96053409576416
+google/gemma-3-1b-it,To bake sourdough bread,0,13080,inds,6,183071,176186,6,11,1,
+google/gemma-3-1b-it,To bake sourdough bread,0,13225, kont,1,90976,101747,1,11,1,15.82550048828125
+google/gemma-3-1b-it,To bake sourdough bread,0,13331,upload,1,13557,106563,1,11,1,15.681117057800293
+google/gemma-3-1b-it,To bake sourdough bread,0,13406,iral,1,137291,125658,1,11,1,16.493362426757812
+google/gemma-3-1b-it,To bake sourdough bread,0,13482, infection,1,1388,5227,1,2,1,11.842653274536133
+google/gemma-3-1b-it,To bake sourdough bread,0,13547, Egypt,1,4161,7549,1,9,1,13.003826141357422
+google/gemma-3-1b-it,To bake sourdough bread,0,13916, foundation,1,10866,9612,1,2,1,12.310036659240723
+google/gemma-3-1b-it,To bake sourdough bread,0,14180, dann,1,87483,68413,1,11,1,15.112333297729492
+google/gemma-3-1b-it,To bake sourdough bread,0,14226,nia,1,76155,95016,1,11,1,16.018064498901367
+google/gemma-3-1b-it,To bake sourdough bread,0,14440, inflation,1,21223,23149,1,7,1,12.841301918029785
+google/gemma-3-1b-it,To bake sourdough bread,0,14512, reserved,1,68299,45382,1,11,1,14.816490173339844
+google/gemma-3-1b-it,To bake sourdough bread,0,14611, outer,1,34748,28040,1,6,1,12.8135986328125
+google/gemma-3-1b-it,To bake sourdough bread,0,14937,"{""",5,215955,234071,4,11,1,
+google/gemma-3-1b-it,To bake sourdough bread,0,14966, metric,5,177108,186392,2,11,1,
+google/gemma-3-1b-it,To bake sourdough bread,0,15765,theless,1,191554,210703,1,11,1,16.266109466552734
+google/gemma-3-1b-it,To bake sourdough bread,0,15835,ikt,4,129912,175497,2,11,1,
+google/gemma-3-1b-it,To bake sourdough bread,0,15941, respective,1,146280,131194,1,11,1,15.231683731079102
+google/gemma-3-1b-it,To bake sourdough bread,0,16603,including,1,24187,13898,1,2,1,13.566709518432617
+google/gemma-3-1b-it,To bake sourdough bread,0,16916,rice,1,22022,51378,1,11,1,13.980966567993164
+google/gemma-3-1b-it,To bake sourdough bread,0,17349,kor,1,15945,27651,1,10,1,13.918559074401855
+google/gemma-3-1b-it,To bake sourdough bread,0,17379, rol,1,87518,96818,1,11,1,16.454479217529297
+google/gemma-3-1b-it,To bake sourdough bread,0,17564, Zealand,1,7269,11873,1,5,1,12.180214881896973
+google/gemma-3-1b-it,To bake sourdough bread,0,17623,Li,1,27340,4722,1,2,1,13.826529502868652
+google/gemma-3-1b-it,To bake sourdough bread,0,17672,ricts,1,134159,92250,1,11,1,14.781416893005371
+google/gemma-3-1b-it,To bake sourdough bread,0,17726, commands,1,18057,11693,1,2,1,12.276978492736816
+google/gemma-3-1b-it,To bake sourdough bread,0,18325,Driver,3,116963,91368,3,4,1,
+google/gemma-3-1b-it,To bake sourdough bread,0,18815, algo,2,163258,140338,2,11,1,
+google/gemma-3-1b-it,To bake sourdough bread,0,18819,desc,2,179415,142421,1,11,1,
+google/gemma-3-1b-it,To bake sourdough bread,0,18899, gravity,1,137931,66329,1,11,1,15.26918888092041
+google/gemma-3-1b-it,To bake sourdough bread,0,19387, arbitrary,4,231430,218003,4,11,1,
+google/gemma-3-1b-it,To bake sourdough bread,0,19474,vc,4,159161,146520,3,11,1,
+google/gemma-3-1b-it,To bake sourdough bread,0,19865, Ever,1,67512,49300,1,11,1,15.951101303100586
+google/gemma-3-1b-it,To bake sourdough bread,0,20278, volumes,1,2528,8610,1,7,1,12.892589569091797
+google/gemma-3-1b-it,To bake sourdough bread,0,20443,phenyl,1,60184,132808,1,11,1,15.265042304992676
+google/gemma-3-1b-it,To bake sourdough bread,0,20612,amping,4,215218,197199,4,11,1,
+google/gemma-3-1b-it,To bake sourdough bread,0,20792, Gree,1,121079,112976,1,11,1,16.143964767456055
+google/gemma-3-1b-it,To bake sourdough bread,0,21073,IDE,4,112321,145807,5,11,1,
+google/gemma-3-1b-it,To bake sourdough bread,0,21434,jos,1,33712,62487,1,11,1,15.479086875915527
+google/gemma-3-1b-it,To bake sourdough bread,0,21553,pus,1,71763,88879,1,11,1,14.796463966369629
+google/gemma-3-1b-it,To bake sourdough bread,0,21976, PRIM,6,148517,153338,3,11,1,
+google/gemma-3-1b-it,To bake sourdough bread,0,21988, situated,1,5767,9724,1,2,1,12.996559143066406
+google/gemma-3-1b-it,To bake sourdough bread,0,21989, historia,1,36343,92357,1,11,1,15.228460311889648
+google/gemma-3-1b-it,To bake sourdough bread,0,22037,symbol,4,173444,196695,2,11,1,
+google/gemma-3-1b-it,To bake sourdough bread,0,22175,ipheral,1,130464,142686,1,11,1,15.873482704162598
+google/gemma-3-1b-it,To bake sourdough bread,0,22358, Gib,1,81603,115200,1,11,1,16.0996036529541
+google/gemma-3-1b-it,To bake sourdough bread,0,22454, describing,1,67833,48204,1,2,1,14.352365493774414
+google/gemma-3-1b-it,To bake sourdough bread,0,22504,social,1,14297,14619,1,3,1,13.372342109680176
+google/gemma-3-1b-it,To bake sourdough bread,8,322,T,3042,246435,246678,3413,3071,3010,
+google/gemma-3-1b-it,To bake sourdough bread,8,605,us,4,52255,64502,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,806,ous,4,174913,105921,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,850, app,3,43919,40192,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,1049,inal,3,35366,19850,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,1143,cept,4,123484,122113,4,7,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,1176, said,6,189561,179592,6,9,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,1240,riv,5,93386,102853,5,7,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,1276, Re,4,110088,84486,4,7,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,1382, aut,3,18946,8178,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,1417,wn,5,42341,118873,4,5,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,1428, equ,4,65548,82840,4,7,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,1844,uf,4,81228,47416,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,1911, var,3,18631,16566,3,4,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,1916,rc,3,75244,55682,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,2048, prote,4,33624,20760,4,5,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,2124,++,4,71884,35329,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,2233, invest,3,21165,24373,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,2247, put,3,74502,57033,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,2423,ino,4,60866,57815,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,2582,EXT,4,45809,42320,4,7,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,2669,ending,5,122127,125075,5,7,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,2802, access,5,166991,158687,5,6,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,3155, house,4,59821,58616,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,3210, thing,5,211142,176633,5,6,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,3631,font,4,97055,45970,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,3633,aur,4,106726,105212,4,6,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,3803, God,3,65043,81758,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,3834,At,7,183305,205431,7,10,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,4111,idge,4,55540,44616,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,4340,OC,3,18739,10534,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,4648, tim,4,18714,15998,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,4680, cand,5,129913,157436,5,9,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,4754,My,5,184543,146615,5,7,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,4981, status,5,133709,137708,5,6,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,5083, dro,4,52893,19919,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,5380, va,3,23605,59010,3,6,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,5512, pun,4,37808,67268,4,6,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,5628, located,4,157741,144633,4,6,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,5732, nicht,3,15591,50745,3,7,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,5912, See,4,165392,142841,4,7,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,6060, handle,6,189175,150366,6,7,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,6204,miss,5,133217,126100,5,7,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,6254, tor,20,230062,232797,22,25,9,
+google/gemma-3-1b-it,To bake sourdough bread,8,6478, session,6,201854,207966,6,10,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,6486, Sur,4,83379,83925,4,6,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,6540, culture,5,204015,168942,5,7,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,6541, capacity,4,135048,89961,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,7568,pop,5,117165,164569,5,7,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,7652,enz,5,138178,114078,5,7,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,7808, moved,7,181566,175891,7,11,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,7876, ven,4,31388,29467,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,7902,double,5,117101,133616,5,7,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,8021,allow,5,160671,147623,5,7,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,8313, Kh,4,27791,27596,4,7,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,8448, interval,2,4907,4202,2,4,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,9166, vez,5,95781,101395,5,6,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,9208,These,3,127229,71729,3,6,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,9415,Eng,4,46245,56820,4,7,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,9438,dt,3,5268,4893,2,4,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,9577, tou,7,110315,102934,8,11,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,9697, feedback,7,218812,208889,7,12,4,
+google/gemma-3-1b-it,To bake sourdough bread,8,9744, village,7,103207,147833,7,12,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,10480,match,4,87551,86020,4,6,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,10702, Gi,7,107055,106534,7,11,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,10746,"""));",3,92155,67260,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,10770, Thank,4,102881,116266,4,7,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,11055, charged,6,167871,154395,5,10,4,
+google/gemma-3-1b-it,To bake sourdough bread,8,11278, aid,4,39261,69342,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,11397, dal,5,58221,72996,5,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,11526,BI,3,27456,29413,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,11664,unes,4,47431,24052,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,11668,username,8,118450,151061,8,13,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,11699, eleg,7,171433,136417,7,10,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,11833,aders,5,139693,91042,5,7,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,12248, Environment,5,65606,138308,5,7,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,12396, findings,8,196960,138819,8,11,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,12429,wait,4,66394,47212,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,12708, vie,4,25168,31720,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,12730, Support,6,151059,163363,7,9,4,
+google/gemma-3-1b-it,To bake sourdough bread,8,12800, remained,3,68680,69909,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,13080,inds,5,109063,133774,5,6,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,13225, kont,3,11241,10262,3,4,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,13331,upload,5,22418,64357,5,7,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,13406,iral,3,41202,55299,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,13482, infection,4,34838,87088,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,13547, Egypt,4,66064,100356,5,7,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,13916, foundation,9,211628,186186,9,13,4,
+google/gemma-3-1b-it,To bake sourdough bread,8,14180, dann,8,146062,105917,6,10,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,14226,nia,8,177374,110892,7,12,4,
+google/gemma-3-1b-it,To bake sourdough bread,8,14440, inflation,4,57609,42822,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,14512, reserved,5,174577,142877,5,8,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,14611, outer,5,163489,133577,4,6,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,14937,"{""",7,169656,195881,6,11,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,14966, metric,5,115042,132246,5,7,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,15765,theless,3,64714,105146,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,15835,ikt,4,51314,52545,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,15941, respective,22,243364,250009,18,36,13,
+google/gemma-3-1b-it,To bake sourdough bread,8,16603,including,7,208919,200237,7,12,4,
+google/gemma-3-1b-it,To bake sourdough bread,8,16916,rice,4,82797,85045,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,17349,kor,3,12286,10910,3,4,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,17379, rol,4,75601,63431,5,7,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,17564, Zealand,4,59391,69797,4,6,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,17623,Li,5,70116,30758,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,17672,ricts,9,205546,169787,9,13,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,17726, commands,4,83622,60196,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,18325,Driver,6,167980,144276,5,11,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,18815, algo,10,188259,186331,10,15,5,
+google/gemma-3-1b-it,To bake sourdough bread,8,18819,desc,4,87590,86122,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,18899, gravity,4,177373,160086,4,7,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,19387, arbitrary,5,183661,185887,5,7,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,19474,vc,3,32649,26347,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,19865, Ever,5,68050,69630,4,7,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,20278, volumes,5,77272,138112,5,6,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,20443,phenyl,9,171814,194706,9,12,5,
+google/gemma-3-1b-it,To bake sourdough bread,8,20612,amping,6,200625,164891,6,8,4,
+google/gemma-3-1b-it,To bake sourdough bread,8,20792, Gree,10,192999,204423,10,18,6,
+google/gemma-3-1b-it,To bake sourdough bread,8,21073,IDE,4,47637,46851,4,7,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,21434,jos,8,156586,214890,7,13,4,
+google/gemma-3-1b-it,To bake sourdough bread,8,21553,pus,5,127252,107635,5,6,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,21976, PRIM,8,108620,157572,8,15,3,
+google/gemma-3-1b-it,To bake sourdough bread,8,21988, situated,13,169956,197386,12,17,5,
+google/gemma-3-1b-it,To bake sourdough bread,8,21989, historia,4,30539,92090,4,7,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,22037,symbol,3,21510,29889,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,8,22175,ipheral,12,157196,178810,13,20,5,
+google/gemma-3-1b-it,To bake sourdough bread,8,22358, Gib,11,134267,151181,10,17,5,
+google/gemma-3-1b-it,To bake sourdough bread,8,22454, describing,14,234293,230553,13,23,7,
+google/gemma-3-1b-it,To bake sourdough bread,8,22504,social,3,39188,21574,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,322,T,2816,249889,250965,2852,2886,2789,
+google/gemma-3-1b-it,To bake sourdough bread,17,605,us,3,45660,25259,3,4,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,806,ous,4,167457,97237,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,850, app,3,60008,46333,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,1049,inal,3,45781,14270,3,4,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,1143,cept,4,97712,71349,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,1176, said,4,169126,165046,4,6,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,1240,riv,5,81722,176240,4,5,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,1276, Re,3,101723,85758,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,1382, aut,3,20776,16723,3,4,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,1417,wn,4,32406,78523,4,5,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,1428, equ,4,86912,78004,4,7,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,1844,uf,3,82056,55325,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,1911, var,3,23509,23691,3,4,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,1916,rc,3,83338,78540,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,2048, prote,4,38983,21868,3,5,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,2124,++,3,74962,40899,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,2233, invest,3,23527,19408,3,4,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,2247, put,3,129762,106282,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,2423,ino,4,83451,92751,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,2582,EXT,4,59329,51010,4,6,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,2669,ending,4,111103,111222,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,2802, access,5,193686,196345,5,7,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,3155, house,3,57274,70040,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,3210, thing,4,218959,151773,4,5,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,3631,font,4,121591,87145,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,3633,aur,4,116850,104846,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,3803, God,3,59610,103658,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,3834,At,3,143928,132974,3,7,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,4111,idge,4,48307,23383,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,4340,OC,3,19854,20947,3,4,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,4648, tim,4,27925,75658,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,4680, cand,5,124531,91108,4,7,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,4754,My,5,189045,171502,4,5,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,4981, status,5,168945,164250,5,6,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,5083, dro,4,60870,40838,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,5380, va,3,20861,34558,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,5512, pun,4,61799,152510,4,6,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,5628, located,4,158075,130326,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,5732, nicht,3,21330,75891,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,5912, See,4,162190,147878,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,6060, handle,4,190845,181020,4,6,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,6204,miss,5,156810,169568,4,7,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,6254, tor,22,244138,237292,19,31,10,
+google/gemma-3-1b-it,To bake sourdough bread,17,6478, session,6,206930,168605,5,7,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,6486, Sur,3,68694,61131,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,6540, culture,5,209585,161923,4,5,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,6541, capacity,4,180576,162530,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,7568,pop,4,99733,154957,4,5,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,7652,enz,4,105914,147569,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,7808, moved,5,192237,209726,6,9,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,7876, ven,4,59581,43597,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,7902,double,4,98065,125384,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,8021,allow,4,101664,66350,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,8313, Kh,4,33294,30019,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,8448, interval,3,7803,13706,3,4,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,9166, vez,4,110283,110668,5,5,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,9208,These,3,108305,161020,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,9415,Eng,3,27112,74871,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,9438,dt,3,8173,7895,3,4,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,9577, tou,8,148195,115381,8,12,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,9697, feedback,9,239596,217001,7,16,4,
+google/gemma-3-1b-it,To bake sourdough bread,17,9744, village,8,126397,181282,7,12,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,10480,match,4,102713,75066,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,10702, Gi,7,138589,158249,8,12,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,10746,"""));",3,93513,111895,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,10770, Thank,3,75800,115376,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,11055, charged,5,187366,190563,5,9,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,11278, aid,4,53824,93610,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,11397, dal,4,73834,101943,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,11526,BI,3,51894,31015,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,11664,unes,3,52413,28171,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,11668,username,8,130448,174741,7,13,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,11699, eleg,7,203259,167891,6,11,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,11833,aders,5,158262,113041,4,6,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,12248, Environment,4,66980,122531,4,6,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,12396, findings,7,202585,167497,6,11,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,12429,wait,3,36924,40913,2,4,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,12708, vie,3,32455,67486,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,12730, Support,6,181184,171512,6,8,4,
+google/gemma-3-1b-it,To bake sourdough bread,17,12800, remained,3,101475,91303,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,13080,inds,4,124283,141943,4,5,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,13225, kont,3,29244,10015,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,13331,upload,4,22349,93134,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,13406,iral,3,40126,43254,3,4,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,13482, infection,4,55572,168663,4,5,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,13547, Egypt,5,119024,88320,5,10,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,13916, foundation,10,228049,202248,9,13,4,
+google/gemma-3-1b-it,To bake sourdough bread,17,14180, dann,4,137938,134317,4,8,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,14226,nia,5,179180,197506,5,10,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,14440, inflation,3,66916,36214,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,14512, reserved,5,218816,207779,6,9,4,
+google/gemma-3-1b-it,To bake sourdough bread,17,14611, outer,4,187628,132152,4,6,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,14937,"{""",4,107067,157164,4,5,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,14966, metric,5,143358,120887,5,7,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,15765,theless,3,59542,59605,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,15835,ikt,3,26289,55340,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,15941, respective,18,243508,242820,16,28,11,
+google/gemma-3-1b-it,To bake sourdough bread,17,16603,including,5,198342,182706,5,8,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,16916,rice,4,73361,72510,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,17349,kor,3,23026,22133,3,4,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,17379, rol,4,76227,84252,4,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,17564, Zealand,4,106362,135575,4,6,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,17623,Li,4,99704,99483,3,5,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,17672,ricts,7,207024,184921,7,11,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,17726, commands,3,72106,35591,3,4,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,18325,Driver,6,192319,133266,6,12,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,18815, algo,9,200741,199467,9,15,4,
+google/gemma-3-1b-it,To bake sourdough bread,17,18819,desc,3,93711,64827,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,18899, gravity,4,199829,143718,4,7,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,19387, arbitrary,5,200426,146707,5,7,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,19474,vc,3,51242,31885,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,19865, Ever,4,63045,36763,3,6,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,20278, volumes,4,87829,133257,4,5,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,20443,phenyl,7,177148,214232,8,12,4,
+google/gemma-3-1b-it,To bake sourdough bread,17,20612,amping,4,164987,72562,4,5,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,20792, Gree,7,177749,191453,7,12,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,21073,IDE,4,59480,74047,4,5,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,21434,jos,5,149524,183468,5,11,4,
+google/gemma-3-1b-it,To bake sourdough bread,17,21553,pus,5,143716,101647,4,6,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,21976, PRIM,7,107673,171138,7,10,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,21988, situated,10,180106,198948,8,14,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,21989, historia,3,30109,47041,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,22037,symbol,3,28868,36352,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,17,22175,ipheral,10,142254,188862,10,13,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,22358, Gib,10,144751,139510,8,15,3,
+google/gemma-3-1b-it,To bake sourdough bread,17,22454, describing,11,235919,225839,11,16,5,
+google/gemma-3-1b-it,To bake sourdough bread,17,22504,social,3,53985,62703,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,25,322,T,3067,202940,186078,3092,2168,4107,
+google/gemma-3-1b-it,To bake sourdough bread,25,605,us,1,62233,58647,1,2,1,13.017090797424316
+google/gemma-3-1b-it,To bake sourdough bread,25,806,ous,1,30274,8452,1,1,1,10.366007804870605
+google/gemma-3-1b-it,To bake sourdough bread,25,850, app,2,176626,195772,2,3,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,1049,inal,1,206089,118243,1,3,1,14.337892532348633
+google/gemma-3-1b-it,To bake sourdough bread,25,1143,cept,1,64929,56826,1,2,1,13.549176216125488
+google/gemma-3-1b-it,To bake sourdough bread,25,1176, said,1,164080,148079,1,2,1,14.445420265197754
+google/gemma-3-1b-it,To bake sourdough bread,25,1240,riv,1,28418,110371,1,2,1,13.735763549804688
+google/gemma-3-1b-it,To bake sourdough bread,25,1276, Re,2,162864,107843,2,2,2,
+google/gemma-3-1b-it,To bake sourdough bread,25,1382, aut,2,162124,195966,2,3,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,1417,wn,1,12471,57532,1,2,1,12.916447639465332
+google/gemma-3-1b-it,To bake sourdough bread,25,1428, equ,1,212679,214125,1,3,1,16.475994110107422
+google/gemma-3-1b-it,To bake sourdough bread,25,1844,uf,1,193384,137153,1,2,1,13.918559074401855
+google/gemma-3-1b-it,To bake sourdough bread,25,1911, var,1,212393,229316,1,3,1,15.043498039245605
+google/gemma-3-1b-it,To bake sourdough bread,25,1916,rc,1,62741,41702,1,2,1,12.56956958770752
+google/gemma-3-1b-it,To bake sourdough bread,25,2048, prote,1,208082,209216,1,3,1,16.1894474029541
+google/gemma-3-1b-it,To bake sourdough bread,25,2124,++,1,10268,5485,1,2,1,10.197595596313477
+google/gemma-3-1b-it,To bake sourdough bread,25,2233, invest,4,252565,257834,4,9,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,2247, put,2,243513,223754,2,3,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,2423,ino,1,131314,168028,1,2,1,13.643350601196289
+google/gemma-3-1b-it,To bake sourdough bread,25,2582,EXT,1,58855,53227,1,2,1,13.773343086242676
+google/gemma-3-1b-it,To bake sourdough bread,25,2669,ending,1,68653,26434,1,2,1,13.557816505432129
+google/gemma-3-1b-it,To bake sourdough bread,25,2802, access,3,260212,260311,3,6,2,
+google/gemma-3-1b-it,To bake sourdough bread,25,3155, house,2,122612,123060,2,3,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,3210, thing,1,250521,203515,1,3,1,15.123835563659668
+google/gemma-3-1b-it,To bake sourdough bread,25,3631,font,1,242236,207572,1,2,1,15.248411178588867
+google/gemma-3-1b-it,To bake sourdough bread,25,3633,aur,1,141831,65353,1,2,1,13.610422134399414
+google/gemma-3-1b-it,To bake sourdough bread,25,3803, God,2,98496,144584,2,2,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,3834,At,1,677,441,1,2,1,9.671076774597168
+google/gemma-3-1b-it,To bake sourdough bread,25,4111,idge,1,120672,127316,1,3,1,14.797079086303711
+google/gemma-3-1b-it,To bake sourdough bread,25,4340,OC,1,6185,1375,1,2,1,11.778934478759766
+google/gemma-3-1b-it,To bake sourdough bread,25,4648, tim,1,178346,255001,1,4,1,16.942031860351562
+google/gemma-3-1b-it,To bake sourdough bread,25,4680, cand,1,73567,83058,1,2,1,13.629532814025879
+google/gemma-3-1b-it,To bake sourdough bread,25,4754,My,1,2186,1258,1,2,1,10.000414848327637
+google/gemma-3-1b-it,To bake sourdough bread,25,4981, status,3,256346,253442,3,5,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,5083, dro,1,105445,60119,1,2,1,14.318931579589844
+google/gemma-3-1b-it,To bake sourdough bread,25,5380, va,1,37857,131885,1,2,1,14.301466941833496
+google/gemma-3-1b-it,To bake sourdough bread,25,5512, pun,1,146000,134092,1,3,1,15.432402610778809
+google/gemma-3-1b-it,To bake sourdough bread,25,5628, located,2,250813,235674,2,4,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,5732, nicht,2,189427,252615,2,6,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,5912, See,2,203629,197837,2,3,2,
+google/gemma-3-1b-it,To bake sourdough bread,25,6060, handle,3,235579,193157,3,3,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,6204,miss,1,191738,205489,1,2,1,15.273122787475586
+google/gemma-3-1b-it,To bake sourdough bread,25,6254, tor,1,205426,224849,1,3,1,15.363151550292969
+google/gemma-3-1b-it,To bake sourdough bread,25,6478, session,2,227229,193914,2,2,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,6486, Sur,2,81857,124781,2,2,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,6540, culture,2,257498,259617,2,7,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,6541, capacity,4,261467,261784,4,5,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,7568,pop,2,142760,166817,2,2,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,7652,enz,1,139858,118795,1,2,1,14.153736114501953
+google/gemma-3-1b-it,To bake sourdough bread,25,7808, moved,1,206192,220851,1,6,1,16.912490844726562
+google/gemma-3-1b-it,To bake sourdough bread,25,7876, ven,1,176038,117172,1,3,1,14.947541236877441
+google/gemma-3-1b-it,To bake sourdough bread,25,7902,double,2,98231,103818,2,3,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,8021,allow,2,131254,86724,2,3,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,8313, Kh,2,56119,73158,2,2,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,8448, interval,1,218817,248036,1,3,1,16.63242530822754
+google/gemma-3-1b-it,To bake sourdough bread,25,9166, vez,1,223139,192947,1,3,1,16.344465255737305
+google/gemma-3-1b-it,To bake sourdough bread,25,9208,These,1,955,405,1,2,1,9.706306457519531
+google/gemma-3-1b-it,To bake sourdough bread,25,9415,Eng,1,1450,1492,1,2,1,10.817400932312012
+google/gemma-3-1b-it,To bake sourdough bread,25,9438,dt,1,49384,49296,1,2,1,13.12099838256836
+google/gemma-3-1b-it,To bake sourdough bread,25,9577, tou,1,172034,225973,1,3,1,15.517595291137695
+google/gemma-3-1b-it,To bake sourdough bread,25,9697, feedback,3,260116,259356,3,5,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,9744, village,1,118978,204111,1,3,1,15.212722778320312
+google/gemma-3-1b-it,To bake sourdough bread,25,10480,match,2,178079,149648,2,2,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,10702, Gi,3,241218,242301,3,3,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,10746,"""));",1,49922,28873,1,2,1,12.445438385009766
+google/gemma-3-1b-it,To bake sourdough bread,25,10770, Thank,2,8703,19360,2,2,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,11055, charged,1,232786,228917,1,3,1,15.8183012008667
+google/gemma-3-1b-it,To bake sourdough bread,25,11278, aid,1,185185,238083,1,3,1,15.743005752563477
+google/gemma-3-1b-it,To bake sourdough bread,25,11397, dal,1,113259,166997,1,3,1,14.979253768920898
+google/gemma-3-1b-it,To bake sourdough bread,25,11526,BI,1,5968,3225,1,2,1,10.893216133117676
+google/gemma-3-1b-it,To bake sourdough bread,25,11664,unes,1,208605,174757,1,3,1,15.804804801940918
+google/gemma-3-1b-it,To bake sourdough bread,25,11668,username,1,63033,108982,1,3,1,15.169146537780762
+google/gemma-3-1b-it,To bake sourdough bread,25,11699, eleg,2,260190,241887,2,6,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,11833,aders,1,85320,58583,1,2,1,13.685185432434082
+google/gemma-3-1b-it,To bake sourdough bread,25,12248, Environment,2,109044,131970,2,3,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,12396, findings,2,260372,242257,2,8,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,12429,wait,1,24112,15574,1,2,1,13.115663528442383
+google/gemma-3-1b-it,To bake sourdough bread,25,12708, vie,1,97567,147711,1,2,1,14.431875228881836
+google/gemma-3-1b-it,To bake sourdough bread,25,12730, Support,4,255363,257948,4,7,2,
+google/gemma-3-1b-it,To bake sourdough bread,25,12800, remained,2,261631,261492,2,6,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,13080,inds,1,189015,153717,1,3,1,16.08609962463379
+google/gemma-3-1b-it,To bake sourdough bread,25,13225, kont,1,213116,232437,1,3,1,15.84500789642334
+google/gemma-3-1b-it,To bake sourdough bread,25,13331,upload,1,15317,90488,1,3,1,14.629308700561523
+google/gemma-3-1b-it,To bake sourdough bread,25,13406,iral,1,114393,81594,1,2,1,14.066296577453613
+google/gemma-3-1b-it,To bake sourdough bread,25,13482, infection,2,235492,261555,2,6,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,13547, Egypt,3,219593,215118,3,3,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,13916, foundation,3,260063,258312,3,5,2,
+google/gemma-3-1b-it,To bake sourdough bread,25,14180, dann,2,243788,248277,2,5,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,14226,nia,1,66314,46084,1,2,1,13.31689453125
+google/gemma-3-1b-it,To bake sourdough bread,25,14440, inflation,3,258486,253116,3,6,2,
+google/gemma-3-1b-it,To bake sourdough bread,25,14512, reserved,1,237252,228861,1,3,1,15.874178886413574
+google/gemma-3-1b-it,To bake sourdough bread,25,14611, outer,2,248639,248431,2,3,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,14937,"{""",1,727,487,1,1,1,8.730785369873047
+google/gemma-3-1b-it,To bake sourdough bread,25,14966, metric,1,217756,228323,1,2,1,16.701759338378906
+google/gemma-3-1b-it,To bake sourdough bread,25,15765,theless,1,88611,126281,1,2,1,14.128997802734375
+google/gemma-3-1b-it,To bake sourdough bread,25,15835,ikt,1,16914,20348,1,2,1,12.237677574157715
+google/gemma-3-1b-it,To bake sourdough bread,25,15941, respective,3,261560,262009,2,7,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,16603,including,2,160353,200644,2,2,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,16916,rice,1,12798,11867,1,2,1,11.584192276000977
+google/gemma-3-1b-it,To bake sourdough bread,25,17349,kor,1,111684,184086,1,3,1,15.019060134887695
+google/gemma-3-1b-it,To bake sourdough bread,25,17379, rol,1,184630,134956,1,3,1,15.432908058166504
+google/gemma-3-1b-it,To bake sourdough bread,25,17564, Zealand,1,184204,215263,1,3,1,14.923089027404785
+google/gemma-3-1b-it,To bake sourdough bread,25,17623,Li,1,10551,5354,1,2,1,11.389900207519531
+google/gemma-3-1b-it,To bake sourdough bread,25,17672,ricts,1,180078,123437,1,3,1,14.915671348571777
+google/gemma-3-1b-it,To bake sourdough bread,25,17726, commands,2,258915,254416,2,5,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,18325,Driver,1,49620,18686,1,2,1,12.97727108001709
+google/gemma-3-1b-it,To bake sourdough bread,25,18815, algo,3,251775,254972,3,7,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,18819,desc,1,73873,25208,1,2,1,12.718850135803223
+google/gemma-3-1b-it,To bake sourdough bread,25,18899, gravity,1,247081,227811,1,3,1,16.052104949951172
+google/gemma-3-1b-it,To bake sourdough bread,25,19387, arbitrary,2,259817,249873,2,4,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,19474,vc,1,154066,105327,1,3,1,14.891512870788574
+google/gemma-3-1b-it,To bake sourdough bread,25,19865, Ever,2,73318,100346,2,2,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,20278, volumes,1,65365,155329,1,2,1,13.929494857788086
+google/gemma-3-1b-it,To bake sourdough bread,25,20443,phenyl,1,46262,58879,1,2,1,13.928053855895996
+google/gemma-3-1b-it,To bake sourdough bread,25,20612,amping,1,25654,14736,1,2,1,11.363255500793457
+google/gemma-3-1b-it,To bake sourdough bread,25,20792, Gree,1,9418,13218,1,2,1,12.076136589050293
+google/gemma-3-1b-it,To bake sourdough bread,25,21073,IDE,1,39520,108084,1,3,1,15.428844451904297
+google/gemma-3-1b-it,To bake sourdough bread,25,21434,jos,1,57092,103809,1,2,1,13.90268611907959
+google/gemma-3-1b-it,To bake sourdough bread,25,21553,pus,1,257033,257790,1,4,1,16.38585662841797
+google/gemma-3-1b-it,To bake sourdough bread,25,21976, PRIM,1,113971,151662,1,3,1,16.593931198120117
+google/gemma-3-1b-it,To bake sourdough bread,25,21988, situated,4,240001,250678,4,8,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,21989, historia,2,155026,216570,2,11,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,22037,symbol,2,166134,210567,2,2,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,22175,ipheral,1,161671,221705,1,3,1,16.453262329101562
+google/gemma-3-1b-it,To bake sourdough bread,25,22358, Gib,2,197252,203995,2,5,1,
+google/gemma-3-1b-it,To bake sourdough bread,25,22454, describing,1,132488,94409,1,3,1,14.0841646194458
+google/gemma-3-1b-it,To bake sourdough bread,25,22504,social,2,157347,217764,2,3,1,
+google/gemma-3-1b-it,The capital of France is,0,322,T,3248,261226,259218,2932,4068,3098,
+google/gemma-3-1b-it,The capital of France is,0,605,us,1,1928,5060,1,5,1,12.125996589660645
+google/gemma-3-1b-it,The capital of France is,0,806,ous,1,62694,22535,1,10,1,14.008267402648926
+google/gemma-3-1b-it,The capital of France is,0,850, app,1,21581,38069,1,2,1,14.016757011413574
+google/gemma-3-1b-it,The capital of France is,0,1049,inal,1,76059,39732,1,11,1,14.942336082458496
+google/gemma-3-1b-it,The capital of France is,0,1143,cept,8,217167,183942,8,11,1,
+google/gemma-3-1b-it,The capital of France is,0,1176, said,1,564,618,1,1,1,9.795235633850098
+google/gemma-3-1b-it,The capital of France is,0,1240,riv,1,1338,5623,1,8,1,12.607880592346191
+google/gemma-3-1b-it,The capital of France is,0,1276, Re,1,123,98,1,2,1,8.981595993041992
+google/gemma-3-1b-it,The capital of France is,0,1382, aut,1,67524,48940,1,2,1,15.916970252990723
+google/gemma-3-1b-it,The capital of France is,0,1417,wn,1,15094,55367,1,11,1,16.250707626342773
+google/gemma-3-1b-it,The capital of France is,0,1428, equ,1,13117,16674,1,11,1,14.570637702941895
+google/gemma-3-1b-it,The capital of France is,0,1844,uf,1,42864,41646,1,11,1,13.7622709274292
+google/gemma-3-1b-it,The capital of France is,0,1911, var,1,6437,4910,1,2,1,12.83398723602295
+google/gemma-3-1b-it,The capital of France is,0,1916,rc,1,28342,29924,1,11,1,13.970223426818848
+google/gemma-3-1b-it,The capital of France is,0,2048, prote,1,75592,45504,1,11,1,16.054393768310547
+google/gemma-3-1b-it,The capital of France is,0,2124,++,2,97727,42968,2,11,1,
+google/gemma-3-1b-it,The capital of France is,0,2233, invest,1,40955,56456,1,4,1,14.386427879333496
+google/gemma-3-1b-it,The capital of France is,0,2247, put,1,103287,63593,1,2,1,14.878549575805664
+google/gemma-3-1b-it,The capital of France is,0,2423,ino,1,3252,1246,1,5,1,12.345471382141113
+google/gemma-3-1b-it,The capital of France is,0,2582,EXT,3,96950,41890,1,11,1,
+google/gemma-3-1b-it,The capital of France is,0,2669,ending,6,183861,182022,5,11,1,
+google/gemma-3-1b-it,The capital of France is,0,2802, access,1,92772,61113,1,11,1,15.498252868652344
+google/gemma-3-1b-it,The capital of France is,0,3155, house,1,11164,5105,1,2,1,12.566093444824219
+google/gemma-3-1b-it,The capital of France is,0,3210, thing,1,183523,99944,1,11,1,15.311098098754883
+google/gemma-3-1b-it,The capital of France is,0,3631,font,1,30613,9167,1,9,1,13.335684776306152
+google/gemma-3-1b-it,The capital of France is,0,3633,aur,1,32043,20057,1,10,1,13.895302772521973
+google/gemma-3-1b-it,The capital of France is,0,3803, God,1,1340,860,1,4,1,11.756223678588867
+google/gemma-3-1b-it,The capital of France is,0,3834,At,2,6202,3907,2,2,1,
+google/gemma-3-1b-it,The capital of France is,0,4111,idge,6,181581,181274,6,11,1,
+google/gemma-3-1b-it,The capital of France is,0,4340,OC,1,36896,33451,1,11,1,14.494904518127441
+google/gemma-3-1b-it,The capital of France is,0,4648, tim,1,37803,119276,1,11,1,16.707536697387695
+google/gemma-3-1b-it,The capital of France is,0,4680, cand,1,47144,40870,1,11,1,15.275294303894043
+google/gemma-3-1b-it,The capital of France is,0,4754,My,2,35993,30505,2,2,1,
+google/gemma-3-1b-it,The capital of France is,0,4981, status,1,76811,102535,1,11,1,15.72473430633545
+google/gemma-3-1b-it,The capital of France is,0,5083, dro,6,218422,213170,5,12,1,
+google/gemma-3-1b-it,The capital of France is,0,5380, va,2,34766,61362,2,11,1,
+google/gemma-3-1b-it,The capital of France is,0,5512, pun,4,109459,131937,2,11,1,
+google/gemma-3-1b-it,The capital of France is,0,5628, located,1,7888,4154,1,3,1,11.596151351928711
+google/gemma-3-1b-it,The capital of France is,0,5732, nicht,1,7020,42417,1,11,1,14.719351768493652
+google/gemma-3-1b-it,The capital of France is,0,5912, See,1,96077,65129,1,11,1,14.866869926452637
+google/gemma-3-1b-it,The capital of France is,0,6060, handle,1,69653,39512,1,2,1,14.541377067565918
+google/gemma-3-1b-it,The capital of France is,0,6204,miss,1,155200,77180,1,11,1,16.67725944519043
+google/gemma-3-1b-it,The capital of France is,0,6254, tor,1,78799,119467,1,11,1,15.569648742675781
+google/gemma-3-1b-it,The capital of France is,0,6478, session,1,15899,5367,1,2,1,12.334871292114258
+google/gemma-3-1b-it,The capital of France is,0,6486, Sur,1,9252,5574,1,8,1,12.836254119873047
+google/gemma-3-1b-it,The capital of France is,0,6540, culture,1,22860,8592,1,2,1,11.815824508666992
+google/gemma-3-1b-it,The capital of France is,0,6541, capacity,1,11387,7177,1,2,1,12.146541595458984
+google/gemma-3-1b-it,The capital of France is,0,7568,pop,1,4189,6647,1,2,1,12.457479476928711
+google/gemma-3-1b-it,The capital of France is,0,7652,enz,1,31469,21808,1,11,1,13.99245548248291
+google/gemma-3-1b-it,The capital of France is,0,7808, moved,1,27302,17890,1,9,1,13.440281867980957
+google/gemma-3-1b-it,The capital of France is,0,7876, ven,1,28633,31769,1,11,1,14.40307903289795
+google/gemma-3-1b-it,The capital of France is,0,7902,double,1,94532,127322,1,2,1,16.041061401367188
+google/gemma-3-1b-it,The capital of France is,0,8021,allow,1,52911,25456,1,11,1,14.139693260192871
+google/gemma-3-1b-it,The capital of France is,0,8313, Kh,1,1501,2168,1,2,1,12.434195518493652
+google/gemma-3-1b-it,The capital of France is,0,8448, interval,1,54344,78572,1,11,1,15.035056114196777
+google/gemma-3-1b-it,The capital of France is,0,9166, vez,1,55653,65152,1,11,1,15.595459938049316
+google/gemma-3-1b-it,The capital of France is,0,9208,These,2,99181,119603,2,2,1,
+google/gemma-3-1b-it,The capital of France is,0,9415,Eng,1,33119,84371,1,2,1,15.363499641418457
+google/gemma-3-1b-it,The capital of France is,0,9438,dt,1,39845,65002,1,11,1,15.080681800842285
+google/gemma-3-1b-it,The capital of France is,0,9577, tou,2,109039,152893,2,11,1,
+google/gemma-3-1b-it,The capital of France is,0,9697, feedback,1,175971,98887,1,11,1,16.48636817932129
+google/gemma-3-1b-it,The capital of France is,0,9744, village,1,2280,4930,1,2,1,12.555615425109863
+google/gemma-3-1b-it,The capital of France is,0,10480,match,1,26035,26060,1,2,1,13.792644500732422
+google/gemma-3-1b-it,The capital of France is,0,10702, Gi,1,3809,2814,1,9,1,12.778265953063965
+google/gemma-3-1b-it,The capital of France is,0,10746,"""));",1,98923,99543,1,2,1,14.1720552444458
+google/gemma-3-1b-it,The capital of France is,0,10770, Thank,1,4307,5334,1,2,1,12.499027252197266
+google/gemma-3-1b-it,The capital of France is,0,11055, charged,1,45384,45838,1,11,1,14.55915641784668
+google/gemma-3-1b-it,The capital of France is,0,11278, aid,1,12433,17050,1,2,1,13.224100112915039
+google/gemma-3-1b-it,The capital of France is,0,11397, dal,1,9522,9207,1,10,1,13.882680892944336
+google/gemma-3-1b-it,The capital of France is,0,11526,BI,1,31683,19786,1,11,1,14.808075904846191
+google/gemma-3-1b-it,The capital of France is,0,11664,unes,1,65700,46342,1,11,1,14.964712142944336
+google/gemma-3-1b-it,The capital of France is,0,11668,username,8,184438,237197,6,11,1,
+google/gemma-3-1b-it,The capital of France is,0,11699, eleg,1,77280,51763,1,11,1,14.955819129943848
+google/gemma-3-1b-it,The capital of France is,0,11833,aders,1,55642,54473,1,11,1,14.427701950073242
+google/gemma-3-1b-it,The capital of France is,0,12248, Environment,1,43422,86585,1,11,1,15.757280349731445
+google/gemma-3-1b-it,The capital of France is,0,12396, findings,1,167382,129763,1,11,1,15.356348037719727
+google/gemma-3-1b-it,The capital of France is,0,12429,wait,1,70200,75577,1,11,1,14.671628952026367
+google/gemma-3-1b-it,The capital of France is,0,12708, vie,1,55740,142115,1,11,1,16.5692195892334
+google/gemma-3-1b-it,The capital of France is,0,12730, Support,1,23660,29137,1,2,1,13.993616104125977
+google/gemma-3-1b-it,The capital of France is,0,12800, remained,1,2088,339,1,1,1,11.04975700378418
+google/gemma-3-1b-it,The capital of France is,0,13080,inds,5,181378,206865,5,11,1,
+google/gemma-3-1b-it,The capital of France is,0,13225, kont,1,90023,135525,1,11,1,15.836661338806152
+google/gemma-3-1b-it,The capital of France is,0,13331,upload,1,13664,113897,1,11,1,15.717972755432129
+google/gemma-3-1b-it,The capital of France is,0,13406,iral,1,139480,123860,1,11,1,16.56385040283203
+google/gemma-3-1b-it,The capital of France is,0,13482, infection,1,1423,5797,1,2,1,11.885300636291504
+google/gemma-3-1b-it,The capital of France is,0,13547, Egypt,1,4231,3408,1,9,1,13.047874450683594
+google/gemma-3-1b-it,The capital of France is,0,13916, foundation,1,10750,8370,1,2,1,12.327665328979492
+google/gemma-3-1b-it,The capital of France is,0,14180, dann,1,87386,42153,1,11,1,15.141136169433594
+google/gemma-3-1b-it,The capital of France is,0,14226,nia,1,76384,104726,1,11,1,16.05449676513672
+google/gemma-3-1b-it,The capital of France is,0,14440, inflation,1,21073,11621,1,7,1,12.862366676330566
+google/gemma-3-1b-it,The capital of France is,0,14512, reserved,1,68008,74702,1,11,1,14.840635299682617
+google/gemma-3-1b-it,The capital of France is,0,14611, outer,1,34454,9722,1,6,1,12.831063270568848
+google/gemma-3-1b-it,The capital of France is,0,14937,"{""",5,217362,238363,5,11,1,
+google/gemma-3-1b-it,The capital of France is,0,14966, metric,5,178170,159956,2,11,1,
+google/gemma-3-1b-it,The capital of France is,0,15765,theless,1,192929,230610,1,11,1,16.327880859375
+google/gemma-3-1b-it,The capital of France is,0,15835,ikt,4,132775,149398,2,11,1,
+google/gemma-3-1b-it,The capital of France is,0,15941, respective,1,147847,134781,1,11,1,15.292595863342285
+google/gemma-3-1b-it,The capital of France is,0,16603,including,1,24131,21143,1,2,1,13.593517303466797
+google/gemma-3-1b-it,The capital of France is,0,16916,rice,1,21608,9582,1,11,1,13.992155075073242
+google/gemma-3-1b-it,The capital of France is,0,17349,kor,1,15741,19497,1,10,1,13.93269157409668
+google/gemma-3-1b-it,The capital of France is,0,17379, rol,1,87940,70518,1,11,1,16.496601104736328
+google/gemma-3-1b-it,The capital of France is,0,17564, Zealand,1,7316,12501,1,6,1,12.212603569030762
+google/gemma-3-1b-it,The capital of France is,0,17623,Li,1,27054,27762,1,2,1,13.835579872131348
+google/gemma-3-1b-it,The capital of France is,0,17672,ricts,1,132920,108452,1,11,1,14.781349182128906
+google/gemma-3-1b-it,The capital of France is,0,17726, commands,1,18630,7415,1,2,1,12.337930679321289
+google/gemma-3-1b-it,The capital of France is,0,18325,Driver,3,116831,85577,3,4,1,
+google/gemma-3-1b-it,The capital of France is,0,18815, algo,2,162195,124869,1,11,1,
+google/gemma-3-1b-it,The capital of France is,0,18819,desc,2,179597,150619,3,11,1,
+google/gemma-3-1b-it,The capital of France is,0,18899, gravity,1,137833,119812,1,11,1,15.300143241882324
+google/gemma-3-1b-it,The capital of France is,0,19387, arbitrary,4,231368,238487,6,11,1,
+google/gemma-3-1b-it,The capital of France is,0,19474,vc,4,162266,157853,5,11,1,
+google/gemma-3-1b-it,The capital of France is,0,19865, Ever,1,68540,54604,1,11,1,16.007169723510742
+google/gemma-3-1b-it,The capital of France is,0,20278, volumes,1,2452,2945,1,8,1,12.894639015197754
+google/gemma-3-1b-it,The capital of France is,0,20443,phenyl,1,59580,90330,1,11,1,15.278039932250977
+google/gemma-3-1b-it,The capital of France is,0,20612,amping,4,215649,152952,4,11,1,
+google/gemma-3-1b-it,The capital of France is,0,20792, Gree,1,121911,87123,1,11,1,16.190444946289062
+google/gemma-3-1b-it,The capital of France is,0,21073,IDE,4,112710,151158,5,11,1,
+google/gemma-3-1b-it,The capital of France is,0,21434,jos,1,34468,44469,1,11,1,15.531583786010742
+google/gemma-3-1b-it,The capital of France is,0,21553,pus,1,71718,40817,1,11,1,14.826292037963867
+google/gemma-3-1b-it,The capital of France is,0,21976, PRIM,6,146905,195253,6,11,1,
+google/gemma-3-1b-it,The capital of France is,0,21988, situated,1,5724,5710,1,2,1,13.014181137084961
+google/gemma-3-1b-it,The capital of France is,0,21989, historia,1,36672,66723,1,11,1,15.26791763305664
+google/gemma-3-1b-it,The capital of France is,0,22037,symbol,4,173996,165281,2,11,1,
+google/gemma-3-1b-it,The capital of France is,0,22175,ipheral,1,131898,172205,1,11,1,15.92724323272705
+google/gemma-3-1b-it,The capital of France is,0,22358, Gib,1,82246,81026,1,11,1,16.145030975341797
+google/gemma-3-1b-it,The capital of France is,0,22454, describing,1,67533,48250,1,2,1,14.375349044799805
+google/gemma-3-1b-it,The capital of France is,0,22504,social,1,14409,15455,1,3,1,13.409765243530273
+google/gemma-3-1b-it,The capital of France is,8,322,T,2983,246934,249152,2868,3029,2947,
+google/gemma-3-1b-it,The capital of France is,8,605,us,4,51046,61971,4,5,2,
+google/gemma-3-1b-it,The capital of France is,8,806,ous,4,172933,108471,4,5,2,
+google/gemma-3-1b-it,The capital of France is,8,850, app,3,47568,82907,3,5,2,
+google/gemma-3-1b-it,The capital of France is,8,1049,inal,3,30883,36063,2,5,2,
+google/gemma-3-1b-it,The capital of France is,8,1143,cept,4,121069,100689,4,7,3,
+google/gemma-3-1b-it,The capital of France is,8,1176, said,6,185024,159830,6,9,3,
+google/gemma-3-1b-it,The capital of France is,8,1240,riv,5,95046,149134,5,7,3,
+google/gemma-3-1b-it,The capital of France is,8,1276, Re,4,106300,73159,4,6,2,
+google/gemma-3-1b-it,The capital of France is,8,1382, aut,3,17290,18737,3,5,2,
+google/gemma-3-1b-it,The capital of France is,8,1417,wn,5,43249,112694,5,5,3,
+google/gemma-3-1b-it,The capital of France is,8,1428, equ,4,67134,48429,4,7,2,
+google/gemma-3-1b-it,The capital of France is,8,1844,uf,4,79758,35767,3,5,2,
+google/gemma-3-1b-it,The capital of France is,8,1911, var,3,18148,52247,3,4,2,
+google/gemma-3-1b-it,The capital of France is,8,1916,rc,3,65001,37581,3,5,2,
+google/gemma-3-1b-it,The capital of France is,8,2048, prote,4,31398,53277,4,5,2,
+google/gemma-3-1b-it,The capital of France is,8,2124,++,4,66705,45127,4,5,2,
+google/gemma-3-1b-it,The capital of France is,8,2233, invest,3,19955,14109,3,5,2,
+google/gemma-3-1b-it,The capital of France is,8,2247, put,3,73124,43351,3,5,2,
+google/gemma-3-1b-it,The capital of France is,8,2423,ino,4,59192,95704,4,5,2,
+google/gemma-3-1b-it,The capital of France is,8,2582,EXT,4,47640,23494,4,7,3,
+google/gemma-3-1b-it,The capital of France is,8,2669,ending,5,122859,118130,5,7,3,
+google/gemma-3-1b-it,The capital of France is,8,2802, access,5,166173,138908,5,5,3,
+google/gemma-3-1b-it,The capital of France is,8,3155, house,4,57110,70599,4,5,2,
+google/gemma-3-1b-it,The capital of France is,8,3210, thing,5,211638,176972,4,6,3,
+google/gemma-3-1b-it,The capital of France is,8,3631,font,4,94810,90995,4,5,2,
+google/gemma-3-1b-it,The capital of France is,8,3633,aur,4,105622,83059,4,6,2,
+google/gemma-3-1b-it,The capital of France is,8,3803, God,3,65988,112657,3,5,2,
+google/gemma-3-1b-it,The capital of France is,8,3834,At,7,187915,208875,8,10,3,
+google/gemma-3-1b-it,The capital of France is,8,4111,idge,4,53547,60890,4,5,2,
+google/gemma-3-1b-it,The capital of France is,8,4340,OC,3,16354,9415,3,4,2,
+google/gemma-3-1b-it,The capital of France is,8,4648, tim,4,18770,56699,4,5,2,
+google/gemma-3-1b-it,The capital of France is,8,4680, cand,5,126354,162604,5,8,3,
+google/gemma-3-1b-it,The capital of France is,8,4754,My,5,182527,144882,5,7,3,
+google/gemma-3-1b-it,The capital of France is,8,4981, status,5,130792,153611,5,6,3,
+google/gemma-3-1b-it,The capital of France is,8,5083, dro,4,54329,38075,4,5,2,
+google/gemma-3-1b-it,The capital of France is,8,5380, va,3,19852,58397,3,5,2,
+google/gemma-3-1b-it,The capital of France is,8,5512, pun,4,36569,52031,4,6,2,
+google/gemma-3-1b-it,The capital of France is,8,5628, located,4,158795,134552,4,5,2,
+google/gemma-3-1b-it,The capital of France is,8,5732, nicht,3,15142,89168,3,7,2,
+google/gemma-3-1b-it,The capital of France is,8,5912, See,4,164467,146662,4,7,2,
+google/gemma-3-1b-it,The capital of France is,8,6060, handle,5,189238,131271,5,7,3,
+google/gemma-3-1b-it,The capital of France is,8,6204,miss,5,137095,122567,5,7,3,
+google/gemma-3-1b-it,The capital of France is,8,6254, tor,20,228772,236507,16,25,8,
+google/gemma-3-1b-it,The capital of France is,8,6478, session,6,197248,183466,6,8,3,
+google/gemma-3-1b-it,The capital of France is,8,6486, Sur,4,84967,62872,4,6,2,
+google/gemma-3-1b-it,The capital of France is,8,6540, culture,5,199616,149125,5,6,3,
+google/gemma-3-1b-it,The capital of France is,8,6541, capacity,4,125810,66957,4,5,2,
+google/gemma-3-1b-it,The capital of France is,8,7568,pop,5,110175,118847,5,6,3,
+google/gemma-3-1b-it,The capital of France is,8,7652,enz,5,136538,99623,5,7,3,
+google/gemma-3-1b-it,The capital of France is,8,7808, moved,7,180326,139169,7,11,3,
+google/gemma-3-1b-it,The capital of France is,8,7876, ven,4,29251,17718,4,5,2,
+google/gemma-3-1b-it,The capital of France is,8,7902,double,5,117010,138733,5,7,3,
+google/gemma-3-1b-it,The capital of France is,8,8021,allow,5,155698,62753,5,7,3,
+google/gemma-3-1b-it,The capital of France is,8,8313, Kh,4,29239,22942,4,7,2,
+google/gemma-3-1b-it,The capital of France is,8,8448, interval,2,4606,9564,2,4,2,
+google/gemma-3-1b-it,The capital of France is,8,9166, vez,5,102935,89011,5,6,3,
+google/gemma-3-1b-it,The capital of France is,8,9208,These,4,129861,111789,4,6,2,
+google/gemma-3-1b-it,The capital of France is,8,9415,Eng,4,48104,58681,4,7,2,
+google/gemma-3-1b-it,The capital of France is,8,9438,dt,2,5203,2667,3,4,2,
+google/gemma-3-1b-it,The capital of France is,8,9577, tou,7,116136,144449,6,12,3,
+google/gemma-3-1b-it,The capital of France is,8,9697, feedback,7,220804,215326,7,12,4,
+google/gemma-3-1b-it,The capital of France is,8,9744, village,8,105915,175337,8,12,3,
+google/gemma-3-1b-it,The capital of France is,8,10480,match,4,86050,79707,4,6,2,
+google/gemma-3-1b-it,The capital of France is,8,10702, Gi,7,98686,113130,7,11,3,
+google/gemma-3-1b-it,The capital of France is,8,10746,"""));",3,85138,42195,3,5,2,
+google/gemma-3-1b-it,The capital of France is,8,10770, Thank,4,100625,89575,4,7,2,
+google/gemma-3-1b-it,The capital of France is,8,11055, charged,5,159293,148281,5,9,3,
+google/gemma-3-1b-it,The capital of France is,8,11278, aid,4,35555,53871,4,5,2,
+google/gemma-3-1b-it,The capital of France is,8,11397, dal,5,53105,100600,4,5,2,
+google/gemma-3-1b-it,The capital of France is,8,11526,BI,3,26207,43028,3,5,2,
+google/gemma-3-1b-it,The capital of France is,8,11664,unes,4,46240,32609,4,5,2,
+google/gemma-3-1b-it,The capital of France is,8,11668,username,8,115466,143516,8,14,3,
+google/gemma-3-1b-it,The capital of France is,8,11699, eleg,7,171184,136276,7,10,3,
+google/gemma-3-1b-it,The capital of France is,8,11833,aders,5,137522,74488,5,6,3,
+google/gemma-3-1b-it,The capital of France is,8,12248, Environment,5,64477,72666,4,7,2,
+google/gemma-3-1b-it,The capital of France is,8,12396, findings,8,196863,180426,8,11,3,
+google/gemma-3-1b-it,The capital of France is,8,12429,wait,4,65881,33872,4,5,2,
+google/gemma-3-1b-it,The capital of France is,8,12708, vie,4,24353,74369,4,5,2,
+google/gemma-3-1b-it,The capital of France is,8,12730, Support,6,149934,168515,6,8,4,
+google/gemma-3-1b-it,The capital of France is,8,12800, remained,3,69039,98817,3,5,2,
+google/gemma-3-1b-it,The capital of France is,8,13080,inds,5,105875,118184,5,6,3,
+google/gemma-3-1b-it,The capital of France is,8,13225, kont,3,11505,8866,3,4,2,
+google/gemma-3-1b-it,The capital of France is,8,13331,upload,5,23115,68113,4,7,2,
+google/gemma-3-1b-it,The capital of France is,8,13406,iral,3,42638,21504,3,5,2,
+google/gemma-3-1b-it,The capital of France is,8,13482, infection,4,32427,59706,4,5,2,
+google/gemma-3-1b-it,The capital of France is,8,13547, Egypt,4,62617,64730,4,7,2,
+google/gemma-3-1b-it,The capital of France is,8,13916, foundation,9,210051,221186,10,13,4,
+google/gemma-3-1b-it,The capital of France is,8,14180, dann,7,146375,122555,6,10,3,
+google/gemma-3-1b-it,The capital of France is,8,14226,nia,8,172501,154664,7,12,4,
+google/gemma-3-1b-it,The capital of France is,8,14440, inflation,4,55357,44123,4,5,2,
+google/gemma-3-1b-it,The capital of France is,8,14512, reserved,5,172317,108714,5,8,3,
+google/gemma-3-1b-it,The capital of France is,8,14611, outer,5,162742,108078,4,6,3,
+google/gemma-3-1b-it,The capital of France is,8,14937,"{""",7,167323,188973,6,10,3,
+google/gemma-3-1b-it,The capital of France is,8,14966, metric,5,107003,85622,5,7,3,
+google/gemma-3-1b-it,The capital of France is,8,15765,theless,3,64488,90862,3,5,2,
+google/gemma-3-1b-it,The capital of France is,8,15835,ikt,4,52847,56015,4,5,2,
+google/gemma-3-1b-it,The capital of France is,8,15941, respective,22,243233,238883,23,35,13,
+google/gemma-3-1b-it,The capital of France is,8,16603,including,7,209563,205073,7,12,4,
+google/gemma-3-1b-it,The capital of France is,8,16916,rice,4,83054,47442,4,5,2,
+google/gemma-3-1b-it,The capital of France is,8,17349,kor,3,12476,14971,3,4,2,
+google/gemma-3-1b-it,The capital of France is,8,17379, rol,4,79456,80286,4,7,2,
+google/gemma-3-1b-it,The capital of France is,8,17564, Zealand,4,53989,36615,3,6,2,
+google/gemma-3-1b-it,The capital of France is,8,17623,Li,5,70300,40368,5,5,2,
+google/gemma-3-1b-it,The capital of France is,8,17672,ricts,9,205961,185838,9,13,3,
+google/gemma-3-1b-it,The capital of France is,8,17726, commands,4,84785,72952,3,5,2,
+google/gemma-3-1b-it,The capital of France is,8,18325,Driver,6,167097,129717,5,11,3,
+google/gemma-3-1b-it,The capital of France is,8,18815, algo,11,189332,162200,8,15,5,
+google/gemma-3-1b-it,The capital of France is,8,18819,desc,4,90655,68814,4,5,2,
+google/gemma-3-1b-it,The capital of France is,8,18899, gravity,4,173389,132934,4,7,3,
+google/gemma-3-1b-it,The capital of France is,8,19387, arbitrary,5,177971,157143,5,7,3,
+google/gemma-3-1b-it,The capital of France is,8,19474,vc,3,30655,15013,3,5,2,
+google/gemma-3-1b-it,The capital of France is,8,19865, Ever,4,67399,85403,4,7,2,
+google/gemma-3-1b-it,The capital of France is,8,20278, volumes,5,76320,103559,5,6,3,
+google/gemma-3-1b-it,The capital of France is,8,20443,phenyl,9,171295,204733,9,13,5,
+google/gemma-3-1b-it,The capital of France is,8,20612,amping,6,201332,148890,6,8,4,
+google/gemma-3-1b-it,The capital of France is,8,20792, Gree,10,189939,177260,10,18,6,
+google/gemma-3-1b-it,The capital of France is,8,21073,IDE,4,47484,75707,4,7,2,
+google/gemma-3-1b-it,The capital of France is,8,21434,jos,7,153863,179528,8,12,4,
+google/gemma-3-1b-it,The capital of France is,8,21553,pus,5,126364,109516,5,6,3,
+google/gemma-3-1b-it,The capital of France is,8,21976, PRIM,8,107434,157696,8,15,3,
+google/gemma-3-1b-it,The capital of France is,8,21988, situated,13,168903,200490,11,17,5,
+google/gemma-3-1b-it,The capital of France is,8,21989, historia,4,27504,84540,4,6,2,
+google/gemma-3-1b-it,The capital of France is,8,22037,symbol,3,19638,31044,3,5,2,
+google/gemma-3-1b-it,The capital of France is,8,22175,ipheral,13,157111,208252,13,20,5,
+google/gemma-3-1b-it,The capital of France is,8,22358, Gib,11,129822,161405,11,18,5,
+google/gemma-3-1b-it,The capital of France is,8,22454, describing,14,234885,221319,13,24,7,
+google/gemma-3-1b-it,The capital of France is,8,22504,social,3,34840,32409,3,5,2,
+google/gemma-3-1b-it,The capital of France is,17,322,T,2412,247884,248404,2355,2490,2401,
+google/gemma-3-1b-it,The capital of France is,17,605,us,3,29010,75468,3,4,2,
+google/gemma-3-1b-it,The capital of France is,17,806,ous,3,108111,97821,3,4,2,
+google/gemma-3-1b-it,The capital of France is,17,850, app,3,75288,69620,3,5,2,
+google/gemma-3-1b-it,The capital of France is,17,1049,inal,2,31710,14511,2,4,2,
+google/gemma-3-1b-it,The capital of France is,17,1143,cept,4,114144,78930,4,6,2,
+google/gemma-3-1b-it,The capital of France is,17,1176, said,4,160231,169882,4,7,2,
+google/gemma-3-1b-it,The capital of France is,17,1240,riv,4,38586,116820,4,5,2,
+google/gemma-3-1b-it,The capital of France is,17,1276, Re,3,96336,78959,3,6,2,
+google/gemma-3-1b-it,The capital of France is,17,1382, aut,3,21367,20635,3,4,2,
+google/gemma-3-1b-it,The capital of France is,17,1417,wn,5,69079,137728,4,6,3,
+google/gemma-3-1b-it,The capital of France is,17,1428, equ,4,74958,54522,4,7,2,
+google/gemma-3-1b-it,The capital of France is,17,1844,uf,3,57184,45846,3,4,2,
+google/gemma-3-1b-it,The capital of France is,17,1911, var,2,10526,3770,2,4,2,
+google/gemma-3-1b-it,The capital of France is,17,1916,rc,3,56903,66506,3,4,2,
+google/gemma-3-1b-it,The capital of France is,17,2048, prote,4,46263,64791,4,5,3,
+google/gemma-3-1b-it,The capital of France is,17,2124,++,4,88514,56004,4,5,2,
+google/gemma-3-1b-it,The capital of France is,17,2233, invest,3,23485,24600,2,4,2,
+google/gemma-3-1b-it,The capital of France is,17,2247, put,3,96649,80723,3,4,2,
+google/gemma-3-1b-it,The capital of France is,17,2423,ino,4,77540,71368,4,5,2,
+google/gemma-3-1b-it,The capital of France is,17,2582,EXT,3,37221,25047,3,6,2,
+google/gemma-3-1b-it,The capital of France is,17,2669,ending,4,135074,145573,4,7,3,
+google/gemma-3-1b-it,The capital of France is,17,2802, access,5,185305,190465,5,8,3,
+google/gemma-3-1b-it,The capital of France is,17,3155, house,3,31728,52064,3,4,2,
+google/gemma-3-1b-it,The capital of France is,17,3210, thing,4,228905,192081,4,6,3,
+google/gemma-3-1b-it,The capital of France is,17,3631,font,3,51499,25794,3,4,2,
+google/gemma-3-1b-it,The capital of France is,17,3633,aur,4,92268,41540,3,5,2,
+google/gemma-3-1b-it,The capital of France is,17,3803, God,3,36074,60298,3,4,2,
+google/gemma-3-1b-it,The capital of France is,17,3834,At,3,144566,154682,3,8,2,
+google/gemma-3-1b-it,The capital of France is,17,4111,idge,4,71074,63515,4,6,2,
+google/gemma-3-1b-it,The capital of France is,17,4340,OC,2,8988,1621,2,4,1,
+google/gemma-3-1b-it,The capital of France is,17,4648, tim,4,22250,46203,4,5,2,
+google/gemma-3-1b-it,The capital of France is,17,4680, cand,4,103748,74279,4,7,2,
+google/gemma-3-1b-it,The capital of France is,17,4754,My,3,134258,61127,3,5,2,
+google/gemma-3-1b-it,The capital of France is,17,4981, status,4,134919,148662,4,6,3,
+google/gemma-3-1b-it,The capital of France is,17,5083, dro,3,39638,15663,3,5,2,
+google/gemma-3-1b-it,The capital of France is,17,5380, va,3,20979,29787,3,5,2,
+google/gemma-3-1b-it,The capital of France is,17,5512, pun,4,34573,40985,4,6,2,
+google/gemma-3-1b-it,The capital of France is,17,5628, located,3,93808,64341,3,4,2,
+google/gemma-3-1b-it,The capital of France is,17,5732, nicht,3,14363,78023,3,6,2,
+google/gemma-3-1b-it,The capital of France is,17,5912, See,3,117544,104492,3,5,2,
+google/gemma-3-1b-it,The capital of France is,17,6060, handle,4,194735,151209,4,7,3,
+google/gemma-3-1b-it,The capital of France is,17,6204,miss,4,116468,105336,4,7,2,
+google/gemma-3-1b-it,The capital of France is,17,6254, tor,21,239730,245123,20,33,11,
+google/gemma-3-1b-it,The capital of France is,17,6478, session,6,199462,191305,5,8,3,
+google/gemma-3-1b-it,The capital of France is,17,6486, Sur,3,33712,29176,3,4,2,
+google/gemma-3-1b-it,The capital of France is,17,6540, culture,4,201924,139006,4,6,3,
+google/gemma-3-1b-it,The capital of France is,17,6541, capacity,3,114456,72894,3,5,2,
+google/gemma-3-1b-it,The capital of France is,17,7568,pop,4,87684,121371,4,5,2,
+google/gemma-3-1b-it,The capital of France is,17,7652,enz,4,153366,131786,4,7,3,
+google/gemma-3-1b-it,The capital of France is,17,7808, moved,5,178743,177642,5,8,3,
+google/gemma-3-1b-it,The capital of France is,17,7876, ven,4,48081,56279,4,5,2,
+google/gemma-3-1b-it,The capital of France is,17,7902,double,4,77092,85320,4,5,2,
+google/gemma-3-1b-it,The capital of France is,17,8021,allow,4,145309,101573,4,5,2,
+google/gemma-3-1b-it,The capital of France is,17,8313, Kh,3,20338,22907,3,5,2,
+google/gemma-3-1b-it,The capital of France is,17,8448, interval,3,8922,25286,2,4,2,
+google/gemma-3-1b-it,The capital of France is,17,9166, vez,4,96086,87927,4,6,2,
+google/gemma-3-1b-it,The capital of France is,17,9208,These,3,106516,84795,3,5,2,
+google/gemma-3-1b-it,The capital of France is,17,9415,Eng,4,45499,40539,4,7,2,
+google/gemma-3-1b-it,The capital of France is,17,9438,dt,2,4538,9415,2,4,1,
+google/gemma-3-1b-it,The capital of France is,17,9577, tou,4,61133,81852,4,8,3,
+google/gemma-3-1b-it,The capital of France is,17,9697, feedback,8,236719,225498,11,14,4,
+google/gemma-3-1b-it,The capital of France is,17,9744, village,5,74354,121891,5,9,2,
+google/gemma-3-1b-it,The capital of France is,17,10480,match,4,94912,71576,3,6,2,
+google/gemma-3-1b-it,The capital of France is,17,10702, Gi,5,91939,102495,5,9,2,
+google/gemma-3-1b-it,The capital of France is,17,10746,"""));",3,91447,60293,3,5,2,
+google/gemma-3-1b-it,The capital of France is,17,10770, Thank,3,79843,123035,3,5,2,
+google/gemma-3-1b-it,The capital of France is,17,11055, charged,4,133629,140912,4,6,3,
+google/gemma-3-1b-it,The capital of France is,17,11278, aid,3,36706,54673,3,5,2,
+google/gemma-3-1b-it,The capital of France is,17,11397, dal,4,47446,90448,4,5,2,
+google/gemma-3-1b-it,The capital of France is,17,11526,BI,3,23161,18193,3,5,2,
+google/gemma-3-1b-it,The capital of France is,17,11664,unes,3,56367,47997,3,5,2,
+google/gemma-3-1b-it,The capital of France is,17,11668,username,9,139197,199093,8,13,3,
+google/gemma-3-1b-it,The capital of France is,17,11699, eleg,8,202486,187828,8,12,3,
+google/gemma-3-1b-it,The capital of France is,17,11833,aders,6,194604,205614,6,12,4,
+google/gemma-3-1b-it,The capital of France is,17,12248, Environment,4,69326,89545,4,7,2,
+google/gemma-3-1b-it,The capital of France is,17,12396, findings,7,188142,154117,7,10,3,
+google/gemma-3-1b-it,The capital of France is,17,12429,wait,3,43050,27842,2,5,2,
+google/gemma-3-1b-it,The capital of France is,17,12708, vie,3,22893,37949,3,5,2,
+google/gemma-3-1b-it,The capital of France is,17,12730, Support,5,141099,117382,5,8,4,
+google/gemma-3-1b-it,The capital of France is,17,12800, remained,3,86462,43590,3,4,2,
+google/gemma-3-1b-it,The capital of France is,17,13080,inds,4,111573,121781,4,6,3,
+google/gemma-3-1b-it,The capital of France is,17,13225, kont,3,17871,13440,3,4,2,
+google/gemma-3-1b-it,The capital of France is,17,13331,upload,4,27144,64019,4,7,2,
+google/gemma-3-1b-it,The capital of France is,17,13406,iral,3,48130,34029,3,5,2,
+google/gemma-3-1b-it,The capital of France is,17,13482, infection,4,90304,176650,4,8,3,
+google/gemma-3-1b-it,The capital of France is,17,13547, Egypt,3,42244,42716,3,6,2,
+google/gemma-3-1b-it,The capital of France is,17,13916, foundation,7,202771,169001,7,11,3,
+google/gemma-3-1b-it,The capital of France is,17,14180, dann,5,133970,153203,5,8,3,
+google/gemma-3-1b-it,The capital of France is,17,14226,nia,6,167768,155395,7,10,3,
+google/gemma-3-1b-it,The capital of France is,17,14440, inflation,3,56387,48673,3,5,2,
+google/gemma-3-1b-it,The capital of France is,17,14512, reserved,5,190046,208356,5,7,3,
+google/gemma-3-1b-it,The capital of France is,17,14611, outer,4,194525,187679,4,7,3,
+google/gemma-3-1b-it,The capital of France is,17,14937,"{""",4,118778,164072,4,7,3,
+google/gemma-3-1b-it,The capital of France is,17,14966, metric,4,109019,127968,4,7,3,
+google/gemma-3-1b-it,The capital of France is,17,15765,theless,3,59158,123753,3,5,2,
+google/gemma-3-1b-it,The capital of France is,17,15835,ikt,4,38406,31588,4,5,2,
+google/gemma-3-1b-it,The capital of France is,17,15941, respective,13,232403,221657,12,20,6,
+google/gemma-3-1b-it,The capital of France is,17,16603,including,5,179165,176293,4,7,2,
+google/gemma-3-1b-it,The capital of France is,17,16916,rice,4,64376,93094,3,5,2,
+google/gemma-3-1b-it,The capital of France is,17,17349,kor,3,15141,16100,3,4,2,
+google/gemma-3-1b-it,The capital of France is,17,17379, rol,4,89740,107260,4,7,2,
+google/gemma-3-1b-it,The capital of France is,17,17564, Zealand,3,41960,43064,3,5,2,
+google/gemma-3-1b-it,The capital of France is,17,17623,Li,3,68109,45914,3,5,2,
+google/gemma-3-1b-it,The capital of France is,17,17672,ricts,7,204477,141719,7,11,3,
+google/gemma-3-1b-it,The capital of France is,17,17726, commands,3,76251,25501,3,4,2,
+google/gemma-3-1b-it,The capital of France is,17,18325,Driver,7,192979,126126,6,12,3,
+google/gemma-3-1b-it,The capital of France is,17,18815, algo,14,217278,227391,14,26,7,
+google/gemma-3-1b-it,The capital of France is,17,18819,desc,4,117609,86404,4,5,2,
+google/gemma-3-1b-it,The capital of France is,17,18899, gravity,4,175425,141051,4,7,2,
+google/gemma-3-1b-it,The capital of France is,17,19387, arbitrary,4,181059,156732,4,7,3,
+google/gemma-3-1b-it,The capital of France is,17,19474,vc,4,68845,51043,4,6,2,
+google/gemma-3-1b-it,The capital of France is,17,19865, Ever,4,68917,40721,4,7,2,
+google/gemma-3-1b-it,The capital of France is,17,20278, volumes,4,90339,163266,4,7,3,
+google/gemma-3-1b-it,The capital of France is,17,20443,phenyl,11,197259,203066,10,17,6,
+google/gemma-3-1b-it,The capital of France is,17,20612,amping,4,180272,156823,4,6,3,
+google/gemma-3-1b-it,The capital of France is,17,20792, Gree,8,173920,189459,8,14,3,
+google/gemma-3-1b-it,The capital of France is,17,21073,IDE,4,39572,46565,4,5,2,
+google/gemma-3-1b-it,The capital of France is,17,21434,jos,6,158227,211164,6,13,4,
+google/gemma-3-1b-it,The capital of France is,17,21553,pus,3,55497,48547,3,5,2,
+google/gemma-3-1b-it,The capital of France is,17,21976, PRIM,8,115247,146452,8,14,3,
+google/gemma-3-1b-it,The capital of France is,17,21988, situated,6,112217,125491,6,11,3,
+google/gemma-3-1b-it,The capital of France is,17,21989, historia,4,35281,58976,3,7,2,
+google/gemma-3-1b-it,The capital of France is,17,22037,symbol,3,17315,14576,3,4,2,
+google/gemma-3-1b-it,The capital of France is,17,22175,ipheral,12,165466,215787,11,19,5,
+google/gemma-3-1b-it,The capital of France is,17,22358, Gib,7,104113,135578,7,12,2,
+google/gemma-3-1b-it,The capital of France is,17,22454, describing,13,236520,234177,12,21,6,
+google/gemma-3-1b-it,The capital of France is,17,22504,social,3,39636,40963,3,4,2,
+google/gemma-3-1b-it,The capital of France is,25,322,T,1488,247342,242255,1543,1605,1538,
+google/gemma-3-1b-it,The capital of France is,25,605,us,1,27668,86902,1,1,1,9.158914566040039
+google/gemma-3-1b-it,The capital of France is,25,806,ous,1,117113,31215,1,2,1,9.293230056762695
+google/gemma-3-1b-it,The capital of France is,25,850, app,2,248105,253870,2,4,1,
+google/gemma-3-1b-it,The capital of France is,25,1049,inal,1,190691,128145,1,2,1,11.563824653625488
+google/gemma-3-1b-it,The capital of France is,25,1143,cept,1,32100,38673,1,1,1,8.911046981811523
+google/gemma-3-1b-it,The capital of France is,25,1176, said,1,29684,11028,1,2,1,8.68617057800293
+google/gemma-3-1b-it,The capital of France is,25,1240,riv,1,5553,13121,1,1,1,8.930841445922852
+google/gemma-3-1b-it,The capital of France is,25,1276, Re,2,240975,257200,2,2,2,
+google/gemma-3-1b-it,The capital of France is,25,1382, aut,2,158555,106422,2,3,1,
+google/gemma-3-1b-it,The capital of France is,25,1417,wn,1,112208,209208,1,2,1,12.483065605163574
+google/gemma-3-1b-it,The capital of France is,25,1428, equ,1,185125,182407,1,2,1,12.594281196594238
+google/gemma-3-1b-it,The capital of France is,25,1844,uf,1,203948,166452,1,2,1,11.443838119506836
+google/gemma-3-1b-it,The capital of France is,25,1911, var,1,112344,63623,1,2,1,11.767705917358398
+google/gemma-3-1b-it,The capital of France is,25,1916,rc,1,18573,17801,1,1,1,8.222304344177246
+google/gemma-3-1b-it,The capital of France is,25,2048, prote,1,157465,118993,1,2,1,12.713591575622559
+google/gemma-3-1b-it,The capital of France is,25,2124,++,1,32213,14080,1,2,1,8.267007827758789
+google/gemma-3-1b-it,The capital of France is,25,2233, invest,1,217159,259989,2,4,1,16.94373893737793
+google/gemma-3-1b-it,The capital of France is,25,2247, put,1,86585,61454,1,2,1,15.231560707092285
+google/gemma-3-1b-it,The capital of France is,25,2423,ino,1,122509,131386,1,2,1,11.287556648254395
+google/gemma-3-1b-it,The capital of France is,25,2582,EXT,1,52889,54239,1,2,1,10.387160301208496
+google/gemma-3-1b-it,The capital of France is,25,2669,ending,1,61127,40420,1,2,1,9.93910026550293
+google/gemma-3-1b-it,The capital of France is,25,2802, access,3,156835,118047,3,3,1,
+google/gemma-3-1b-it,The capital of France is,25,3155, house,2,234216,251368,2,5,1,
+google/gemma-3-1b-it,The capital of France is,25,3210, thing,1,181772,80717,1,2,1,11.587532043457031
+google/gemma-3-1b-it,The capital of France is,25,3631,font,1,27089,9605,1,2,1,11.987617492675781
+google/gemma-3-1b-it,The capital of France is,25,3633,aur,1,65752,46711,1,1,1,9.036913871765137
+google/gemma-3-1b-it,The capital of France is,25,3803, God,2,187631,186287,2,2,1,
+google/gemma-3-1b-it,The capital of France is,25,3834,At,1,345,1399,1,2,1,7.328096389770508
+google/gemma-3-1b-it,The capital of France is,25,4111,idge,1,74954,111139,1,2,1,10.403553009033203
+google/gemma-3-1b-it,The capital of France is,25,4340,OC,1,36031,9934,1,2,1,9.626708030700684
+google/gemma-3-1b-it,The capital of France is,25,4648, tim,1,93567,187139,1,2,1,12.765350341796875
+google/gemma-3-1b-it,The capital of France is,25,4680, cand,1,70776,72958,1,2,1,10.337709426879883
+google/gemma-3-1b-it,The capital of France is,25,4754,My,1,931,210,1,1,1,6.727592945098877
+google/gemma-3-1b-it,The capital of France is,25,4981, status,3,241369,248631,3,3,1,
+google/gemma-3-1b-it,The capital of France is,25,5083, dro,1,226531,192066,1,2,1,12.190077781677246
+google/gemma-3-1b-it,The capital of France is,25,5380, va,1,54481,61500,1,3,1,16.42531394958496
+google/gemma-3-1b-it,The capital of France is,25,5512, pun,1,92491,89846,1,2,1,11.698351860046387
+google/gemma-3-1b-it,The capital of France is,25,5628, located,2,170498,40037,2,3,1,
+google/gemma-3-1b-it,The capital of France is,25,5732, nicht,1,122755,228388,1,3,1,13.968365669250488
+google/gemma-3-1b-it,The capital of France is,25,5912, See,2,253996,257032,2,2,2,
+google/gemma-3-1b-it,The capital of France is,25,6060, handle,1,130120,63410,1,2,1,10.968047142028809
+google/gemma-3-1b-it,The capital of France is,25,6204,miss,1,85722,75764,1,2,1,10.899882316589355
+google/gemma-3-1b-it,The capital of France is,25,6254, tor,1,122272,113714,1,2,1,12.321292877197266
+google/gemma-3-1b-it,The capital of France is,25,6478, session,2,255168,251548,2,3,1,
+google/gemma-3-1b-it,The capital of France is,25,6486, Sur,2,164275,114122,2,2,1,
+google/gemma-3-1b-it,The capital of France is,25,6540, culture,2,242942,165947,2,3,1,
+google/gemma-3-1b-it,The capital of France is,25,6541, capacity,3,253800,220150,3,3,1,
+google/gemma-3-1b-it,The capital of France is,25,7568,pop,1,47552,111616,1,2,1,11.917730331420898
+google/gemma-3-1b-it,The capital of France is,25,7652,enz,1,149878,166222,1,2,1,10.645027160644531
+google/gemma-3-1b-it,The capital of France is,25,7808, moved,1,91724,87201,1,2,1,9.94769287109375
+google/gemma-3-1b-it,The capital of France is,25,7876, ven,1,82162,82661,1,2,1,9.794306755065918
+google/gemma-3-1b-it,The capital of France is,25,7902,double,1,15772,20052,1,2,1,11.242518424987793
+google/gemma-3-1b-it,The capital of France is,25,8021,allow,1,165278,91839,1,2,1,10.974242210388184
+google/gemma-3-1b-it,The capital of France is,25,8313, Kh,2,143820,176970,2,2,1,
+google/gemma-3-1b-it,The capital of France is,25,8448, interval,1,253919,257280,1,3,1,14.023730278015137
+google/gemma-3-1b-it,The capital of France is,25,9166, vez,1,48212,32064,1,2,1,9.476552963256836
+google/gemma-3-1b-it,The capital of France is,25,9208,These,1,192,246,1,2,1,7.194620609283447
+google/gemma-3-1b-it,The capital of France is,25,9415,Eng,1,845,6630,1,1,1,7.120943546295166
+google/gemma-3-1b-it,The capital of France is,25,9438,dt,1,36232,55389,1,2,1,9.621850967407227
+google/gemma-3-1b-it,The capital of France is,25,9577, tou,1,37159,83068,1,2,1,10.665722846984863
+google/gemma-3-1b-it,The capital of France is,25,9697, feedback,2,260157,254863,2,3,1,
+google/gemma-3-1b-it,The capital of France is,25,9744, village,1,172367,218297,1,3,1,16.017934799194336
+google/gemma-3-1b-it,The capital of France is,25,10480,match,1,68467,32217,1,2,1,9.854726791381836
+google/gemma-3-1b-it,The capital of France is,25,10702, Gi,2,235851,214120,2,2,1,
+google/gemma-3-1b-it,The capital of France is,25,10746,"""));",1,131554,114052,1,2,1,10.321310997009277
+google/gemma-3-1b-it,The capital of France is,25,10770, Thank,2,60797,53512,2,3,1,
+google/gemma-3-1b-it,The capital of France is,25,11055, charged,1,59378,93710,1,2,1,9.643939971923828
+google/gemma-3-1b-it,The capital of France is,25,11278, aid,1,144844,137417,1,2,1,12.164430618286133
+google/gemma-3-1b-it,The capital of France is,25,11397, dal,1,177668,242884,1,2,1,12.91372299194336
+google/gemma-3-1b-it,The capital of France is,25,11526,BI,1,7513,5634,1,2,1,8.039146423339844
+google/gemma-3-1b-it,The capital of France is,25,11664,unes,1,134665,112221,1,2,1,11.23462963104248
+google/gemma-3-1b-it,The capital of France is,25,11668,username,1,57251,127808,1,2,1,11.509763717651367
+google/gemma-3-1b-it,The capital of France is,25,11699, eleg,1,226615,175090,1,2,1,12.012642860412598
+google/gemma-3-1b-it,The capital of France is,25,11833,aders,1,88044,83056,1,2,1,9.852227210998535
+google/gemma-3-1b-it,The capital of France is,25,12248, Environment,3,212348,253100,3,6,2,
+google/gemma-3-1b-it,The capital of France is,25,12396, findings,1,228705,182851,1,2,1,14.829023361206055
+google/gemma-3-1b-it,The capital of France is,25,12429,wait,1,61514,48881,1,2,1,10.066045761108398
+google/gemma-3-1b-it,The capital of France is,25,12708, vie,1,15170,28048,1,2,1,9.27303409576416
+google/gemma-3-1b-it,The capital of France is,25,12730, Support,4,256797,254469,3,8,2,
+google/gemma-3-1b-it,The capital of France is,25,12800, remained,1,241563,191963,1,2,1,12.33375072479248
+google/gemma-3-1b-it,The capital of France is,25,13080,inds,1,174918,141619,1,2,1,12.620290756225586
+google/gemma-3-1b-it,The capital of France is,25,13225, kont,1,148931,154958,1,2,1,11.5028715133667
+google/gemma-3-1b-it,The capital of France is,25,13331,upload,1,11728,129125,1,2,1,10.688590049743652
+google/gemma-3-1b-it,The capital of France is,25,13406,iral,1,205314,197363,1,3,1,12.690505027770996
+google/gemma-3-1b-it,The capital of France is,25,13482, infection,1,111167,225093,1,2,1,12.52520751953125
+google/gemma-3-1b-it,The capital of France is,25,13547, Egypt,2,176327,172272,2,3,1,
+google/gemma-3-1b-it,The capital of France is,25,13916, foundation,2,261387,246390,2,4,1,
+google/gemma-3-1b-it,The capital of France is,25,14180, dann,1,237365,247911,1,2,1,13.278973579406738
+google/gemma-3-1b-it,The capital of France is,25,14226,nia,1,46932,29813,1,2,1,9.457442283630371
+google/gemma-3-1b-it,The capital of France is,25,14440, inflation,2,172948,130731,2,4,1,
+google/gemma-3-1b-it,The capital of France is,25,14512, reserved,1,139303,52917,1,2,1,10.431870460510254
+google/gemma-3-1b-it,The capital of France is,25,14611, outer,2,256644,244691,2,2,1,
+google/gemma-3-1b-it,The capital of France is,25,14937,"{""",1,4800,23066,1,1,1,7.635482311248779
+google/gemma-3-1b-it,The capital of France is,25,14966, metric,1,244030,228939,1,3,1,16.438230514526367
+google/gemma-3-1b-it,The capital of France is,25,15765,theless,1,27135,47547,1,1,1,9.140719413757324
+google/gemma-3-1b-it,The capital of France is,25,15835,ikt,1,63321,60196,1,2,1,10.474627494812012
+google/gemma-3-1b-it,The capital of France is,25,15941, respective,1,257482,256395,1,2,1,13.631896018981934
+google/gemma-3-1b-it,The capital of France is,25,16603,including,1,37997,21349,1,2,1,9.407937049865723
+google/gemma-3-1b-it,The capital of France is,25,16916,rice,1,78689,67046,1,2,1,10.61140251159668
+google/gemma-3-1b-it,The capital of France is,25,17349,kor,1,147136,146367,1,2,1,11.818788528442383
+google/gemma-3-1b-it,The capital of France is,25,17379, rol,1,170799,112551,1,2,1,12.906366348266602
+google/gemma-3-1b-it,The capital of France is,25,17564, Zealand,1,120127,130584,1,2,1,12.34650993347168
+google/gemma-3-1b-it,The capital of France is,25,17623,Li,1,4272,3085,1,1,1,6.733268737792969
+google/gemma-3-1b-it,The capital of France is,25,17672,ricts,1,90616,103997,1,2,1,10.241048812866211
+google/gemma-3-1b-it,The capital of France is,25,17726, commands,1,252182,194058,1,2,1,13.366803169250488
+google/gemma-3-1b-it,The capital of France is,25,18325,Driver,1,61435,19098,1,2,1,9.87842082977295
+google/gemma-3-1b-it,The capital of France is,25,18815, algo,2,260750,259734,2,6,1,
+google/gemma-3-1b-it,The capital of France is,25,18819,desc,1,191845,144436,1,2,1,12.1923246383667
+google/gemma-3-1b-it,The capital of France is,25,18899, gravity,1,232542,162049,1,2,1,14.992497444152832
+google/gemma-3-1b-it,The capital of France is,25,19387, arbitrary,1,230832,220715,1,2,1,12.174415588378906
+google/gemma-3-1b-it,The capital of France is,25,19474,vc,1,225200,233765,1,2,1,12.26785945892334
+google/gemma-3-1b-it,The capital of France is,25,19865, Ever,2,242894,223199,2,2,1,
+google/gemma-3-1b-it,The capital of France is,25,20278, volumes,1,144092,243488,1,3,1,16.242429733276367
+google/gemma-3-1b-it,The capital of France is,25,20443,phenyl,1,34114,52341,1,2,1,10.560708999633789
+google/gemma-3-1b-it,The capital of France is,25,20612,amping,1,117619,46761,1,2,1,10.290383338928223
+google/gemma-3-1b-it,The capital of France is,25,20792, Gree,1,90176,65937,1,2,1,11.751456260681152
+google/gemma-3-1b-it,The capital of France is,25,21073,IDE,1,50043,72316,1,2,1,11.015612602233887
+google/gemma-3-1b-it,The capital of France is,25,21434,jos,1,18688,51727,1,2,1,9.758072853088379
+google/gemma-3-1b-it,The capital of France is,25,21553,pus,1,23796,14360,1,2,1,9.164912223815918
+google/gemma-3-1b-it,The capital of France is,25,21976, PRIM,1,48977,81709,1,2,1,11.590346336364746
+google/gemma-3-1b-it,The capital of France is,25,21988, situated,1,86130,102130,1,3,1,14.965736389160156
+google/gemma-3-1b-it,The capital of France is,25,21989, historia,1,41933,95806,1,4,1,13.672672271728516
+google/gemma-3-1b-it,The capital of France is,25,22037,symbol,1,21826,24894,1,2,1,15.698752403259277
+google/gemma-3-1b-it,The capital of France is,25,22175,ipheral,1,105019,127075,1,2,1,11.98621654510498
+google/gemma-3-1b-it,The capital of France is,25,22358, Gib,2,97064,103826,2,2,1,
+google/gemma-3-1b-it,The capital of France is,25,22454, describing,1,215697,224479,1,2,1,12.451257705688477
+google/gemma-3-1b-it,The capital of France is,25,22504,social,2,87317,30007,2,2,1,
+google/gemma-3-1b-it,The quantum computer,0,322,T,3245,261226,259122,3069,4073,3096,
+google/gemma-3-1b-it,The quantum computer,0,605,us,1,1937,5471,1,5,1,12.084721565246582
+google/gemma-3-1b-it,The quantum computer,0,806,ous,1,62434,15757,1,10,1,13.959000587463379
+google/gemma-3-1b-it,The quantum computer,0,850, app,1,21926,2653,1,2,1,13.992687225341797
+google/gemma-3-1b-it,The quantum computer,0,1049,inal,1,77388,40924,1,11,1,14.92979621887207
+google/gemma-3-1b-it,The quantum computer,0,1143,cept,8,217454,203804,8,11,1,
+google/gemma-3-1b-it,The quantum computer,0,1176, said,1,525,259,1,1,1,9.703826904296875
+google/gemma-3-1b-it,The quantum computer,0,1240,riv,1,1322,4511,1,8,1,12.556086540222168
+google/gemma-3-1b-it,The quantum computer,0,1276, Re,1,119,137,1,2,1,8.89870548248291
+google/gemma-3-1b-it,The quantum computer,0,1382, aut,1,66359,49229,1,2,1,15.84218692779541
+google/gemma-3-1b-it,The quantum computer,0,1417,wn,1,15037,46853,1,11,1,16.1998291015625
+google/gemma-3-1b-it,The quantum computer,0,1428, equ,1,13403,11089,1,11,1,14.546636581420898
+google/gemma-3-1b-it,The quantum computer,0,1844,uf,1,41884,12753,1,11,1,13.68778133392334
+google/gemma-3-1b-it,The quantum computer,0,1911, var,1,6489,7321,1,2,1,12.796844482421875
+google/gemma-3-1b-it,The quantum computer,0,1916,rc,1,28331,16216,1,11,1,13.924809455871582
+google/gemma-3-1b-it,The quantum computer,0,2048, prote,1,74981,110625,1,11,1,15.995373725891113
+google/gemma-3-1b-it,The quantum computer,0,2124,++,2,96797,72722,1,11,1,
+google/gemma-3-1b-it,The quantum computer,0,2233, invest,1,41004,41668,1,4,1,14.346081733703613
+google/gemma-3-1b-it,The quantum computer,0,2247, put,1,104292,153022,1,2,1,14.855313301086426
+google/gemma-3-1b-it,The quantum computer,0,2423,ino,1,3364,4318,1,5,1,12.331619262695312
+google/gemma-3-1b-it,The quantum computer,0,2582,EXT,2,97564,77566,1,11,1,
+google/gemma-3-1b-it,The quantum computer,0,2669,ending,6,183228,182486,6,11,1,
+google/gemma-3-1b-it,The quantum computer,0,2802, access,1,92956,82273,1,11,1,15.458965301513672
+google/gemma-3-1b-it,The quantum computer,0,3155, house,1,11247,15561,1,2,1,12.623323440551758
+google/gemma-3-1b-it,The quantum computer,0,3210, thing,1,183345,125339,1,11,1,15.264448165893555
+google/gemma-3-1b-it,The quantum computer,0,3631,font,1,30379,15238,1,9,1,13.28237533569336
+google/gemma-3-1b-it,The quantum computer,0,3633,aur,1,31986,23488,1,10,1,13.849745750427246
+google/gemma-3-1b-it,The quantum computer,0,3803, God,1,1353,2132,1,4,1,11.720399856567383
+google/gemma-3-1b-it,The quantum computer,0,3834,At,2,6261,8348,2,2,1,
+google/gemma-3-1b-it,The quantum computer,0,4111,idge,6,181692,179949,4,11,1,
+google/gemma-3-1b-it,The quantum computer,0,4340,OC,1,37030,31791,1,11,1,14.454490661621094
+google/gemma-3-1b-it,The quantum computer,0,4648, tim,1,37886,79137,1,11,1,16.665170669555664
+google/gemma-3-1b-it,The quantum computer,0,4680, cand,1,47318,28084,1,11,1,15.236355781555176
+google/gemma-3-1b-it,The quantum computer,0,4754,My,2,36384,27448,2,2,1,
+google/gemma-3-1b-it,The quantum computer,0,4981, status,1,76700,61087,1,11,1,15.678378105163574
+google/gemma-3-1b-it,The quantum computer,0,5083, dro,6,218164,217284,6,12,1,
+google/gemma-3-1b-it,The quantum computer,0,5380, va,1,34424,110097,1,11,1,16.952850341796875
+google/gemma-3-1b-it,The quantum computer,0,5512, pun,3,108894,153892,2,11,1,
+google/gemma-3-1b-it,The quantum computer,0,5628, located,1,7577,6597,1,3,1,11.522112846374512
+google/gemma-3-1b-it,The quantum computer,0,5732, nicht,1,7110,42787,1,2,1,14.690739631652832
+google/gemma-3-1b-it,The quantum computer,0,5912, See,1,96274,99879,1,11,1,14.828388214111328
+google/gemma-3-1b-it,The quantum computer,0,6060, handle,1,69095,44244,1,2,1,14.486318588256836
+google/gemma-3-1b-it,The quantum computer,0,6204,miss,1,153883,160771,1,11,1,16.60558319091797
+google/gemma-3-1b-it,The quantum computer,0,6254, tor,1,80367,59538,1,11,1,15.56106948852539
+google/gemma-3-1b-it,The quantum computer,0,6478, session,1,16182,5742,1,2,1,12.312153816223145
+google/gemma-3-1b-it,The quantum computer,0,6486, Sur,1,9185,3848,1,8,1,12.785806655883789
+google/gemma-3-1b-it,The quantum computer,0,6540, culture,1,22899,27081,1,2,1,11.777902603149414
+google/gemma-3-1b-it,The quantum computer,0,6541, capacity,1,11702,5550,1,2,1,12.133625984191895
+google/gemma-3-1b-it,The quantum computer,0,7568,pop,1,4186,8156,1,2,1,12.414469718933105
+google/gemma-3-1b-it,The quantum computer,0,7652,enz,1,32017,55536,1,11,1,13.970619201660156
+google/gemma-3-1b-it,The quantum computer,0,7808, moved,1,26576,47523,1,9,1,13.367704391479492
+google/gemma-3-1b-it,The quantum computer,0,7876, ven,1,28456,18702,1,11,1,14.350712776184082
+google/gemma-3-1b-it,The quantum computer,0,7902,double,1,92935,119575,1,2,1,15.964638710021973
+google/gemma-3-1b-it,The quantum computer,0,8021,allow,1,52467,36877,1,11,1,14.085052490234375
+google/gemma-3-1b-it,The quantum computer,0,8313, Kh,1,1471,1052,1,2,1,12.366050720214844
+google/gemma-3-1b-it,The quantum computer,0,8448, interval,1,54523,42770,1,11,1,14.99807071685791
+google/gemma-3-1b-it,The quantum computer,0,9166, vez,1,55139,43346,1,11,1,15.535627365112305
+google/gemma-3-1b-it,The quantum computer,0,9208,These,2,101548,110361,2,2,1,
+google/gemma-3-1b-it,The quantum computer,0,9415,Eng,1,33158,50949,1,2,1,15.320319175720215
+google/gemma-3-1b-it,The quantum computer,0,9438,dt,1,39988,11576,1,11,1,15.042221069335938
+google/gemma-3-1b-it,The quantum computer,0,9577, tou,2,109482,133348,2,11,1,
+google/gemma-3-1b-it,The quantum computer,0,9697, feedback,1,176232,141555,1,11,1,16.448604583740234
+google/gemma-3-1b-it,The quantum computer,0,9744, village,1,2296,7847,1,2,1,12.518158912658691
+google/gemma-3-1b-it,The quantum computer,0,10480,match,1,25973,8733,1,2,1,13.74740219116211
+google/gemma-3-1b-it,The quantum computer,0,10702, Gi,1,3734,3881,1,9,1,12.711692810058594
+google/gemma-3-1b-it,The quantum computer,0,10746,"""));",1,99491,62790,1,2,1,14.141995429992676
+google/gemma-3-1b-it,The quantum computer,0,10770, Thank,1,4464,3035,1,2,1,12.492279052734375
+google/gemma-3-1b-it,The quantum computer,0,11055, charged,1,44227,37713,1,11,1,14.482166290283203
+google/gemma-3-1b-it,The quantum computer,0,11278, aid,1,12497,52104,1,2,1,13.187810897827148
+google/gemma-3-1b-it,The quantum computer,0,11397, dal,1,9379,28094,1,10,1,13.823332786560059
+google/gemma-3-1b-it,The quantum computer,0,11526,BI,1,31477,31115,1,11,1,14.752825736999512
+google/gemma-3-1b-it,The quantum computer,0,11664,unes,1,65259,30756,1,11,1,14.91112232208252
+google/gemma-3-1b-it,The quantum computer,0,11668,username,8,184449,232313,7,11,1,
+google/gemma-3-1b-it,The quantum computer,0,11699, eleg,1,77913,24512,1,11,1,14.925240516662598
+google/gemma-3-1b-it,The quantum computer,0,11833,aders,1,55424,59459,1,11,1,14.38058090209961
+google/gemma-3-1b-it,The quantum computer,0,12248, Environment,1,43075,87126,1,11,1,15.70175838470459
+google/gemma-3-1b-it,The quantum computer,0,12396, findings,1,166741,105767,1,11,1,15.301809310913086
+google/gemma-3-1b-it,The quantum computer,0,12429,wait,1,70265,84856,1,11,1,14.631494522094727
+google/gemma-3-1b-it,The quantum computer,0,12708, vie,1,55940,81286,1,11,1,16.530942916870117
+google/gemma-3-1b-it,The quantum computer,0,12730, Support,1,23520,31732,1,2,1,13.943032264709473
+google/gemma-3-1b-it,The quantum computer,0,12800, remained,1,1972,1460,1,1,1,10.970956802368164
+google/gemma-3-1b-it,The quantum computer,0,13080,inds,5,181840,180230,4,11,1,
+google/gemma-3-1b-it,The quantum computer,0,13225, kont,1,90954,88551,1,11,1,15.812440872192383
+google/gemma-3-1b-it,The quantum computer,0,13331,upload,1,13464,83083,1,11,1,15.658952713012695
+google/gemma-3-1b-it,The quantum computer,0,13406,iral,1,139153,141427,1,11,1,16.513757705688477
+google/gemma-3-1b-it,The quantum computer,0,13482, infection,1,1399,20673,1,2,1,11.83769416809082
+google/gemma-3-1b-it,The quantum computer,0,13547, Egypt,1,4288,8058,1,9,1,13.017650604248047
+google/gemma-3-1b-it,The quantum computer,0,13916, foundation,1,10650,3347,1,2,1,12.27552318572998
+google/gemma-3-1b-it,The quantum computer,0,14180, dann,1,87629,76781,1,11,1,15.103433609008789
+google/gemma-3-1b-it,The quantum computer,0,14226,nia,1,76690,103912,1,11,1,16.01655387878418
+google/gemma-3-1b-it,The quantum computer,0,14440, inflation,1,20714,28124,1,7,1,12.801311492919922
+google/gemma-3-1b-it,The quantum computer,0,14512, reserved,1,67661,20911,1,11,1,14.787393569946289
+google/gemma-3-1b-it,The quantum computer,0,14611, outer,1,34393,23844,1,6,1,12.78918743133545
+google/gemma-3-1b-it,The quantum computer,0,14937,"{""",5,216386,212804,6,11,1,
+google/gemma-3-1b-it,The quantum computer,0,14966, metric,5,178440,132932,4,11,1,
+google/gemma-3-1b-it,The quantum computer,0,15765,theless,1,192511,205314,1,11,1,16.27709197998047
+google/gemma-3-1b-it,The quantum computer,0,15835,ikt,4,132770,155138,3,11,1,
+google/gemma-3-1b-it,The quantum computer,0,15941, respective,1,147148,118968,1,11,1,15.238001823425293
+google/gemma-3-1b-it,The quantum computer,0,16603,including,1,24113,10669,1,2,1,13.55068588256836
+google/gemma-3-1b-it,The quantum computer,0,16916,rice,1,21891,29242,1,11,1,13.960551261901855
+google/gemma-3-1b-it,The quantum computer,0,17349,kor,1,15769,26580,1,10,1,13.892495155334473
+google/gemma-3-1b-it,The quantum computer,0,17379, rol,1,87799,83259,1,11,1,16.447429656982422
+google/gemma-3-1b-it,The quantum computer,0,17564, Zealand,1,7309,5369,1,4,1,12.170632362365723
+google/gemma-3-1b-it,The quantum computer,0,17623,Li,1,27475,10443,1,2,1,13.810437202453613
+google/gemma-3-1b-it,The quantum computer,0,17672,ricts,1,133482,119891,1,11,1,14.751029968261719
+google/gemma-3-1b-it,The quantum computer,0,17726, commands,1,18437,9845,1,2,1,12.284934997558594
+google/gemma-3-1b-it,The quantum computer,0,18325,Driver,3,116554,70027,3,4,1,
+google/gemma-3-1b-it,The quantum computer,0,18815, algo,2,163193,179892,1,11,1,
+google/gemma-3-1b-it,The quantum computer,0,18819,desc,2,179821,133167,2,11,1,
+google/gemma-3-1b-it,The quantum computer,0,18899, gravity,1,136927,79757,1,11,1,15.239067077636719
+google/gemma-3-1b-it,The quantum computer,0,19387, arbitrary,4,231311,229584,5,11,1,
+google/gemma-3-1b-it,The quantum computer,0,19474,vc,4,161407,175738,3,11,1,
+google/gemma-3-1b-it,The quantum computer,0,19865, Ever,1,67389,52113,1,11,1,15.934879302978516
+google/gemma-3-1b-it,The quantum computer,0,20278, volumes,1,2488,7067,1,7,1,12.862701416015625
+google/gemma-3-1b-it,The quantum computer,0,20443,phenyl,1,60383,81830,1,11,1,15.256593704223633
+google/gemma-3-1b-it,The quantum computer,0,20612,amping,4,216081,156475,2,11,1,
+google/gemma-3-1b-it,The quantum computer,0,20792, Gree,1,121360,149376,1,11,1,16.13671875
+google/gemma-3-1b-it,The quantum computer,0,21073,IDE,4,111966,149089,2,11,1,
+google/gemma-3-1b-it,The quantum computer,0,21434,jos,1,34152,92459,1,11,1,15.477140426635742
+google/gemma-3-1b-it,The quantum computer,0,21553,pus,1,70600,56841,1,11,1,14.756227493286133
+google/gemma-3-1b-it,The quantum computer,0,21976, PRIM,6,147913,164460,6,11,1,
+google/gemma-3-1b-it,The quantum computer,0,21988, situated,1,5576,26798,1,2,1,12.949649810791016
+google/gemma-3-1b-it,The quantum computer,0,21989, historia,1,36896,68568,1,11,1,15.234990119934082
+google/gemma-3-1b-it,The quantum computer,0,22037,symbol,4,174144,185409,3,11,1,
+google/gemma-3-1b-it,The quantum computer,0,22175,ipheral,1,129987,213826,1,11,1,15.853402137756348
+google/gemma-3-1b-it,The quantum computer,0,22358, Gib,1,81323,108538,1,11,1,16.079631805419922
+google/gemma-3-1b-it,The quantum computer,0,22454, describing,1,67071,45482,1,2,1,14.3219575881958
+google/gemma-3-1b-it,The quantum computer,0,22504,social,1,14742,11864,1,3,1,13.388605117797852
+google/gemma-3-1b-it,The quantum computer,8,322,T,2998,246203,241814,3124,3029,2973,
+google/gemma-3-1b-it,The quantum computer,8,605,us,4,50312,63445,4,5,2,
+google/gemma-3-1b-it,The quantum computer,8,806,ous,4,173373,122356,4,5,2,
+google/gemma-3-1b-it,The quantum computer,8,850, app,3,45847,49451,3,5,2,
+google/gemma-3-1b-it,The quantum computer,8,1049,inal,3,34715,23708,2,5,2,
+google/gemma-3-1b-it,The quantum computer,8,1143,cept,4,120021,96188,4,7,3,
+google/gemma-3-1b-it,The quantum computer,8,1176, said,6,189727,186276,6,9,3,
+google/gemma-3-1b-it,The quantum computer,8,1240,riv,5,93185,142920,5,7,3,
+google/gemma-3-1b-it,The quantum computer,8,1276, Re,4,110338,43929,4,6,2,
+google/gemma-3-1b-it,The quantum computer,8,1382, aut,3,18807,7384,3,5,2,
+google/gemma-3-1b-it,The quantum computer,8,1417,wn,5,42611,95058,4,5,3,
+google/gemma-3-1b-it,The quantum computer,8,1428, equ,4,66685,55309,4,7,2,
+google/gemma-3-1b-it,The quantum computer,8,1844,uf,4,80478,52181,3,5,2,
+google/gemma-3-1b-it,The quantum computer,8,1911, var,3,18634,20146,3,4,2,
+google/gemma-3-1b-it,The quantum computer,8,1916,rc,3,73917,56741,3,5,2,
+google/gemma-3-1b-it,The quantum computer,8,2048, prote,4,32824,31529,4,5,3,
+google/gemma-3-1b-it,The quantum computer,8,2124,++,4,68945,47135,3,5,2,
+google/gemma-3-1b-it,The quantum computer,8,2233, invest,3,19653,40395,2,5,2,
+google/gemma-3-1b-it,The quantum computer,8,2247, put,3,74139,65681,3,5,2,
+google/gemma-3-1b-it,The quantum computer,8,2423,ino,4,63294,83665,4,5,2,
+google/gemma-3-1b-it,The quantum computer,8,2582,EXT,4,47865,49960,4,7,3,
+google/gemma-3-1b-it,The quantum computer,8,2669,ending,5,124283,133843,5,7,3,
+google/gemma-3-1b-it,The quantum computer,8,2802, access,5,166239,193811,5,5,3,
+google/gemma-3-1b-it,The quantum computer,8,3155, house,4,62062,59412,4,5,2,
+google/gemma-3-1b-it,The quantum computer,8,3210, thing,5,211633,141850,4,6,3,
+google/gemma-3-1b-it,The quantum computer,8,3631,font,4,99452,66955,4,5,2,
+google/gemma-3-1b-it,The quantum computer,8,3633,aur,4,106519,96571,4,6,2,
+google/gemma-3-1b-it,The quantum computer,8,3803, God,3,66911,158184,3,5,2,
+google/gemma-3-1b-it,The quantum computer,8,3834,At,7,185269,175185,7,10,3,
+google/gemma-3-1b-it,The quantum computer,8,4111,idge,4,54681,35864,4,5,2,
+google/gemma-3-1b-it,The quantum computer,8,4340,OC,3,17505,13724,3,4,2,
+google/gemma-3-1b-it,The quantum computer,8,4648, tim,4,20044,37054,4,5,2,
+google/gemma-3-1b-it,The quantum computer,8,4680, cand,5,128839,122360,5,8,3,
+google/gemma-3-1b-it,The quantum computer,8,4754,My,5,187557,165727,5,7,3,
+google/gemma-3-1b-it,The quantum computer,8,4981, status,5,130347,136053,5,6,3,
+google/gemma-3-1b-it,The quantum computer,8,5083, dro,4,52853,22134,4,5,2,
+google/gemma-3-1b-it,The quantum computer,8,5380, va,3,23617,94647,3,6,2,
+google/gemma-3-1b-it,The quantum computer,8,5512, pun,4,37881,69300,4,6,2,
+google/gemma-3-1b-it,The quantum computer,8,5628, located,4,163857,97623,4,6,2,
+google/gemma-3-1b-it,The quantum computer,8,5732, nicht,3,15466,70104,3,7,2,
+google/gemma-3-1b-it,The quantum computer,8,5912, See,4,165400,108307,4,7,2,
+google/gemma-3-1b-it,The quantum computer,8,6060, handle,6,192789,174141,6,7,3,
+google/gemma-3-1b-it,The quantum computer,8,6204,miss,5,135589,155693,5,7,3,
+google/gemma-3-1b-it,The quantum computer,8,6254, tor,20,232170,231212,21,25,7,
+google/gemma-3-1b-it,The quantum computer,8,6478, session,6,200636,198871,6,8,3,
+google/gemma-3-1b-it,The quantum computer,8,6486, Sur,4,82466,57110,4,6,2,
+google/gemma-3-1b-it,The quantum computer,8,6540, culture,5,202640,138407,5,7,3,
+google/gemma-3-1b-it,The quantum computer,8,6541, capacity,4,131975,121399,4,5,2,
+google/gemma-3-1b-it,The quantum computer,8,7568,pop,5,112764,173108,5,6,3,
+google/gemma-3-1b-it,The quantum computer,8,7652,enz,5,137769,128102,5,7,3,
+google/gemma-3-1b-it,The quantum computer,8,7808, moved,7,182892,203094,7,11,3,
+google/gemma-3-1b-it,The quantum computer,8,7876, ven,4,32437,27678,4,5,2,
+google/gemma-3-1b-it,The quantum computer,8,7902,double,5,119174,121158,5,7,3,
+google/gemma-3-1b-it,The quantum computer,8,8021,allow,5,159854,147423,5,7,3,
+google/gemma-3-1b-it,The quantum computer,8,8313, Kh,4,28865,31525,4,7,2,
+google/gemma-3-1b-it,The quantum computer,8,8448, interval,2,4920,4693,2,4,2,
+google/gemma-3-1b-it,The quantum computer,8,9166, vez,5,98955,75681,5,6,3,
+google/gemma-3-1b-it,The quantum computer,8,9208,These,3,125003,127333,3,5,2,
+google/gemma-3-1b-it,The quantum computer,8,9415,Eng,4,47218,58721,4,7,3,
+google/gemma-3-1b-it,The quantum computer,8,9438,dt,2,5109,5287,2,4,2,
+google/gemma-3-1b-it,The quantum computer,8,9577, tou,7,115136,130014,7,11,3,
+google/gemma-3-1b-it,The quantum computer,8,9697, feedback,7,218360,217303,7,12,4,
+google/gemma-3-1b-it,The quantum computer,8,9744, village,8,111372,192516,9,12,3,
+google/gemma-3-1b-it,The quantum computer,8,10480,match,4,92311,80368,4,6,2,
+google/gemma-3-1b-it,The quantum computer,8,10702, Gi,7,103238,68692,7,11,3,
+google/gemma-3-1b-it,The quantum computer,8,10746,"""));",3,89657,95021,3,5,2,
+google/gemma-3-1b-it,The quantum computer,8,10770, Thank,4,102974,162692,4,7,2,
+google/gemma-3-1b-it,The quantum computer,8,11055, charged,5,165325,109020,5,9,3,
+google/gemma-3-1b-it,The quantum computer,8,11278, aid,4,38323,59516,4,5,2,
+google/gemma-3-1b-it,The quantum computer,8,11397, dal,5,55445,88121,4,5,2,
+google/gemma-3-1b-it,The quantum computer,8,11526,BI,3,26725,15998,3,5,2,
+google/gemma-3-1b-it,The quantum computer,8,11664,unes,4,49128,33132,3,5,2,
+google/gemma-3-1b-it,The quantum computer,8,11668,username,8,119234,164381,8,14,3,
+google/gemma-3-1b-it,The quantum computer,8,11699, eleg,7,170476,93745,7,10,3,
+google/gemma-3-1b-it,The quantum computer,8,11833,aders,5,139029,142605,5,6,3,
+google/gemma-3-1b-it,The quantum computer,8,12248, Environment,5,63141,119615,5,7,2,
+google/gemma-3-1b-it,The quantum computer,8,12396, findings,8,193482,147551,8,11,3,
+google/gemma-3-1b-it,The quantum computer,8,12429,wait,4,65412,32465,4,5,2,
+google/gemma-3-1b-it,The quantum computer,8,12708, vie,4,24383,55778,4,5,2,
+google/gemma-3-1b-it,The quantum computer,8,12730, Support,6,149605,181958,6,8,4,
+google/gemma-3-1b-it,The quantum computer,8,12800, remained,3,71371,68960,3,5,2,
+google/gemma-3-1b-it,The quantum computer,8,13080,inds,5,105530,88987,5,6,3,
+google/gemma-3-1b-it,The quantum computer,8,13225, kont,3,11200,14149,3,4,2,
+google/gemma-3-1b-it,The quantum computer,8,13331,upload,5,22101,76837,4,7,2,
+google/gemma-3-1b-it,The quantum computer,8,13406,iral,3,40136,32343,3,5,2,
+google/gemma-3-1b-it,The quantum computer,8,13482, infection,4,34858,84496,4,5,2,
+google/gemma-3-1b-it,The quantum computer,8,13547, Egypt,4,67275,102387,4,7,2,
+google/gemma-3-1b-it,The quantum computer,8,13916, foundation,9,212309,202213,8,13,4,
+google/gemma-3-1b-it,The quantum computer,8,14180, dann,7,144323,151261,7,10,3,
+google/gemma-3-1b-it,The quantum computer,8,14226,nia,8,173039,168689,8,12,4,
+google/gemma-3-1b-it,The quantum computer,8,14440, inflation,4,55401,42329,3,5,2,
+google/gemma-3-1b-it,The quantum computer,8,14512, reserved,5,176637,128335,5,8,3,
+google/gemma-3-1b-it,The quantum computer,8,14611, outer,5,164370,158876,5,6,3,
+google/gemma-3-1b-it,The quantum computer,8,14937,"{""",7,171099,175519,7,11,3,
+google/gemma-3-1b-it,The quantum computer,8,14966, metric,5,111257,83002,5,7,3,
+google/gemma-3-1b-it,The quantum computer,8,15765,theless,3,64319,66803,3,5,2,
+google/gemma-3-1b-it,The quantum computer,8,15835,ikt,4,54586,32545,4,5,2,
+google/gemma-3-1b-it,The quantum computer,8,15941, respective,22,244241,235942,17,34,12,
+google/gemma-3-1b-it,The quantum computer,8,16603,including,7,208936,215960,7,12,4,
+google/gemma-3-1b-it,The quantum computer,8,16916,rice,5,86312,106618,4,5,2,
+google/gemma-3-1b-it,The quantum computer,8,17349,kor,3,12974,22400,3,4,2,
+google/gemma-3-1b-it,The quantum computer,8,17379, rol,4,76933,38689,4,7,2,
+google/gemma-3-1b-it,The quantum computer,8,17564, Zealand,4,59698,98573,4,6,2,
+google/gemma-3-1b-it,The quantum computer,8,17623,Li,5,73682,43660,5,5,2,
+google/gemma-3-1b-it,The quantum computer,8,17672,ricts,9,207286,185429,9,13,3,
+google/gemma-3-1b-it,The quantum computer,8,17726, commands,4,89847,32777,4,5,2,
+google/gemma-3-1b-it,The quantum computer,8,18325,Driver,6,166744,149363,6,10,3,
+google/gemma-3-1b-it,The quantum computer,8,18815, algo,10,187452,201164,9,15,5,
+google/gemma-3-1b-it,The quantum computer,8,18819,desc,4,91233,73849,4,5,2,
+google/gemma-3-1b-it,The quantum computer,8,18899, gravity,4,173822,89365,4,7,3,
+google/gemma-3-1b-it,The quantum computer,8,19387, arbitrary,5,182126,164790,5,7,3,
+google/gemma-3-1b-it,The quantum computer,8,19474,vc,3,32799,32585,3,5,2,
+google/gemma-3-1b-it,The quantum computer,8,19865, Ever,4,68348,73985,4,7,2,
+google/gemma-3-1b-it,The quantum computer,8,20278, volumes,5,75872,131278,5,6,3,
+google/gemma-3-1b-it,The quantum computer,8,20443,phenyl,9,171327,218387,9,12,5,
+google/gemma-3-1b-it,The quantum computer,8,20612,amping,6,199351,191984,6,7,4,
+google/gemma-3-1b-it,The quantum computer,8,20792, Gree,11,194831,203715,11,18,6,
+google/gemma-3-1b-it,The quantum computer,8,21073,IDE,4,46967,73354,4,7,2,
+google/gemma-3-1b-it,The quantum computer,8,21434,jos,7,155826,218661,7,13,4,
+google/gemma-3-1b-it,The quantum computer,8,21553,pus,5,127181,106393,5,6,3,
+google/gemma-3-1b-it,The quantum computer,8,21976, PRIM,8,108581,131748,7,15,3,
+google/gemma-3-1b-it,The quantum computer,8,21988, situated,13,171488,178256,12,17,5,
+google/gemma-3-1b-it,The quantum computer,8,21989, historia,4,28329,70106,4,6,2,
+google/gemma-3-1b-it,The quantum computer,8,22037,symbol,3,20198,20213,3,5,2,
+google/gemma-3-1b-it,The quantum computer,8,22175,ipheral,11,155234,196466,11,19,5,
+google/gemma-3-1b-it,The quantum computer,8,22358, Gib,11,132568,100232,12,17,5,
+google/gemma-3-1b-it,The quantum computer,8,22454, describing,14,234347,242309,13,22,7,
+google/gemma-3-1b-it,The quantum computer,8,22504,social,3,37715,61479,3,5,2,
+google/gemma-3-1b-it,The quantum computer,17,322,T,2687,249907,253127,3028,2765,2652,
+google/gemma-3-1b-it,The quantum computer,17,605,us,3,46464,46894,3,4,2,
+google/gemma-3-1b-it,The quantum computer,17,806,ous,4,178718,168296,4,5,2,
+google/gemma-3-1b-it,The quantum computer,17,850, app,3,48069,18516,3,4,2,
+google/gemma-3-1b-it,The quantum computer,17,1049,inal,3,51489,36175,3,4,2,
+google/gemma-3-1b-it,The quantum computer,17,1143,cept,4,123764,95376,4,6,2,
+google/gemma-3-1b-it,The quantum computer,17,1176, said,4,141870,61015,4,5,2,
+google/gemma-3-1b-it,The quantum computer,17,1240,riv,5,92265,144142,5,5,3,
+google/gemma-3-1b-it,The quantum computer,17,1276, Re,4,139252,120332,4,7,3,
+google/gemma-3-1b-it,The quantum computer,17,1382, aut,3,26801,13485,3,5,2,
+google/gemma-3-1b-it,The quantum computer,17,1417,wn,4,33750,105349,4,5,3,
+google/gemma-3-1b-it,The quantum computer,17,1428, equ,4,106120,111904,4,8,3,
+google/gemma-3-1b-it,The quantum computer,17,1844,uf,3,97670,55304,3,5,2,
+google/gemma-3-1b-it,The quantum computer,17,1911, var,3,15564,14765,3,4,2,
+google/gemma-3-1b-it,The quantum computer,17,1916,rc,3,94968,100005,3,5,2,
+google/gemma-3-1b-it,The quantum computer,17,2048, prote,4,35206,16059,3,5,2,
+google/gemma-3-1b-it,The quantum computer,17,2124,++,3,61755,38321,3,4,2,
+google/gemma-3-1b-it,The quantum computer,17,2233, invest,3,26661,15567,2,4,2,
+google/gemma-3-1b-it,The quantum computer,17,2247, put,3,123883,99919,3,5,2,
+google/gemma-3-1b-it,The quantum computer,17,2423,ino,4,94784,102354,4,5,2,
+google/gemma-3-1b-it,The quantum computer,17,2582,EXT,4,63505,55378,4,7,3,
+google/gemma-3-1b-it,The quantum computer,17,2669,ending,4,129073,122759,4,5,3,
+google/gemma-3-1b-it,The quantum computer,17,2802, access,5,195638,202665,5,8,3,
+google/gemma-3-1b-it,The quantum computer,17,3155, house,3,64618,84737,3,5,2,
+google/gemma-3-1b-it,The quantum computer,17,3210, thing,4,226366,161541,4,6,3,
+google/gemma-3-1b-it,The quantum computer,17,3631,font,4,127848,107923,4,5,2,
+google/gemma-3-1b-it,The quantum computer,17,3633,aur,4,117363,69620,4,5,2,
+google/gemma-3-1b-it,The quantum computer,17,3803, God,3,72705,79665,3,5,2,
+google/gemma-3-1b-it,The quantum computer,17,3834,At,3,153685,202888,3,7,3,
+google/gemma-3-1b-it,The quantum computer,17,4111,idge,3,39762,23401,3,5,2,
+google/gemma-3-1b-it,The quantum computer,17,4340,OC,3,13306,12820,2,4,2,
+google/gemma-3-1b-it,The quantum computer,17,4648, tim,4,21840,33897,4,5,2,
+google/gemma-3-1b-it,The quantum computer,17,4680, cand,5,143138,117428,5,8,3,
+google/gemma-3-1b-it,The quantum computer,17,4754,My,4,180310,199333,4,5,3,
+google/gemma-3-1b-it,The quantum computer,17,4981, status,4,148404,158517,4,6,3,
+google/gemma-3-1b-it,The quantum computer,17,5083, dro,4,59996,16769,4,5,2,
+google/gemma-3-1b-it,The quantum computer,17,5380, va,3,19264,56020,3,5,2,
+google/gemma-3-1b-it,The quantum computer,17,5512, pun,4,61271,64795,4,6,3,
+google/gemma-3-1b-it,The quantum computer,17,5628, located,4,167404,127891,3,5,2,
+google/gemma-3-1b-it,The quantum computer,17,5732, nicht,3,20097,44093,3,5,2,
+google/gemma-3-1b-it,The quantum computer,17,5912, See,4,177829,126618,4,5,2,
+google/gemma-3-1b-it,The quantum computer,17,6060, handle,4,202265,190529,4,7,3,
+google/gemma-3-1b-it,The quantum computer,17,6204,miss,5,170732,146800,5,9,3,
+google/gemma-3-1b-it,The quantum computer,17,6254, tor,17,238306,232249,18,27,7,
+google/gemma-3-1b-it,The quantum computer,17,6478, session,4,197414,145738,4,7,3,
+google/gemma-3-1b-it,The quantum computer,17,6486, Sur,3,70356,47625,3,5,2,
+google/gemma-3-1b-it,The quantum computer,17,6540, culture,4,199934,206278,4,5,3,
+google/gemma-3-1b-it,The quantum computer,17,6541, capacity,4,161199,149739,4,5,2,
+google/gemma-3-1b-it,The quantum computer,17,7568,pop,4,100910,127570,4,5,3,
+google/gemma-3-1b-it,The quantum computer,17,7652,enz,4,101080,81640,4,5,2,
+google/gemma-3-1b-it,The quantum computer,17,7808, moved,5,178413,195447,5,7,3,
+google/gemma-3-1b-it,The quantum computer,17,7876, ven,3,39325,49020,3,5,2,
+google/gemma-3-1b-it,The quantum computer,17,7902,double,4,86909,129148,4,5,2,
+google/gemma-3-1b-it,The quantum computer,17,8021,allow,4,78201,45128,4,5,2,
+google/gemma-3-1b-it,The quantum computer,17,8313, Kh,4,32299,33318,4,6,2,
+google/gemma-3-1b-it,The quantum computer,17,8448, interval,3,11133,32698,3,4,2,
+google/gemma-3-1b-it,The quantum computer,17,9166, vez,4,94387,81004,4,5,2,
+google/gemma-3-1b-it,The quantum computer,17,9208,These,3,109842,118928,3,5,2,
+google/gemma-3-1b-it,The quantum computer,17,9415,Eng,3,31889,22545,3,5,2,
+google/gemma-3-1b-it,The quantum computer,17,9438,dt,3,8560,9180,3,4,2,
+google/gemma-3-1b-it,The quantum computer,17,9577, tou,7,137133,168407,6,12,3,
+google/gemma-3-1b-it,The quantum computer,17,9697, feedback,11,242157,242781,12,17,4,
+google/gemma-3-1b-it,The quantum computer,17,9744, village,6,114244,180090,4,11,3,
+google/gemma-3-1b-it,The quantum computer,17,10480,match,3,87662,117626,3,5,2,
+google/gemma-3-1b-it,The quantum computer,17,10702, Gi,7,113029,87066,5,10,3,
+google/gemma-3-1b-it,The quantum computer,17,10746,"""));",3,95241,97727,3,5,2,
+google/gemma-3-1b-it,The quantum computer,17,10770, Thank,3,33307,72200,3,4,2,
+google/gemma-3-1b-it,The quantum computer,17,11055, charged,5,171469,168208,4,8,3,
+google/gemma-3-1b-it,The quantum computer,17,11278, aid,3,40320,82095,3,5,2,
+google/gemma-3-1b-it,The quantum computer,17,11397, dal,4,70210,95707,4,5,2,
+google/gemma-3-1b-it,The quantum computer,17,11526,BI,3,53938,50990,3,5,2,
+google/gemma-3-1b-it,The quantum computer,17,11664,unes,4,71786,79496,3,5,2,
+google/gemma-3-1b-it,The quantum computer,17,11668,username,8,132568,136337,7,13,3,
+google/gemma-3-1b-it,The quantum computer,17,11699, eleg,7,192080,157152,5,10,3,
+google/gemma-3-1b-it,The quantum computer,17,11833,aders,4,142581,134194,4,5,3,
+google/gemma-3-1b-it,The quantum computer,17,12248, Environment,4,61867,118575,4,6,2,
+google/gemma-3-1b-it,The quantum computer,17,12396, findings,7,206301,211691,6,12,3,
+google/gemma-3-1b-it,The quantum computer,17,12429,wait,2,29171,19254,2,4,2,
+google/gemma-3-1b-it,The quantum computer,17,12708, vie,4,44547,82181,4,5,2,
+google/gemma-3-1b-it,The quantum computer,17,12730, Support,6,168837,172312,5,8,4,
+google/gemma-3-1b-it,The quantum computer,17,12800, remained,3,92474,66751,3,4,2,
+google/gemma-3-1b-it,The quantum computer,17,13080,inds,4,109770,177911,4,5,3,
+google/gemma-3-1b-it,The quantum computer,17,13225, kont,3,19849,25448,3,4,2,
+google/gemma-3-1b-it,The quantum computer,17,13331,upload,4,24363,113729,4,6,2,
+google/gemma-3-1b-it,The quantum computer,17,13406,iral,3,43115,56048,3,4,2,
+google/gemma-3-1b-it,The quantum computer,17,13482, infection,4,51704,129496,4,5,2,
+google/gemma-3-1b-it,The quantum computer,17,13547, Egypt,4,92334,110374,4,9,3,
+google/gemma-3-1b-it,The quantum computer,17,13916, foundation,9,221799,205207,9,13,4,
+google/gemma-3-1b-it,The quantum computer,17,14180, dann,4,125763,122783,4,8,3,
+google/gemma-3-1b-it,The quantum computer,17,14226,nia,8,196782,206496,8,12,4,
+google/gemma-3-1b-it,The quantum computer,17,14440, inflation,3,61145,46863,3,5,2,
+google/gemma-3-1b-it,The quantum computer,17,14512, reserved,5,213193,210107,5,8,4,
+google/gemma-3-1b-it,The quantum computer,17,14611, outer,4,170109,155045,4,5,3,
+google/gemma-3-1b-it,The quantum computer,17,14937,"{""",4,138911,137786,4,7,3,
+google/gemma-3-1b-it,The quantum computer,17,14966, metric,5,137641,142180,4,8,3,
+google/gemma-3-1b-it,The quantum computer,17,15765,theless,3,63315,64587,3,5,2,
+google/gemma-3-1b-it,The quantum computer,17,15835,ikt,3,32902,20488,3,5,2,
+google/gemma-3-1b-it,The quantum computer,17,15941, respective,16,241520,235648,15,25,11,
+google/gemma-3-1b-it,The quantum computer,17,16603,including,4,196363,187593,4,10,3,
+google/gemma-3-1b-it,The quantum computer,17,16916,rice,4,104735,134124,4,5,2,
+google/gemma-3-1b-it,The quantum computer,17,17349,kor,3,19479,22271,3,4,2,
+google/gemma-3-1b-it,The quantum computer,17,17379, rol,4,74175,67407,4,6,2,
+google/gemma-3-1b-it,The quantum computer,17,17564, Zealand,4,110609,134802,4,6,2,
+google/gemma-3-1b-it,The quantum computer,17,17623,Li,3,76595,60770,3,5,2,
+google/gemma-3-1b-it,The quantum computer,17,17672,ricts,9,215344,213800,9,12,3,
+google/gemma-3-1b-it,The quantum computer,17,17726, commands,3,79705,35325,3,4,2,
+google/gemma-3-1b-it,The quantum computer,17,18325,Driver,5,173042,132006,5,9,3,
+google/gemma-3-1b-it,The quantum computer,17,18815, algo,11,205076,218611,8,16,4,
+google/gemma-3-1b-it,The quantum computer,17,18819,desc,3,85105,64663,3,5,2,
+google/gemma-3-1b-it,The quantum computer,17,18899, gravity,4,182412,122578,4,6,3,
+google/gemma-3-1b-it,The quantum computer,17,19387, arbitrary,4,182980,209605,4,6,3,
+google/gemma-3-1b-it,The quantum computer,17,19474,vc,3,42374,30094,3,5,2,
+google/gemma-3-1b-it,The quantum computer,17,19865, Ever,4,65850,68211,4,6,2,
+google/gemma-3-1b-it,The quantum computer,17,20278, volumes,4,74936,131828,4,5,2,
+google/gemma-3-1b-it,The quantum computer,17,20443,phenyl,7,156916,166522,7,11,4,
+google/gemma-3-1b-it,The quantum computer,17,20612,amping,4,176965,123923,4,6,3,
+google/gemma-3-1b-it,The quantum computer,17,20792, Gree,8,166483,147756,7,12,3,
+google/gemma-3-1b-it,The quantum computer,17,21073,IDE,4,53454,113018,4,5,2,
+google/gemma-3-1b-it,The quantum computer,17,21434,jos,7,172587,211565,7,12,4,
+google/gemma-3-1b-it,The quantum computer,17,21553,pus,4,127331,126362,4,5,2,
+google/gemma-3-1b-it,The quantum computer,17,21976, PRIM,8,107131,124251,7,11,3,
+google/gemma-3-1b-it,The quantum computer,17,21988, situated,13,196920,221866,12,16,5,
+google/gemma-3-1b-it,The quantum computer,17,21989, historia,3,25747,43569,3,5,2,
+google/gemma-3-1b-it,The quantum computer,17,22037,symbol,3,27453,22003,3,5,2,
+google/gemma-3-1b-it,The quantum computer,17,22175,ipheral,9,119474,138778,8,12,3,
+google/gemma-3-1b-it,The quantum computer,17,22358, Gib,11,141916,169778,9,14,3,
+google/gemma-3-1b-it,The quantum computer,17,22454, describing,9,230628,212338,9,14,4,
+google/gemma-3-1b-it,The quantum computer,17,22504,social,3,44974,52278,3,4,2,
+google/gemma-3-1b-it,The quantum computer,25,322,T,3771,152579,163926,3763,3774,2762,
+google/gemma-3-1b-it,The quantum computer,25,605,us,1,26522,43268,1,2,1,12.555492401123047
+google/gemma-3-1b-it,The quantum computer,25,806,ous,1,47139,42100,1,2,1,11.271964073181152
+google/gemma-3-1b-it,The quantum computer,25,850, app,2,218226,209091,2,4,1,
+google/gemma-3-1b-it,The quantum computer,25,1049,inal,1,207837,210707,1,3,1,14.705048561096191
+google/gemma-3-1b-it,The quantum computer,25,1143,cept,1,172906,185309,1,3,1,15.788705825805664
+google/gemma-3-1b-it,The quantum computer,25,1176, said,1,163433,151318,1,2,1,14.760154724121094
+google/gemma-3-1b-it,The quantum computer,25,1240,riv,1,16609,91449,1,2,1,13.706926345825195
+google/gemma-3-1b-it,The quantum computer,25,1276, Re,2,251365,226799,2,4,2,
+google/gemma-3-1b-it,The quantum computer,25,1382, aut,2,212222,202937,2,4,1,
+google/gemma-3-1b-it,The quantum computer,25,1417,wn,1,20332,42470,1,2,1,14.000555992126465
+google/gemma-3-1b-it,The quantum computer,25,1428, equ,2,239600,244465,2,6,1,
+google/gemma-3-1b-it,The quantum computer,25,1844,uf,1,205251,201923,1,2,1,14.532258987426758
+google/gemma-3-1b-it,The quantum computer,25,1911, var,1,159263,149926,1,2,1,14.52676010131836
+google/gemma-3-1b-it,The quantum computer,25,1916,rc,1,32787,17790,1,2,1,12.249677658081055
+google/gemma-3-1b-it,The quantum computer,25,2048, prote,1,201757,183341,1,3,1,16.413585662841797
+google/gemma-3-1b-it,The quantum computer,25,2124,++,1,4490,2367,1,1,1,9.999881744384766
+google/gemma-3-1b-it,The quantum computer,25,2233, invest,4,240488,228888,4,8,1,
+google/gemma-3-1b-it,The quantum computer,25,2247, put,2,217215,147505,2,2,1,
+google/gemma-3-1b-it,The quantum computer,25,2423,ino,1,155235,238770,1,2,1,14.32151985168457
+google/gemma-3-1b-it,The quantum computer,25,2582,EXT,1,66517,21673,1,2,1,14.382527351379395
+google/gemma-3-1b-it,The quantum computer,25,2669,ending,1,168647,169185,1,3,1,15.607433319091797
+google/gemma-3-1b-it,The quantum computer,25,2802, access,2,255267,257776,2,6,1,
+google/gemma-3-1b-it,The quantum computer,25,3155, house,2,165521,204475,2,2,1,
+google/gemma-3-1b-it,The quantum computer,25,3210, thing,1,250913,233859,1,3,1,15.439533233642578
+google/gemma-3-1b-it,The quantum computer,25,3631,font,1,207318,92016,1,2,1,14.586060523986816
+google/gemma-3-1b-it,The quantum computer,25,3633,aur,1,47146,17854,1,2,1,12.50185489654541
+google/gemma-3-1b-it,The quantum computer,25,3803, God,2,187623,210675,2,3,1,
+google/gemma-3-1b-it,The quantum computer,25,3834,At,1,327,711,1,2,1,9.998870849609375
+google/gemma-3-1b-it,The quantum computer,25,4111,idge,1,103837,88835,1,3,1,14.921648025512695
+google/gemma-3-1b-it,The quantum computer,25,4340,OC,1,7567,3601,1,2,1,12.685409545898438
+google/gemma-3-1b-it,The quantum computer,25,4648, tim,2,194072,242946,2,6,1,
+google/gemma-3-1b-it,The quantum computer,25,4680, cand,1,180853,165388,1,3,1,15.738517761230469
+google/gemma-3-1b-it,The quantum computer,25,4754,My,1,2031,2286,1,2,1,10.719046592712402
+google/gemma-3-1b-it,The quantum computer,25,4981, status,2,248519,252241,3,5,1,
+google/gemma-3-1b-it,The quantum computer,25,5083, dro,1,151447,79891,1,3,1,15.448685646057129
+google/gemma-3-1b-it,The quantum computer,25,5380, va,1,59858,98055,1,2,1,15.408988952636719
+google/gemma-3-1b-it,The quantum computer,25,5512, pun,1,203512,214486,1,5,1,16.82802963256836
+google/gemma-3-1b-it,The quantum computer,25,5628, located,2,235757,151935,1,4,1,
+google/gemma-3-1b-it,The quantum computer,25,5732, nicht,1,117727,246090,1,4,1,16.55703353881836
+google/gemma-3-1b-it,The quantum computer,25,5912, See,3,249887,249683,3,4,2,
+google/gemma-3-1b-it,The quantum computer,25,6060, handle,2,240366,189909,2,3,1,
+google/gemma-3-1b-it,The quantum computer,25,6204,miss,1,198641,154871,1,3,1,15.688199996948242
+google/gemma-3-1b-it,The quantum computer,25,6254, tor,1,163944,109328,1,3,1,15.005454063415527
+google/gemma-3-1b-it,The quantum computer,25,6478, session,2,176649,162690,2,2,1,
+google/gemma-3-1b-it,The quantum computer,25,6486, Sur,2,189440,142057,2,2,1,
+google/gemma-3-1b-it,The quantum computer,25,6540, culture,3,260321,251274,2,8,1,
+google/gemma-3-1b-it,The quantum computer,25,6541, capacity,2,254344,254803,3,4,1,
+google/gemma-3-1b-it,The quantum computer,25,7568,pop,1,136280,200751,1,2,1,15.631591796875
+google/gemma-3-1b-it,The quantum computer,25,7652,enz,1,134728,102204,1,2,1,14.518024444580078
+google/gemma-3-1b-it,The quantum computer,25,7808, moved,1,119401,151701,1,2,1,14.574707984924316
+google/gemma-3-1b-it,The quantum computer,25,7876, ven,1,185681,135679,1,3,1,15.518203735351562
+google/gemma-3-1b-it,The quantum computer,25,7902,double,2,77338,87647,2,2,1,
+google/gemma-3-1b-it,The quantum computer,25,8021,allow,1,122103,141960,1,3,1,14.725791931152344
+google/gemma-3-1b-it,The quantum computer,25,8313, Kh,2,72509,69442,2,2,1,
+google/gemma-3-1b-it,The quantum computer,25,8448, interval,2,227513,246322,1,4,1,
+google/gemma-3-1b-it,The quantum computer,25,9166, vez,1,204028,201211,1,3,1,16.249982833862305
+google/gemma-3-1b-it,The quantum computer,25,9208,These,1,543,1781,1,2,1,10.258554458618164
+google/gemma-3-1b-it,The quantum computer,25,9415,Eng,1,1390,700,1,2,1,11.61559009552002
+google/gemma-3-1b-it,The quantum computer,25,9438,dt,1,47563,49224,1,2,1,13.600388526916504
+google/gemma-3-1b-it,The quantum computer,25,9577, tou,1,178282,204323,1,3,1,16.045494079589844
+google/gemma-3-1b-it,The quantum computer,25,9697, feedback,3,261005,261699,3,5,1,
+google/gemma-3-1b-it,The quantum computer,25,9744, village,1,168354,230914,1,3,1,16.33724594116211
+google/gemma-3-1b-it,The quantum computer,25,10480,match,2,109388,97088,2,2,1,
+google/gemma-3-1b-it,The quantum computer,25,10702, Gi,3,236426,242048,3,3,1,
+google/gemma-3-1b-it,The quantum computer,25,10746,"""));",1,52165,24915,1,2,1,12.9955415725708
+google/gemma-3-1b-it,The quantum computer,25,10770, Thank,2,7339,4376,2,2,1,
+google/gemma-3-1b-it,The quantum computer,25,11055, charged,1,202107,162254,1,2,1,15.36330795288086
+google/gemma-3-1b-it,The quantum computer,25,11278, aid,1,163328,220662,1,3,1,15.787955284118652
+google/gemma-3-1b-it,The quantum computer,25,11397, dal,1,111618,205333,1,2,1,15.422191619873047
+google/gemma-3-1b-it,The quantum computer,25,11526,BI,1,20220,26697,1,2,1,12.92093563079834
+google/gemma-3-1b-it,The quantum computer,25,11664,unes,1,238112,218400,1,5,1,16.963369369506836
+google/gemma-3-1b-it,The quantum computer,25,11668,username,1,43992,94338,1,3,1,15.225987434387207
+google/gemma-3-1b-it,The quantum computer,25,11699, eleg,2,260855,250640,2,7,1,
+google/gemma-3-1b-it,The quantum computer,25,11833,aders,1,41569,59028,1,2,1,13.237671852111816
+google/gemma-3-1b-it,The quantum computer,25,12248, Environment,3,145250,170728,2,4,2,
+google/gemma-3-1b-it,The quantum computer,25,12396, findings,2,261487,260070,2,7,1,
+google/gemma-3-1b-it,The quantum computer,25,12429,wait,1,14205,21883,1,2,1,12.918517112731934
+google/gemma-3-1b-it,The quantum computer,25,12708, vie,1,127724,211764,1,3,1,15.330782890319824
+google/gemma-3-1b-it,The quantum computer,25,12730, Support,2,237966,224879,2,6,2,
+google/gemma-3-1b-it,The quantum computer,25,12800, remained,2,261577,261362,2,6,1,
+google/gemma-3-1b-it,The quantum computer,25,13080,inds,1,151757,163551,1,3,1,15.837815284729004
+google/gemma-3-1b-it,The quantum computer,25,13225, kont,1,177046,214832,1,3,1,15.507999420166016
+google/gemma-3-1b-it,The quantum computer,25,13331,upload,1,20822,188198,1,3,1,15.558658599853516
+google/gemma-3-1b-it,The quantum computer,25,13406,iral,1,119415,99898,1,2,1,14.608299255371094
+google/gemma-3-1b-it,The quantum computer,25,13482, infection,2,216320,255633,2,5,1,
+google/gemma-3-1b-it,The quantum computer,25,13547, Egypt,3,179790,203648,2,3,1,
+google/gemma-3-1b-it,The quantum computer,25,13916, foundation,3,258896,251109,3,5,2,
+google/gemma-3-1b-it,The quantum computer,25,14180, dann,2,236252,209288,2,5,1,
+google/gemma-3-1b-it,The quantum computer,25,14226,nia,1,146288,174617,1,2,1,15.002721786499023
+google/gemma-3-1b-it,The quantum computer,25,14440, inflation,2,207270,216022,2,5,1,
+google/gemma-3-1b-it,The quantum computer,25,14512, reserved,1,202484,108359,1,2,1,15.264817237854004
+google/gemma-3-1b-it,The quantum computer,25,14611, outer,2,229535,173623,2,3,1,
+google/gemma-3-1b-it,The quantum computer,25,14937,"{""",1,4041,4355,1,2,1,10.828923225402832
+google/gemma-3-1b-it,The quantum computer,25,14966, metric,2,191015,172412,2,2,1,
+google/gemma-3-1b-it,The quantum computer,25,15765,theless,1,150961,190770,1,3,1,15.492440223693848
+google/gemma-3-1b-it,The quantum computer,25,15835,ikt,1,14012,11221,1,2,1,12.51275634765625
+google/gemma-3-1b-it,The quantum computer,25,15941, respective,2,261419,260093,2,5,1,
+google/gemma-3-1b-it,The quantum computer,25,16603,including,2,185719,170598,2,2,1,
+google/gemma-3-1b-it,The quantum computer,25,16916,rice,1,42916,48416,1,2,1,13.440309524536133
+google/gemma-3-1b-it,The quantum computer,25,17349,kor,1,182080,180127,1,3,1,16.477060317993164
+google/gemma-3-1b-it,The quantum computer,25,17379, rol,1,182249,181690,1,3,1,15.80824089050293
+google/gemma-3-1b-it,The quantum computer,25,17564, Zealand,1,155552,128858,1,3,1,14.8651762008667
+google/gemma-3-1b-it,The quantum computer,25,17623,Li,1,4042,2141,1,2,1,11.04597282409668
+google/gemma-3-1b-it,The quantum computer,25,17672,ricts,1,170896,133179,1,3,1,15.169051170349121
+google/gemma-3-1b-it,The quantum computer,25,17726, commands,1,250334,232982,1,3,1,16.276742935180664
+google/gemma-3-1b-it,The quantum computer,25,18325,Driver,1,9462,8093,1,2,1,11.711752891540527
+google/gemma-3-1b-it,The quantum computer,25,18815, algo,3,254277,254789,3,8,1,
+google/gemma-3-1b-it,The quantum computer,25,18819,desc,1,77820,53930,1,2,1,13.295003890991211
+google/gemma-3-1b-it,The quantum computer,25,18899, gravity,1,162903,56329,1,2,1,14.100467681884766
+google/gemma-3-1b-it,The quantum computer,25,19387, arbitrary,1,221292,226804,1,3,1,15.439895629882812
+google/gemma-3-1b-it,The quantum computer,25,19474,vc,1,156827,113215,1,3,1,15.381996154785156
+google/gemma-3-1b-it,The quantum computer,25,19865, Ever,3,170737,188556,3,3,2,
+google/gemma-3-1b-it,The quantum computer,25,20278, volumes,1,117106,219015,1,2,1,15.13364315032959
+google/gemma-3-1b-it,The quantum computer,25,20443,phenyl,1,52980,66593,1,3,1,14.641999244689941
+google/gemma-3-1b-it,The quantum computer,25,20612,amping,1,153987,113723,1,2,1,14.39687728881836
+google/gemma-3-1b-it,The quantum computer,25,20792, Gree,1,9605,9679,1,2,1,12.680737495422363
+google/gemma-3-1b-it,The quantum computer,25,21073,IDE,1,11422,6633,1,2,1,14.423249244689941
+google/gemma-3-1b-it,The quantum computer,25,21434,jos,1,51576,82286,1,2,1,14.284022331237793
+google/gemma-3-1b-it,The quantum computer,25,21553,pus,1,195665,184606,1,2,1,14.526200294494629
+google/gemma-3-1b-it,The quantum computer,25,21976, PRIM,1,62500,165194,1,3,1,16.08915901184082
+google/gemma-3-1b-it,The quantum computer,25,21988, situated,2,218998,247814,2,6,1,
+google/gemma-3-1b-it,The quantum computer,25,21989, historia,2,181232,235385,2,5,1,
+google/gemma-3-1b-it,The quantum computer,25,22037,symbol,2,67791,46784,2,2,1,
+google/gemma-3-1b-it,The quantum computer,25,22175,ipheral,1,104552,150477,1,3,1,16.0135498046875
+google/gemma-3-1b-it,The quantum computer,25,22358, Gib,1,128024,163488,1,3,1,16.918392181396484
+google/gemma-3-1b-it,The quantum computer,25,22454, describing,1,203496,191622,1,3,1,15.622042655944824
+google/gemma-3-1b-it,The quantum computer,25,22504,social,2,83331,93381,2,2,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",0,322,T,3301,261228,260204,3673,4106,3135,
+google/gemma-3-1b-it,"In the year 3000, humans will",0,605,us,1,1948,4005,1,5,1,12.073151588439941
+google/gemma-3-1b-it,"In the year 3000, humans will",0,806,ous,1,62070,58575,1,10,1,13.936891555786133
+google/gemma-3-1b-it,"In the year 3000, humans will",0,850, app,1,21292,34932,1,2,1,13.94520378112793
+google/gemma-3-1b-it,"In the year 3000, humans will",0,1049,inal,1,76293,65209,1,11,1,14.892318725585938
+google/gemma-3-1b-it,"In the year 3000, humans will",0,1143,cept,8,217612,190401,8,11,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",0,1176, said,1,506,727,1,1,1,9.655927658081055
+google/gemma-3-1b-it,"In the year 3000, humans will",0,1240,riv,1,1183,3465,1,7,1,12.451496124267578
+google/gemma-3-1b-it,"In the year 3000, humans will",0,1276, Re,1,117,70,1,2,1,8.85575008392334
+google/gemma-3-1b-it,"In the year 3000, humans will",0,1382, aut,1,66368,83196,1,2,1,15.828963279724121
+google/gemma-3-1b-it,"In the year 3000, humans will",0,1417,wn,1,15481,47323,1,11,1,16.21874237060547
+google/gemma-3-1b-it,"In the year 3000, humans will",0,1428, equ,1,12888,14034,1,11,1,14.4837646484375
+google/gemma-3-1b-it,"In the year 3000, humans will",0,1844,uf,1,43109,14719,1,11,1,13.71319580078125
+google/gemma-3-1b-it,"In the year 3000, humans will",0,1911, var,1,6259,6147,1,2,1,12.747797012329102
+google/gemma-3-1b-it,"In the year 3000, humans will",0,1916,rc,1,27504,10015,1,11,1,13.874921798706055
+google/gemma-3-1b-it,"In the year 3000, humans will",0,2048, prote,1,77159,70224,1,11,1,16.031841278076172
+google/gemma-3-1b-it,"In the year 3000, humans will",0,2124,++,2,98541,49406,2,11,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",0,2233, invest,1,39948,98224,1,4,1,14.298297882080078
+google/gemma-3-1b-it,"In the year 3000, humans will",0,2247, put,1,103050,103957,1,2,1,14.821442604064941
+google/gemma-3-1b-it,"In the year 3000, humans will",0,2423,ino,1,3148,3295,1,5,1,12.26068115234375
+google/gemma-3-1b-it,"In the year 3000, humans will",0,2582,EXT,2,98388,132714,1,11,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",0,2669,ending,6,182894,183016,5,11,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",0,2802, access,1,91192,84572,1,11,1,15.409937858581543
+google/gemma-3-1b-it,"In the year 3000, humans will",0,3155, house,1,10934,6881,1,2,1,12.491193771362305
+google/gemma-3-1b-it,"In the year 3000, humans will",0,3210, thing,1,183813,144316,1,11,1,15.263054847717285
+google/gemma-3-1b-it,"In the year 3000, humans will",0,3631,font,1,29746,8933,1,9,1,13.242295265197754
+google/gemma-3-1b-it,"In the year 3000, humans will",0,3633,aur,1,32752,9545,1,10,1,13.868610382080078
+google/gemma-3-1b-it,"In the year 3000, humans will",0,3803, God,1,1316,3114,1,4,1,11.67773151397705
+google/gemma-3-1b-it,"In the year 3000, humans will",0,3834,At,2,6068,6577,2,2,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",0,4111,idge,4,180981,193942,6,11,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",0,4340,OC,1,37833,15346,1,11,1,14.472160339355469
+google/gemma-3-1b-it,"In the year 3000, humans will",0,4648, tim,1,38657,120750,1,11,1,16.680646896362305
+google/gemma-3-1b-it,"In the year 3000, humans will",0,4680, cand,1,46265,79891,1,11,1,15.188824653625488
+google/gemma-3-1b-it,"In the year 3000, humans will",0,4754,My,2,35408,15934,2,2,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",0,4981, status,1,76722,103069,1,11,1,15.666309356689453
+google/gemma-3-1b-it,"In the year 3000, humans will",0,5083, dro,6,217570,169826,6,11,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",0,5380, va,1,34631,131207,1,11,1,16.94738006591797
+google/gemma-3-1b-it,"In the year 3000, humans will",0,5512, pun,3,110981,133643,3,11,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",0,5628, located,1,7791,4966,1,3,1,11.531367301940918
+google/gemma-3-1b-it,"In the year 3000, humans will",0,5732, nicht,1,6767,71373,1,2,1,14.625722885131836
+google/gemma-3-1b-it,"In the year 3000, humans will",0,5912, See,1,92993,46916,1,11,1,14.752833366394043
+google/gemma-3-1b-it,"In the year 3000, humans will",0,6060, handle,1,69374,65438,1,2,1,14.479891777038574
+google/gemma-3-1b-it,"In the year 3000, humans will",0,6204,miss,1,152234,157490,1,11,1,16.560489654541016
+google/gemma-3-1b-it,"In the year 3000, humans will",0,6254, tor,1,78050,97746,1,3,1,15.496831893920898
+google/gemma-3-1b-it,"In the year 3000, humans will",0,6478, session,1,16163,6949,1,2,1,12.296102523803711
+google/gemma-3-1b-it,"In the year 3000, humans will",0,6486, Sur,1,9267,6536,1,8,1,12.781476020812988
+google/gemma-3-1b-it,"In the year 3000, humans will",0,6540, culture,1,22759,6473,1,2,1,11.757624626159668
+google/gemma-3-1b-it,"In the year 3000, humans will",0,6541, capacity,1,11373,3606,1,2,1,12.09022045135498
+google/gemma-3-1b-it,"In the year 3000, humans will",0,7568,pop,1,4304,6970,1,2,1,12.420781135559082
+google/gemma-3-1b-it,"In the year 3000, humans will",0,7652,enz,1,31441,42391,1,11,1,13.93655014038086
+google/gemma-3-1b-it,"In the year 3000, humans will",0,7808, moved,1,26638,15924,1,9,1,13.355069160461426
+google/gemma-3-1b-it,"In the year 3000, humans will",0,7876, ven,1,27909,13746,1,11,1,14.311397552490234
+google/gemma-3-1b-it,"In the year 3000, humans will",0,7902,double,1,93593,93584,1,2,1,15.964665412902832
+google/gemma-3-1b-it,"In the year 3000, humans will",0,8021,allow,1,52762,26733,1,11,1,14.078222274780273
+google/gemma-3-1b-it,"In the year 3000, humans will",0,8313, Kh,1,1411,1821,1,2,1,12.312905311584473
+google/gemma-3-1b-it,"In the year 3000, humans will",0,8448, interval,1,53912,42607,1,11,1,14.968236923217773
+google/gemma-3-1b-it,"In the year 3000, humans will",0,9166, vez,1,56832,46583,1,11,1,15.569061279296875
+google/gemma-3-1b-it,"In the year 3000, humans will",0,9208,These,2,100910,69414,2,2,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",0,9415,Eng,1,30286,52600,1,2,1,15.186556816101074
+google/gemma-3-1b-it,"In the year 3000, humans will",0,9438,dt,1,39239,66561,1,11,1,15.003179550170898
+google/gemma-3-1b-it,"In the year 3000, humans will",0,9577, tou,2,110358,152349,2,11,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",0,9697, feedback,1,177190,131970,1,11,1,16.459880828857422
+google/gemma-3-1b-it,"In the year 3000, humans will",0,9744, village,1,2215,9112,1,2,1,12.477676391601562
+google/gemma-3-1b-it,"In the year 3000, humans will",0,10480,match,1,25318,27266,1,2,1,13.700614929199219
+google/gemma-3-1b-it,"In the year 3000, humans will",0,10702, Gi,1,3526,1502,1,9,1,12.638657569885254
+google/gemma-3-1b-it,"In the year 3000, humans will",0,10746,"""));",1,98843,57064,1,2,1,14.118752479553223
+google/gemma-3-1b-it,"In the year 3000, humans will",0,10770, Thank,1,4217,9152,1,2,1,12.413253784179688
+google/gemma-3-1b-it,"In the year 3000, humans will",0,11055, charged,1,44307,35168,1,11,1,14.471135139465332
+google/gemma-3-1b-it,"In the year 3000, humans will",0,11278, aid,1,12027,33142,1,2,1,13.137643814086914
+google/gemma-3-1b-it,"In the year 3000, humans will",0,11397, dal,1,9536,12659,1,10,1,13.82575798034668
+google/gemma-3-1b-it,"In the year 3000, humans will",0,11526,BI,1,30839,31853,1,11,1,14.71166706085205
+google/gemma-3-1b-it,"In the year 3000, humans will",0,11664,unes,1,64009,68862,1,11,1,14.868796348571777
+google/gemma-3-1b-it,"In the year 3000, humans will",0,11668,username,8,184619,237734,5,11,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",0,11699, eleg,1,77730,34245,1,11,1,14.907441139221191
+google/gemma-3-1b-it,"In the year 3000, humans will",0,11833,aders,1,56976,52682,1,11,1,14.407007217407227
+google/gemma-3-1b-it,"In the year 3000, humans will",0,12248, Environment,1,42626,92744,1,11,1,15.671452522277832
+google/gemma-3-1b-it,"In the year 3000, humans will",0,12396, findings,1,166305,167450,1,11,1,15.28154468536377
+google/gemma-3-1b-it,"In the year 3000, humans will",0,12429,wait,1,69989,45147,1,11,1,14.612506866455078
+google/gemma-3-1b-it,"In the year 3000, humans will",0,12708, vie,1,58381,103970,1,11,1,16.58468246459961
+google/gemma-3-1b-it,"In the year 3000, humans will",0,12730, Support,1,22402,27478,1,2,1,13.873684883117676
+google/gemma-3-1b-it,"In the year 3000, humans will",0,12800, remained,1,2068,2394,1,1,1,10.98521900177002
+google/gemma-3-1b-it,"In the year 3000, humans will",0,13080,inds,5,182235,200531,2,11,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",0,13225, kont,1,93114,162011,1,11,1,15.847576141357422
+google/gemma-3-1b-it,"In the year 3000, humans will",0,13331,upload,1,13640,65520,1,11,1,15.66029167175293
+google/gemma-3-1b-it,"In the year 3000, humans will",0,13406,iral,1,139149,162833,1,11,1,16.497119903564453
+google/gemma-3-1b-it,"In the year 3000, humans will",0,13482, infection,1,1464,12479,1,2,1,11.854401588439941
+google/gemma-3-1b-it,"In the year 3000, humans will",0,13547, Egypt,1,4272,11306,1,9,1,12.995179176330566
+google/gemma-3-1b-it,"In the year 3000, humans will",0,13916, foundation,1,10263,2112,1,2,1,12.225724220275879
+google/gemma-3-1b-it,"In the year 3000, humans will",0,14180, dann,1,86675,98406,1,11,1,15.070027351379395
+google/gemma-3-1b-it,"In the year 3000, humans will",0,14226,nia,1,74062,76195,1,11,1,15.94011116027832
+google/gemma-3-1b-it,"In the year 3000, humans will",0,14440, inflation,1,20818,22348,1,7,1,12.79439926147461
+google/gemma-3-1b-it,"In the year 3000, humans will",0,14512, reserved,1,69673,46743,1,11,1,14.825512886047363
+google/gemma-3-1b-it,"In the year 3000, humans will",0,14611, outer,1,33565,17708,1,6,1,12.748028755187988
+google/gemma-3-1b-it,"In the year 3000, humans will",0,14937,"{""",5,217088,215951,5,11,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",0,14966, metric,5,179223,173820,3,11,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",0,15765,theless,1,191892,174303,1,11,1,16.2525577545166
+google/gemma-3-1b-it,"In the year 3000, humans will",0,15835,ikt,4,135435,118463,5,11,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",0,15941, respective,1,146789,136726,1,11,1,15.21865177154541
+google/gemma-3-1b-it,"In the year 3000, humans will",0,16603,including,1,24243,12848,1,2,1,13.540324211120605
+google/gemma-3-1b-it,"In the year 3000, humans will",0,16916,rice,1,20777,25549,1,11,1,13.889920234680176
+google/gemma-3-1b-it,"In the year 3000, humans will",0,17349,kor,1,15708,38378,1,10,1,13.873172760009766
+google/gemma-3-1b-it,"In the year 3000, humans will",0,17379, rol,1,86558,76915,1,11,1,16.405323028564453
+google/gemma-3-1b-it,"In the year 3000, humans will",0,17564, Zealand,1,7372,3435,1,4,1,12.16468334197998
+google/gemma-3-1b-it,"In the year 3000, humans will",0,17623,Li,1,27191,15242,1,2,1,13.779353141784668
+google/gemma-3-1b-it,"In the year 3000, humans will",0,17672,ricts,1,133019,96813,1,11,1,14.727206230163574
+google/gemma-3-1b-it,"In the year 3000, humans will",0,17726, commands,1,19358,8720,1,2,1,12.322425842285156
+google/gemma-3-1b-it,"In the year 3000, humans will",0,18325,Driver,3,115401,95837,3,3,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",0,18815, algo,2,162087,174221,2,11,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",0,18819,desc,2,180500,124815,2,11,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",0,18899, gravity,1,138258,95979,1,11,1,15.251880645751953
+google/gemma-3-1b-it,"In the year 3000, humans will",0,19387, arbitrary,4,231716,234357,5,11,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",0,19474,vc,4,165388,179210,5,11,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",0,19865, Ever,1,65107,46276,1,11,1,15.862889289855957
+google/gemma-3-1b-it,"In the year 3000, humans will",0,20278, volumes,1,2434,8194,1,7,1,12.828734397888184
+google/gemma-3-1b-it,"In the year 3000, humans will",0,20443,phenyl,1,59999,96922,1,11,1,15.234169960021973
+google/gemma-3-1b-it,"In the year 3000, humans will",0,20612,amping,4,215011,173747,2,11,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",0,20792, Gree,1,121756,125764,1,11,1,16.13203239440918
+google/gemma-3-1b-it,"In the year 3000, humans will",0,21073,IDE,4,113182,163377,6,11,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",0,21434,jos,1,34852,62963,1,11,1,15.485930442810059
+google/gemma-3-1b-it,"In the year 3000, humans will",0,21553,pus,1,68658,99295,1,11,1,14.696368217468262
+google/gemma-3-1b-it,"In the year 3000, humans will",0,21976, PRIM,6,145884,182756,6,11,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",0,21988, situated,1,5582,8729,1,2,1,12.933147430419922
+google/gemma-3-1b-it,"In the year 3000, humans will",0,21989, historia,1,38281,93198,1,11,1,15.268757820129395
+google/gemma-3-1b-it,"In the year 3000, humans will",0,22037,symbol,4,175155,175859,2,11,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",0,22175,ipheral,1,130146,161926,1,11,1,15.845062255859375
+google/gemma-3-1b-it,"In the year 3000, humans will",0,22358, Gib,1,82339,109586,1,11,1,16.090900421142578
+google/gemma-3-1b-it,"In the year 3000, humans will",0,22454, describing,1,66779,50902,1,2,1,14.302682876586914
+google/gemma-3-1b-it,"In the year 3000, humans will",0,22504,social,1,14987,18584,1,3,1,13.39328384399414
+google/gemma-3-1b-it,"In the year 3000, humans will",8,322,T,2907,246362,246294,2683,2954,2880,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,605,us,4,52504,42775,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,806,ous,4,173977,116561,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,850, app,3,47249,89176,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,1049,inal,3,33202,24641,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,1143,cept,4,118452,124092,4,6,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,1176, said,6,190483,180872,5,9,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,1240,riv,5,98252,130488,5,7,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,1276, Re,4,113572,63139,4,7,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,1382, aut,3,18268,10011,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,1417,wn,5,46849,156066,5,5,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,1428, equ,4,66897,51640,4,7,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,1844,uf,4,82947,65889,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,1911, var,3,18382,17729,3,4,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,1916,rc,3,73082,56969,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,2048, prote,4,33659,16107,4,5,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,2124,++,4,71411,38133,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,2233, invest,3,19940,42400,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,2247, put,3,72910,27145,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,2423,ino,4,68380,62882,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,2582,EXT,4,44738,29213,4,7,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,2669,ending,5,120231,118641,5,6,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,2802, access,5,168338,197722,5,5,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,3155, house,4,58884,79205,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,3210, thing,5,214502,171248,5,6,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,3631,font,4,96734,34094,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,3633,aur,4,106759,57951,4,6,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,3803, God,3,64558,66867,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,3834,At,7,187772,206812,7,11,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,4111,idge,4,55039,52908,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,4340,OC,3,16175,10880,3,4,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,4648, tim,4,18058,58385,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,4680, cand,5,127737,129653,5,8,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,4754,My,5,186949,126115,5,7,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,4981, status,5,132150,109757,5,6,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,5083, dro,4,53622,41117,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,5380, va,3,23250,58558,3,6,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,5512, pun,4,38062,49275,4,6,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,5628, located,4,167803,118905,4,6,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,5732, nicht,3,14915,70732,3,7,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,5912, See,4,166117,128052,4,6,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,6060, handle,5,192053,177862,5,7,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,6204,miss,5,137134,115252,5,7,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,6254, tor,19,229822,223691,20,26,7,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,6478, session,6,200387,181667,6,9,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,6486, Sur,4,86305,64022,4,6,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,6540, culture,5,202776,159576,5,7,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,6541, capacity,4,129716,91236,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,7568,pop,5,110982,174765,5,6,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,7652,enz,5,135622,141357,5,6,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,7808, moved,7,182656,180332,6,11,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,7876, ven,4,30955,24666,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,7902,double,5,115864,96108,5,7,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,8021,allow,5,158688,149436,5,7,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,8313, Kh,4,30246,42750,4,7,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,8448, interval,2,4785,7014,2,4,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,9166, vez,5,99978,79558,5,6,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,9208,These,4,127701,110953,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,9415,Eng,4,46650,54995,4,7,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,9438,dt,2,5116,3717,2,4,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,9577, tou,7,116151,129563,7,11,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,9697, feedback,7,219990,204764,6,12,4,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,9744, village,8,108308,150443,7,12,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,10480,match,4,89307,80843,4,6,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,10702, Gi,7,102892,80575,7,11,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,10746,"""));",3,84366,73483,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,10770, Thank,4,104733,155760,4,7,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,11055, charged,5,167234,182070,5,10,4,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,11278, aid,4,37940,74792,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,11397, dal,5,58658,100736,5,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,11526,BI,3,25543,20454,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,11664,unes,4,47364,47984,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,11668,username,8,116628,151804,8,14,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,11699, eleg,7,169278,112043,6,10,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,11833,aders,5,138375,132872,5,6,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,12248, Environment,5,67429,100258,5,7,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,12396, findings,8,195559,161028,8,11,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,12429,wait,4,66846,80174,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,12708, vie,4,23962,57897,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,12730, Support,6,147600,189479,6,8,4,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,12800, remained,3,69061,41361,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,13080,inds,5,108403,97573,5,6,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,13225, kont,3,11368,14058,3,4,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,13331,upload,4,21697,57819,4,7,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,13406,iral,3,43732,34517,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,13482, infection,4,35371,77783,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,13547, Egypt,4,64717,122655,4,7,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,13916, foundation,9,210853,175058,9,13,4,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,14180, dann,7,142423,176395,6,10,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,14226,nia,8,176589,182437,8,12,4,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,14440, inflation,4,55203,47070,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,14512, reserved,5,175693,133877,5,8,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,14611, outer,5,165275,148645,4,6,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,14937,"{""",7,165963,199545,6,10,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,14966, metric,5,112371,132667,5,7,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,15765,theless,3,63458,35289,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,15835,ikt,4,49897,76649,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,15941, respective,22,246082,238200,21,34,13,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,16603,including,7,210069,196681,7,12,4,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,16916,rice,5,87757,80478,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,17349,kor,3,13290,17563,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,17379, rol,4,79056,39762,4,7,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,17564, Zealand,4,57035,59493,4,6,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,17623,Li,5,75374,41511,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,17672,ricts,9,206967,184993,9,13,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,17726, commands,4,89542,44770,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,18325,Driver,6,165125,122625,5,10,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,18815, algo,11,191298,205717,11,15,5,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,18819,desc,4,91587,52231,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,18899, gravity,4,172456,111225,4,7,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,19387, arbitrary,5,182618,194137,5,7,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,19474,vc,3,33789,23621,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,19865, Ever,4,69609,33577,4,7,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,20278, volumes,5,74541,144199,5,6,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,20443,phenyl,9,174449,197207,9,13,5,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,20612,amping,6,199584,183303,6,7,4,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,20792, Gree,10,193040,199866,10,18,6,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,21073,IDE,4,46626,91584,4,6,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,21434,jos,7,159354,177733,8,14,4,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,21553,pus,5,132486,137486,5,6,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,21976, PRIM,8,107088,93325,7,15,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,21988, situated,13,175602,201945,13,18,5,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,21989, historia,4,28481,85118,4,6,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,22037,symbol,3,19836,22346,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,22175,ipheral,12,156714,181470,11,19,5,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,22358, Gib,11,135132,169023,10,18,5,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,22454, describing,14,235659,241271,13,25,7,
+google/gemma-3-1b-it,"In the year 3000, humans will",8,22504,social,3,35737,30103,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,322,T,3303,248794,248750,3213,3329,3315,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,605,us,3,38918,44151,3,4,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,806,ous,4,196565,187956,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,850, app,3,55874,58802,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,1049,inal,2,27255,21884,2,4,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,1143,cept,4,119026,124231,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,1176, said,4,180190,195131,4,7,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,1240,riv,4,69250,147530,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,1276, Re,3,98705,70511,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,1382, aut,3,27019,24337,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,1417,wn,3,26521,102679,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,1428, equ,4,101006,117020,4,8,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,1844,uf,3,52094,28897,3,4,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,1911, var,2,14654,13913,2,3,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,1916,rc,3,74024,85581,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,2048, prote,3,46828,48176,3,5,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,2124,++,3,95512,103161,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,2233, invest,3,27967,40233,3,4,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,2247, put,3,101255,55950,3,4,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,2423,ino,3,48208,69526,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,2582,EXT,3,38956,27613,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,2669,ending,4,107519,123725,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,2802, access,5,179931,163209,4,6,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,3155, house,3,65724,75268,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,3210, thing,4,212680,143068,4,5,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,3631,font,3,119994,54915,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,3633,aur,4,119821,83303,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,3803, God,3,78186,79888,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,3834,At,3,95413,97683,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,4111,idge,3,44031,30243,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,4340,OC,3,16493,9977,3,4,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,4648, tim,4,37303,117784,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,4680, cand,5,132001,93126,4,8,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,4754,My,3,150214,168321,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,4981, status,5,162468,189894,5,6,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,5083, dro,3,62374,71479,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,5380, va,3,21102,57119,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,5512, pun,4,71706,117029,4,6,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,5628, located,3,168774,92641,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,5732, nicht,3,23833,61111,3,6,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,5912, See,3,123972,94550,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,6060, handle,4,189940,191437,4,6,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,6204,miss,4,131559,138684,4,6,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,6254, tor,15,238949,223128,14,27,8,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,6478, session,6,212812,175630,5,11,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,6486, Sur,3,70945,73028,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,6540, culture,5,215316,202813,4,6,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,6541, capacity,3,141179,125438,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,7568,pop,4,120234,188361,4,5,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,7652,enz,3,113054,112831,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,7808, moved,5,185918,176522,5,10,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,7876, ven,4,63833,68922,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,7902,double,5,131361,106580,4,6,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,8021,allow,4,108377,67431,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,8313, Kh,3,24870,33154,3,6,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,8448, interval,2,5076,5517,2,3,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,9166, vez,4,115369,95114,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,9208,These,3,78176,83575,3,4,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,9415,Eng,3,19136,28772,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,9438,dt,2,5488,4657,2,3,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,9577, tou,6,119463,151206,6,11,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,9697, feedback,9,236220,234361,6,14,4,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,9744, village,10,121909,173884,9,12,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,10480,match,3,67484,54198,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,10702, Gi,6,106556,79080,4,10,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,10746,"""));",3,85168,69204,3,4,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,10770, Thank,3,64638,83428,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,11055, charged,5,173883,177514,5,10,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,11278, aid,3,66466,60741,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,11397, dal,4,82709,136840,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,11526,BI,3,46296,25207,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,11664,unes,3,47372,37834,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,11668,username,8,129159,167874,7,13,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,11699, eleg,7,193474,133055,7,11,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,11833,aders,4,147522,99155,4,5,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,12248, Environment,4,54152,78490,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,12396, findings,5,192170,164708,5,10,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,12429,wait,2,28164,26833,2,4,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,12708, vie,4,53714,60870,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,12730, Support,6,166110,156407,5,9,4,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,12800, remained,3,92635,96644,3,4,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,13080,inds,4,70539,104251,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,13225, kont,3,17675,25110,3,4,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,13331,upload,3,15769,51589,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,13406,iral,3,50361,36079,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,13482, infection,3,45140,76198,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,13547, Egypt,3,84898,108201,3,8,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,13916, foundation,10,227743,197603,10,13,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,14180, dann,5,157312,133046,5,10,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,14226,nia,6,175577,153608,6,10,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,14440, inflation,3,42009,53192,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,14512, reserved,5,209080,164662,5,9,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,14611, outer,4,190402,188991,4,7,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,14937,"{""",5,166401,207099,5,10,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,14966, metric,5,148118,177517,5,9,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,15765,theless,3,65322,91288,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,15835,ikt,3,34168,26738,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,15941, respective,16,243622,248778,17,29,12,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,16603,including,4,185283,209826,4,9,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,16916,rice,3,79635,54150,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,17349,kor,3,16128,18652,3,4,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,17379, rol,4,69584,67220,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,17564, Zealand,3,88701,150558,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,17623,Li,3,73631,27742,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,17672,ricts,4,191294,191300,4,10,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,17726, commands,3,80394,52105,3,4,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,18325,Driver,5,185630,158401,5,12,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,18815, algo,9,190199,198041,8,13,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,18819,desc,3,67327,72508,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,18899, gravity,4,190483,124572,4,7,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,19387, arbitrary,4,173901,161095,4,5,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,19474,vc,3,26304,13984,3,4,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,19865, Ever,3,55022,38773,3,6,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,20278, volumes,4,91327,154910,4,5,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,20443,phenyl,9,181311,207473,9,12,4,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,20612,amping,5,193396,149875,4,6,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,20792, Gree,9,174045,177835,8,12,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,21073,IDE,4,54236,65581,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,21434,jos,6,154968,176147,6,11,4,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,21553,pus,4,119849,133705,4,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,21976, PRIM,8,101976,102201,8,10,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,21988, situated,12,186767,210965,12,15,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,21989, historia,3,34660,57410,3,5,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,22037,symbol,3,19188,16894,2,4,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,22175,ipheral,11,161948,208273,11,18,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,22358, Gib,9,120805,120268,7,11,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,22454, describing,9,225480,226700,9,13,3,
+google/gemma-3-1b-it,"In the year 3000, humans will",17,22504,social,3,50581,76446,3,4,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",25,322,T,3436,232562,222298,3486,2961,4092,
+google/gemma-3-1b-it,"In the year 3000, humans will",25,605,us,1,21968,20861,1,2,1,8.617663383483887
+google/gemma-3-1b-it,"In the year 3000, humans will",25,806,ous,1,58523,29592,1,1,1,7.824234485626221
+google/gemma-3-1b-it,"In the year 3000, humans will",25,850, app,2,208312,180450,2,3,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",25,1049,inal,1,100225,109340,1,1,1,10.156532287597656
+google/gemma-3-1b-it,"In the year 3000, humans will",25,1143,cept,1,74209,51996,1,2,1,9.971871376037598
+google/gemma-3-1b-it,"In the year 3000, humans will",25,1176, said,1,81405,49920,1,2,1,10.922162055969238
+google/gemma-3-1b-it,"In the year 3000, humans will",25,1240,riv,1,3711,21476,1,1,1,8.505743980407715
+google/gemma-3-1b-it,"In the year 3000, humans will",25,1276, Re,2,192093,193407,2,2,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",25,1382, aut,2,249298,218158,2,3,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",25,1417,wn,1,22174,76727,1,2,1,10.15642261505127
+google/gemma-3-1b-it,"In the year 3000, humans will",25,1428, equ,1,203357,185215,1,2,1,12.419053077697754
+google/gemma-3-1b-it,"In the year 3000, humans will",25,1844,uf,1,76361,47542,1,2,1,8.645086288452148
+google/gemma-3-1b-it,"In the year 3000, humans will",25,1911, var,1,204860,206522,1,2,1,14.06989574432373
+google/gemma-3-1b-it,"In the year 3000, humans will",25,1916,rc,1,23589,20163,1,1,1,7.992830753326416
+google/gemma-3-1b-it,"In the year 3000, humans will",25,2048, prote,1,209879,131441,1,3,1,15.193557739257812
+google/gemma-3-1b-it,"In the year 3000, humans will",25,2124,++,1,65144,19122,1,1,1,8.729241371154785
+google/gemma-3-1b-it,"In the year 3000, humans will",25,2233, invest,1,190421,190330,1,5,1,16.073026657104492
+google/gemma-3-1b-it,"In the year 3000, humans will",25,2247, put,1,134623,71515,1,2,1,16.191884994506836
+google/gemma-3-1b-it,"In the year 3000, humans will",25,2423,ino,1,7057,8157,1,1,1,7.379500389099121
+google/gemma-3-1b-it,"In the year 3000, humans will",25,2582,EXT,1,34438,12415,1,2,1,9.227544784545898
+google/gemma-3-1b-it,"In the year 3000, humans will",25,2669,ending,1,47225,25780,1,2,1,9.447551727294922
+google/gemma-3-1b-it,"In the year 3000, humans will",25,2802, access,3,232957,234018,3,3,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",25,3155, house,2,125666,204144,2,3,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",25,3210, thing,1,255974,234602,1,3,1,12.302536964416504
+google/gemma-3-1b-it,"In the year 3000, humans will",25,3631,font,1,208208,159724,1,2,1,10.499366760253906
+google/gemma-3-1b-it,"In the year 3000, humans will",25,3633,aur,1,95841,56916,1,2,1,9.332428932189941
+google/gemma-3-1b-it,"In the year 3000, humans will",25,3803, God,2,156323,168003,2,2,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",25,3834,At,1,170,44,1,2,1,7.418227672576904
+google/gemma-3-1b-it,"In the year 3000, humans will",25,4111,idge,1,71080,77261,1,2,1,10.17894172668457
+google/gemma-3-1b-it,"In the year 3000, humans will",25,4340,OC,1,52752,34137,1,2,1,10.300027847290039
+google/gemma-3-1b-it,"In the year 3000, humans will",25,4648, tim,1,224356,251733,1,2,1,13.958168029785156
+google/gemma-3-1b-it,"In the year 3000, humans will",25,4680, cand,1,133199,64975,1,2,1,10.857227325439453
+google/gemma-3-1b-it,"In the year 3000, humans will",25,4754,My,1,1299,204,1,1,1,6.35642671585083
+google/gemma-3-1b-it,"In the year 3000, humans will",25,4981, status,2,225640,240208,2,3,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",25,5083, dro,1,146676,66323,1,2,1,11.035284042358398
+google/gemma-3-1b-it,"In the year 3000, humans will",25,5380, va,1,100160,203375,1,3,1,14.035662651062012
+google/gemma-3-1b-it,"In the year 3000, humans will",25,5512, pun,1,151618,177489,1,2,1,11.862781524658203
+google/gemma-3-1b-it,"In the year 3000, humans will",25,5628, located,2,252687,239340,1,3,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",25,5732, nicht,1,114341,254035,1,2,1,12.379533767700195
+google/gemma-3-1b-it,"In the year 3000, humans will",25,5912, See,2,225564,225500,2,2,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",25,6060, handle,1,230372,225857,1,2,1,12.579350471496582
+google/gemma-3-1b-it,"In the year 3000, humans will",25,6204,miss,1,17373,7626,1,2,1,8.114906311035156
+google/gemma-3-1b-it,"In the year 3000, humans will",25,6254, tor,1,188645,192646,1,2,1,11.312500953674316
+google/gemma-3-1b-it,"In the year 3000, humans will",25,6478, session,1,190302,161838,1,2,1,15.871829986572266
+google/gemma-3-1b-it,"In the year 3000, humans will",25,6486, Sur,2,222992,195452,2,3,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",25,6540, culture,3,259400,222616,3,5,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",25,6541, capacity,3,219307,207891,3,3,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",25,7568,pop,1,6290,11656,1,2,1,7.827943325042725
+google/gemma-3-1b-it,"In the year 3000, humans will",25,7652,enz,1,54150,26427,1,1,1,9.21962833404541
+google/gemma-3-1b-it,"In the year 3000, humans will",25,7808, moved,1,89694,103774,1,2,1,10.043943405151367
+google/gemma-3-1b-it,"In the year 3000, humans will",25,7876, ven,1,242557,250453,1,2,1,12.62297534942627
+google/gemma-3-1b-it,"In the year 3000, humans will",25,7902,double,1,120841,194100,1,2,1,11.550724029541016
+google/gemma-3-1b-it,"In the year 3000, humans will",25,8021,allow,1,68236,34291,1,2,1,9.488362312316895
+google/gemma-3-1b-it,"In the year 3000, humans will",25,8313, Kh,2,95264,93515,2,2,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",25,8448, interval,1,257161,261921,1,3,1,14.453609466552734
+google/gemma-3-1b-it,"In the year 3000, humans will",25,9166, vez,1,154534,130459,1,2,1,11.16955852508545
+google/gemma-3-1b-it,"In the year 3000, humans will",25,9208,These,1,523,100,1,2,1,8.446942329406738
+google/gemma-3-1b-it,"In the year 3000, humans will",25,9415,Eng,1,52,84,1,1,1,5.5174336433410645
+google/gemma-3-1b-it,"In the year 3000, humans will",25,9438,dt,1,7539,18884,1,1,1,7.772775650024414
+google/gemma-3-1b-it,"In the year 3000, humans will",25,9577, tou,1,195694,226362,1,2,1,12.143372535705566
+google/gemma-3-1b-it,"In the year 3000, humans will",25,9697, feedback,2,252226,228616,2,3,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",25,9744, village,1,46836,72366,1,2,1,10.358739852905273
+google/gemma-3-1b-it,"In the year 3000, humans will",25,10480,match,1,85763,95109,1,2,1,9.752396583557129
+google/gemma-3-1b-it,"In the year 3000, humans will",25,10702, Gi,2,235493,242750,2,2,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",25,10746,"""));",1,89807,58112,1,2,1,9.57204532623291
+google/gemma-3-1b-it,"In the year 3000, humans will",25,10770, Thank,2,62263,114721,2,2,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",25,11055, charged,1,189386,202259,1,2,1,11.070643424987793
+google/gemma-3-1b-it,"In the year 3000, humans will",25,11278, aid,1,183510,199222,1,2,1,12.102692604064941
+google/gemma-3-1b-it,"In the year 3000, humans will",25,11397, dal,1,122812,215683,1,2,1,11.512105941772461
+google/gemma-3-1b-it,"In the year 3000, humans will",25,11526,BI,1,75010,74679,1,2,1,10.201618194580078
+google/gemma-3-1b-it,"In the year 3000, humans will",25,11664,unes,1,121383,85040,1,2,1,10.574082374572754
+google/gemma-3-1b-it,"In the year 3000, humans will",25,11668,username,1,72347,114618,1,2,1,11.560491561889648
+google/gemma-3-1b-it,"In the year 3000, humans will",25,11699, eleg,1,254765,251403,1,2,1,12.415426254272461
+google/gemma-3-1b-it,"In the year 3000, humans will",25,11833,aders,1,20054,21404,1,1,1,8.34574031829834
+google/gemma-3-1b-it,"In the year 3000, humans will",25,12248, Environment,2,164009,243291,2,4,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",25,12396, findings,1,257683,244494,1,3,1,13.32834243774414
+google/gemma-3-1b-it,"In the year 3000, humans will",25,12429,wait,1,11819,32408,1,2,1,8.609269142150879
+google/gemma-3-1b-it,"In the year 3000, humans will",25,12708, vie,1,60577,125250,1,1,1,10.274052619934082
+google/gemma-3-1b-it,"In the year 3000, humans will",25,12730, Support,3,255867,255710,3,7,2,
+google/gemma-3-1b-it,"In the year 3000, humans will",25,12800, remained,1,233458,191868,1,2,1,11.175684928894043
+google/gemma-3-1b-it,"In the year 3000, humans will",25,13080,inds,1,43641,66382,1,2,1,9.755483627319336
+google/gemma-3-1b-it,"In the year 3000, humans will",25,13225, kont,1,138573,166634,1,2,1,10.916752815246582
+google/gemma-3-1b-it,"In the year 3000, humans will",25,13331,upload,1,737,9661,1,1,1,8.746392250061035
+google/gemma-3-1b-it,"In the year 3000, humans will",25,13406,iral,1,93302,124607,1,2,1,10.101733207702637
+google/gemma-3-1b-it,"In the year 3000, humans will",25,13482, infection,1,140936,236743,1,2,1,12.270195960998535
+google/gemma-3-1b-it,"In the year 3000, humans will",25,13547, Egypt,1,82808,124893,2,2,1,16.6380672454834
+google/gemma-3-1b-it,"In the year 3000, humans will",25,13916, foundation,2,261659,260787,2,4,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",25,14180, dann,1,239317,246988,1,2,1,13.513543128967285
+google/gemma-3-1b-it,"In the year 3000, humans will",25,14226,nia,1,47537,43663,1,2,1,9.269926071166992
+google/gemma-3-1b-it,"In the year 3000, humans will",25,14440, inflation,2,87515,134102,2,3,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",25,14512, reserved,1,187093,120054,1,2,1,10.871434211730957
+google/gemma-3-1b-it,"In the year 3000, humans will",25,14611, outer,2,248783,241463,2,3,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",25,14937,"{""",1,13847,33686,1,1,1,8.322210311889648
+google/gemma-3-1b-it,"In the year 3000, humans will",25,14966, metric,1,227318,208007,1,3,1,12.96348762512207
+google/gemma-3-1b-it,"In the year 3000, humans will",25,15765,theless,1,53913,75659,1,2,1,9.87671947479248
+google/gemma-3-1b-it,"In the year 3000, humans will",25,15835,ikt,1,21121,11608,1,2,1,8.916716575622559
+google/gemma-3-1b-it,"In the year 3000, humans will",25,15941, respective,1,257926,252950,1,2,1,12.821105003356934
+google/gemma-3-1b-it,"In the year 3000, humans will",25,16603,including,1,151618,126099,1,2,1,11.942326545715332
+google/gemma-3-1b-it,"In the year 3000, humans will",25,16916,rice,1,5095,3891,1,2,1,7.3797736167907715
+google/gemma-3-1b-it,"In the year 3000, humans will",25,17349,kor,1,187596,142210,1,2,1,12.40858268737793
+google/gemma-3-1b-it,"In the year 3000, humans will",25,17379, rol,1,195481,143190,1,2,1,11.794841766357422
+google/gemma-3-1b-it,"In the year 3000, humans will",25,17564, Zealand,1,117387,73357,1,2,1,10.429794311523438
+google/gemma-3-1b-it,"In the year 3000, humans will",25,17623,Li,1,10774,3552,1,1,1,7.698791027069092
+google/gemma-3-1b-it,"In the year 3000, humans will",25,17672,ricts,1,13279,4864,1,1,1,7.845654010772705
+google/gemma-3-1b-it,"In the year 3000, humans will",25,17726, commands,1,204357,75416,1,2,1,10.74708366394043
+google/gemma-3-1b-it,"In the year 3000, humans will",25,18325,Driver,1,102092,69868,1,2,1,10.175069808959961
+google/gemma-3-1b-it,"In the year 3000, humans will",25,18815, algo,1,242008,225284,1,4,1,15.344122886657715
+google/gemma-3-1b-it,"In the year 3000, humans will",25,18819,desc,1,14383,12316,1,2,1,7.499131202697754
+google/gemma-3-1b-it,"In the year 3000, humans will",25,18899, gravity,1,215394,122852,1,3,1,10.955418586730957
+google/gemma-3-1b-it,"In the year 3000, humans will",25,19387, arbitrary,1,226304,231404,1,2,1,11.724627494812012
+google/gemma-3-1b-it,"In the year 3000, humans will",25,19474,vc,1,88246,95008,1,2,1,10.112580299377441
+google/gemma-3-1b-it,"In the year 3000, humans will",25,19865, Ever,2,177293,122248,2,2,1,
+google/gemma-3-1b-it,"In the year 3000, humans will",25,20278, volumes,1,32103,137375,1,3,1,9.73674201965332
+google/gemma-3-1b-it,"In the year 3000, humans will",25,20443,phenyl,1,42509,79473,1,2,1,10.24047565460205
+google/gemma-3-1b-it,"In the year 3000, humans will",25,20612,amping,1,162741,104829,1,2,1,10.24864387512207
+google/gemma-3-1b-it,"In the year 3000, humans will",25,20792, Gree,1,9951,10575,1,1,1,8.609474182128906
+google/gemma-3-1b-it,"In the year 3000, humans will",25,21073,IDE,1,13858,17311,1,2,1,10.092321395874023
+google/gemma-3-1b-it,"In the year 3000, humans will",25,21434,jos,1,34702,113366,1,2,1,9.823198318481445
+google/gemma-3-1b-it,"In the year 3000, humans will",25,21553,pus,1,94265,46776,1,2,1,9.26264476776123
+google/gemma-3-1b-it,"In the year 3000, humans will",25,21976, PRIM,1,45948,74121,1,2,1,11.082528114318848
+google/gemma-3-1b-it,"In the year 3000, humans will",25,21988, situated,1,180774,223223,1,4,1,15.264387130737305
+google/gemma-3-1b-it,"In the year 3000, humans will",25,21989, historia,1,130127,158201,1,7,1,15.265158653259277
+google/gemma-3-1b-it,"In the year 3000, humans will",25,22037,symbol,1,13320,12437,1,2,1,8.807426452636719
+google/gemma-3-1b-it,"In the year 3000, humans will",25,22175,ipheral,1,17163,61687,1,2,1,9.89335823059082
+google/gemma-3-1b-it,"In the year 3000, humans will",25,22358, Gib,1,153282,210461,1,2,1,13.794011116027832
+google/gemma-3-1b-it,"In the year 3000, humans will",25,22454, describing,1,79461,45235,1,2,1,9.550769805908203
+google/gemma-3-1b-it,"In the year 3000, humans will",25,22504,social,2,72468,78932,2,2,1,
