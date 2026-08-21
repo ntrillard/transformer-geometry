@@ -1,0 +1,7 @@
+config,trailing_repeat,max_repeat,n
+greedy,30.0,,
+multinomial T=0.8,28.828125,30.0,64.0
+top-p 0.9 T=1.0 weighted,30.0,30.0,64.0
+top-p 0.9 T=0.8 weighted,30.0,30.0,64.0
+top-p 0.9 T=0.8 uniform,30.0,30.0,64.0
+chat-template-wrapped,0.0,,

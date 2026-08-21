@@ -1,10 +1,14 @@
-*.pyc
+# Python
 __pycache__/
+*.pyc
+
+# Model caches / build output
+models/
+dist/
+.DS_Store
+
+# LaTeX build artifacts
 *.aux
 *.log
 *.out
-*.json
-models/
-results/
-dist/
-.DS_Store
+*.gz

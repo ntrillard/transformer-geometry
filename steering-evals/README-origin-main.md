@@ -1,5 +1,12 @@
 # steering-evals — reproducible evidence for the "Steer on a Sphere" review replies
 
+> **Provenance note (2026-08-21):** consolidated from the `main` branch's
+> `tests/steering-evals/`. Its harness variant is preserved as
+> `scripts/steering_geometry_test_offarc.py` (null-space off-arc control; it
+> produced `cross_family_summary.{csv,md}` and the old-format Qwen2-0.5B CSVs).
+> The canonical paper harness is `scripts/steering_geometry_test.py`
+> (residual-latitude off-arc control). Paths below refer to the original layout.
+
 Standalone, clean, **no secrets** copy of the scripts and raw run artifacts behind the
 two forum replies (`HF_STEERING_REPLY.md`, the full point-by-point answer with a
 methodology line per point; `hf_post_reply.txt`, the concise paste-ready version).
