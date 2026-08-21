@@ -394,6 +394,18 @@ the loop to 0--10 tokens with no false positives. Entropy monitoring does not
 fire on the Gemma pit (the output distribution is not extremely concentrated),
 illustrating that no single detector is universal.
 
+On Qwen2.5-7B under nf4 quantization, the strict ``$\mathtt{0}$'' pit
+(baseline loop 35) resists every lightweight intervention except truncation:
+repetition detection caps it at the threshold, output collapse leaves 2 tokens,
+and the combined defense leaves 2 tokens with 4 alerts --- but entropy penalties
+(alerts fire every step) and pit-away steering at both $\alpha=0.3$ and
+$\alpha=1.0$ leave the loop intact at 35, and top-p $T=1.0$ never breaks it.
+Single-layer steering away from the pit LM-head direction defeats shallow
+basins but not the strict fixed point: the trajectory re-converges after the
+perturbed layer. For strict pits the reliable defenses are truncation-style
+guards (repetition cap, output collapse) plus context changes; steering-based
+defense would need multi-layer or per-step application.
+
 Repetition detection, output collapse, entropy monitoring, and pit-away steering
 break the loop with no measurable false positives on ordinary generation in this
 small set. The detector can be deployed either as an input filter (collapsing
@@ -402,9 +414,9 @@ identical tokens are emitted). N-gram and periodicity detectors also break the
 loop but generate unacceptable false positives on normal text. Input
 sanitization alone is less reliable: stripping repeated pit tokens reduces the
 loop length but does not always break it. Decoder changes (higher temperature,
-standard top-p) are effective on shallow basins but may not break strict 7B
-pits; for strict pits, input/context defenses and pit-aware steering are more
-reliable.
+standard top-p) are effective on shallow basins but not on the strict 7B pit;
+for strict pits, truncation-style guards and prompt-context changes are the
+reliable defenses.
 
 \paragraph{Responsible framing.} Pits are a model-weight-derived phenomenon, so
 any mitigation must be calibrated per deployment model. The defensive-encoding

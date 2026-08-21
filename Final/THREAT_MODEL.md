@@ -68,7 +68,23 @@ steering and output collapse remain effective.
 
 ### Qwen2.5-7B "0" pit (strict fixed point)
 
-Baseline greedy loop length: 30 tokens.
+Baseline greedy loop length: 30 tokens (35 including the 5-token trigger).
+
+Mitigations (nf4 quantization):
+
+| Mitigation | Loop length | Loop broken? | Median FP truncation |
+|---|---|---|---|
+| Repetition detector (≥3 same pit) | 8 | Yes (cap) | 0 tokens |
+| Repetition detector (≥4 same pit) | 9 | Yes (cap) | 0 tokens |
+| Output collapse repeats | 2 | Yes | — |
+| Combined rep-4 + entropy + collapse | 2 | Yes | — |
+| Entropy floor 1.5 + penalty 5.0 | 35 | No (alerts every step) | 0 tokens |
+| Pit-away steering α=0.3 (last layer) | 35 | No | 0 tokens |
+| Pit-away steering α=1.0 (last layer) | 35 | No | 0 tokens |
+| Multinomial T=1.0 | ~20–23 mean | Partial | — |
+| Top-p 0.9, T=1.0 weighted | 35.0 | No | — |
+
+Decoder-contract matrix (fp16):
 
 | Decoder | Mean loop length | Notes |
 |---|---|---|
@@ -79,7 +95,12 @@ Baseline greedy loop length: 30 tokens.
 | Top-p 0.9, T=0.8 uniform | 30.0 | Unbroken |
 | Chat-template wrapped | 0 | Broken by context |
 
-The strict 7B pit is robust to decoder changes but fragile to prompt context.
+The strict 7B pit is robust to decoder changes AND to single-layer pit-away
+steering: the trajectory re-converges after one perturbed layer. Only
+truncation-style guards (repetition cap, output collapse) and prompt-context
+changes reliably break it. Steering-based defense against strict pits would
+need multi-layer or per-step application.
+
 This suggests defenses should focus on **input sanitization and prompt
 engineering** for strict pits, and on **output detectors and decoder changes**
 for shallower basins.
@@ -106,8 +127,10 @@ fire on the Gemma pit.
 **Pit-away steering.** Register a forward hook on the last layer that projects
 the hidden state away from the pit's LM-head direction. This breaks both the
 Qwen2-0.5B and Gemma-3-1B pits with loop length 0 and 0 false positives on 20
-normal prompts. It is the most reliable single defense tested, though it
-requires white-box access to the model.
+normal prompts. It is the most reliable single defense for shallow basins, but
+it does NOT break the Qwen2.5-7B strict pit (loop stays at baseline even at
+α=1.0): a single perturbed layer is re-absorbed by the fixed point. Strict pits
+require multi-layer or per-step steering.
 
 ### Input-side sanitization
 
@@ -139,16 +162,18 @@ requires white-box access to the model.
 ## Recommended deployment strategy
 
 1. **Identify pits** for each deployed model (one-time scan).
-2. **Deploy output detectors** (repetition + output collapse + entropy) with
-   thresholds calibrated on normal generation.
-3. **Use pit-away steering** when white-box access is available; it is the most
-   reliable single mitigation.
+2. **Deploy output detectors** (repetition cap + output collapse + entropy)
+   with thresholds calibrated on normal generation — these are the only
+   defenses that worked on every model tested, including the strict 7B pit.
+3. **Use pit-away steering** when white-box access is available and the pits
+   are shallow basins; it is the cleanest mitigation there, but not sufficient
+   for strict fixed points.
 4. **Sanitize inputs** that are known to terminate in pit triggers, especially
    for untrusted documents.
 5. **Add trailing context** to prompts when possible, since strict pits often
    break when the trigger is not the final content.
-6. **Do not rely solely on sampling** for strict pits; use context, detection,
-   and steering instead.
+6. **Do not rely on sampling or single-layer steering** for strict pits; use
+   truncation guards, context, and detection instead.
 
 ## Responsible framing
 

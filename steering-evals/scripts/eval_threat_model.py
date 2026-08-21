@@ -204,10 +204,12 @@ def main():
                     help="layer at which to apply pit-away steering defense")
     ap.add_argument("--steer-alpha", type=float, default=0.3,
                     help="strength of pit-away steering")
+    ap.add_argument("--quant", default=None, choices=["int8", "nf4"],
+                    help="quantization mode for large models")
     args = ap.parse_args()
 
     print(f"Loading {args.model} ...")
-    model, tok = M.load_model(args.model, dtype="fp16")
+    model, tok = M.load_model(args.model, dtype="fp16", quantize=args.quant)
     head = torch.as_tensor(model.lm_head.weight.detach().float().cpu().numpy(),
                            device=model.device)
     n_layers = len(model.model.layers)

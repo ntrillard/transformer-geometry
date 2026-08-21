@@ -133,9 +133,15 @@ python cow-tipping/eval_threat_model.py --model Qwen/Qwen2-0.5B-Instruct --pit-i
 | N-gram detector (4-gram, ≥2) | 8 | 23 tokens |
 | Periodicity detector (≥0.85) | 29 (no break) | 24 tokens |
 
-Pit-away steering and output collapse are the most reliable; N-gram and
-periodicity detectors break the loop but generate too many false positives on
-normal text.
+Pit-away steering and output collapse are the most reliable on shallow basins;
+N-gram and periodicity detectors break the loop but generate too many false
+positives on normal text.
+
+On the Qwen2.5-7B strict pit (nf4), only truncation-style defenses work:
+repetition cap (loop 8–10), output collapse (loop 2), combined defense
+(loop 2). Entropy penalties fire every step but never break it, and pit-away
+steering fails at α=0.3 and α=1.0 — the strict fixed point re-absorbs a
+single-layer perturbation.
 
 ## Citation
 
