@@ -18,20 +18,14 @@
 \end{figure}
 
 \paragraph{Version note.} $v_1$ (Aug~15, 2026) introduced the sphere-steering
-result and the cow-tipping observations. $v_2$ (this version) revises every
-measurement behind those claims: (i) corrected controls --- self-excluding
-wrong-target sampling and residual-latitude off-arc rotations at fixed norm and
-fixed target score; (ii) corrected decoder contracts (standard weighted nucleus
-sampling instead of temperature-rescaled argmax); (iii) a five-family
-cross-family table with arc-reach rates and analytic first rank-1 angles,
-including verification that no target loses rank~1 mid-arc; (iv)
-raw-head rank-cone projections separating $\theta_{\mathrm{author}}$ from
-$\theta_{\mathrm{cell}}$; (v) natural-manifold measurements confirming the
-spherical approximation and quantifying actual next-token step sizes;
-(vi) a strict-pit gate on Qwen2.5-7B showing decoder-contract robustness of
-strict pits; and (vii) an expanded threat model with n-gram, periodicity,
-pit-away-steering, and output-collapse defenses evaluated for both loop-break
-and false-positive rates, including their failure modes on the strict 7B pit.
+result and cow-tipping observations. $v_2$ revises every measurement behind
+those claims: corrected controls (self-excluding wrong-target sampling,
+fixed-score off-arc rotations), standard decoder contracts (weighted nucleus
+sampling instead of temperature-rescaled argmax), a five-family cross-family
+table with analytic first rank-1 angles and a no-mid-arc-loss verification,
+rank-cone projections ($\theta_{\mathrm{author}}$ vs $\theta_{\mathrm{cell}}$),
+natural-manifold measurements, a strict-pit gate on Qwen2.5-7B, and an expanded
+threat model with false-positive rates for each defense.
 
 \begin{abstract}
 Layer normalization constrains transformer hidden states to a sphere whose
@@ -142,17 +136,12 @@ same-target great-circle rotation, so the angular budget can be made explicit
 \subsection{Target Specificity}
 
 A natural control is to steer toward a different target while measuring the
-original target's rank. In a batched implementation the wrong target must be
-sampled from the other $K-1$ targets; allowing self-draws artificially inflates
-the wrong-target success rate by the self-draw probability $1/K$. With the
-self-exclusion fix, the wrong-target rank-1 rate is exactly 0\% on Qwen2-0.5B
-(1,024 cases), Qwen2-1.5B (1,024 cases), and Gemma-3-1B (2,048 cases), and
-0\% on all five cross-family models (Table~\ref{tab:cross-family}). An earlier
-draft of the cross-family table reported 0.4--1.6\% wrong-target rates; we
-traced these to residual self-draws in that protocol's sampler ($1/64 \approx
-1.6\%$) and re-ran all five models with strict exclusion. Random tangent
-directions also produce 0\% target rank-1. The tangent direction is therefore
-genuinely target specific.
+original target's rank. The wrong target must be sampled from the other $K-1$
+targets; allowing self-draws inflates the wrong-target rate by $1/K$. With
+strict exclusion, the wrong-target rank-1 rate is exactly 0\% on Qwen2-0.5B,
+Qwen2-1.5B, Gemma-3-1B, and all five cross-family models (4,096 + 2,560
+cases). Random tangent directions also produce 0\% target rank-1. The tangent
+direction is therefore genuinely target specific.
 
 \subsection{Competitor Geometry at Fixed Target Score}
 
@@ -165,12 +154,10 @@ with $r \perp s$ and rotate only the residual component:
 v(\epsilon) = \gamma s + \rho\bigl(\cos\epsilon\, r + \sin\epsilon\, q\bigr),
 \quad q \perp s,\ q \perp r.
 \]
-For the random residual direction this preserves $\|v\|$ and the target score
-$v \cdot s$ exactly by construction. The toward/away rotations preserve
-$v \cdot s$ to within a common renormalization factor, and are exact mirror
-images of each other ($q \to -q$), so any toward-vs-away difference in rank is
-attributable purely to competitor direction rather than to norm or score
-perturbations. On Qwen2-0.5B (64 targets, 4 contexts, 4 layers, 8$^\circ$
+The random residual direction preserves $\|v\|$ and the target score $v \cdot
+s$ exactly. The toward/away conditions are exact mirror images ($q \to -q$), so
+their rank difference is attributable purely to competitor direction.
+On Qwen2-0.5B (64 targets, 4 contexts, 4 layers, 8$^\circ$
 residual rotation):
 
 \begin{center}
@@ -372,12 +359,10 @@ Chat-template wrapped & 0 & 0 \\
 \end{tabular}
 \end{center}
 
-Loop lengths are horizon-limited: both columns generate 25 new tokens on top
-of a five-token trigger (maximum possible trailing run 30, so values at 30
-indicate the loop filled the horizon). The mitigation section below uses a
-30-token horizon (maximum 35), so its baselines read higher (29 vs.\ 24 on the
-same 0.5B model). The 7B column is measured under 4-bit nf4 quantization due
-to GPU memory limits; the strict pit survives this compression.
+Both columns use a 25-token generation horizon on a five-token trigger
+(maximum trailing run 30); the mitigation section below uses a 30-token
+horizon, so its baselines read higher (29 vs.\ 24). The 7B column is measured
+under 4-bit nf4 quantization; the strict pit survives this compression.
 
 On Qwen2.5-7B the strict pit survives greedy decoding and both standard and
 uniform nucleus sampling; only the chat-template context breaks it. On
@@ -521,14 +506,12 @@ raw-head rank-cone projection with NNLS dual, and the corrected decoder
 samplers. The null-space off-arc variant used for the cross-family table is
 \texttt{steering\_geometry\_test\_offarc.py}. The procedure:
 
-\paragraph{Head assay.} All rank and logit claims are computed by applying the
-raw LM head to the unit-normalized last-layer state ($\hat{h} \cdot W_t$), a
-scale-invariant geometric assay rather than the model's sampling distribution.
-We verified this surrogate against the true forward pass (final RMSNorm +
-head) on Qwen2-0.5B: identical argmax on all tested states, each metric's top
-token is rank~1 under the other, and the ``$\mathtt{0}$''-pit greedy loop is
-byte-identical under both (24-token horizon run three times). Rank-based
-conclusions therefore transfer to the model's actual output distribution.
+\paragraph{Head assay.} All rank claims apply the raw LM head to the
+unit-normalized last-layer state ($\hat{h} \cdot W_t$), a scale-invariant
+assay rather than the model's sampling distribution. Against the true forward
+pass (final RMSNorm + head) on Qwen2-0.5B it gives identical argmax on all
+tested states and byte-identical ``$\mathtt{0}$''-pit greedy loops, so
+rank-based conclusions transfer to real generation.
 
 \begin{enumerate}
 \item \textbf{Sphere radius.} Extract $\gamma_l$ from model state dict. Feed
@@ -539,31 +522,24 @@ each layer, compute $\hat{b}_l$ from position~0 and $\theta_{l,t}$ for any LM
 head row $W_t$.
 
 \item \textbf{Steering (traversal).} Forward-pass a prompt to get $h$. For
-target token~$t$, compute $g_t$, step with $\alpha$, renormalize by
-$\|\gamma_L\|$, then feed $h'$ as the first-generation hidden state. Use
-\texttt{steering\_geometry\_test.py} for corrected specificity, competitor
-geometry, and shortest-route measurements;
+target token~$t$, compute $g_t$, step with $\alpha$, renormalize, then feed
+$h'$ as the first-generation hidden state. Use
+\texttt{steering\_geometry\_test.py} for specificity, competitor geometry,
+and shortest-route measurements;
 \texttt{eval\_boundary\_instruments.py} for the $\theta_{\mathrm{author}}$ vs
 $\theta_{\mathrm{cell}}$ comparison; and \texttt{eval\_manifold\_geometry.py}
-for the natural-manifold probe. First rank-1 angles are computed analytically
-from per-competitor sinusoid margins; equivalence with a 200-step scan was
-verified on 400 random configurations and re-spot-checked here (25/25 within
-$0.1^\circ$).
+for the natural-manifold probe. First rank-1 angles are analytic
+(sinusoid-margin intersection), verified against a 200-step scan (25/25
+within $0.1^\circ$).
 
 \item \textbf{Cow tipping.} For token~$t$, decode, re-encode, forward-pass to
 get $h_T$. Compute $s(T)$. If $s(T) > 0.01$, feed $t$ three times and check
-15-step self-prediction with greedy decoding. Record permanence and $\cos$
-stability. Use \texttt{eval\_pit\_robustness.py} and
-\texttt{eval\_7b\_strict\_pit\_gate.py} for decoder-contract tests (the latter
-supports \texttt{-{}-quant nf4} on a 10\,GB GPU), and
-\texttt{eval\_threat\_model.py} for the full mitigation and false-positive
-evaluation (also supports \texttt{-{}-quant nf4} and pit-away-steering
-strength via \texttt{-{}-steer-alpha}).
-
-The sphere-radius, BOS-axis, Lyapunov, and pit-scan tables carried over from
-$v_1$ were produced by earlier exploration tooling that has since been
-consolidated out of the repository tip; it remains recoverable from the git
-history (pre-August 2026 commits).
+15-step self-prediction with greedy decoding. Use
+\texttt{eval\_pit\_robustness.py}, \texttt{eval\_7b\_strict\_pit\_gate.py}
+(both support \texttt{-{}-quant nf4}), and \texttt{eval\_threat\_model.py} for
+mitigations and false positives. The sphere-radius, BOS-axis, Lyapunov, and
+pit-scan tables carried over from $v_1$ used earlier tooling recoverable from
+git history.
 \end{enumerate}
 
 \section*{Acknowledgments}
