@@ -3,10 +3,11 @@
 \usepackage{amsmath,amssymb,graphicx,booktabs}
 \usepackage[margin=1in]{geometry}
 
-\title{Steer on a Sphere: Geometric Control of Transformer Outputs}
+\title{Steer on a Sphere: Geometric Control of Transformer Outputs \\
+\large Version 2}
 
 \author{N. Trillard \\ \texttt{ntrillard@gmail.com}}
-\date{August 21, 2026}
+\date{August 21, 2026 \quad($v_2$; $v_1$ August 15, 2026)}
 
 \begin{document}
 \maketitle
@@ -15,6 +16,22 @@
 \centering
 \includegraphics[width=0.12\textwidth]{steeronasphere.png}
 \end{figure}
+
+\paragraph{Version note.} $v_1$ (Aug~15, 2026) introduced the sphere-steering
+result and the cow-tipping observations. $v_2$ (this version) revises every
+measurement behind those claims: (i) corrected controls --- self-excluding
+wrong-target sampling and residual-latitude off-arc rotations at fixed norm and
+fixed target score; (ii) corrected decoder contracts (standard weighted nucleus
+sampling instead of temperature-rescaled argmax); (iii) a five-family
+cross-family table with arc-reach rates and analytic first rank-1 angles,
+including verification that no target loses rank~1 mid-arc; (iv)
+raw-head rank-cone projections separating $\theta_{\mathrm{author}}$ from
+$\theta_{\mathrm{cell}}$; (v) natural-manifold measurements confirming the
+spherical approximation and quantifying actual next-token step sizes;
+(vi) a strict-pit gate on Qwen2.5-7B showing decoder-contract robustness of
+strict pits; and (vii) an expanded threat model with n-gram, periodicity,
+pit-away-steering, and output-collapse defenses evaluated for both loop-break
+and false-positive rates, including their failure modes on the strict 7B pit.
 
 \begin{abstract}
 Layer normalization constrains transformer hidden states to a sphere whose
@@ -474,11 +491,12 @@ stops changing entirely.
 \section{Reproduction}
 
 All measurements are scriptable in under 100 lines of Python. Full code at
-\url{https://github.com/ntrillard/transformer-geometry}. The corrected
+\url{https://github.com/ntrillard/transformer-geometry}. The canonical
 measurement harness lives in \texttt{steering-evals/scripts/} and implements
 the self-excluding wrong-target control, residual-latitude off-arc rotations,
 raw-head rank-cone projection with NNLS dual, and the corrected decoder
-samplers. The procedure:
+samplers. The null-space off-arc variant used for the cross-family table is
+\texttt{steering\_geometry\_test\_offarc.py}. The procedure:
 
 \begin{enumerate}
 \item \textbf{Sphere radius.} Extract $\gamma_l$ from model state dict. Feed
@@ -492,14 +510,20 @@ head row $W_t$.
 target token~$t$, compute $g_t$, step with $\alpha$, renormalize by
 $\|\gamma_L\|$, then feed $h'$ as the first-generation hidden state. Use
 \texttt{steering\_geometry\_test.py} for corrected specificity, competitor
-geometry, and shortest-route measurements.
+geometry, and shortest-route measurements;
+\texttt{eval\_boundary\_instruments.py} for the $\theta_{\mathrm{author}}$ vs
+$\theta_{\mathrm{cell}}$ comparison; and \texttt{eval\_manifold\_geometry.py}
+for the natural-manifold probe.
 
 \item \textbf{Cow tipping.} For token~$t$, decode, re-encode, forward-pass to
 get $h_T$. Compute $s(T)$. If $s(T) > 0.01$, feed $t$ three times and check
 15-step self-prediction with greedy decoding. Record permanence and $\cos$
 stability. Use \texttt{eval\_pit\_robustness.py} and
-\texttt{eval\_7b\_strict\_pit\_gate.py} for decoder-contract tests, and
-\texttt{eval\_threat\_model.py} for mitigation evaluation.
+\texttt{eval\_7b\_strict\_pit\_gate.py} for decoder-contract tests (the latter
+supports \texttt{-{}-quant nf4} on a 10\,GB GPU), and
+\texttt{eval\_threat\_model.py} for the full mitigation and false-positive
+evaluation (also supports \texttt{-{}-quant nf4} and pit-away-steering
+strength via \texttt{-{}-steer-alpha}).
 \end{enumerate}
 
 \section*{Acknowledgments}

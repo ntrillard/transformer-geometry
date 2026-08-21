@@ -106,7 +106,7 @@ the 2026-08-21 consolidation; recover it from git history if needed.
 
 ## Paper
 
-📄 [`paper/paper_steer.pdf`](paper/paper_steer.pdf) — full preprint
+📄 [`paper/paper_steer.pdf`](paper/paper_steer.pdf) — full preprint (v2, Aug 21 2026)
 
 > Trillard, N. (2026). *Steer on a Sphere: Geometric Control of Transformer Outputs*. Zenodo. [10.5281/zenodo.21954871](https://doi.org/10.5281/zenodo.21954871)
 
