@@ -7,11 +7,12 @@ S2  Does ANY lattice size rescue the global SOM?
     (quant-err pinned ~64 deg at 4x4..32x32 and a 1D ring = the data 1-NN scale;
      bigger grids only add empty neurons, one prototype keeps half the mass)
 S3  Do label-free families resolve under inversion > center steering?
-    (spherical k-means clusters, no word classes assumed)
+    (spherical k-means clusters; measured across the DIVERSE PROMPTS list below
+     to check the law is not prompt-dependent)
 S4  Do geometric NN token pairs behave alike?
-    (logit correlation across 64 contexts, NN vs random)
+    (logit correlation across all diverse prompts, NN vs random)
 
-Run:  python eval_som_sweep.py        (~10 s on the 3080)
+Run:  python eval_som_sweep.py        (~15 s on the 3080)
 """
 import math
 import time
@@ -24,6 +25,32 @@ import steering_geometry_test as M
 MODEL = 'Qwen/Qwen2-0.5B-Instruct'
 DEV = 'cuda' if torch.cuda.is_available() else 'cpu'
 N = 20000                    # head rows sampled for the SOM / k-means fits
+
+PROMPTS = [
+    # facts
+    'The capital of France is', 'In physics, gravity is',
+    'The chemical symbol for water is',
+    # stories / openers
+    'Once upon a time', 'In a land far away,', 'The old man opened the door and',
+    # questions
+    'Tell me something interesting:', 'What is the meaning of life?',
+    'Can you explain quantum mechanics?',
+    # instructions
+    'Please summarize the following text:', 'Translate this sentence into French:',
+    'Write a poem about',
+    # code / structured
+    'def fibonacci(n):', 'if x > 0: print(', 'import numpy as np',
+    'SELECT * FROM users WHERE',
+    # numbers
+    'In the year 3000, humans will', 'The answer is 42 because',
+    # other languages
+    'La capitale de la France est', 'Hallo, wie geht es dir?',
+    '北京的天气怎么样？', '今日はいい天気ですね',
+    # register edges
+    'For dinner I made', 'Dear Sir or Madam,', 'The quick brown fox jumps over',
+    # degenerate 1-token contexts
+    '.', ',', '?', ')',
+]
 
 
 def som_fit(X, P0, G):
@@ -117,13 +144,18 @@ def s3_autocluster(Wn, model, tok):
                'Tell me something interesting:', 'To bake sourdough bread']
     li = model.config.num_hidden_layers - 1
     states = []
-    for p in prompts:
+    for p in PROMPTS:
         pid = tok(p, add_special_tokens=False, return_tensors='pt').input_ids.to(DEV)
+        if pid.numel() == 0:
+            continue
         with torch.no_grad():
             h = model(pid, output_hidden_states=True).hidden_states[li + 1][0, -1]
         states.append(h.cpu().float().numpy())
-    print("    fam  size  spread(deg)  center%  inversion%")
-    rc_t = ri_t = 0
+    n_prompts = len(states)
+    tot_c = tot_i = 0
+    per_prompt_c = np.zeros(n_prompts)
+    per_prompt_i = np.zeros(n_prompts)
+    fams = []
     for k in big:
         fam = torch.where(bmu_c == k)[0].numpy()[:10]
         rows = Wn[fam]
@@ -131,20 +163,33 @@ def s3_autocluster(Wn, model, tok):
         center /= np.linalg.norm(center)
         spread = float(np.degrees(np.arccos(np.clip(rows @ center, -1, 1)).mean()))
         rc = ri = 0
-        for h in states:
+        for j, h in enumerate(states):
             u = h / np.linalg.norm(h)
             tau = M.tangent_direction(u, center)
             L = M.rotate_toward(u, tau, math.radians(17)) @ Wn.T
-            rc += L[fam].max() > np.delete(L, fam).max()
+            okc = L[fam].max() > np.delete(L, fam).max()
             best = fam[int(np.argmax(rows @ u))]
             tau = M.tangent_direction(u, Wn[best])
             L = M.rotate_toward(u, tau, math.radians(17)) @ Wn.T
-            ri += L[fam].max() > np.delete(L, fam).max()
-        rc_t += rc; ri_t += ri
-        print(f"    {k:3d}  {len(fam):4d}    {spread:5.1f}   {rc/len(states)*100:5.1f}  "
-              f"{ri/len(states)*100:6.1f}")
-    n = len(big) * len(states)
-    print(f"    AVG  center {rc_t/n*100:5.1f}%   inversion {ri_t/n*100:5.1f}%")
+            oki = L[fam].max() > np.delete(L, fam).max()
+            rc += okc; ri += oki
+            per_prompt_c[j] += okc; per_prompt_i[j] += oki
+        fams.append((k, len(fam), spread, rc, ri))
+        tot_c += rc; tot_i += ri
+    n_cells = len(big) * n_prompts
+    print(f"    {n_prompts} diverse prompts (facts/story/Q/code/CJK/register/1-token)")
+    print(f"    overall cells (family x prompt):  center {tot_c/n_cells*100:5.1f}%   ",
+          f"inversion {tot_i/n_cells*100:5.1f}%")
+    print("    per-family (averaged over prompts):")
+    for k, sz, sp, rc, ri in fams:
+        print(f"      fam {k:3d} size {sz:3d}  spread {sp:5.1f} deg  ",
+              f"center {rc/n_prompts*100:5.1f}%  inversion {ri/n_prompts*100:5.1f}%")
+    worst = per_prompt_i.min()
+    all_fams = int((per_prompt_i == len(big)).sum())
+    beats = int((per_prompt_i >= per_prompt_c).sum())
+    print(f"    across prompts: inversion resolves ALL {len(big)} families on {all_fams}/{n_prompts} ",
+          f"prompts; worst prompt resolves {worst:.0f}/{len(big)}; ",
+          f"inversion >= center on {beats}/{n_prompts} prompts")
 
 
 def s4_interchangeability(Wn, model, tok):
@@ -164,13 +209,15 @@ def s4_interchangeability(Wn, model, tok):
                'For dinner I made', 'The quick brown fox'] * 8
     li = model.config.num_hidden_layers - 1
     H = []
-    for p in prompts:
+    for p in PROMPTS:
         pid = tok(p, add_special_tokens=False, return_tensors='pt').input_ids.to(DEV)
+        if pid.numel() == 0:
+            continue
         with torch.no_grad():
             H.append(model(pid, output_hidden_states=True)
                      .hidden_states[li + 1][0, -1].cpu().float().numpy())
-    H = np.stack(H)                                          # (64, d)
-    L = H @ Wn[cand].T                                       # logits (64, 40)
+    H = np.stack(H)                                          # (n_prompts, d)
+    L = H @ Wn[cand].T                                       # logits (n_prompts, 40)
     Cmat = np.clip(Wn[cand] @ Wn[cand].T, -1, 1)
     np.fill_diagonal(Cmat, -1)
     nn_id = Cmat.argmax(1)
@@ -178,8 +225,8 @@ def s4_interchangeability(Wn, model, tok):
                         for i in range(len(cand))])
     corr_rand = np.array([np.corrcoef(L[:, i], L[:, rng.integers(len(cand))])[0, 1]
                           for i in range(len(cand))])
-    print(f"S4  logit correlation across 64 contexts, {len(cand)} tokens:")
-    print(f"    (t, NN(t))  mean {corr_nn.mean():+.3f}   "
+    print(f"S4  logit correlation across {len(PROMPTS)} diverse prompts, {len(cand)} tokens:")
+    print(f"    (t, NN(t))  mean {corr_nn.mean():+.3f}   ",
           f"(t, random)  mean {corr_rand.mean():+.3f}  med {np.median(corr_rand):+.3f}")
     print(f"    NN beats random on {np.mean(corr_nn > np.median(corr_rand)):.1%} of tokens")
 

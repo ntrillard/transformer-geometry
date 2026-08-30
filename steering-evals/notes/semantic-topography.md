@@ -198,6 +198,15 @@ S3  Label-free auto-clusters confirm the inversion law: spherical k-means
     decisive note - the member closest to the current state; spread alone
     is not the right predictor).  The chord idea is label-free.
 
+    PROMPT-ROBUSTNESS (29 diverse prompts: facts/story/question/instruction/
+    code/math/CJK/European/register-edge/1-token punctuation):
+      overall cells (family x prompt): center 30.3%  vs  inversion 100.0%
+      inversion resolves ALL 5 families on 29/29 prompts
+      inversion >= center on 29/29 prompts
+      per-family center 0-55% (prompt-dependent), inversion 100% flat
+    => the inversion law is PROMPT-INDEPENDENT, center failure is not a
+      small-prompt artifact.
+
 S4  Geometric NN pairs are behaviorally interchangeable (correlated logits
     across 64 contexts, no labels):
       (t, geometric-NN(t)): mean logit-corr +0.233  (n0-free +0.333)
@@ -205,6 +214,9 @@ S4  Geometric NN pairs are behaviorally interchangeable (correlated logits
       NN-beats-random: 72.5% of tokens
     => geometric adjacency => functional adjacency: tokens adjacent on the
     sphere produce correlated model output.  No semantics assumed anywhere.
+    PROMPT-ROBUSTNESS (29 diverse prompts): NN +0.272 vs random +0.132
+    (med +0.096), NN-beats-random 82.5% - the behavioral-interchangeability
+    law also survives every register/language/1-token context.
 
 MUST-DO follow-up: re-run S2/S3/S4 on gpt2/pythia/gemma (esp. the polar
 Pythia - does the inversion + NN-behavior law survive a NON-equatorial
