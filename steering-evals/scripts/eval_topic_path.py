@@ -25,6 +25,9 @@ import steering_geometry_test as M
 from eval_nb_quick import CLASSES
 
 MODEL = sys.argv[1] if len(sys.argv) > 1 else 'Qwen/Qwen2-0.5B-Instruct'
+START = sys.argv[2] if len(sys.argv) > 2 else 'food'
+TARGET = sys.argv[3] if len(sys.argv) > 3 else 'city'
+DEV = 'cuda' if torch.cuda.is_available() else 'cpu'
 DEV = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 
@@ -81,7 +84,7 @@ def main():
         print(f"     {a:8s} " + " ".join(f"{x:8.1f}" for x in r))
 
     # ---- T2 chord walk + T3 open vs closed loop ----
-    start, target = 'food', 'city'
+    start, target = START, TARGET
     h = (hs / hs.norm()).cpu().float().numpy()
     rows_tgt = Wn[topics[target]]
     rows_start = Wn[topics[start]]

@@ -285,3 +285,7 @@ T2  CHORD WALK food -> city (4deg steps, re-aim at target's best member):
 T3  OPEN (one 32deg arc) vs CLOSED (8x4deg re-aim) both land in city
     (' London') on Qwen.  Open-loop fine when target within reach; re-aim
     buys safety for hard/edge targets (todo: test farthest pair number-city).
+    FARTHEST PAIR number->city (89.9 deg): closed 8x4 walk crosses at step 4,
+    open 32 deg one-arc ALSO lands in city.  On Qwen even the farthest pair is
+    open-loop-reachable (families large; boundary crossed inside 32 deg).  The
+    re-aim advantage matters for TIGHT families (gemma dip 69%) not distance.
