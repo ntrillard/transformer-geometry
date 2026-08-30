@@ -15,6 +15,7 @@ W2  LAYER-CONSISTENCY: does the crossing step (and the direct-jump behavior)
 Run:  python eval_layer_walk.py      (~15 s)
 """
 import math
+import sys
 import time
 
 import numpy as np
@@ -23,11 +24,14 @@ import torch
 import steering_geometry_test as M
 from eval_nb_quick import CLASSES
 
-MODEL = 'Qwen/Qwen2-0.5B-Instruct'
+MODEL = sys.argv[1] if len(sys.argv) > 1 else 'Qwen/Qwen2-0.5B-Instruct'
 DEV = 'cuda' if torch.cuda.is_available() else 'cpu'
 MAX_STEPS = 12
 STEP_DEG = 4.0
-LAYERS = [0, 1, 3, 6, 9, 12, 15, 18, 21, 23]
+DEV = 'cuda' if torch.cuda.is_available() else 'cpu'
+MAX_STEPS = 12
+STEP_DEG = 4.0
+N_SPHERES = 8          # subset of layer spheres to test, spread across depth
 
 
 def main():
@@ -66,7 +70,9 @@ def main():
     print("-" * 70)
 
     all_rows = []
-    for l in LAYERS:
+    n_hidden = len(hidden) - 1          # layer l state = hidden[l+1]
+    spheres = np.linspace(0, n_hidden - 1, N_SPHERES, dtype=int)
+    for l in spheres:
         hs = hidden[l + 1][-1, :]                 # position-last state on sphere L
         hs = hs / np.linalg.norm(hs)
         u = hidden[l + 1][0, :]                   # position-0 = BOS axis of sphere L

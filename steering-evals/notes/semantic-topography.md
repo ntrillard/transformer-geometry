@@ -369,3 +369,20 @@ at any depth (M1-M3).
     steps in the same 2-5 distribution at every depth.  No depth localization
     (contrast #17's Pythia-final 2.3-6.3% at shallow blocks).  The topic path
     is a property of the WHOLE tower, not the readout sphere.
+
+    PYTHIA LAYER WALK (eval_layer_walk.py pythia, ~8s): unreached 0 at every
+    sphere BUT cost varies by depth - mid-stack sphere 9 = 4.8 steps (lots of
+    6s/7s), FINAL sphere 11 = 2.2 steps (everything 2-3).  Pythia = the
+    LATE-FACILITATED universe (walk the whole map cheaply only at the last
+    sphere); Qwen = the UNIFORM universe (3.4-3.5 flat everywhere).  Matches
+    #17's late-training localization, resolved per-sphere.
+
+    TOKEN WALKS (eval_walk_tokens.py): render the map as text per sphere.
+    Qwen food->city: every sphere traces 'grape/banana/honey' (foo) x3-4 then
+    jumps to 'London/Berlin' (cit) and holds - clean semantic walk at EVRY
+    sphere.  Pythia food->city: spheres 0-8 traverse off-topic/noise tokens
+    ('compatible','combining','semiconductor','adult','seemingly') before
+    still reaching a city token ('Moscow/Paris/Tokyo'); ONLY the final sphere
+    11 is clean ('banana' -> 'Cairo' in 3 steps).  The endpoint is reached
+    everywhere, but the PATH SEMANTICS are coherent only where the map is
+    coherent - Qwen: all spheres; Pythia: final sphere only.
