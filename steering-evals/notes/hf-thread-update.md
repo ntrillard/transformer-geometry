@@ -1,59 +1,103 @@
-# HF thread update — "Steer on a Sphere" (Aug 30, 2026)
+# HF thread — topical neighborhoods & chord-inversion steering (Aug 30, 2026)
 
-Update to the steering-on-a-sphere discussion. Since the last post, the
-semantic-topography arc went from Qwen-only to a 4-model law, and the two
-hardest claims ("are the neighborhoods actually semantic?" and "why did 16x16
-fail?") are now measured without any assumptions.
+Result-led, file-for-file reproducible (`ntrillard/transformer-geometry`,
+`steering-evals/`). Two findings: the LM head's rows are a functional,
+label-free topical map; and steering a token family works by aiming at its
+best-positioned member, not its center.
 
-TL;DR — four laws, all reproduced on **Qwen2-0.5B, Gemma-3-1B, GPT-2, and
-Pythia-160M**, ~20 s per model on one 3080:
+---
 
-| Law | What it says |
-|---|---|
-| 1. The map IS the embeddings | Qwen / Gemma / GPT-2 LM heads are **tied** to the input embedding — the semantic map on head rows is literally the embedding space, no head-specific machinery |
-| 2. You can't tile the shell | SOM/lattice quantization error is pinned at the data's own 1-NN angular scale at **every** lattice size (16 → 1024 neurons) and even a 1D ring. Scales measured: 19.9° (Pythia), 61.3–61.7° (Qwen/GPT-2), 75.2° (Gemma). Grid only repackages the same error + add empty cells |
-| 3. Aim at the member, not the center | Label-free families (spherical k-means, no semantics assumed) resolve under **inversion steering** (aim at the family member closest to the current state): ~92–100% vs ~12–68% for center steering. Inversion ≥ center on **29/29 diverse prompts, on all 4 models** — including polar Pythia |
-| 4. Equator law, now complete | Median token-row angle to the BOS axis: Qwen 91.5°, Gemma 92.4°, GPT-2 98.2° (equatorial → cheap steering, reach 98–100% @45°) vs **Pythia 19.1° (polar)** — yet Pythia still reaches 96% @45°, it just needs a larger arc. Equatorial = budget-lean, not a hard cutoff |
+## Finding 1 — the topical neighborhoods
 
-## What these give you
+**`scripts/eval_kohonen_sphere.py` (test T1b)** — cosine-KNN neighborhoods of
+30K sampled head rows, Qwen2-0.5B:
 
-- **A steering recipe that transfers across families**: don't aim at a family's
-  average (it's the point farthest from every member), aim at the
-  best-positioned member. One 17° rotation from any of 29 diverse contexts
-  (facts, code, CJK, even `?` alone) resolves the topic family. Single-shot
-  topical conditioning at baseline fluency/diversity; cadence k≥3 is the dose
-  dial; persistent = degenerate pit (the polar axis).
-- **Two methods retired with numbers**: global SOM/topographic lattices on the
-  head shell (structural failure, all sizes/topologies), and center-of-class
-  steering (works only when the family happens to face you).
-- **A cheap pre-flight metric**: measure your model's row-to-BOS angle and its
-  data 1-NN scale before building any steering tooling. Two lines, seconds.
+```
+apple  ->  Apple / Apple / apples / 苹果 / APPLE
+Paris  ->  Paris / 巴黎 / France / French / London
+king   ->  King / queen / kings / 国王 / KING
+ocean  ->  Ocean / oceans / 海洋 / sea / Sea / 海水
+```
 
-## Methodology notes (so it's checkable)
+- identity variants ~45°; same-class ~75° intra vs 86.6° inter; CJK ≈16% of
+  the 30-NN.
 
-- All numbers from `eval_som_sweep.py` in the repo
-  (`ntrillard/transformer-geometry`): S1 head-tying, S2 lattice sweep, S3
-  label-free inversion vs center, S4 logit interchangeability of geometric
-  neighbors vs random (NN beats random on 72–80% of tokens everywhere), S5
-  equator angle. 29 prompts: facts, stories, questions, instructions, code,
-  math, CJK, German/French, register edges, 1-token punctuation.
-- For **polar** models the S4 correlation must be computed after projecting the
-  candidate rows off the BOS axis — otherwise the shared pole component drives
-  every correlation to ~1.0 and the metric is meaningless.
-- Honest scope: per-family inversion is 93–100% with occasional dips on very
-  tight clusters (one family, one run: 69%); the robust claim is that inversion
-  ≥ center on 29/29 prompts and 4/4 models. The equator numbers used
-  position-0 of "Once upon a time" as the BOS/probe axis (same as the paper's
-  BOS-axis section).
+**`scripts/eval_nb_quick.py`** — enrichment of the *hand-labeled* class sets:
+number/color/city enrich 3.2–6.3× random in the neighborhoods, food/animal
+0.4–0.8 — the neighborhoods genuinely pick up the semantic classes.
 
-## Still open
+**`scripts/eval_semantic_map.py`** — the class-cap structure is cross-model:
+intra/inter separability 0.866 (Qwen), 0.827 (GPT-2), 0.847 (Pythia), 0.815
+(Gemma-3-1B).
 
-- Mid-stack layers: does the semantic map + inversion law survive at
-  non-final layers (the paper says final-layer steering is near-universal)?
-- The persistent-steering pit boundary on the polar model.
+**`scripts/eval_som_sweep.py` (S1, S4, S5)** — what the map is, without labels:
 
-Links: repo
-[ntrillard/transformer-geometry](https://github.com/ntrillard/transformer-geometry)
-· preprint `paper/paper_steer.pdf` · notes
-`steering-evals/notes/semantic-topography.md` · battery
-`steering-evals/scripts/eval_som_sweep.py`
+- **S1** — Qwen/Gemma/GPT-2 heads are *tied* to the input embedding: the
+  neighborhood map IS the embedding space, not a head-specific artifact.
+- **S4** — geometric NN token pairs have correlated logits across 29 diverse
+  prompts: NN corr +0.29–0.95 vs random +0.14–0.92; NN beats random on
+  72–80% of tokens in all 4 models → geometry ⇒ function.
+- **S5** — the map is equatorial (median row-to-BOS 91.5° Qwen / 92.4° Gemma /
+  98.2° GPT-2 vs 19.1° Pythia-polar) → the map is longitudinal (content); the
+  pole is context.
+
+Why cosine-KNN and not a fitted map: **`scripts/eval_som_failure.py`** +
+`eval_som_sweep.py` **S2** showed SOM quantization error is pinned at the
+data's own 1-NN angular scale at every lattice size (16→1024) and even a 1D
+ring — 19.9° (Pythia), 61–62° (Qwen/GPT-2), 75.2° (Gemma). The shell has no
+low-dim manifold to tile; the useful map is already in the rows, free.
+
+## Finding 2 — chord-inversion steering
+
+**`scripts/eval_chord_steering.py`** (+ `results/chord_steering.csv`,
+`chord_interference.csv`) — steering a token family at its **centroid**
+(center-steering) fails as family spread grows: threshold ~50°,
+corr(spread, reach) = −0.84. The centroid is the point farthest from every
+member.
+
+**`scripts/eval_chord_inversion.py`** (+ `results/chord_inversion.csv`) —
+instead aim at the **best-positioned member** of the family (the note closest
+to the current state) → the family cone resolves **89.6% vs 22.9%**.
+
+**`scripts/eval_som_sweep.py` (S3)** — the recipe is label-free and
+cross-model: spherical k-means clusters (no word classes assumed) resolve on
+Qwen2-0.5B 98.6%, Gemma-3-1B 92–100%, GPT-2 100%, Pythia-160M 93–97% vs
+12–68% center-steering, and inversion ≥ center on **29/29 diverse prompts ×
+4 models**, including polar Pythia.
+
+**`scripts/eval_topic_steering.py`** (+ `results/topic_steering.csv`) — the
+generation primitive: a single 17° inversion arc = free topical conditioning
+(100% first-token adherence, diversity 0.74 ≈ baseline); cadence k≥3 = a
+topical dose dial; persistent-steering = the known pit failure mode.
+
+**`scripts/eval_equator_fast.py` (E3)** — why it stays fluent: inversion arcs
+conserve latitude (~2° change), i.e. nearly pure content-plane motion that
+leaves the context/latitude channel alone.
+
+---
+
+## Reproduce
+
+```bash
+cd steering-evals/scripts
+python eval_kohonen_sphere.py        # T1b neighborhoods
+python eval_nb_quick.py              # class enrichment
+python eval_semantic_map.py          # cross-model class caps
+python eval_chord_steering.py        # center-steering law
+python eval_chord_inversion.py       # inversion recipe
+python eval_topic_steering.py        # generation primitive
+python eval_som_sweep.py [model]     # S1-S5: tying, lattice, label-free
+                                     #   inversion, NN interchange, equator
+                                     #   (~20 s/model; gemma needs HF token)
+```
+
+Idea log: `notes/semantic-topography.md`; all numbers backed by `results/*.csv`.
+
+## Scope
+
+- Per-family inversion 93–100% with rare dips on tight clusters (one run 69%);
+  the robust claim is inversion ≥ center on 29/29 prompts × 4/4 models.
+- Polar models (Pythia) must de-pole the S4 rows off the BOS axis or
+  correlations saturate ~1.0.
+- Open: does the neighbor map + inversion law survive at mid-stack layers; the
+  persistent-steering pit boundary on the polar model.
