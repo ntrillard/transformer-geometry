@@ -1,0 +1,257 @@
+word,ctx,layer,dir,budget,rank1,entry_deg,margin
+apple,The capital of France is,0,row,17,True,11.858314889787678,0.19076849520206451
+apple,The capital of France is,0,row,45,True,11.858314889787678,0.48787012696266174
+apple,The capital of France is,0,centroid,17,True,,0.14931505918502808
+apple,The capital of France is,0,centroid,45,True,,0.4295881986618042
+apple,The capital of France is,8,row,17,True,9.40566909091697,0.22485966980457306
+apple,The capital of France is,8,row,45,True,9.40566909091697,0.515989363193512
+apple,The capital of France is,8,centroid,17,True,,0.139456108212471
+apple,The capital of France is,8,centroid,45,True,,0.41718190908432007
+apple,The capital of France is,15,row,17,True,9.998071888199686,0.21526576578617096
+apple,The capital of France is,15,row,45,True,9.998071888199686,0.5136293172836304
+apple,The capital of France is,15,centroid,17,True,,0.15340033918619156
+apple,The capital of France is,15,centroid,45,True,,0.42121756076812744
+apple,The capital of France is,23,row,17,True,14.171843395643567,0.18192892521619797
+apple,The capital of France is,23,row,45,True,14.171843395643567,0.48121151328086853
+apple,The capital of France is,23,centroid,17,True,,0.13429507613182068
+apple,The capital of France is,23,centroid,45,True,,0.39066049456596375
+apple,Once upon a time,0,row,17,True,11.947332745240454,0.1904582679271698
+apple,Once upon a time,0,row,45,True,11.947332745240454,0.48763906955718994
+apple,Once upon a time,0,centroid,17,True,,0.1492914780974388
+apple,Once upon a time,0,centroid,45,True,,0.4294865131378174
+apple,Once upon a time,8,row,17,True,9.845260065898989,0.22874370217323303
+apple,Once upon a time,8,row,45,True,9.845260065898989,0.5158357471227646
+apple,Once upon a time,8,centroid,17,True,,0.13943642377853394
+apple,Once upon a time,8,centroid,45,True,,0.41507086157798767
+apple,Once upon a time,15,row,17,True,9.328440141971635,0.19705362617969513
+apple,Once upon a time,15,row,45,True,9.328440141971635,0.4925435483455658
+apple,Once upon a time,15,centroid,17,True,,0.14796186983585358
+apple,Once upon a time,15,centroid,45,True,,0.41275548934936523
+apple,Once upon a time,23,row,17,True,18.045161711687758,0.14917348325252533
+apple,Once upon a time,23,row,45,True,18.045161711687758,0.4562321752309799
+apple,Once upon a time,23,centroid,17,True,,0.14343155175447464
+apple,Once upon a time,23,centroid,45,True,,0.3976971507072449
+Paris,The capital of France is,0,row,17,True,13.255218348649516,0.19382233172655106
+Paris,The capital of France is,0,row,45,True,13.255218348649516,0.4815383702516556
+Paris,The capital of France is,0,centroid,17,True,,0.12480868399143219
+Paris,The capital of France is,0,centroid,45,True,,0.46564434468746185
+Paris,The capital of France is,8,row,17,True,13.08036550589719,0.19516225904226303
+Paris,The capital of France is,8,row,45,True,13.08036550589719,0.493598073720932
+Paris,The capital of France is,8,centroid,17,True,,0.09329884499311447
+Paris,The capital of France is,8,centroid,45,True,,0.42687007784843445
+Paris,The capital of France is,15,row,17,True,11.968581463748363,0.21009157598018646
+Paris,The capital of France is,15,row,45,True,11.968581463748363,0.5052966475486755
+Paris,The capital of France is,15,centroid,17,True,,0.13969315588474274
+Paris,The capital of France is,15,centroid,45,True,,0.4757697880268097
+Paris,The capital of France is,23,row,17,True,26.056153985412312,0.261985182762146
+Paris,The capital of France is,23,row,45,True,26.056153985412312,0.5269508361816406
+Paris,The capital of France is,23,centroid,17,True,,0.2521572709083557
+Paris,The capital of France is,23,centroid,45,True,,0.5251659750938416
+Paris,Once upon a time,0,row,17,True,13.242739593035902,0.19484255462884903
+Paris,Once upon a time,0,row,45,True,13.242739593035902,0.4822175204753876
+Paris,Once upon a time,0,centroid,17,True,,0.1257116198539734
+Paris,Once upon a time,0,centroid,45,True,,0.46666058897972107
+Paris,Once upon a time,8,row,17,True,11.75769937312422,0.2107066810131073
+Paris,Once upon a time,8,row,45,True,11.75769937312422,0.49715425074100494
+Paris,Once upon a time,8,centroid,17,True,,0.10744190216064453
+Paris,Once upon a time,8,centroid,45,True,,0.43665647506713867
+Paris,Once upon a time,15,row,17,True,7.409191136143902,0.23219595104455948
+Paris,Once upon a time,15,row,45,True,7.409191136143902,0.5167589634656906
+Paris,Once upon a time,15,centroid,17,True,,0.19079209119081497
+Paris,Once upon a time,15,centroid,45,True,,0.4978584796190262
+Paris,Once upon a time,23,row,17,True,31.92410610515367,0.15206179022789001
+Paris,Once upon a time,23,row,45,True,31.92410610515367,0.44629357755184174
+Paris,Once upon a time,23,centroid,17,True,,0.1467992141842842
+Paris,Once upon a time,23,centroid,45,True,,0.42423826456069946
+dog,The capital of France is,0,row,17,True,8.632915148600066,0.22469671815633774
+dog,The capital of France is,0,row,45,True,8.632915148600066,0.5039381831884384
+dog,The capital of France is,0,centroid,17,True,,0.15800902247428894
+dog,The capital of France is,0,centroid,45,True,,0.44594354927539825
+dog,The capital of France is,8,row,17,True,10.22583137626293,0.19812463223934174
+dog,The capital of France is,8,row,45,True,10.22583137626293,0.49702928960323334
+dog,The capital of France is,8,centroid,17,True,,0.11979912966489792
+dog,The capital of France is,8,centroid,45,True,,0.4309196025133133
+dog,The capital of France is,15,row,17,True,11.266321903855163,0.19185065478086472
+dog,The capital of France is,15,row,45,True,11.266321903855163,0.4851131737232208
+dog,The capital of France is,15,centroid,17,True,,0.15087968111038208
+dog,The capital of France is,15,centroid,45,True,,0.4439111053943634
+dog,The capital of France is,23,row,17,True,12.992720518467586,0.18864471465349197
+dog,The capital of France is,23,row,45,True,12.992720518467586,0.47729673981666565
+dog,The capital of France is,23,centroid,17,True,,0.16408272832632065
+dog,The capital of France is,23,centroid,45,True,,0.44256457686424255
+dog,Once upon a time,0,row,17,True,8.636924469642864,0.22547480463981628
+dog,Once upon a time,0,row,45,True,8.636924469642864,0.5044606328010559
+dog,Once upon a time,0,centroid,17,True,,0.1586708426475525
+dog,Once upon a time,0,centroid,45,True,,0.44628897309303284
+dog,Once upon a time,8,row,17,True,9.648864806504443,0.1978411301970482
+dog,Once upon a time,8,row,45,True,9.648864806504443,0.497626394033432
+dog,Once upon a time,8,centroid,17,True,,0.12452550232410431
+dog,Once upon a time,8,centroid,45,True,,0.43305234611034393
+dog,Once upon a time,15,row,17,True,11.325082021284782,0.16635487973690033
+dog,Once upon a time,15,row,45,True,11.325082021284782,0.4602987766265869
+dog,Once upon a time,15,centroid,17,True,,0.13771310448646545
+dog,Once upon a time,15,centroid,45,True,,0.42572611570358276
+dog,Once upon a time,23,row,17,True,13.88964729989532,0.1767364740371704
+dog,Once upon a time,23,row,45,True,13.88964729989532,0.47076737880706787
+dog,Once upon a time,23,centroid,17,True,,0.18533407151699066
+dog,Once upon a time,23,centroid,45,True,,0.4533451795578003
+money,The capital of France is,0,row,17,True,11.83201183129396,0.1830832064151764
+money,The capital of France is,0,row,45,True,11.83201183129396,0.45880717039108276
+money,The capital of France is,0,centroid,17,True,,0.15034284442663193
+money,The capital of France is,0,centroid,45,True,,0.43810588121414185
+money,The capital of France is,8,row,17,True,22.296490017157133,0.15431348979473114
+money,The capital of France is,8,row,45,True,22.296490017157133,0.43710610270500183
+money,The capital of France is,8,centroid,17,True,,0.12179825454950333
+money,The capital of France is,8,centroid,45,True,,0.41964268684387207
+money,The capital of France is,15,row,17,True,18.104195036684178,0.14612776041030884
+money,The capital of France is,15,row,45,True,18.104195036684178,0.4306921511888504
+money,The capital of France is,15,centroid,17,True,,0.1280408650636673
+money,The capital of France is,15,centroid,45,True,,0.4208626449108124
+money,The capital of France is,23,row,17,True,15.635108972481248,0.18498988449573517
+money,The capital of France is,23,row,45,True,15.635108972481248,0.4576829969882965
+money,The capital of France is,23,centroid,17,True,,0.15612956136465073
+money,The capital of France is,23,centroid,45,True,,0.4303978979587555
+money,Once upon a time,0,row,17,True,12.0149242972669,0.18306814879179
+money,Once upon a time,0,row,45,True,12.0149242972669,0.458797812461853
+money,Once upon a time,0,centroid,17,True,,0.15050115436315536
+money,Once upon a time,0,centroid,45,True,,0.43807584047317505
+money,Once upon a time,8,row,17,True,22.53025324150082,0.15350861847400665
+money,Once upon a time,8,row,45,True,22.53025324150082,0.4364895820617676
+money,Once upon a time,8,centroid,17,True,,0.12364114820957184
+money,Once upon a time,8,centroid,45,True,,0.419073149561882
+money,Once upon a time,15,row,17,True,12.736349367971156,0.14618989080190659
+money,Once upon a time,15,row,45,True,12.736349367971156,0.4306754469871521
+money,Once upon a time,15,centroid,17,True,,0.13672365993261337
+money,Once upon a time,15,centroid,45,True,,0.41449689865112305
+money,Once upon a time,23,row,17,True,18.237629612309547,0.16718079149723053
+money,Once upon a time,23,row,45,True,18.237629612309547,0.4490687847137451
+money,Once upon a time,23,centroid,17,True,,0.1557418406009674
+money,Once upon a time,23,centroid,45,True,,0.4252440929412842
+red,The capital of France is,0,row,17,True,6.4789330315665055,0.2084229737520218
+red,The capital of France is,0,row,45,True,6.4789330315665055,0.4731680154800415
+red,The capital of France is,0,centroid,17,True,,0.1854904592037201
+red,The capital of France is,0,centroid,45,True,,0.45605841279029846
+red,The capital of France is,8,row,17,True,8.882524411818183,0.21460570394992828
+red,The capital of France is,8,row,45,True,8.882524411818183,0.47758838534355164
+red,The capital of France is,8,centroid,17,True,,0.16221539676189423
+red,The capital of France is,8,centroid,45,True,,0.43728160858154297
+red,The capital of France is,15,row,17,True,7.352370792438566,0.21957366168498993
+red,The capital of France is,15,row,45,True,7.352370792438566,0.481164813041687
+red,The capital of France is,15,centroid,17,True,,0.17571216821670532
+red,The capital of France is,15,centroid,45,True,,0.44226107001304626
+red,The capital of France is,23,row,17,True,12.68920057213056,0.17668608576059341
+red,The capital of France is,23,row,45,True,12.68920057213056,0.4670744389295578
+red,The capital of France is,23,centroid,17,True,,0.15802958607673645
+red,The capital of France is,23,centroid,45,True,,0.4198702871799469
+red,Once upon a time,0,row,17,True,6.542030319119083,0.20871135592460632
+red,Once upon a time,0,row,45,True,6.542030319119083,0.4733748733997345
+red,Once upon a time,0,centroid,17,True,,0.18514499813318253
+red,Once upon a time,0,centroid,45,True,,0.45562994480133057
+red,Once upon a time,8,row,17,True,8.756903572603308,0.2136187106370926
+red,Once upon a time,8,row,45,True,8.756903572603308,0.4768790304660797
+red,Once upon a time,8,centroid,17,True,,0.16057823598384857
+red,Once upon a time,8,centroid,45,True,,0.4361964762210846
+red,Once upon a time,15,row,17,True,5.9325588791005055,0.20642215013504028
+red,Once upon a time,15,row,45,True,5.9325588791005055,0.47168177366256714
+red,Once upon a time,15,centroid,17,True,,0.15747244656085968
+red,Once upon a time,15,centroid,45,True,,0.42934030294418335
+red,Once upon a time,23,row,17,True,18.012868577291936,0.14517396688461304
+red,Once upon a time,23,row,45,True,18.012868577291936,0.4316994696855545
+red,Once upon a time,23,centroid,17,True,,0.15476912260055542
+red,Once upon a time,23,centroid,45,True,,0.4139176607131958
+door,The capital of France is,0,row,17,True,14.597131954503581,0.14794112741947174
+door,The capital of France is,0,row,45,True,14.597131954503581,0.4367520213127136
+door,The capital of France is,0,centroid,17,True,,0.11604851484298706
+door,The capital of France is,0,centroid,45,True,,0.4114742875099182
+door,The capital of France is,8,row,17,True,15.983284695611818,0.13290005922317505
+door,The capital of France is,8,row,45,True,15.983284695611818,0.42996492981910706
+door,The capital of France is,8,centroid,17,True,,0.09433263540267944
+door,The capital of France is,8,centroid,45,True,,0.3981345593929291
+door,The capital of France is,15,row,17,True,14.803273893843736,0.1524052545428276
+door,The capital of France is,15,row,45,True,14.803273893843736,0.4462506175041199
+door,The capital of France is,15,centroid,17,True,,0.13472061604261398
+door,The capital of France is,15,centroid,45,True,,0.41830557584762573
+door,The capital of France is,23,row,17,True,11.36134349558838,0.19159474968910217
+door,The capital of France is,23,row,45,True,11.36134349558838,0.4719110131263733
+door,The capital of France is,23,centroid,17,True,,0.1510007083415985
+door,The capital of France is,23,centroid,45,True,,0.42347678542137146
+door,Once upon a time,0,row,17,True,14.653364901940297,0.1480889916419983
+door,Once upon a time,0,row,45,True,14.653364901940297,0.43686793744564056
+door,Once upon a time,0,centroid,17,True,,0.11583239585161209
+door,Once upon a time,0,centroid,45,True,,0.41114071011543274
+door,Once upon a time,8,row,17,True,15.187663279953712,0.14130714535713196
+door,Once upon a time,8,row,45,True,15.187663279953712,0.4319740831851959
+door,Once upon a time,8,centroid,17,True,,0.10055363178253174
+door,Once upon a time,8,centroid,45,True,,0.40288031101226807
+door,Once upon a time,15,row,17,True,11.494819052348769,0.15887027978897095
+door,Once upon a time,15,row,45,True,11.494819052348769,0.45110347867012024
+door,Once upon a time,15,centroid,17,True,,0.12683171033859253
+door,Once upon a time,15,centroid,45,True,,0.41214078664779663
+door,Once upon a time,23,row,17,True,16.577511153402927,0.14470174908638
+door,Once upon a time,23,row,45,True,16.577511153402927,0.4363686889410019
+door,Once upon a time,23,centroid,17,True,,0.1435103416442871
+door,Once upon a time,23,centroid,45,True,,0.42548832297325134
+king,The capital of France is,0,row,17,True,16.73416837220634,0.1406007707118988
+king,The capital of France is,0,row,45,True,16.73416837220634,0.4376590847969055
+king,The capital of France is,0,centroid,17,True,,0.1446341872215271
+king,The capital of France is,0,centroid,45,True,,0.4460596740245819
+king,The capital of France is,8,row,17,True,13.882058959727436,0.15314076840877533
+king,The capital of France is,8,row,45,True,13.882058959727436,0.44387462735176086
+king,The capital of France is,8,centroid,17,True,,0.12935160100460052
+king,The capital of France is,8,centroid,45,True,,0.4442424178123474
+king,The capital of France is,15,row,17,True,15.949809938489587,0.17433978617191315
+king,The capital of France is,15,row,45,True,15.949809938489587,0.46023888885974884
+king,The capital of France is,15,centroid,17,True,,0.20026826858520508
+king,The capital of France is,15,centroid,45,True,,0.47732728719711304
+king,The capital of France is,23,row,17,True,13.472691571822722,0.18920991569757462
+king,The capital of France is,23,row,45,True,13.472691571822722,0.48157575726509094
+king,The capital of France is,23,centroid,17,True,,0.17904097586870193
+king,The capital of France is,23,centroid,45,True,,0.45812806487083435
+king,Once upon a time,0,row,17,True,16.532076735044004,0.14146746695041656
+king,Once upon a time,0,row,45,True,16.532076735044004,0.43831750750541687
+king,Once upon a time,0,centroid,17,True,,0.14489053189754486
+king,Once upon a time,0,centroid,45,True,,0.4461507499217987
+king,Once upon a time,8,row,17,True,15.192983997317153,0.1448189988732338
+king,Once upon a time,8,row,45,True,15.192983997317153,0.43741853535175323
+king,Once upon a time,8,centroid,17,True,,0.12033278495073318
+king,Once upon a time,8,centroid,45,True,,0.4393776208162308
+king,Once upon a time,15,row,17,True,15.32483396905508,0.15982754528522491
+king,Once upon a time,15,row,45,True,15.32483396905508,0.44912032783031464
+king,Once upon a time,15,centroid,17,True,,0.1614948734641075
+king,Once upon a time,15,centroid,45,True,,0.4474314749240875
+king,Once upon a time,23,row,17,True,13.433739002986139,0.18114641308784485
+king,Once upon a time,23,row,45,True,13.433739002986139,0.47476819157600403
+king,Once upon a time,23,centroid,17,True,,0.19288133084774017
+king,Once upon a time,23,centroid,45,True,,0.4597042202949524
+ocean,The capital of France is,0,row,17,True,11.98787674815365,0.2009483128786087
+ocean,The capital of France is,0,row,45,True,11.98787674815365,0.4975802153348923
+ocean,The capital of France is,0,centroid,17,True,,0.18417969346046448
+ocean,The capital of France is,0,centroid,45,True,,0.4887295663356781
+ocean,The capital of France is,8,row,17,True,12.12711698457353,0.20450449734926224
+ocean,The capital of France is,8,row,45,True,12.12711698457353,0.5053550899028778
+ocean,The capital of France is,8,centroid,17,True,,0.16314122080802917
+ocean,The capital of France is,8,centroid,45,True,,0.4762089252471924
+ocean,The capital of France is,15,row,17,True,13.169253587755735,0.18333961814641953
+ocean,The capital of France is,15,row,45,True,13.169253587755735,0.4853716343641281
+ocean,The capital of France is,15,centroid,17,True,,0.17054715752601624
+ocean,The capital of France is,15,centroid,45,True,,0.47124016284942627
+ocean,The capital of France is,23,row,17,True,15.33097430911892,0.17357444763183594
+ocean,The capital of France is,23,row,45,True,15.33097430911892,0.4781744182109833
+ocean,The capital of France is,23,centroid,17,True,,0.13876798748970032
+ocean,The capital of France is,23,centroid,45,True,,0.4205586910247803
+ocean,Once upon a time,0,row,17,True,12.086969132632195,0.20076462626457214
+ocean,Once upon a time,0,row,45,True,12.086969132632195,0.4974435567855835
+ocean,Once upon a time,0,centroid,17,True,,0.18266667425632477
+ocean,Once upon a time,0,centroid,45,True,,0.48785772919654846
+ocean,Once upon a time,8,row,17,True,12.607006075658626,0.19304732978343964
+ocean,Once upon a time,8,row,45,True,12.607006075658626,0.5004276037216187
+ocean,Once upon a time,8,centroid,17,True,,0.15829749405384064
+ocean,Once upon a time,8,centroid,45,True,,0.46697258949279785
+ocean,Once upon a time,15,row,17,True,13.708203324593931,0.16450528800487518
+ocean,Once upon a time,15,row,45,True,13.708203324593931,0.48233914375305176
+ocean,Once upon a time,15,centroid,17,True,,0.16087181866168976
+ocean,Once upon a time,15,centroid,45,True,,0.46822986006736755
+ocean,Once upon a time,23,row,17,True,15.649131350847284,0.1777820661664009
+ocean,Once upon a time,23,row,45,True,15.649131350847284,0.48147420585155487
+ocean,Once upon a time,23,centroid,17,True,,0.16400236636400223
+ocean,Once upon a time,23,centroid,45,True,,0.4370293617248535
