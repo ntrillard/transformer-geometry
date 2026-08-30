@@ -36,7 +36,10 @@ sphere, a single tangent step toward any token's LM-head direction increases
 that token's logit with 100\% reliability, and reaches rank~1 with high but
 model-dependent probability (97--99\% on Qwen2-0.5B and Qwen2-1.5B, 91\% on
 GPT-2, 67\% on SmolLM-135M, 28\% on Pythia-160M; all under identical
-controlled conditions). Corrected controls show that the result is target
+controlled conditions at a 17\textdegree{} budget). The spread is a budget-shift,
+not a ceiling: every family reaches $\geq 96\%$ within a 45\textdegree{} budget,
+with controls (wrong-target, random tangents) at exactly 0\% at every budget.
+Corrected controls show that the result is target
 specific and that rank acquisition is governed by the LM-head decision
 partition, not only by alignment with the target row. For every reachable case,
 the target that becomes rank~1 along the tangent arc remains rank~1 at the arc
@@ -266,7 +269,49 @@ The rank improvement along the target tangent is guaranteed ($W_t \cdot g_t =
 and GPT-2, moderate for SmolLM-135M, and lower for Pythia-160M, showing that the
 phenomenon is robust yet model-dependent. Across all 2,560 cases, any target
 that became rank~1 along the arc remained rank~1 at the arc endpoint; this ``no
-mid-arc loss'' property was also confirmed at a $45^\circ$ budget.
+\subsection{Reach-Vs-Budget: The Gap Is Not a Ceiling}
+
+The cross-family spread above is a statement at one angular budget
+(17\textdegree{}, the $\alpha=0.3$ reference contract). Sweeping the budget reveals
+that the spread is a \emph{shift} in the reach-vs-budget curve, not a hard
+per-model ceiling: every family reaches $\geq 96\%$ rank-1 within a
+45\textdegree{} budget, and 100\% for the Qwen family and GPT-2.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lcccccc}
+\toprule
+Model & 10\textdegree{} & 17\textdegree{} & 25\textdegree{} & 30\textdegree{} & 35\textdegree{} & 45\textdegree{} \\
+\midrule
+Qwen2-0.5B & 47.7\% & 98.4\% & 99.8\% & 100\% & 100\% & 100\% \\
+GPT-2 & 33.4\% & 90.8\% & 99.4\% & 100\% & 100\% & 100\% \\
+Gemma-3-1B & 21.3\% & 46.5\% & 52.9\% & 97.1\% & 98.2\% & 98.4\% \\
+Pythia-160M & 25.2\% & 27.9\% & 48.0\% & 63.5\% & 82.4\% & 96.1\% \\
+\bottomrule
+\end{tabular}
+\caption{Reach-vs-budget: per-family rank-1 rate as the angular budget grows
+(plain-prompt contract, 64 targets $\times$ 2 contexts $\times$ 4 depth layers,
+seed 42). The 17\textdegree{} column reproduces the cross-family table to
+$0.1\%$, confirming the curves are read from one analytic distribution.}
+\label{tab:reachbudget}
+\end{table}
+
+The curves are read from the analytic first-rank-1 angle distribution (identical
+settings: 64 targets, 2 contexts, depth-adaptive layers, plain prompts, seed
+42); a 45\textdegree{}-budget run reproduces each 17\textdegree{} value to
+$0.1\%$. The reference 17\textdegree{} budget therefore measures \emph{arc
+efficiency}---how far the target tangent must travel to cross into the target
+cone---rather than an intrinsic steerability ceiling. Wrong-target and random
+controls remain exactly 0\% at every budget, so specificity does not fade as
+the budget grows.
+
+The distinctive mid-layer \emph{step} in the Gemma curve (flat 17--25
+\textdegree{}, then nearly complete by 30\textdegree{}) traces the per-layer
+entry-angle structure: Gemma's mid layers (8, 17) require $\sim$27\textdegree{}
+of arc while its boundary layers require only $\sim$10\textdegree{}, with a
+fixed 1.6\% minority never reachable on the whole circle. Pythia's curve rises
+more slowly (48\% at 25\textdegree{}, 82\% at 35\textdegree{}) and reaches
+96.1\% at 45\textdegree{}, with no unreachable minority at any layer.
 
 Table~\ref{tab:angles} reports the first rank-1 angle distribution over
 reachable cases.
@@ -298,11 +343,17 @@ architectures (Pythia-160M: 2--5\% at fractions $0$--$0.67$; SmolLM-135M:
 15.6\% at $0.67$). Decision-cell geometry does not explain this: active-set
 projections place every tested state within $17^\circ$ of nearly all targets'
 cones at every depth (cell-reach $\geq 99\%$; median $\theta_{\mathrm{cell}}$
-$6$--$13^\circ$), so the mid-layer failures are not distance effects. What
-fails is incidence: the particular great circle of the tangent step misses the
-target's cone entirely, though nearby in angle. Two consequences: (i)
-steering interventions should be applied at late layers, where reachability is
-near-universal, as our generation demonstrations do; (ii) among reachable
+$6$--$13^\circ$), so the mid-layer failures are not \emph{optimal-route}
+distance effects. What fails is arc efficiency: the target tangent enters the
+cone, but only after a longer great-circle travel than the 17\textdegree{}
+reference budget (Pythia mid-layer entry angles $\sim$29\textdegree{} vs
+$2.4\textdegree{}$ at the final layer; Tab.~\ref{tab:reachbudget}). The
+reach-vs-budget curves of Tab.~\ref{tab:reachbudget} confirm the same cells are entered at
+$\geq 92\%$ once the budget grows to 45\textdegree{}, with no intrinsically
+unreachable minority in Pythia. Two consequences: (i)
+steering interventions should be applied at late layers, where the arc is short
+and reachability near-universal, as our generation demonstrations do; (ii)
+among reachable
 pairs, $\theta_{\mathrm{cell}}$ remains an excellent per-case predictor of the
 crossing angle ($r = 0.83$--$0.93$ across families).
 

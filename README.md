@@ -47,6 +47,7 @@ The LM head gives every token a direction on that sphere. **A tangent step towar
 
 - Rank acquisition is governed by the LM-head decision partition, not just target alignment: rotating the residual *toward* the strongest blocker collapses success to 3–35%, *away* restores ~100%, at fixed norm and fixed target score.
 - No mid-arc loss: any target that becomes rank-1 along the arc stays rank-1 at the endpoint (verified on all 2,560 cases).
+- The 17° table above is the fixed-budget (α=0.3) view. Sweeping the budget shows the spread is a *shift*, not a ceiling: every family reaches ≥96% rank-1 within a 45° budget (Qwen/GPT-2 100%, Gemma-3-1B 98.4%, Pythia-160M 96.1%); wrong-target/random controls stay 0% at every budget. Pythia mid-layers need ~29° (its entry angles are 28.7–30.7° across layers 0–7) vs 2.4° at the final layer.
 - Shortest route: cone projection gives `theta_cell ≤ theta_author` (e.g. 8.45° vs 10.02° on Qwen2-0.5B).
 - Natural activations sit near a spherical shell (norm std ≈ 7% of mean); actual next-token steps are 2–2.6× larger than a controlled tangent step.
 
@@ -79,6 +80,7 @@ Full mitigation/false-positive matrices: [`THREAT_MODEL.md`](THREAT_MODEL.md).
 │   │   ├── eval_defense.py               # pit scan + defensive encoding
 │   │   ├── eval_pit_robustness.py        # decoder-contract robustness matrix
 │   │   ├── eval_7b_strict_pit_gate.py    # strict-pit gate for Qwen2.5-7B (--quant nf4)
+│   │   ├── eval_multi_goal_steering.py   # reach-vs-budget curves + multi-goal battery (top-k, window, margin, monotone)
 │   │   └── eval_threat_model.py          # mitigations + false positives (+ --quant for 7B)
 │   └── steering_geometry_results/  # raw CSVs backing every paper number
 ├── requirements.txt
@@ -97,6 +99,9 @@ python steering_geometry_test.py --model Qwen/Qwen2-0.5B-Instruct \
        --targets 64 --contexts 4 --layer-fracs 0.0,0.33,0.67,0.99
 python eval_boundary_instruments.py --model Qwen/Qwen2-0.5B-Instruct
 python eval_manifold_geometry.py --model Qwen/Qwen2-0.5B-Instruct --layer-idx 8
+python eval_multi_goal_steering.py --model Qwen/Qwen2-0.5B-Instruct \
+       --targets 64 --contexts 2 --layer-fracs 0.0,0.33,0.67,0.99 --plain-prompts \
+       --budget 45
 python eval_pit_robustness.py --model Qwen/Qwen2-0.5B-Instruct --seeds 64
 python eval_threat_model.py --model Qwen/Qwen2.5-7B-Instruct --quant nf4 --pit-id 15
 ```

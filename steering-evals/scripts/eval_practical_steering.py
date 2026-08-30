@@ -17,7 +17,7 @@ from eval_sustained_steering import generate, OUT
 @torch.no_grad()
 def sphere_hook(head_rows, alpha):
     """Tangent step + renormalization back onto the state's shell (paper formula)."""
-    w = head_rows.mean(0)
+    w = head_rows if head_rows.dim() == 1 else head_rows.mean(0)
     w = w / w.norm()
 
     def hook(module, inp, out):
