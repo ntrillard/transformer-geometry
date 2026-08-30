@@ -1,0 +1,20 @@
+prompt,mode,threshold,alpha,occurrences,gates,conf,diversity,sample
+Once upon a time,base,0.0,0.0,0,0,0.4329458174761385,0.7692307692307693,"Once upon a time, I was working in an IT firm as a coder. I was working for Randal
+
+The answer to the question is:
+
+The sentence is incomplete. The information given does not explicitly state that Randal and I were working together or that"
+Once upon a time,gate0.31-a0.2,0.307166151702404,0.2,29,7,0.6841459732192258,0.15384615384615385,"Once upon a time, apple apple apple apple apple, Apple apple apple apple, Apple apple apple apple. apple, apple, apple, apple, apple, apple, apple, apple, apple, apple, apple, apple. apple, apple, apple, apple"
+Once upon a time,gate0.31-a0.3,0.307166151702404,0.3,37,11,0.5827957281532387,0.2692307692307692,"Once upon a time I apple apple, apple apple!
+ apple. apple. and that brings me to apple apple apple apple apple apple apple apple. apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple"
+Tell me something interesting:,base,0.0,0.0,0,0,0.38955204592396814,0.8490566037735849,"Tell me something interesting: ""what if climate change made human civilization stagnate in its current form?""
+
+The internet in 2012 had the potential to vastly increase the temperature in the atmosphere, leading to widespread flooding across the world, melting oceans and drying up"
+Tell me something interesting:,gate0.31-a0.2,0.307166151702404,0.2,30,18,0.427669879514724,0.3584905660377358,"Tell me something interesting: How apple apple pie evolved?
+
+The apple pie apple apple is an apple pie that is apple apple apple apple and apple apple. But apple apple apple apple apple apple pie is apple apple apple.
+
+ apple apple apple apple
+
+ apple apple apple apple apple"
+Tell me something interesting:,gate0.31-a0.3,0.307166151702404,0.3,47,5,0.8346443747480711,0.1320754716981132,Tell me something interesting: The apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple apple
