@@ -362,3 +362,10 @@ choose the sphere-level at which to steer (deep = cheaper reach per #17 at
 some depths) without changing the target coordinate system - the rings all
 point the same way.  The "between-topic path" is the same decision-cell walk
 at any depth (M1-M3).
+
+    WALK ACROSS SPHERES (eval_layer_walk.py, Qwen, ~15s): the chord walk runs
+    IDENTICALLY from every sphere state - 10 tested layers (0,1,3,6,9,12,15,
+    18,21,23) all have unreached 0/30, mean crossing step 3.4-3.5 flat, per-pair
+    steps in the same 2-5 distribution at every depth.  No depth localization
+    (contrast #17's Pythia-final 2.3-6.3% at shallow blocks).  The topic path
+    is a property of the WHOLE tower, not the readout sphere.
