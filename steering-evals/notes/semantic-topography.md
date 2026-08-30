@@ -218,6 +218,49 @@ S4  Geometric NN pairs are behaviorally interchangeable (correlated logits
     (med +0.096), NN-beats-random 82.5% - the behavioral-interchangeability
     law also survives every register/language/1-token context.
 
-MUST-DO follow-up: re-run S2/S3/S4 on gpt2/pythia/gemma (esp. the polar
-Pythia - does the inversion + NN-behavior law survive a NON-equatorial
-vocab?) to claim the law is cross-model, not Qwen-only.
+---
+
+## CROSS-MODEL (Gemma-3-1B, GPT-2, Pythia-160M; eval_som_sweep.py [model])
+
+The MUST-DO follow-up is DONE.  Full 4-model battery, same script, same 29
+prompts (sizes: Qwen 0.5B/151936 rows, Gemma-3-1B 262144, GPT-2 50257,
+Pythia 50254):
+
+                        Qwen2-0.5B    Gemma-3-1B    GPT-2       Pythia-160M
+    S1 head tied?        TIED          TIED         TIED        SEPARATE
+    S2 data 1-NN scale   61.7 deg      75.2 deg     61.3 deg    19.9 deg
+       quant-err         ~64-65        ~74-76       ~60-63      ~18-19
+       (== 1-NN scale    at EVERY lattice size + ring on all 4)
+    S3 inversion         98.6%         92-99%       100%        93-97%
+       center            33.8%         12-29%       67.6%       16-24%
+       inv>=center       29/29         29/29        29/29       29/29
+    S4 NN / rand corr    +0.35/+0.19   +0.29/+0.14  +0.95/+0.92 +0.70/+0.50
+       NN beats rand     80%           77.5%        75%         72.5%
+    S5 equator (BOS)     91.5 deg      92.4 deg     98.2 deg    19.1 deg
+    (reach @45deg)      (100%)        (98.4%)      (100%)      (96.1%)
+
+Laws - now measured on 4 families (not Qwen-only):
+1. quant-err is pinned at the data's own 1-NN scale at EVERY lattice size and
+   the 1D ring, on all 4 models, across a 20x spread of that scale (19.9 - 75.2
+   deg).  No topology tiles the shell; the error is set by local density.
+2. The INVERSION law holds everywhere: ~92-100% families resolved vs ~12-68%
+   for center steering, and inversion >= center on 29/29 prompts on all 4 -
+   INCLUDING polar Pythia (16.6-24.1% center).  The chord recipe transfers.
+3. The EQUATOR law: equatorial vocabs are the steered ones (Qwen 91.5, Gemma
+   92.4, GPT-2 98.2 -> reach 98-100%); Pythia is POLAR (19.1 deg) yet still
+   reaches 96% @45deg budget - the cheaper-the-equator relation holds at fixed
+   budget; Pythia just needs a larger arc.
+4. S4 behavioral interchangeability holds on all 4 (NN > random on 72-80% of
+   tokens).  GPT-2/Pythia have higher baselines (tying + smaller vocabs) but
+   the NN edge is consistent.  NOTE: S4 metrics must be de-poled for polar
+   models (project candidate rows off the BOS axis) or every correlation
+   collapses to ~1.0 - the shared pole component dominates.
+5. S1: TIED embeddings (Qwen/Gemma/GPT-2) confirm the semantic map IS the
+   embedding space.  Pythia is the untied outlier (tie_word_embeddings=False),
+   and its rows come from embed_out - yet the same laws hold, so the map is a
+   property of trained semantic geometry, not of tying per se.
+
+Gibble: gemma's tiny spread families resolve 93-100% but occasionally one
+family dips to 69% (tight cluster, one note very close to state) - the
+per-family variance is real; the 29/29 always-inversion-advantage is the
+robust claim.

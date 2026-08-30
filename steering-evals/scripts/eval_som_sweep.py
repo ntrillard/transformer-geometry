@@ -2,7 +2,7 @@
 """S1-S4 basics: four questions, no semantic assumptions.
 
 S1  Is the LM head tied to the input embedding?
-    (if yes the 'semantic map' is the embedding space, no head-specific claim)
+    (if yes the semantic map is the embedding space, no head-specific claim)
 S2  Does ANY lattice size rescue the global SOM?
     (quant-err pinned ~64 deg at 4x4..32x32 and a 1D ring = the data 1-NN scale;
      bigger grids only add empty neurons, one prototype keeps half the mass)
@@ -11,10 +11,14 @@ S3  Do label-free families resolve under inversion > center steering?
      to check the law is not prompt-dependent)
 S4  Do geometric NN token pairs behave alike?
     (logit correlation across all diverse prompts, NN vs random)
+S5  Is the vocabulary EQUATORIAL to the BOS axis?
+    (median token-row angle to the position-0 final-layer state; equatorial
+      ~90 deg predicts cheap steering reach, polar ~20 deg predicts hard)
 
-Run:  python eval_som_sweep.py        (~15 s on the 3080)
+Run:  python eval_som_sweep.py [model]    (~15 s/model on the 3080)
 """
 import math
+import sys
 import time
 
 import numpy as np
@@ -22,7 +26,7 @@ import torch
 
 import steering_geometry_test as M
 
-MODEL = 'Qwen/Qwen2-0.5B-Instruct'
+MODEL = sys.argv[1] if len(sys.argv) > 1 else 'Qwen/Qwen2-0.5B-Instruct'
 DEV = 'cuda' if torch.cuda.is_available() else 'cpu'
 N = 20000                    # head rows sampled for the SOM / k-means fits
 
@@ -85,15 +89,32 @@ def kmeans_fit(X, K=30, iters=20):
     return P, bmu
 
 
+def _embed(model):
+    """Locate the input-embedding table across architectures."""
+    for path in ('model.embed_tokens', 'transformer.wte',
+                 'gpt_neox.embed_in'):
+        obj = model
+        ok = True
+        for a in path.split('.'):
+            obj = getattr(obj, a, None)
+            if obj is None:
+                ok = False; break
+        if ok:
+            return obj
+    return None
+
 def s1_tying(model):
-    tied = model.lm_head.weight.data_ptr() == \
-        model.model.embed_tokens.weight.data_ptr()
+    head = getattr(model, 'lm_head', None)
+    embed = _embed(model)
+    if head is None or embed is None:
+        print("S1  (no lm_head / embed table found) - tied check n/a")
+        return
+    tied = head.weight.data_ptr() == embed.weight.data_ptr()
     cfg = getattr(model.config, 'tie_word_embeddings', '?')
-    print(f"S1  lm_head.weight is {'TIED to embed' if tied else 'SEPARATE'} "
+    print(f"S1  lm_head is {'TIED to embed' if tied else 'SEPARATE'} ",
           f"(tie_word_embeddings={cfg})")
     if tied:
-        r = torch.cosine_similarity(model.lm_head.weight[0],
-                                    model.model.embed_tokens.weight[0], dim=0)
+        r = torch.cosine_similarity(head.weight[0], embed.weight[0], dim=0)
         print(f"    (first-row cosine {r:.6f} = same memory)")
 
 
@@ -203,10 +224,6 @@ def s4_interchangeability(Wn, model, tok):
         if len(cand) >= 40:
             break
     cand = np.array(cand)
-    prompts = ['The capital of France is', 'Once upon a time',
-               'Tell me something interesting:', 'To bake sourdough bread',
-               'In the year 3000, humans will', 'The quantum computer',
-               'For dinner I made', 'The quick brown fox'] * 8
     li = model.config.num_hidden_layers - 1
     H = []
     for p in PROMPTS:
@@ -217,7 +234,12 @@ def s4_interchangeability(Wn, model, tok):
             H.append(model(pid, output_hidden_states=True)
                      .hidden_states[li + 1][0, -1].cpu().float().numpy())
     H = np.stack(H)                                          # (n_prompts, d)
-    L = H @ Wn[cand].T                                       # logits (n_prompts, 40)
+    Wc = Wn[cand].copy()
+    # de-pole: project the candidate rows off the BOS axis (for polar models
+    # the shared pole component inflates every correlation to ~1.0 otherwise)
+    u = _bos_axis(model, tok)
+    Wc -= (Wc @ u)[:, None] * u[None, :]
+    L = H @ Wc.T                                             # logits (n_prompts, 40)
     Cmat = np.clip(Wn[cand] @ Wn[cand].T, -1, 1)
     np.fill_diagonal(Cmat, -1)
     nn_id = Cmat.argmax(1)
@@ -229,6 +251,24 @@ def s4_interchangeability(Wn, model, tok):
     print(f"    (t, NN(t))  mean {corr_nn.mean():+.3f}   ",
           f"(t, random)  mean {corr_rand.mean():+.3f}  med {np.median(corr_rand):+.3f}")
     print(f"    NN beats random on {np.mean(corr_nn > np.median(corr_rand)):.1%} of tokens")
+def _bos_axis(model, tok):
+    """Normalized position-0 final-layer hidden state (the latitude/BOS axis)."""
+    pid = tok('Once upon a time', add_special_tokens=False,
+              return_tensors='pt').input_ids.to(DEV)
+    li = model.config.num_hidden_layers - 1
+    with torch.no_grad():
+        h = model(pid, output_hidden_states=True).hidden_states[li + 1][0, 0]
+    return (h / h.norm()).cpu().float().numpy()
+
+
+def s5_equator(Wn, model, tok):
+    """Median token-row angle to the BOS/position-0 axis (the E1 law)."""
+    u = _bos_axis(model, tok)
+    angs = np.degrees(np.arccos(np.clip(Wn @ u, -1, 1)))
+    print(f"S5  token-row angle to BOS axis:  med {np.median(angs):.1f} deg  ",
+          f"(p10 {np.percentile(angs,10):.1f}, p90 {np.percentile(angs,90):.1f})")
+    print(f"    -> {'EQUATORIAL (semantic map ~ longitude; steering cheap)' if np.median(angs) > 70
+          else 'POLAR (semantics near the latitude axis; steering hard)'}")
 
 
 def main():
@@ -247,6 +287,8 @@ def main():
     s3_autocluster(Wn, model, tok)
     print()
     s4_interchangeability(Wn, model, tok)
+    print()
+    s5_equator(Wn, model, tok)
     print(f"\n[{time.time()-t0:.0f}s total]")
 
 
