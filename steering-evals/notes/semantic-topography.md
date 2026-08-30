@@ -320,3 +320,45 @@ GENERATION (multi-token, 12 tok, seed 7, 'Once upon a time, there was a'):
      single-shot is the right tool for staying in a family DURING generation.
      Reconciles with eval_topic_steering cadence: k>=3 dose dial = persistent
      re-steering, which holds ~8-9/12; pure walk at small angle is too weak.
+
+---
+
+## SPHERE MULTIVERSE (eval_layer_spheres.py, Qwen, ~10s)
+
+Concept + per-sphere measurements.  Thesis: a transformer is a STACK of
+spheres - RMSNorm at every layer rescales onto ITS OWN sphere S_L (own
+BOS/latitude axis u_L, own raw-head decision partition, own topic ring).
+Models are different universes (Qwen/GPT-2 equatorial, Pythia polar).
+Steering operates within one sphere's tangent space; computation walks the
+tower.
+
+Measured (Qwen2-0.5B, 24 spheres):
+  L1  EQUATOR: median row-to-BOS-axis angle is 87.8 deg FLAT across every
+      layer (std 0.3 deg over all 24; dense 88/88/87/.../88).  Every sphere
+      in the tower is equatorial w.r.t. its own BOS axis.
+  L2  RING: identical topic-ring order (city animal food nature color number)
+      and nearly identical ring distances (~95 deg mean, min ~5) at every
+      sphere - the semantic map is NOT a readout-sphere-only object; it is a
+      property of every sphere.
+  L3  ACCESSIBILITY: 17-deg chord-inversion arcs give family top-1 (final
+      head) from EVERY tested sphere state, 6/6 at all layers incl. the
+      embedding sphere.
+
+Interpretation:
+  - The tower is SELF-SIMILAR for Qwen: same equator, same ring, same
+    accessibility at every depth.  The BOS/position-0 axis is a fixed point
+    of the tower, so all spheres share ONE coordinate system (the "multiverse
+    is one universe" case): a single global longitude map threaded through
+    every sphere.
+  - Contrast with #17's Pythia-final: accessibility localized to the last
+    block (2.3/1.6/6.3/100%) - a LATE-LOCALIZED universe vs Qwen's
+    UNIFORM-ACCESS universe.  Different universes, same sphere law.
+  - Cross-model PREDICTION (untested, cheap): Pythia should be polar at
+    EVERY sphere (equator ~20 deg flat), and the ring should still exist but
+    on latitude not longitude.
+
+Consequence for steering: if the map is aligned across all spheres, you can
+choose the sphere-level at which to steer (deep = cheaper reach per #17 at
+some depths) without changing the target coordinate system - the rings all
+point the same way.  The "between-topic path" is the same decision-cell walk
+at any depth (M1-M3).
