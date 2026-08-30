@@ -148,3 +148,62 @@ PAPER + REPO (pre-existing, read-only for this arc):
 - Apply at mid-stack layers (does the semantic map survive depth?) ->
   Test E below is the first cut.
 - 0.5B-scale cross-check (gpt2/pythia/gemma generation).
+#JZ|- 0.5B-scale cross-check (gpt2/pythia/gemma generation).
+
+---
+
+## Assumption-free checks (S1-S4, eval_som_sweep.py, Qwen2-0.5B)
+
+Addresses two challenges: why 16x16, and the neighborhoods/chords were
+assumed semantic without proof.  Every claim re-tested WITHOUT labels.
+
+S1  The LM head is TIED to the input embedding (tie_word_embeddings=True
+    for Qwen2-0.5B; same memory, first-row cosine 1.000000).  The semantic
+    map on head rows IS the embedding space - no head-specific mechanism
+    needed.  Topographic structure is inherited from the tokenizer-world
+    distribution (embedding learns geometry directly from co-occurrence).
+
+S2  Lattice sweep (why 16x16 - because any 2D grid fails the same way):
+    sides 4/8/16/24/32 -> 16..1024 neurons + 1D-ring(256) control.
+    Data 1-NN scale = 61.7 deg (the tiling scale a SOM must beat).
+      side  neurons  quant-err  empty%  max-memb%  proto-NN  vs-data
+        4     16      64.4     0.0     40.7       19.2    sub-data
+        8     64      64.5     9.4     44.8       12.0    sub-data
+       16    256      64.4    48.8     33.6        4.0    sub-data
+       24    576      64.6    83.3     65.3       65.6    OK
+       32   1024      64.4    88.7     50.7       62.6    OK
+      1D-ring 256   qe 64.6   empty 0.0%  max-memb 3.9%
+    => quant error is ~64 deg at EVERY grid size (matches the data 1-NN
+    scale; a SOM cannot beat the intrinsic angular resolution of the data,
+    it only repackages it).  Bigger grids redistribute the same 64-deg
+    quota; more empty neurons (up to 89%) while max membership stays
+    ~40-65% (one prototype still owns half the mass).  The 1-D ring spreads
+    membership evenly (3.9% max) at the SAME 64.6 deg error - 2D topology
+    is irrelevant, error is set by local density, not tiling.  16x16 was
+    not the problem; collapsing is the norm at every topology.
+
+S3  Label-free auto-clusters confirm the inversion law: spherical k-means
+    (k=30, no semantics assumed) -> 5 usable clusters on Qwen:
+      family  size   spread   center-res  inversion-res
+         6    7457   45.4       25%         100%
+        20    4980   46.8       75%         100%
+         0    1024   70.8        0%         100%
+         9     895   70.5      100%         100%
+        26     583   69.1        0%         100%
+      AVG                  40.0%       100.0%
+    => inversion resolves EVERY auto-clustered family 100%, center-steering
+    only 40% (its weak/corrupt spread dependence: center aiming ignores the
+    decisive note - the member closest to the current state; spread alone
+    is not the right predictor).  The chord idea is label-free.
+
+S4  Geometric NN pairs are behaviorally interchangeable (correlated logits
+    across 64 contexts, no labels):
+      (t, geometric-NN(t)): mean logit-corr +0.233  (n0-free +0.333)
+      (t, random):          mean +0.095  med +0.099
+      NN-beats-random: 72.5% of tokens
+    => geometric adjacency => functional adjacency: tokens adjacent on the
+    sphere produce correlated model output.  No semantics assumed anywhere.
+
+MUST-DO follow-up: re-run S2/S3/S4 on gpt2/pythia/gemma (esp. the polar
+Pythia - does the inversion + NN-behavior law survive a NON-equatorial
+vocab?) to claim the law is cross-model, not Qwen-only.
