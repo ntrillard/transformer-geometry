@@ -84,12 +84,23 @@ def main():
         return steps
 
     print(f"[model] {MODEL}  |  {START} -> {TARGET}")
-    print(f"{'sphere':>6} | tokens at each step (topic):")
+    print(f"{'sphere':>6} | walk (compressed runs):")
     print("-" * 70)
     for l in spheres:
         steps = walk(int(l))
-        toks = " | ".join(f"`{t}`:{c[:3]}" for _, t, c in steps)
-        print(f"{l:6d} | {toks}")
+        runs = []
+        prev_t, prev_c, run = None, None, 0
+        for _, t, c in steps:
+            if t != prev_t:
+                if prev_t is not None:
+                    lab = f"{prev_t.strip()} ({prev_c})" if prev_t.strip() else repr(prev_t)
+                    runs.append(f"{lab}" + (f" x{run}" if run > 1 else ""))
+                prev_t, prev_c, run = t, c, 1
+            else:
+                run += 1
+        lab = f"{prev_t.strip()} ({prev_c})" if prev_t.strip() else repr(prev_t)
+        runs.append(f"{lab}" + (f" x{run}" if run > 1 else ""))
+        print(f"{l:6d} | {' -> '.join(runs)}")
     print(f"\n[{time.time()-t0:.0f}s total]")
 
 

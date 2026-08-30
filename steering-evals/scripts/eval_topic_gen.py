@@ -118,11 +118,11 @@ def main():
             tids.append(nxt)
             seen_topics.append(topic_of(nxt))
         txt = tok.decode(tids[len(pts):], skip_special_tokens=True)
-        counts = {c: seen_topics.count(c) for c in names}
-        top = max(counts, key=counts.get)
-        print(f"\n[{name}]  topics: {' '.join(f'{c[:3]}' for c in seen_topics)}")
-        print(f"    target-family tokens: {seen_topics.count(TARGET)}/{N_TOK}  "
-              f"(dominant {top})")
+        counts = {c: seen_topics.count(c) for c in names if seen_topics.count(c)}
+        summary = ", ".join(f"{c} x{n}" for c, n in sorted(counts.items(), key=lambda kv: -kv[1]))
+        print(f"\n[{name}]  topics: {summary or '(none)'}")
+        print(f"    target-family: {seen_topics.count(TARGET)}/{N_TOK}  ",
+              f"dominant {max(counts, key=counts.get) if counts else '?'}")
         print(f"    text: {txt!r}")
         return seen_topics, txt
 
