@@ -190,7 +190,9 @@ S3  Label-free auto-clusters confirm the inversion law: spherical k-means
          0    1024   70.8        0%         100%
          9     895   70.5      100%         100%
         26     583   69.1        0%         100%
-      AVG                  40.0%       100.0%
+      AVG                  ~25-40%     100.0%   (run-variance: k-means init
+                              unseeded; center 0-100 per family,
+                              inversion 100 in every run)
     => inversion resolves EVERY auto-clustered family 100%, center-steering
     only 40% (its weak/corrupt spread dependence: center aiming ignores the
     decisive note - the member closest to the current state; spread alone
