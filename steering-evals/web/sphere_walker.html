@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>steer on a sphere — live</title>
+<style>
+  :root { --bg:#0b0f17; --panel:rgba(18,24,38,.82); --line:rgba(120,150,200,.25); }
+  * { box-sizing:border-box; }
+  html,body { margin:0; height:100%; background:var(--bg); overflow:hidden;
+              font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; color:#d8e2f2; }
+  #c { position:fixed; inset:0; display:block; }
+  .hud { position:fixed; top:14px; left:14px; background:var(--panel);
+         border:1px solid var(--line); border-radius:10px; padding:12px 14px;
+         min-width:230px; backdrop-filter:blur(6px); box-shadow:0 6px 24px rgba(0,0,0,.4); }
+  .hud h1 { margin:0 0 8px; font-size:13px; letter-spacing:.06em; color:#9fb4dd; font-weight:600; }
+  .hud .row { display:flex; justify-content:space-between; gap:16px; margin:3px 0; }
+  .hud .row .k { color:#7d90b5; } .hud .row .v { color:#e9f1ff; }
+  .hud .tok { color:#7ee2a8; font-weight:700; }
+  .hud .hint { margin-top:10px; padding-top:8px; border-top:1px solid var(--line);
+               color:#64779c; font-size:11px; }
+  .legend { position:fixed; top:14px; right:14px; background:var(--panel);
+            border:1px solid var(--line); border-radius:10px; padding:10px 12px;
+            backdrop-filter:blur(6px); }
+  .legend .item { display:flex; align-items:center; gap:8px; margin:3px 0; }
+  .legend .sw { width:10px; height:10px; border-radius:50%; }
+  .toast { position:fixed; bottom:18px; left:50%; transform:translateX(-50%);
+           background:#3a1a1a; color:#ffb3b3; border:1px solid #7a3030;
+           padding:8px 16px; border-radius:8px; display:none; max-width:80%; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+
+<div class="hud">
+  <h1 id="h-model">steer on a sphere</h1>
+  <div class="row"><span class="k">sphere</span><span class="v" id="h-layer">—</span></div>
+  <div class="row"><span class="k">lat</span><span class="v" id="h-lat">—</span></div>
+  <div class="row"><span class="k">az</span><span class="v" id="h-az">—</span></div>
+  <div class="row"><span class="k">topic</span><span class="v" id="h-topic">—</span></div>
+  <div class="row"><span class="k">token</span><span class="v tok" id="h-token">—</span></div>
+  <div class="row"><span class="k">transitions</span><span class="v" id="h-trans">0</span></div>
+  <div class="hint">← →  walk around the ring · ↑ ↓  toward/away from the pole<br>
+                   <b>l</b> change layer (sphere) · <b>r</b> reset · drag to orbit</div>
+</div>
+
+<div class="legend" id="legend"></div>
+<div class="toast" id="toast"></div>
+
+<script type="importmap">
+{ "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+const COLORS = {
+  food:'#ff7043', animal:'#ffd54f', color:'#ba68c8',
+  city:'#4fc3f7', nature:'#81c784', number:'#ff5252',
+};
+const TOPIC_ORDER = ['food','animal','color','city','nature','number'];
+
+// ---------- fetch helpers ------------------------------------------------
+async function api(path, body) {
+  const opt = body ? {method:'POST', headers:{'Content-Type':'application/json'},
+                      body:JSON.stringify(body)} : {};
+  const r = await fetch(path, opt);
+  if (!r.ok) throw new Error(path + ' -> ' + r.status);
+  return r.json();
+}
+function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.style.display='block';
+  setTimeout(()=>t.style.display='none', 2500); }
+
+// ---------- scene ---------------------------------------------------------
+const canvas = document.getElementById('c');
+const renderer = new THREE.WebGLRenderer({canvas, antialias:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x0b0f17);
+scene.add(new THREE.AmbientLight(0xffffff, 0.35));
+const sun = new THREE.DirectionalLight(0xffffff, 1.0); sun.position.set(3,2,4); scene.add(sun);
+const cam = new THREE.PerspectiveCamera(50, innerWidth/innerHeight, .01, 100);
+cam.position.set(2.4, 1.6, 2.8);
+const ctrl = new OrbitControls(cam, canvas); ctrl.enableDamping = true;
+
+// sphere shell
+const shell = new THREE.Mesh(
+  new THREE.SphereGeometry(1, 48, 32),
+  new THREE.MeshStandardMaterial({color:0x16233f, transparent:true, opacity:.5,
+                                  wireframe:true, roughness:.9}));
+scene.add(shell);
+// pole axis (u is shown vertical; lat measured from +Z)
+const pole = new THREE.Line(
+  new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,-1.15), new THREE.Vector3(0,0,1.15)]),
+  new THREE.LineBasicMaterial({color:0x4a6ca8, transparent:true, opacity:.6}));
+scene.add(pole);
+// equator ring (z=0)
+const eqGeo = new THREE.RingGeometry(0.985, 1.015, 96);
+const ringMesh = new THREE.Mesh(eqGeo, new THREE.MeshBasicMaterial({color:0x3d5a8f,
+  transparent:true, opacity:.55, side:THREE.DoubleSide}));
+scene.add(ringMesh);
+
+const topicGroup = new THREE.Group(); scene.add(topicGroup);
+const trailMat = new THREE.LineBasicMaterial({color:0x8fd0ff, transparent:true, opacity:.85});
+let trailLine = new THREE.Line(new THREE.BufferGeometry(), trailMat); scene.add(trailLine);
+
+const stateDot = new THREE.Mesh(
+  new THREE.SphereGeometry(0.055, 24, 16),
+  new THREE.MeshStandardMaterial({color:0xffe082, emissive:0xffc400, emissiveIntensity:.9}));
+scene.add(stateDot);
+const DOT_TRIPOD = new THREE.Group(); scene.add(DOT_TRIPOD);   // for spike/sparkle later
+
+// ---------- geo helpers ----------------------------------------------------
+const posOf = (azDeg, latDeg) => {           // lat = polar angle from +Z
+  const t = THREE.MathUtils.degToRad(latDeg), p = THREE.MathUtils.degToRad(azDeg);
+  return new THREE.Vector3(Math.sin(t)*Math.cos(p), Math.sin(t)*Math.sin(p), Math.cos(t));
+};
+
+// ---------- data + rendering -------------------------------------------------
+const meta = {model:'', layers:[], spi:0, state:null};
+const topicMeshes = {};
+function projectTopicMarkers(layers) {
+  topicGroup.clear();
+  const az = layers[meta.spi].azimuths;
+  for (const t of TOPIC_ORDER) {
+    const g = new THREE.Mesh(new THREE.SphereGeometry(0.045, 20, 12),
+      new THREE.MeshStandardMaterial({color:COLORS[t], emissive:COLORS[t], emissiveIntensity:.45}));
+    g.position.copy(posOf(az[t], 90));
+    topicGroup.add(g);
+    topicMeshes[t] = g;
+    const spr = labelSprite(t.toUpperCase(), COLORS[t]);
+    spr.position.copy(posOf(az[t], 90)).multiplyScalar(1.16);
+    topicGroup.add(spr);
+  }
+  // ring ticks (every 40 deg) + tiny ticks (every 10)
+  const ring = layers[meta.spi].ring || [];
+  const tickMat = new THREE.LineBasicMaterial({color:0x35507f, transparent:true, opacity:.5});
+  for (const ent of ring) {
+    if (ent.az % 40 === 0) {
+      const a = ent.az;
+      const p1 = posOf(a, 90).multiplyScalar(.97), p2 = posOf(a, 90).multiplyScalar(1.045);
+      const ln = new THREE.Line(new THREE.BufferGeometry().setFromPoints([p1,p2]), tickMat);
+      topicGroup.add(ln);
+      const spr = labelSprite(ent.token, '#6f87b3');
+      spr.position.copy(posOf(a, 90)).multiplyScalar(1.16);
+      spr.scale.multiplyScalar(.7);
+      topicGroup.add(spr);
+    }
+  }
+}
+function labelSprite(text, color) {
+  const c = document.createElement('canvas'); c.width = 384; c.height = 96;
+  const g = c.getContext('2d');
+  g.font = '600 52px Helvetica, Arial'; g.textBaseline='middle'; g.textAlign='center';
+  g.shadowColor='rgba(0,0,0,.8)'; g.shadowBlur=12;
+  g.fillStyle = color; g.fillText(text, 192, 48);
+  const tex = new THREE.CanvasTexture(c);
+  const m = new THREE.SpriteMaterial({map:tex, transparent:true, depthTest:false});
+  const s = new THREE.Sprite(m); s.scale.set(.5,.125,1); return s;
+}
+
+function applyState(st) {
+  meta.state = st;
+  document.getElementById('h-layer').textContent = 'layer ' + st.layer;
+  document.getElementById('h-lat').textContent  = st.lat + '°';
+  document.getElementById('h-az').textContent   = st.az + '°';
+  document.getElementById('h-topic').textContent = st.topic;
+  document.getElementById('h-token').textContent = st.token;
+  document.getElementById('h-trans').textContent = st.transitions;
+  stateDot.position.copy(posOf(st.az, st.lat));
+  // trail (server sends (az, elevation) pairs)
+  const pts = (st.trail||[]).map(([az, elev]) => posOf(az, 90 - elev));
+  trailLine.geometry.dispose();
+  trailLine.geometry = new THREE.BufferGeometry().setFromPoints(pts);
+  // linger color on nearest topic
+  for (const t of TOPIC_ORDER) {
+    topicMeshes[t]?.material.emissiveIntensity = (t === st.topic) ? .95 : .45;
+    topicMeshes[t]?.scale.setScalar(t === st.topic ? 1.6 : 1);
+  }
+}
+
+function buildLegend() {
+  const l = document.getElementById('legend');
+  l.innerHTML = '<h1 style="margin:0 0 4px;font-size:12px;color:#9fb4dd;">topics</h1>';
+  for (const t of TOPIC_ORDER) {
+    const d = document.createElement('div'); d.className = 'item';
+    d.innerHTML = `<span class="sw" style="background:${COLORS[t]}"></span>${t}`;
+    l.appendChild(d);
+  }
+}
+
+// ---------- actions ----------------------------------------------------------
+async function doMove(dir) {
+  try { applyState(await api('/api/move', {dir})); }
+  catch(e){ toast('move failed: ' + e.message); }
+}
+async function doReset(layer) {
+  try {
+    const layers = meta.layers || [];
+    const target = layer !== undefined ? layer : (layers.length ? layers[meta.spi].layer : undefined);
+    applyState(await api('/api/reset', target !== undefined ? {layer:target} : {}));
+  } catch(e){ toast('reset failed: ' + e.message); }
+}
+async function cycleLayer() {
+  const layers = meta.layers; if (!layers.length) return;
+  meta.spi = (meta.spi + 1) % layers.length;
+  projectTopicMarkers(layers);
+  await doReset(layers[meta.spi].layer);
+}
+
+// ---------- input -------------------------------------------------------------
+addEventListener('keydown', async (e) => {
+  const map = {ArrowRight:'right', ArrowLeft:'left', ArrowUp:'up', ArrowDown:'down'};
+  if (map[e.key]) { e.preventDefault(); await doMove(map[e.key]); }
+  else if (e.key === 'l' || e.key === 'L') { e.preventDefault(); await cycleLayer(); }
+  else if (e.key === 'r' || e.key === 'R') { e.preventDefault(); await doReset(); }
+});
+
+// ---------- boot ---------------------------------------------------------------
+async function boot() {
+  const metaData = await api('/api/layers');
+  meta.model = metaData.model; meta.layers = metaData.layers;
+  document.getElementById('h-model').textContent = metaData.model;
+  buildLegend();
+  projectTopicMarkers(meta.layers);
+  const st = await api('/api/state');
+  meta.spi = Math.max(0, meta.layers.findIndex(l => l.layer === st.layer));
+  applyState(st);
+}
+boot().catch(e => toast('boot failed: ' + e.message));
+
+// ---------- loop / resize ---------------------------------------------------------
+function tick() { ctrl.update(); renderer.render(scene, cam); requestAnimationFrame(tick); }
+tick();
+addEventListener('resize', () => {
+  cam.aspect = innerWidth/innerHeight; cam.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+</script>
+</body>
+</html>
