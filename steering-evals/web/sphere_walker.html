@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>steer on a sphere — live</title>
+<link rel="icon" href="data:,">
 <style>
   :root { --bg:#0b0f17; --panel:rgba(18,24,38,.85); --line:rgba(120,150,200,.25); }
   * { box-sizing:border-box; }
@@ -12,11 +13,20 @@
   #c { position:fixed; inset:0; display:block; }
   .hud { position:fixed; top:14px; left:14px; background:var(--panel);
          border:1px solid var(--line); border-radius:10px; padding:12px 14px;
-         min-width:235px; backdrop-filter:blur(6px); box-shadow:0 6px 24px rgba(0,0,0,.4); z-index:10; }
-  .hud h1 { margin:0 0 8px; font-size:13px; letter-spacing:.06em; color:#9fb4dd; font-weight:600; }
+         min-width:300px; backdrop-filter:blur(6px); box-shadow:0 6px 24px rgba(0,0,0,.4); z-index:10; }
+  .hud h1 { margin:0 0 4px; font-size:13px; letter-spacing:.06em; color:#9fb4dd; font-weight:600; }
+  .hud .promptline { margin:0 0 8px; color:#6f87b3; font-size:11px; max-width:300px;
+                     white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .hud .row { display:flex; justify-content:space-between; gap:16px; margin:3px 0; }
   .hud .row .k { color:#7d90b5; } .hud .row .v { color:#e9f1ff; }
   .hud .tok { color:#7ee2a8; font-weight:700; }
+  .hud .ctl { display:flex; gap:6px; margin-top:8px; }
+  .hud input { flex:1; min-width:0; background:#0d1424; color:#e9f1ff; border:1px solid var(--line);
+               border-radius:6px; padding:5px 8px; font:inherit; }
+  .hud button { background:#1b2a48; color:#cfe0ff; border:1px solid var(--line); border-radius:6px;
+                padding:5px 10px; font:inherit; cursor:pointer; }
+  .hud button:hover { background:#24395f; }
+  .hud button.on { background:#3a5a9a; color:#fff; }
   .hud .hint { margin-top:10px; padding-top:8px; border-top:1px solid var(--line);
                color:#64779c; font-size:11px; }
   .compass { position:fixed; right:16px; bottom:16px; width:110px; height:110px;
@@ -46,13 +56,22 @@
 
 <div class="hud">
   <h1 id="h-model">steer on a sphere</h1>
+  <p class="promptline" id="h-prompt"></p>
   <div class="row"><span class="k">sphere</span><span class="v" id="h-layer">—</span></div>
   <div class="row"><span class="k">lat</span><span class="v" id="h-lat">—</span></div>
   <div class="row"><span class="k">az</span><span class="v" id="h-az">—</span></div>
   <div class="row"><span class="k">topic</span><span class="v" id="h-topic">—</span></div>
   <div class="row"><span class="k">token</span><span class="v tok" id="h-token">—</span></div>
   <div class="row"><span class="k">transitions</span><span class="v" id="h-trans">0</span></div>
-  <div class="hint">← →  around the ring · ↑ ↓  pole · <b>l</b> layer · <b>r</b> reset · drag orbit</div>
+  <div class="ctl">
+    <input id="inp-prompt" placeholder="seed prompt… (Enter)" spellcheck="false">
+    <button id="btn-seed">seed</button>
+  </div>
+  <div class="ctl">
+    <button id="btn-reset">⟲ reset</button>
+    <button id="btn-lock">N off</button>
+  </div>
+  <div class="hint">click a token → cow walks to it · ← →  ring · ↑ ↓  pole · <b>l</b> layer · drag orbit</div>
 </div>
 
 <div class="legend" id="legend"></div>
@@ -73,6 +92,7 @@
 <script type="module">
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 const COLORS = {
   food:'#ff7043', animal:'#ffd54f', color:'#ba68c8',
@@ -116,7 +136,7 @@ function poleLabel(txt, x,y,z){
   const s=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),
     transparent:true,depthTest:false})); s.position.set(x,y,z); s.scale.set(.16,.16,.16); return s;
 }
-// latitude rings (every 30 deg) - a mini compass on the sphere, light
+// latitude rings (every 30 deg)
 const latMat = new THREE.LineBasicMaterial({color:0x2c4470, transparent:true, opacity:.35});
 for (const lat of [30,60,120,150]){
   const pts=[]; for (let i=0;i<=64;i++){ const a=i*Math.PI*2/64;
@@ -129,19 +149,20 @@ scene.add(new THREE.Mesh(new THREE.RingGeometry(.985,1.015,96),
   new THREE.MeshBasicMaterial({color:0x3d5a8f, transparent:true, opacity:.55,
     side:THREE.DoubleSide})));
 // 4 compass azimuth labels on the equator
-const azLabelPos = {0:'N', 90:'E', 180:'S', 270:'W'};
-for (const [deg,lab] of Object.entries(azLabelPos)){
+for (const [deg,lab] of Object.entries({0:'N', 90:'E', 180:'S', 270:'W'})){
   const a=THREE.MathUtils.degToRad(deg);
   const s=poleLabel(lab, Math.cos(a)*1.18, Math.sin(a)*1.18, 0);
   s.scale.setScalar(.12); scene.add(s);
 }
 
+// invisible "steer here" sphere used for click-to-walk on empty spots
+const steerSphere = new THREE.Mesh(new THREE.SphereGeometry(1.02, 32, 16),
+  new THREE.MeshBasicMaterial({visible:false}));
+scene.add(steerSphere);
+
 const topicGroup = new THREE.Group(); scene.add(topicGroup);
 const trailMat = new THREE.LineBasicMaterial({color:0x8fd0ff, transparent:true, opacity:.85});
 const trailLine = new THREE.Line(new THREE.BufferGeometry(), trailMat); scene.add(trailLine);
-const stateDot = new THREE.Mesh(new THREE.SphereGeometry(.055,24,16),
-  new THREE.MeshStandardMaterial({color:0xffe082, emissive:0xffc400, emissiveIntensity:.9}));
-scene.add(stateDot);
 
 const posOf=(azDeg,latDeg)=>{ const t=THREE.MathUtils.degToRad(latDeg),
   p=THREE.MathUtils.degToRad(azDeg);
@@ -154,32 +175,76 @@ function labelSprite(text,color){
     transparent:true,depthTest:false})); s.scale.set(.5,.125,1); return s;
 }
 
+// ---- the steer walker ----
+// (walker model loaded below)
+  const cow = new THREE.Group();
+cow.userData.base = new THREE.Vector3(0,1,0);
+scene.add(cow);
+const walkerLoader = new GLTFLoader();
+const walkerSrc = '/models/steer_no_blue_ball.glb';
+function noop(){}
+function onWalkerLoaded(gltf){
+  const m = gltf.scene;
+  const box = new THREE.Box3().setFromObject(m);
+  const size = box.getSize(new THREE.Vector3());
+  const center = box.getCenter(new THREE.Vector3());
+  m.position.sub(center);
+  const target = 0.16;
+  const s = target / Math.max(size.x, size.y, size.z);
+  m.scale.setScalar(s);
+  m.position.y = -size.y * s / 2;
+  cow.add(m);
+}
+function onWalkerError(err){
+  console.warn('walker model load failed', err);
+}
+walkerLoader.load(walkerSrc, onWalkerLoaded, noop, onWalkerError);
+
 // ---- data / state -----------------------------------------------------
 const meta = {model:'', layers:[], spi:0, state:null};
 const topicMeshes = {};
+const clickables = [steerSphere];
+let busy = false;
 const needleEl = document.getElementById('needle');
+const btnLockEl = document.getElementById('btn-lock');
+let lockNorth = false, lockedYaw = 0;
+
 function projectTopicMarkers(layers){
-  topicGroup.clear();
+  topicGroup.clear(); clickables.length = 0; clickables.push(steerSphere);
   const az = layers[meta.spi].azimuths;
   for (const t of TOPIC_ORDER){
     const g=new THREE.Mesh(new THREE.SphereGeometry(.045,20,12),
       new THREE.MeshStandardMaterial({color:COLORS[t], emissive:COLORS[t], emissiveIntensity:.45}));
     g.position.copy(posOf(az[t],90)); topicGroup.add(g); topicMeshes[t]=g;
+    g.userData.az = az[t]; clickables.push(g);
     const s=labelSprite(t.toUpperCase(), COLORS[t]);
     s.position.copy(posOf(az[t],90)).multiplyScalar(1.16); topicGroup.add(s);
+    s.userData.az = az[t]; clickables.push(s);
   }
   const ring=layers[meta.spi].ring||[];
   const tickMat=new THREE.LineBasicMaterial({color:0x35507f, transparent:true, opacity:.5});
+  const shown = new Set();
   for (const ent of ring){
-    if (ent.az % 40 === 0){
-      const a=ent.az;
+    if (ent.az % 40 === 0 && !shown.has(ent.az)){
+      shown.add(ent.az); const a=ent.az;
       topicGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(
         [posOf(a,90).multiplyScalar(.97), posOf(a,90).multiplyScalar(1.045)]), tickMat));
       const s=labelSprite(ent.token,'#6f87b3'); s.position.copy(posOf(a,90)).multiplyScalar(1.16);
       s.scale.multiplyScalar(.7); topicGroup.add(s);
+      s.userData.az = a; clickables.push(s);
     }
   }
 }
+
+function orientCow(az, lat){
+  const p = posOf(az, lat);
+  cow.userData.base.copy(p);
+  const east = posOf(az+0.5, lat).sub(posOf(az-0.5, lat)).normalize();
+  const north = posOf(az, lat+0.5).sub(posOf(az, lat-0.5)).normalize();
+  const m = new THREE.Matrix4().makeBasis(east, p, north);
+  cow.quaternion.setFromRotationMatrix(m);
+}
+
 function applyState(st){
   meta.state=st;
   document.getElementById('h-layer').textContent='layer '+st.layer;
@@ -188,7 +253,7 @@ function applyState(st){
   document.getElementById('h-topic').textContent=st.topic;
   document.getElementById('h-token').textContent=st.token;
   document.getElementById('h-trans').textContent=st.transitions;
-  stateDot.position.copy(posOf(st.az, st.lat));
+  orientCow(st.az, st.lat);
   needleEl.style.transform=`rotate(${(-st.az)%360}deg)`;
   const pts=(st.trail||[]).map(([a,e])=>posOf(a,90-e));
   trailLine.geometry.dispose(); trailLine.geometry=new THREE.BufferGeometry().setFromPoints(pts);
@@ -205,28 +270,103 @@ function buildLegend(){
     d.innerHTML=`<span class="sw" style="background:${COLORS[t]}"></span>${t}`; l.appendChild(d); }
 }
 
+// ---- actions ------------------------------------------------------------
 async function doMove(dir){ try{ applyState(await api('/api/move',{dir})); }
   catch(e){ toast('move failed: '+e.message); } }
-async function doReset(layer){
-  try{ const L=meta.layers;
-    const target = layer!==undefined ? layer : (L.length ? L[meta.spi].layer : undefined);
-    applyState(await api('/api/reset', target!==undefined?{layer:target}:{})); }
+async function doReset(){
+  try{ applyState(await api('/api/reset', {})); }
   catch(e){ toast('reset failed: '+e.message); } }
+async function doGo(az){
+  if (busy) return; busy = true;
+  try{ applyState(await api('/api/go', {az})); }
+  catch(e){ toast('go failed: '+e.message); }
+  finally{ busy = false; } }
 async function cycleLayer(){
-  const L=meta.layers; if(!L.length) return;
-  meta.spi=(meta.spi+1)%L.length; projectTopicMarkers(L); await doReset(L[meta.spi].layer); }
+  const L=meta.layers; if(!L.length || busy) return; busy = true;
+  try{
+    meta.spi=(meta.spi+1)%L.length; projectTopicMarkers(L);
+    const st = await api('/api/reset', {layer: L[meta.spi].layer});
+    meta.spi = Math.max(0, meta.layers.findIndex(l=>l.layer===st.layer));
+    applyState(st);
+  } catch(e){ toast('layer failed: '+e.message); } finally{ busy = false; } }
+async function seedPrompt(text){
+  if (busy) return; busy = true;
+  try{
+    await api('/api/prompt', {prompt:text});
+    const md = await api('/api/layers');
+    meta.layers = md.layers;
+    document.getElementById('h-prompt').textContent = md.prompt || '';
+    projectTopicMarkers(meta.layers);
+    const st = await api('/api/state');
+    meta.spi = Math.max(0, meta.layers.findIndex(l=>l.layer===st.layer));
+    applyState(st);
+    toast('re-seeded');
+  } catch(e){ toast('seed failed: '+e.message); } finally{ busy = false; } }
+function toggleLock(){
+  lockNorth = !lockNorth;
+  if (lockNorth){
+    lockedYaw = ctrl.getAzimuthalAngle();
+    ctrl.minAzimuthAngle = lockedYaw;
+    ctrl.maxAzimuthAngle = lockedYaw;
+  } else {
+    ctrl.minAzimuthAngle = -Infinity;
+    ctrl.maxAzimuthAngle = Infinity;
+  }
+  btnLockEl.textContent = lockNorth ? 'N \u2b23 on' : 'N off';
+  btnLockEl.classList.toggle('on', lockNorth);
+}
+
+document.getElementById('btn-reset').addEventListener('click', doReset);
+document.getElementById('btn-lock').addEventListener('click', toggleLock);
+document.getElementById('btn-seed').addEventListener('click', ()=>
+  seedPrompt(document.getElementById('inp-prompt').value));
+document.getElementById('inp-prompt').addEventListener('keydown', (e)=>{
+  if (e.key === 'Enter') seedPrompt(e.target.value); });
 
 addEventListener('keydown', async (e)=>{
   const map={ArrowRight:'right',ArrowLeft:'left',ArrowUp:'up',ArrowDown:'down'};
+  if (busy) return;
   if(map[e.key]){ e.preventDefault(); await doMove(map[e.key]); }
   else if(e.key==='l'||e.key==='L'){ e.preventDefault(); await cycleLayer(); }
   else if(e.key==='r'||e.key==='R'){ e.preventDefault(); await doReset(); }
+});
+
+// click-to-walk (clicks, not drags)
+const raycaster = new THREE.Raycaster();
+const ndc = new THREE.Vector2();
+let downXY = null;
+canvas.addEventListener('pointerdown', (e)=>{ downXY = [e.clientX, e.clientY]; });
+canvas.addEventListener('pointerup', async (e)=>{
+  if (!downXY) return;
+  const dx = e.clientX - downXY[0], dy = e.clientY - downXY[1];
+  downXY = null;
+  if (Math.hypot(dx, dy) > 8) return;              // it was a drag = orbit
+  ndc.x = (e.clientX/innerWidth)*2 - 1;
+  ndc.y = -(e.clientY/innerHeight)*2 + 1;
+  raycaster.setFromCamera(ndc, cam);
+  const hits = raycaster.intersectObjects(clickables, false);
+  if (!hits.length) return;
+  const az = hits[0].object.userData.az;
+  if (az !== undefined){
+    doGo(az);
+  } else {
+    const p = hits[0].point;
+    const azHit = (Math.atan2(p.y, p.x) * 180 / Math.PI + 360) % 360;
+    doGo(azHit);
+  }
+});
+canvas.addEventListener('pointermove', (e)=>{
+  ndc.x = (e.clientX/innerWidth)*2 - 1;
+  ndc.y = -(e.clientY/innerHeight)*2 + 1;
+  raycaster.setFromCamera(ndc, cam);
+  canvas.style.cursor = raycaster.intersectObjects(clickables, false).length ? 'pointer' : 'grab';
 });
 
 async function boot(){
   const md=await api('/api/layers');
   meta.model=md.model; meta.layers=md.layers;
   document.getElementById('h-model').textContent=md.model;
+  document.getElementById('h-prompt').textContent=md.prompt || '';
   buildLegend(); projectTopicMarkers(meta.layers);
   const st=await api('/api/state');
   meta.spi=Math.max(0, meta.layers.findIndex(l=>l.layer===st.layer));
@@ -234,7 +374,12 @@ async function boot(){
 }
 boot().catch(e=>toast('boot failed: '+e.message));
 
-function tick(){ ctrl.update(); renderer.render(scene,cam); requestAnimationFrame(tick); }
+function tick(){
+  const ctr = ctrl;                       // lock-north handled via az clamps in toggleLock
+  ctrl.update();
+  cow.position.copy(cow.userData.base).multiplyScalar(1 + 0.02*Math.sin(performance.now()/240));
+  renderer.render(scene,cam); requestAnimationFrame(tick);
+}
 tick();
 addEventListener('resize', ()=>{ cam.aspect=innerWidth/innerHeight;
   cam.updateProjectionMatrix(); renderer.setSize(innerWidth,innerHeight); });

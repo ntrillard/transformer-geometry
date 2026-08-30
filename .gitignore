@@ -4,6 +4,9 @@ __pycache__/
 
 # Model caches / build output
 models/
+!steering-evals/web/models/
+!steering-evals/web/models/*.glb
+!steering-evals/web/models/*.obj
 dist/
 .DS_Store
 
