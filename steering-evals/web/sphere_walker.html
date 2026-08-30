@@ -187,13 +187,21 @@ function onWalkerLoaded(gltf){
   const m = gltf.scene;
   const box = new THREE.Box3().setFromObject(m);
   const size = box.getSize(new THREE.Vector3());
-  const center = box.getCenter(new THREE.Vector3());
-  m.position.sub(center);
-  const target = 0.16;
+  const target = 0.16;                          // ~16% of sphere radius
   const s = target / Math.max(size.x, size.y, size.z);
   m.scale.setScalar(s);
-  m.position.y = -size.y * s / 2;
+  const box2 = new THREE.Box3().setFromObject(m);      // box AFTER scale
+  const c2 = box2.getCenter(new THREE.Vector3());
+  m.position.sub(c2);                           // now truly centered
+  const size2 = box2.getSize(new THREE.Vector3());
+  m.position.z = -size2.z / 2;                  // Z-up model: feet at z=0
   cow.add(m);
+  window.__walkerDebug = {
+    size: size.toArray(),
+    s: s,
+    centerAfter: c2.toArray(),
+    finalPos: m.position.toArray(),
+  };
 }
 function onWalkerError(err){
   console.warn('walker model load failed', err);
@@ -241,8 +249,8 @@ function orientCow(az, lat){
   cow.userData.base.copy(p);
   const east = posOf(az+0.5, lat).sub(posOf(az-0.5, lat)).normalize();
   const north = posOf(az, lat+0.5).sub(posOf(az, lat-0.5)).normalize();
-  const m = new THREE.Matrix4().makeBasis(east, p, north);
-  cow.quaternion.setFromRotationMatrix(m);
+  const m = new THREE.Matrix4().makeBasis(east, north, p);
+  // local Z (cow up) -> radial
 }
 
 function applyState(st){
