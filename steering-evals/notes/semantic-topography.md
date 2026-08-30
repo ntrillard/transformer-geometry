@@ -264,3 +264,24 @@ Gibble: gemma's tiny spread families resolve 93-100% but occasionally one
 family dips to 69% (tight cluster, one note very close to state) - the
 per-family variance is real; the 29/29 always-inversion-advantage is the
 robust claim.
+---
+
+## TOPIC PATHS (eval_topic_path.py, Qwen2-0.5B, ~4s)
+
+T1  TOPIC RING: the 6 class centroids sit at DISTINCT azimuths around the
+    equator (de-poled, PCA-projected to 2D):
+        city 15.1  animal 109.9  food 123.1  nature 129.2  color 209.7
+        number 278.8   (deg)
+        circular order: city -> animal -> food -> nature -> color -> number
+    Pairwise equatorial distances 64-90 deg.  There IS a topic topology:
+    shortest path between topics = azimuthal distance on the ring.
+T2  CHORD WALK food -> city (4deg steps, re-aim at target's best member):
+        start ' there' (number) -> enter food ' honey' x2 -> ' London' (city)
+        step 3 and locked.  The walk is BALLISTIC, not gradual: it stays on
+        the start topic until it crosses the topic decision boundary, then
+        jumps to the target and holds.  Path between topics = crossing the
+        piecewise decision-cell partition, consistent with competitor
+        geometry (HF thread #17) rather than a smooth longitude drift.
+T3  OPEN (one 32deg arc) vs CLOSED (8x4deg re-aim) both land in city
+    (' London') on Qwen.  Open-loop fine when target within reach; re-aim
+    buys safety for hard/edge targets (todo: test farthest pair number-city).
