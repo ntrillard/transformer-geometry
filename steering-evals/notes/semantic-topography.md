@@ -289,3 +289,34 @@ T3  OPEN (one 32deg arc) vs CLOSED (8x4deg re-aim) both land in city
     open 32 deg one-arc ALSO lands in city.  On Qwen even the farthest pair is
     open-loop-reachable (families large; boundary crossed inside 32 deg).  The
     re-aim advantage matters for TIGHT families (gemma dip 69%) not distance.
+
+---
+
+## TOPIC MAP + GENERATION WALKS (eval_topic_map.py, eval_topic_gen.py; Qwen, ~5-10s)
+
+M1  TRANSITION MATRIX: ALL 30 ordered class pairs reached by the re-aimed
+    chord walk in <=4 steps (unreached 0/30).  Reachability is universal once
+    re-aiming, at 4 deg steps.
+M2  PATHS: 0/30 pass through an intermediate topic - every walk jumps directly
+    from the START cell to the TARGET cell.  The ring (T1) is a WHERE-map, not
+    a route: paths never trace the ring, they cross the decision partition.
+M3  NO DISTANCE LAW: corr(crossing step, az-ring dist) = -0.17, corr(step,
+    equatorial dist) = -0.15; adjacent vs far pairs cross in ~3-4 steps either
+    way.  Re-aimed walk cost is DISTANCE-INDEPENDENT (the earlier 89.9 deg
+    open-loop far-pair need was an open-loop effect, not a distance law).
+
+GENERATION (multi-token, 12 tok, seed 7, 'Once upon a time, there was a'):
+  food->city:  baseline 0/12 city, walk(3deg/st) 1/12, persistent(8deg) 8/12,
+               SINGLE-SHOT(17deg once) 10/12  ('UK England UK London British
+               伦敦英国 UKLondon BBC') - one arc holds the whole generation.
+  city->number: baseline 6/12, walk 5/12, persistent 9/12, SINGLE-SHOT 12/12
+               ('one 两个 one four five three four three nine') - number cell
+               is strong; CJK tokens appear when the cell is entered.
+  => GEN LAW: a decisive single push beats a gentle walk for multi-token
+     generation.  Landing in the decision cell is self-sustaining (each
+     sampled token re-commits context to the current cell); per-step 3 deg
+     re-aims get diluted by the autoregressive step and never flip the cell.
+     The re-aimed WALK is the right tool for reaching a family STATE (M1-M3),
+     single-shot is the right tool for staying in a family DURING generation.
+     Reconciles with eval_topic_steering cadence: k>=3 dose dial = persistent
+     re-steering, which holds ~8-9/12; pure walk at small angle is too weak.
