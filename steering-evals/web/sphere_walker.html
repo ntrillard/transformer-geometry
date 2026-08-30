@@ -29,6 +29,10 @@
   .hud button.on { background:#3a5a9a; color:#fff; }
   .hud .hint { margin-top:10px; padding-top:8px; border-top:1px solid var(--line);
                color:#64779c; font-size:11px; }
+  #topk { margin-top:8px; display:flex; flex-wrap:wrap; gap:4px; max-width:300px; }
+  #topk .tokchip { background:#152238; color:#dce8ff; border:1px solid #2b4470;
+                   border-radius:12px; padding:2px 8px; font-size:11px; cursor:pointer; }
+  #topk .tokchip:hover { background:#27497d; }
   .compass { position:fixed; right:16px; bottom:16px; width:110px; height:110px;
              background:rgba(10,15,25,.72); border:1px solid var(--line); border-radius:50%;
              backdrop-filter:blur(4px); z-index:10; }
@@ -57,6 +61,7 @@
 <div class="hud">
   <h1 id="h-model">steer on a sphere</h1>
   <p class="promptline" id="h-prompt"></p>
+  <div class="row"><span class="k">gen</span><span class="v" id="h-gen" style="font-size:11px;word-break:break-all;">—</span></div>
   <div class="row"><span class="k">sphere</span><span class="v" id="h-layer">—</span></div>
   <div class="row"><span class="k">lat</span><span class="v" id="h-lat">—</span></div>
   <div class="row"><span class="k">az</span><span class="v" id="h-az">—</span></div>
@@ -68,10 +73,13 @@
     <button id="btn-seed">seed</button>
   </div>
   <div class="ctl">
-    <button id="btn-reset">⟲ reset</button>
+    <button id="btn-reset">Reset</button>
     <button id="btn-lock">N off</button>
+    <button id="btn-fp">FPV</button>
+    <button id="btn-gen">gen on</button>
   </div>
-  <div class="hint">click a token → cow walks to it · ← →  ring · ↑ ↓  pole · <b>l</b> layer · drag orbit</div>
+  <div id="topk" style="display:none;"></div>
+  <div class="hint">click a token → steer · <b>click a candidate</b> → choose it · ← →  ring · <b>l</b> layer · <b>f</b> FPV · drag orbit</div>
 </div>
 
 <div class="legend" id="legend"></div>
@@ -185,16 +193,53 @@ const walkerSrc = '/models/steer_no_blue_ball.glb';
 function noop(){}
 function onWalkerLoaded(gltf){
   const m = gltf.scene;
+  m.rotation.z = Math.PI;                        // model nose is at -X -> face forward (X+)
   const box = new THREE.Box3().setFromObject(m);
   const size = box.getSize(new THREE.Vector3());
-  const target = 0.16;                          // ~16% of sphere radius
+  const target = 0.2;                            // ~20% of sphere radius
   const s = target / Math.max(size.x, size.y, size.z);
   m.scale.setScalar(s);
   const box2 = new THREE.Box3().setFromObject(m);      // box AFTER scale
   const c2 = box2.getCenter(new THREE.Vector3());
   m.position.sub(c2);                           // now truly centered
   const size2 = box2.getSize(new THREE.Vector3());
-  m.position.z = -size2.z / 2;                  // Z-up model: feet at z=0
+  m.position.z = -size2.z / 2 + 0.035;          // feet at z=0 + tiny lift
+  // friendly eyes: bright glossy whites + solid black pupils
+  const eyeWhiteMat = new THREE.MeshStandardMaterial({color:0xffffff, emissive:0xffffff,
+    emissiveIntensity:0.55, roughness:0.3, metalness:0.0});
+  const pupilMat = new THREE.MeshBasicMaterial({color:0x111111});
+  m.traverse((o)=>{
+    if (!o.isMesh) return;
+    const n = o.name || '';
+    if (n.startsWith('eyeWhite')) o.material = eyeWhiteMat;
+    else if (n.startsWith('pupil')) o.material = pupilMat;
+    // legs: close the Rayman gaps - fatten each segment about its own center
+    if (n.startsWith('front') || n.startsWith('back') || n.startsWith('leg')){
+      const seg = o;
+      const bb = new THREE.Box3().setFromObject(seg);
+      const cc = bb.getCenter(new THREE.Vector3());
+      const pivot = new THREE.Group();
+      seg.parent.remove(seg);
+      seg.position.sub(cc);
+      pivot.position.copy(cc);
+      seg.scale.setScalar(1.15);
+      pivot.add(seg);
+      m.add(pivot);
+    }
+  });
+  // head: aim it forward, tilted slightly down
+  const headMesh = m.getObjectByName('head');
+  if (headMesh && headMesh.isMesh){
+    const hb = new THREE.Box3().setFromObject(headMesh);
+    const hc = hb.getCenter(new THREE.Vector3());
+    const hp = new THREE.Group();
+    m.remove(headMesh);
+    headMesh.position.sub(hc);
+    hp.position.copy(hc);
+    hp.rotation.y = 0.35;                        // dip nose toward the ground / forward
+    hp.add(headMesh);
+    m.add(hp);
+  }
   cow.add(m);
   window.__walkerDebug = {
     size: size.toArray(),
@@ -216,6 +261,10 @@ let busy = false;
 const needleEl = document.getElementById('needle');
 const btnLockEl = document.getElementById('btn-lock');
 let lockNorth = false, lockedYaw = 0;
+let lastDir = 'left', firstPerson = false, headYaw = 0, headPitch = 0;
+let prevState = null;
+const btnFpEl = document.getElementById('btn-fp');
+let genMode = true;
 
 function projectTopicMarkers(layers){
   topicGroup.clear(); clickables.length = 0; clickables.push(steerSphere);
@@ -233,7 +282,7 @@ function projectTopicMarkers(layers){
   const tickMat=new THREE.LineBasicMaterial({color:0x35507f, transparent:true, opacity:.5});
   const shown = new Set();
   for (const ent of ring){
-    if (ent.az % 40 === 0 && !shown.has(ent.az)){
+    if (ent.az % 20 === 0 && !shown.has(ent.az)){
       shown.add(ent.az); const a=ent.az;
       topicGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(
         [posOf(a,90).multiplyScalar(.97), posOf(a,90).multiplyScalar(1.045)]), tickMat));
@@ -244,24 +293,39 @@ function projectTopicMarkers(layers){
   }
 }
 
-function orientCow(az, lat){
+function orientCow(az, lat, dir){
   const p = posOf(az, lat);
   cow.userData.base.copy(p);
   const east = posOf(az+0.5, lat).sub(posOf(az-0.5, lat)).normalize();
   const north = posOf(az, lat+0.5).sub(posOf(az, lat-0.5)).normalize();
-  const m = new THREE.Matrix4().makeBasis(east, north, p);
-  // local Z (cow up) -> radial
+  let fwd;
+  if (dir === 'right') fwd = east.clone().negate();
+  else if (dir === 'up') fwd = north.clone().negate();
+  else if (dir === 'down') fwd = north.clone();
+  else fwd = east;
+  const lateral = new THREE.Vector3().crossVectors(p, fwd).normalize();
+  const m = new THREE.Matrix4().makeBasis(fwd, lateral, p);   // local Z (up) -> radial
+  cow.quaternion.setFromRotationMatrix(m);
+  cow.userData.forward = fwd;
 }
 
 function applyState(st){
   meta.state=st;
+  if (prevState){
+    let daz = st.az - prevState.az;
+    daz = ((daz + 180) % 360 + 360) % 360 - 180;
+    const dlat = st.lat - prevState.lat;
+    if (Math.abs(daz) > 0.5 && Math.abs(daz) >= Math.abs(dlat)) lastDir = daz > 0 ? 'left' : 'right';
+    else if (Math.abs(dlat) > 0.5) lastDir = dlat > 0 ? 'down' : 'up';
+  }
+  prevState = st;
   document.getElementById('h-layer').textContent='layer '+st.layer;
   document.getElementById('h-lat').textContent=st.lat+'°';
   document.getElementById('h-az').textContent=st.az+'°';
   document.getElementById('h-topic').textContent=st.topic;
   document.getElementById('h-token').textContent=st.token;
   document.getElementById('h-trans').textContent=st.transitions;
-  orientCow(st.az, st.lat);
+  orientCow(st.az, st.lat, lastDir);
   needleEl.style.transform=`rotate(${(-st.az)%360}deg)`;
   const pts=(st.trail||[]).map(([a,e])=>posOf(a,90-e));
   trailLine.geometry.dispose(); trailLine.geometry=new THREE.BufferGeometry().setFromPoints(pts);
@@ -270,6 +334,29 @@ function applyState(st){
     m.material.emissiveIntensity = (t === st.topic) ? 0.95 : 0.45;
     m.scale.setScalar(t === st.topic ? 1.6 : 1);
   }
+  document.getElementById('h-gen').textContent = (st.generation || '').slice(-160);
+  refreshTopk();
+}
+
+async function refreshTopk(){
+  try{
+    const el = document.getElementById('topk');
+    const d = await api('/api/topk', {k:12});
+    const toks = d.tokens || [];
+    if (!toks.length){ el.style.display='none'; return; }
+    el.style.display='block';
+    el.innerHTML = toks.map(t =>
+      `<button class="tokchip" data-id="${t.id}">${t.token.replace(/[<>&'"]/g,'')||'\u00b7'}</button>`).join(' ');
+    el.querySelectorAll('.tokchip').forEach(b =>
+      b.addEventListener('click', ()=> chooseToken(Number(b.dataset.id))));
+  } catch(e){ /* non-fatal */ }
+}
+
+async function chooseToken(id){
+  if (busy) return; busy = true;
+  try{ applyState(await api('/api/choose', {token:id})); }
+  catch(e){ toast('choose failed: '+e.message); }
+  finally{ busy = false; }
 }
 function buildLegend(){
   const l=document.getElementById('legend');
@@ -324,19 +411,51 @@ function toggleLock(){
   btnLockEl.classList.toggle('on', lockNorth);
 }
 
+function toggleFP(){
+  firstPerson = !firstPerson;
+  ctrl.enabled = !firstPerson;
+  cow.visible = !firstPerson;
+  headYaw = 0; headPitch = 0;
+  btnFpEl.textContent = firstPerson ? 'FPV on' : 'FPV';
+  btnFpEl.classList.toggle('on', firstPerson);
+  if (!firstPerson){
+    cam.position.set(2.6, 1.7, 2.9);
+    ctrl.target.set(0, 0, 0);
+  }
+}
+document.getElementById('btn-fp').addEventListener('click', toggleFP);
+const btnGenEl = document.getElementById('btn-gen');
+function toggleGen(){
+  genMode = !genMode;
+  api('/api/gen', {mode:genMode}).then(applyState).catch(()=>{});
+  btnGenEl.textContent = genMode ? 'gen on' : 'gen off';
+  btnGenEl.classList.toggle('on', genMode);
+}
+document.getElementById('btn-gen').addEventListener('click', toggleGen);
+
 document.getElementById('btn-reset').addEventListener('click', doReset);
 document.getElementById('btn-lock').addEventListener('click', toggleLock);
-document.getElementById('btn-seed').addEventListener('click', ()=>
-  seedPrompt(document.getElementById('inp-prompt').value));
+document.getElementById('btn-seed').addEventListener('click', ()=>{
+  seedPrompt(document.getElementById('inp-prompt').value);
+  document.getElementById('inp-prompt').blur();   // return focus to canvas so hotkeys work
+});
 document.getElementById('inp-prompt').addEventListener('keydown', (e)=>{
-  if (e.key === 'Enter') seedPrompt(e.target.value); });
+  if (e.key === 'Enter'){
+    seedPrompt(e.target.value);
+    e.target.blur();
+  }
+});
 
 addEventListener('keydown', async (e)=>{
+  const inInput = e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA');
+  if (inInput) return;                     // never eat keystrokes while typing
   const map={ArrowRight:'right',ArrowLeft:'left',ArrowUp:'up',ArrowDown:'down'};
   if (busy) return;
   if(map[e.key]){ e.preventDefault(); await doMove(map[e.key]); }
   else if(e.key==='l'||e.key==='L'){ e.preventDefault(); await cycleLayer(); }
+  else if(e.key==='g'||e.key==='G'){ e.preventDefault(); toggleFP(); }
   else if(e.key==='r'||e.key==='R'){ e.preventDefault(); await doReset(); }
+  else if(e.key==='f'||e.key==='F'){ e.preventDefault(); toggleFP(); }
 });
 
 // click-to-walk (clicks, not drags)
@@ -364,6 +483,11 @@ canvas.addEventListener('pointerup', async (e)=>{
   }
 });
 canvas.addEventListener('pointermove', (e)=>{
+  if (firstPerson && downXY){
+    headYaw -= (e.clientX - downXY[0]) * 0.004;
+    headPitch = Math.max(-1.2, Math.min(1.2, headPitch + (e.clientY - downXY[1]) * 0.004));
+    downXY = [e.clientX, e.clientY];
+  }
   ndc.x = (e.clientX/innerWidth)*2 - 1;
   ndc.y = -(e.clientY/innerHeight)*2 + 1;
   raycaster.setFromCamera(ndc, cam);
@@ -383,7 +507,16 @@ async function boot(){
 boot().catch(e=>toast('boot failed: '+e.message));
 
 function tick(){
-  const ctr = ctrl;                       // lock-north handled via az clamps in toggleLock
+  if (firstPerson && meta.state){
+    const p = cow.userData.base;
+    cam.position.copy(p).multiplyScalar(1.0005);
+    let dir = cow.userData.forward.clone();
+    dir.applyAxisAngle(p, headYaw);
+    const lateral = new THREE.Vector3().crossVectors(p, dir).normalize();
+    dir.applyAxisAngle(lateral, headPitch);
+    cam.up.copy(p);
+    cam.lookAt(cam.position.clone().add(dir));
+  }
   ctrl.update();
   cow.position.copy(cow.userData.base).multiplyScalar(1 + 0.02*Math.sin(performance.now()/240));
   renderer.render(scene,cam); requestAnimationFrame(tick);

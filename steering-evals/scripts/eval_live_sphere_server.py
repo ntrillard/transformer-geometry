@@ -69,12 +69,19 @@ class Engine:
                         for cls, words in CLASSES.items()}
         # forward through the prompt once (all layers) + build sphere descriptors
         self.prompt = None
+        self.generation = ''
+        self.base_prompt = PROMPT
+        self.gen_mode = True
         self.set_prompt(PROMPT)
 
     def set_prompt(self, text, max_tokens=128):
-        """Re-seed: run the model on a new prompt, rebuild every layer sphere,
-        reset the state to the readout sphere's start (natural continuation)."""
+        """Re-seed: run the model on a NEW base prompt, rebuild every layer sphere.
+        The ring geometry (topic az + ring tokens) is context-independent (it lives in
+        the LM head), so only the pole u and start state h0 re-derive; we rebuild them
+        here for a clean full reset and reset the growing generation."""
         text = (text or PROMPT).strip() or PROMPT
+        self.base_prompt = text
+        self.generation = ''
         pid = self.tok(text, add_special_tokens=False,
                        return_tensors='pt').input_ids[:, :max_tokens].to(DEV)
         with torch.no_grad():
@@ -84,8 +91,30 @@ class Engine:
         self.spi = len(LAYERS) - 1          # start on the readout sphere
         self._load_sphere(self.spi)
         self.prompt = text
-        self.generation = text
-        self.walk_steps = 0
+
+    def _step_context(self):
+        """Forward the base prompt + generation (cheap: only u and h0 re-derive;
+        the r1/r2/ring geometry is context-independent and stays cached)."""
+        text = (self.base_prompt + ' ' + self.generation).strip()[:1024]
+        pid = self.tok(text, add_special_tokens=False,
+                       return_tensors='pt').input_ids[:, -128:].to(DEV)
+        with torch.no_grad():
+            hid = self.model(pid, output_hidden_states=True)
+        self.hidden = [h[0].cpu().float().numpy() for h in hid.hidden_states]
+        for s in self.spheres:
+            l = s['layer']
+            s['u'] = norm(self.hidden[l + 1][0, :])
+            s['h0'] = norm(self.hidden[l + 1][-1, :])
+        self._load_sphere(self.spi)   # fresh start on the (updated) sphere
+        return self._state_of()
+
+    def commit_token(self):
+        """Append the current top-1 token to the generation and re-seed."""
+        tok_s = self._state_of()['token']
+        if not tok_s or tok_s == '<unk>':
+            return self._state_of()
+        self.generation = (self.generation + ' ' + tok_s).strip()
+        return self._step_context()
     def _make_sphere(self, l):
         u = norm(self.hidden[l + 1][0, :])
         h0 = norm(self.hidden[l + 1][-1, :])
@@ -135,7 +164,20 @@ class Engine:
         return {'layer': self.spheres[self.spi]['layer'], 'lat': round(lat, 1),
                 'az': round(az, 1), 'token': tok_s, 'topic': topic,
                 'transitions': self.transitions,
-                'trail': self.trail[-64:]}
+                'trail': self.trail[-64:],
+                'generation': self.generation, 'gen_mode': self.gen_mode}
+
+    def topk(self, k=12):
+        """Top-k next-token candidates at the current state (GPU, decoded)."""
+        with torch.no_grad():
+            logits = torch.as_tensor(self.h, device=DEV, dtype=torch.float32) @ self.Wnt.T
+            ids = torch.topk(logits, min(k, logits.shape[-1])).indices.cpu().tolist()
+        toks = []
+        for i in ids:
+            t = self.tok.decode([i], skip_special_tokens=True).strip()
+            if t and t != '<unk>' and t not in [x['token'] for x in toks]:
+                toks.append({'id': int(i), 'token': t})
+        return toks[:k]
 
     def move(self, d):
         h = self.h
@@ -151,6 +193,8 @@ class Engine:
             self.h = norm(M.rotate_toward(h, tau, sgn * math.radians(STEP)))
         st = self._state_of()
         self.trail.append((st['az'], 90 - st['lat']))   # (az, polar)
+        if self.gen_mode:
+            st = self.commit_token()
         return st
 
     def go(self, target_az, tol=3.0, max_steps=90):
@@ -162,11 +206,15 @@ class Engine:
             if abs(d) <= tol:
                 break
             self.move('right' if d < 0 else 'left')
-        return self._state_of()
+        if self.gen_mode:
+            st = self.commit_token()
+        else:
+            st = self._state_of()
+        return st
 
     # --- JSON serialization for the browser ---------------------------
     def layers_json(self):
-        return {'model': self.model_name, 'prompt': self.prompt,
+        return {'model': self.model_name, 'prompt': self.prompt, 'generation': self.generation,
                 'layers': [{'layer': s['layer'],
                             'azimuths': {c: round(s['az'][c], 1) for c in self.names},
                             'members': self.members,
@@ -231,7 +279,10 @@ class Handler(BaseHTTPRequestHandler):
             if d not in ('left', 'right', 'up', 'down'):
                 return self._send({'error': 'bad dir'}, 400)
             return self._send(eng.move(d))
-        if self.path == '/api/go':
+        if self.path == '/api/gen':
+            mode = bool(body.get('mode', True))
+            eng.gen_mode = mode
+            return self._send(eng._state_of())
             try:
                 az = float(body.get('az'))
             except (TypeError, ValueError):
@@ -253,6 +304,24 @@ class Handler(BaseHTTPRequestHandler):
             else:
                 eng._load_sphere(eng.spi)
             return self._send(eng._state_of())
+        if self.path == '/api/topk':
+            try:
+                k = int(body.get('k', 12))
+            except (TypeError, ValueError):
+                k = 12
+            return self._send({'tokens': eng.topk(k)})
+        if self.path == '/api/choose':
+            tid = body.get('token')
+            try:
+                tid = int(tid)
+            except (TypeError, ValueError):
+                return self._send({'error': 'bad token'}, 400)
+            tok_s = eng.tok.decode([tid], skip_special_tokens=True).strip()
+            if not tok_s or tok_s == '<unk>':
+                return self._send({'error': 'empty token'}, 400)
+            eng.generation = (eng.generation + ' ' + tok_s).strip()
+            st = eng._step_context()
+            return self._send(st)
         self._send({'error': 'not found'}, 404)
 
 
