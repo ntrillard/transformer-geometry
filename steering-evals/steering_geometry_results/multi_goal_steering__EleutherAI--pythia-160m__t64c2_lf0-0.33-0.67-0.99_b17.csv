@@ -1,0 +1,513 @@
+model,context,layer,target_id,target_text,rank1_target,rank1_wrong,rank1_random,top3,top5,top10,rank,margin,rel_margin,win_window_deg,entry_deg,no_worse_frac,voronoi_break,bias_break,nn5_angle
+EleutherAI/pythia-160m,The capital of France is,0,60,[,False,False,False,False,False,False,5692.0,-0.1265580654144287,-0.16659052670001984,0.0,35.70650100708008,1.0,True,False,0.29876264929771423
+EleutherAI/pythia-160m,The capital of France is,0,75,j,False,False,False,False,False,False,2762.0,-0.1135181188583374,-0.145040363073349,0.0,38.40154266357422,1.0,True,False,0.3013487458229065
+EleutherAI/pythia-160m,The capital of France is,0,80,o,False,False,False,False,False,False,798.0,-0.08528631925582886,-0.1075034812092781,0.0,29.04681968688965,1.0,True,False,0.35200831294059753
+EleutherAI/pythia-160m,The capital of France is,0,81,p,False,False,False,False,False,False,1568.0,-0.10186553001403809,-0.1286756694316864,0.0,35.03461456298828,1.0,True,False,0.3245663642883301
+EleutherAI/pythia-160m,The capital of France is,0,264,ed,False,False,False,False,False,False,4783.0,-0.12609398365020752,-0.1684556007385254,0.0,31.622854232788086,1.0,True,False,0.3832164406776428
+EleutherAI/pythia-160m,The capital of France is,0,268, p,False,False,False,False,False,False,787.0,-0.08459126949310303,-0.10405640304088593,0.0,33.465091705322266,1.0,True,False,0.2971888482570648
+EleutherAI/pythia-160m,The capital of France is,0,270, b,False,False,False,False,False,False,1216.0,-0.09246164560317993,-0.11438336968421936,0.0,37.43146514892578,1.0,True,False,0.2852404713630676
+EleutherAI/pythia-160m,The capital of France is,0,324,ad,False,False,False,False,False,False,946.0,-0.0932040810585022,-0.11754604429006577,0.0,31.697275161743164,1.0,True,False,0.3336738049983978
+EleutherAI/pythia-160m,The capital of France is,0,351,od,False,False,False,False,False,False,28.0,-0.042091548442840576,-0.050174448639154434,0.0,23.534168243408203,1.0,True,False,0.3438238501548767
+EleutherAI/pythia-160m,The capital of France is,0,359, we,False,False,False,False,False,False,522.0,-0.08269834518432617,-0.10154686868190765,0.0,31.90985870361328,1.0,True,False,0.2921333611011505
+EleutherAI/pythia-160m,The capital of France is,0,369, was,False,False,False,False,False,False,4108.0,-0.12356412410736084,-0.15708668529987335,0.0,45.55356979370117,1.0,True,False,0.2522128224372864
+EleutherAI/pythia-160m,The capital of France is,0,389, com,False,False,False,False,False,True,7.0,-0.024316847324371338,-0.0280250646173954,0.0,21.452402114868164,1.0,True,False,0.3241788446903229
+EleutherAI/pythia-160m,The capital of France is,0,398,ers,False,False,False,False,False,False,23.0,-0.039726972579956055,-0.04780612513422966,0.0,21.929319381713867,1.0,True,False,0.3766348659992218
+EleutherAI/pythia-160m,The capital of France is,0,416, R,False,False,False,False,False,False,862.0,-0.0841018557548523,-0.10350926220417023,0.0,33.816001892089844,1.0,True,False,0.2701759934425354
+EleutherAI/pythia-160m,The capital of France is,0,419, ha,False,False,False,False,False,False,618.0,-0.08461028337478638,-0.10434628278017044,0.0,32.39945983886719,1.0,True,False,0.3277069330215454
+EleutherAI/pythia-160m,The capital of France is,0,451,ial,False,False,False,False,False,False,955.0,-0.09403353929519653,-0.12004251033067703,0.0,29.19578742980957,1.0,True,False,0.3698815405368805
+EleutherAI/pythia-160m,The capital of France is,0,494,able,False,False,False,False,False,False,9353.0,-0.14788031578063965,-0.20207828283309937,0.0,34.89320373535156,1.0,True,False,0.35500040650367737
+EleutherAI/pythia-160m,The capital of France is,0,495, 3,False,False,False,False,False,False,1775.0,-0.09475487470626831,-0.11737709492444992,0.0,38.767818450927734,1.0,True,False,0.1760614663362503
+EleutherAI/pythia-160m,The capital of France is,0,528,ous,False,False,False,False,False,False,3118.0,-0.11899369955062866,-0.15571264922618866,0.0,32.876399993896484,1.0,True,False,0.37491947412490845
+EleutherAI/pythia-160m,The capital of France is,0,598, up,False,False,False,False,False,False,56.0,-0.0496407151222229,-0.05882169306278229,0.0,25.413856506347656,1.0,True,False,0.3034505844116211
+EleutherAI/pythia-160m,The capital of France is,0,606,ang,False,False,False,False,False,False,3229.0,-0.10699957609176636,-0.13932570815086365,0.0,31.999675750732422,1.0,True,False,0.34365829825401306
+EleutherAI/pythia-160m,The capital of France is,0,609,are,False,False,False,False,False,False,3961.0,-0.11632466316223145,-0.1519031673669815,0.0,33.913753509521484,1.0,True,False,0.32972580194473267
+EleutherAI/pythia-160m,The capital of France is,0,684,ates,False,False,False,False,False,False,1618.0,-0.10273784399032593,-0.13197888433933258,0.0,31.5095272064209,1.0,True,False,0.3453785479068756
+EleutherAI/pythia-160m,The capital of France is,0,695,ric,False,False,False,False,False,False,198.0,-0.064239501953125,-0.0793600082397461,0.0,26.14181900024414,1.0,True,False,0.35293135046958923
+EleutherAI/pythia-160m,The capital of France is,0,720,ject,False,False,False,False,False,False,2252.0,-0.09885251522064209,-0.12781795859336853,0.0,30.819677352905273,1.0,True,False,0.3422251343727112
+EleutherAI/pythia-160m,The capital of France is,0,723,ings,False,False,False,False,False,False,3736.0,-0.11725950241088867,-0.15690043568611145,0.0,29.210622787475586,1.0,True,False,0.40382272005081177
+EleutherAI/pythia-160m,The capital of France is,0,778, may,False,False,False,False,False,False,2680.0,-0.1141061782836914,-0.14415554702281952,0.0,41.75889587402344,1.0,True,False,0.2620701491832733
+EleutherAI/pythia-160m,The capital of France is,0,807, year,False,False,False,True,True,True,2.0,-0.007883191108703613,-0.008963205851614475,0.0,18.3675537109375,1.0,True,False,0.26806432008743286
+EleutherAI/pythia-160m,The capital of France is,0,864,hen,False,False,False,False,False,False,855.0,-0.09470415115356445,-0.11993393301963806,0.0,30.9692325592041,1.0,True,False,0.34600767493247986
+EleutherAI/pythia-160m,The capital of France is,0,883,11,False,False,False,False,False,False,2348.0,-0.10451990365982056,-0.13060201704502106,0.0,45.56563186645508,1.0,True,False,0.18946771323680878
+EleutherAI/pythia-160m,The capital of France is,0,888,ident,False,False,False,False,False,False,464.0,-0.07868140935897827,-0.09802525490522385,0.0,30.086334228515625,1.0,True,False,0.3237609565258026
+EleutherAI/pythia-160m,The capital of France is,0,896, back,False,False,False,True,True,True,2.0,-0.005025386810302734,-0.005700175184756517,0.0,17.787553787231445,1.0,True,False,0.28798651695251465
+EleutherAI/pythia-160m,The capital of France is,0,927, includ,False,False,False,False,False,False,54.0,-0.05006206035614014,-0.05902988836169243,0.0,27.97922134399414,1.0,True,False,0.30799153447151184
+EleutherAI/pythia-160m,The capital of France is,0,977,other,False,False,False,False,False,False,718.0,-0.08113068342208862,-0.10195187479257584,0.0,30.5966854095459,1.0,True,False,0.295927494764328
+EleutherAI/pythia-160m,The capital of France is,0,1002, produ,False,False,False,False,False,False,877.0,-0.08388590812683105,-0.10301615297794342,0.0,35.77047348022461,1.0,True,False,0.2867116928100586
+EleutherAI/pythia-160m,The capital of France is,0,1052, 200,False,False,False,False,False,False,303.0,-0.06610548496246338,-0.07896614074707031,0.0,34.46930694580078,1.0,True,False,0.15573589503765106
+EleutherAI/pythia-160m,The capital of France is,0,1077, very,False,False,False,True,True,True,2.0,-0.008551299571990967,-0.009523707441985607,0.0,19.082387924194336,1.0,True,False,0.23920641839504242
+EleutherAI/pythia-160m,The capital of France is,0,1080,ator,False,False,False,False,False,False,119.0,-0.0589141845703125,-0.07155725359916687,0.0,26.032411575317383,1.0,True,False,0.3369138836860657
+EleutherAI/pythia-160m,The capital of France is,0,1104,ients,False,False,False,False,False,False,15079.0,-0.14603596925735474,-0.20318277180194855,0.0,34.792991638183594,1.0,True,False,0.37804409861564636
+EleutherAI/pythia-160m,The capital of France is,0,1123,ave,False,False,False,False,False,False,3465.0,-0.12305229902267456,-0.16114942729473114,0.0,35.34353256225586,1.0,True,False,0.34136632084846497
+EleutherAI/pythia-160m,The capital of France is,0,1138,""">",False,False,False,False,False,False,1495.0,-0.09575581550598145,-0.12056446820497513,0.0,34.457313537597656,1.0,True,False,0.272743284702301
+EleutherAI/pythia-160m,The capital of France is,0,1140, tra,False,False,False,False,False,True,6.0,-0.020560741424560547,-0.02359514869749546,0.0,20.915725708007812,1.0,True,False,0.3225400149822235
+EleutherAI/pythia-160m,The capital of France is,0,1149, gu,False,False,False,True,True,True,2.0,-0.01066523790359497,-0.012070081196725368,0.0,19.18904685974121,1.0,True,False,0.3187485933303833
+EleutherAI/pythia-160m,The capital of France is,0,1185, dire,False,False,False,False,False,False,2716.0,-0.10296207666397095,-0.13146355748176575,0.0,33.69611740112305,1.0,True,False,0.3393056392669678
+EleutherAI/pythia-160m,The capital of France is,0,1219, Al,False,False,False,False,False,False,143.0,-0.058312416076660156,-0.06944101303815842,0.0,29.735822677612305,1.0,True,False,0.2817581295967102
+EleutherAI/pythia-160m,The capital of France is,0,1223, while,False,False,False,False,False,False,103.0,-0.04677295684814453,-0.056072596460580826,0.0,24.531293869018555,1.0,True,False,0.2684856355190277
+EleutherAI/pythia-160m,The capital of France is,0,1239, read,False,False,False,True,True,True,2.0,-0.010097086429595947,-0.011406173929572105,0.0,18.818946838378906,1.0,True,False,0.2907528579235077
+EleutherAI/pythia-160m,The capital of France is,0,1251,ng,False,False,False,False,False,False,1427.0,-0.10207545757293701,-0.12999458611011505,0.0,32.87870788574219,1.0,True,False,0.3534139096736908
+EleutherAI/pythia-160m,The capital of France is,0,1427,ulation,False,False,False,False,False,False,359.0,-0.07155704498291016,-0.08856182545423508,0.0,28.37549591064453,1.0,True,False,0.27753791213035583
+EleutherAI/pythia-160m,The capital of France is,0,1434,acter,False,False,False,False,False,False,343.0,-0.06955868005752563,-0.08682425320148468,0.0,27.484277725219727,1.0,True,False,0.34446418285369873
+EleutherAI/pythia-160m,The capital of France is,0,1450,::,False,False,False,False,False,False,29.0,-0.042382240295410156,-0.05080598220229149,0.0,22.96579360961914,1.0,True,False,0.3603542149066925
+EleutherAI/pythia-160m,The capital of France is,0,1453, control,False,False,False,False,False,True,7.0,-0.02247673273086548,-0.026117904111742973,0.0,20.41982650756836,1.0,True,False,0.26845118403434753
+EleutherAI/pythia-160m,The capital of France is,0,1460, pur,False,False,False,False,True,True,5.0,-0.020152926445007324,-0.02312353625893593,0.0,20.72916030883789,1.0,True,False,0.3307362496852875
+EleutherAI/pythia-160m,The capital of France is,0,1525,99,False,False,False,False,False,False,536.0,-0.0814637541770935,-0.09959603101015091,0.0,37.422027587890625,1.0,True,False,0.21338318288326263
+EleutherAI/pythia-160m,The capital of France is,0,1546,ural,False,False,False,False,False,False,133.0,-0.05399864912033081,-0.06620757281780243,0.0,24.2225284576416,1.0,True,False,0.3620150685310364
+EleutherAI/pythia-160m,The capital of France is,0,1592,fer,False,False,False,False,False,False,552.0,-0.07991701364517212,-0.10037382692098618,0.0,28.31715202331543,1.0,True,False,0.3578009605407715
+EleutherAI/pythia-160m,The capital of France is,0,1603,}(,False,False,False,False,False,False,1731.0,-0.09851384162902832,-0.12444120645523071,0.0,38.9363899230957,1.0,True,False,0.2042873352766037
+EleutherAI/pythia-160m,The capital of France is,0,1710,gram,False,False,False,False,False,False,865.0,-0.0878785252571106,-0.11104892194271088,0.0,29.850706100463867,1.0,True,False,0.34902554750442505
+EleutherAI/pythia-160m,The capital of France is,0,1740, four,False,False,False,False,False,True,9.0,-0.022629082202911377,-0.025894680991768837,0.0,21.937740325927734,1.0,True,False,0.15380823612213135
+EleutherAI/pythia-160m,The capital of France is,0,1751,ene,False,False,False,False,False,False,186.0,-0.06649720668792725,-0.08215230703353882,0.0,26.29276466369629,1.0,True,False,0.36605939269065857
+EleutherAI/pythia-160m,The capital of France is,0,1768,bs,False,False,False,False,False,False,5407.0,-0.12366092205047607,-0.16368763148784637,0.0,34.08066940307617,1.0,True,False,0.3650358021259308
+EleutherAI/pythia-160m,The capital of France is,0,1779,Ch,False,False,False,False,False,False,14872.0,-0.14856195449829102,-0.19896578788757324,0.0,46.393943786621094,1.0,True,False,0.2731393277645111
+EleutherAI/pythia-160m,The capital of France is,0,1788,lection,False,False,False,False,False,False,2848.0,-0.10265088081359863,-0.13382235169410706,0.0,31.87253761291504,1.0,True,False,0.34281858801841736
+EleutherAI/pythia-160m,The capital of France is,0,1813,icro,False,False,False,False,False,False,199.0,-0.0649300217628479,-0.08024849742650986,0.0,27.07013702392578,1.0,True,False,0.3526608645915985
+EleutherAI/pythia-160m,The capital of France is,4,60,[,False,False,False,False,False,False,3239.0,-0.12325048446655273,-0.15267345309257507,0.0,35.69233703613281,1.0,True,False,0.29876264929771423
+EleutherAI/pythia-160m,The capital of France is,4,75,j,False,False,False,False,False,False,10278.0,-0.15888071060180664,-0.20396578311920166,0.0,44.65031814575195,1.0,True,False,0.3013487458229065
+EleutherAI/pythia-160m,The capital of France is,4,80,o,False,False,False,False,False,False,648.0,-0.08532214164733887,-0.1017506942152977,0.0,29.773469924926758,1.0,True,False,0.35200831294059753
+EleutherAI/pythia-160m,The capital of France is,4,81,p,False,False,False,False,False,False,4320.0,-0.13171017169952393,-0.16377785801887512,0.0,39.17226028442383,1.0,True,False,0.3245663642883301
+EleutherAI/pythia-160m,The capital of France is,4,264,ed,False,False,False,False,False,False,7852.0,-0.15056943893432617,-0.1967586725950241,0.0,33.94148254394531,1.0,True,False,0.3832164406776428
+EleutherAI/pythia-160m,The capital of France is,4,268, p,False,False,False,False,False,False,2559.0,-0.11494678258895874,-0.13880780339241028,0.0,38.67193603515625,1.0,True,False,0.2971888482570648
+EleutherAI/pythia-160m,The capital of France is,4,270, b,False,False,False,False,False,False,1010.0,-0.09299784898757935,-0.10911523550748825,0.0,36.532066345214844,1.0,True,False,0.2852404713630676
+EleutherAI/pythia-160m,The capital of France is,4,324,ad,False,False,False,False,False,False,658.0,-0.08660233020782471,-0.10302770882844925,0.0,31.117338180541992,1.0,True,False,0.3336738049983978
+EleutherAI/pythia-160m,The capital of France is,4,351,od,False,False,False,False,False,False,42.0,-0.043633341789245605,-0.04930028319358826,0.0,24.011871337890625,1.0,True,False,0.3438238501548767
+EleutherAI/pythia-160m,The capital of France is,4,359, we,False,False,False,False,False,False,1210.0,-0.1022842526435852,-0.12178445607423782,0.0,36.29963302612305,1.0,True,False,0.2921333611011505
+EleutherAI/pythia-160m,The capital of France is,4,369, was,False,False,False,False,False,False,5218.0,-0.14172685146331787,-0.17434006929397583,0.0,47.53504943847656,1.0,True,False,0.2522128224372864
+EleutherAI/pythia-160m,The capital of France is,4,389, com,False,False,False,False,False,False,35.0,-0.03846675157546997,-0.04290982335805893,0.0,23.861040115356445,1.0,True,False,0.3241788446903229
+EleutherAI/pythia-160m,The capital of France is,4,398,ers,False,False,False,False,False,False,1198.0,-0.10082602500915527,-0.12349175661802292,0.0,29.690975189208984,1.0,True,False,0.3766348659992218
+EleutherAI/pythia-160m,The capital of France is,4,416, R,False,False,False,False,False,False,4711.0,-0.13117986917495728,-0.16144870221614838,0.0,42.089324951171875,1.0,True,False,0.2701759934425354
+EleutherAI/pythia-160m,The capital of France is,4,419, ha,False,False,False,False,False,False,114.0,-0.058226943016052246,-0.06600242853164673,0.0,28.61821174621582,1.0,True,False,0.3277069330215454
+EleutherAI/pythia-160m,The capital of France is,4,451,ial,False,False,False,False,False,False,1391.0,-0.1022331714630127,-0.12529900670051575,0.0,29.949745178222656,1.0,True,False,0.3698815405368805
+EleutherAI/pythia-160m,The capital of France is,4,494,able,False,False,False,False,False,False,3134.0,-0.12436479330062866,-0.1565936803817749,0.0,32.21720504760742,1.0,True,False,0.35500040650367737
+EleutherAI/pythia-160m,The capital of France is,4,495, 3,False,False,False,False,False,False,1627.0,-0.10436153411865234,-0.12336637079715729,0.0,45.63080596923828,1.0,True,False,0.1760614663362503
+EleutherAI/pythia-160m,The capital of France is,4,528,ous,False,False,False,False,False,False,2181.0,-0.11483705043792725,-0.14212709665298462,0.0,32.23435974121094,1.0,True,False,0.37491947412490845
+EleutherAI/pythia-160m,The capital of France is,4,598, up,False,False,False,False,False,False,14.0,-0.028315246105194092,-0.031138388440012932,0.0,21.917654037475586,1.0,True,False,0.3034505844116211
+EleutherAI/pythia-160m,The capital of France is,4,606,ang,False,False,False,False,False,False,889.0,-0.09060806035995483,-0.10898429155349731,0.0,30.67007064819336,1.0,True,False,0.34365829825401306
+EleutherAI/pythia-160m,The capital of France is,4,609,are,False,False,False,False,False,False,520.0,-0.08275377750396729,-0.09806156903505325,0.0,30.1707820892334,1.0,True,False,0.32972580194473267
+EleutherAI/pythia-160m,The capital of France is,4,684,ates,False,False,False,False,False,False,2944.0,-0.11927938461303711,-0.14865584671497345,0.0,33.3958625793457,1.0,True,False,0.3453785479068756
+EleutherAI/pythia-160m,The capital of France is,4,695,ric,False,False,False,False,False,False,1001.0,-0.09227818250656128,-0.11178558319807053,0.0,29.77927589416504,1.0,True,False,0.35293135046958923
+EleutherAI/pythia-160m,The capital of France is,4,720,ject,False,False,False,False,False,False,3398.0,-0.11669337749481201,-0.1460082232952118,0.0,34.47224426269531,1.0,True,False,0.3422251343727112
+EleutherAI/pythia-160m,The capital of France is,4,723,ings,False,False,False,False,False,False,8141.0,-0.1473795771598816,-0.1946118175983429,0.0,32.011695861816406,1.0,True,False,0.40382272005081177
+EleutherAI/pythia-160m,The capital of France is,4,778, may,False,False,False,False,False,False,895.0,-0.10791563987731934,-0.12666594982147217,0.0,41.98731231689453,1.0,True,False,0.2620701491832733
+EleutherAI/pythia-160m,The capital of France is,4,807, year,False,False,False,False,False,True,9.0,-0.015317261219024658,-0.01669173128902912,0.0,19.78380012512207,1.0,True,False,0.26806432008743286
+EleutherAI/pythia-160m,The capital of France is,4,864,hen,False,False,False,False,False,False,2203.0,-0.11388373374938965,-0.14057502150535583,0.0,33.40375900268555,1.0,True,False,0.34600767493247986
+EleutherAI/pythia-160m,The capital of France is,4,883,11,False,False,False,False,False,False,5021.0,-0.1333087682723999,-0.1634112000465393,0.0,52.55855941772461,1.0,True,False,0.18946771323680878
+EleutherAI/pythia-160m,The capital of France is,4,888,ident,False,False,False,False,False,False,3722.0,-0.12415438890457153,-0.15505492687225342,0.0,36.56222915649414,1.0,True,False,0.3237609565258026
+EleutherAI/pythia-160m,The capital of France is,4,896, back,True,False,False,True,True,True,1.0,0.010769009590148926,0.011442868039011955,1.7901725769042969,15.209827423095703,1.0,True,False,0.28798651695251465
+EleutherAI/pythia-160m,The capital of France is,4,927, includ,False,False,False,False,False,False,101.0,-0.05987018346786499,-0.06754685938358307,0.0,30.680315017700195,1.0,True,False,0.30799153447151184
+EleutherAI/pythia-160m,The capital of France is,4,977,other,False,False,False,False,False,False,250.0,-0.06956285238265991,-0.08130230009555817,0.0,27.44156265258789,1.0,True,False,0.295927494764328
+EleutherAI/pythia-160m,The capital of France is,4,1002, produ,False,False,False,False,False,False,3801.0,-0.12232851982116699,-0.14897260069847107,0.0,42.82261657714844,1.0,True,False,0.2867116928100586
+EleutherAI/pythia-160m,The capital of France is,4,1052, 200,False,False,False,False,False,False,1315.0,-0.09557175636291504,-0.11201391369104385,0.0,42.37783432006836,1.0,True,False,0.15573589503765106
+EleutherAI/pythia-160m,The capital of France is,4,1077, very,True,False,False,True,True,True,1.0,0.007316708564758301,0.007640520576387644,1.824228286743164,15.175771713256836,1.0,True,False,0.23920641839504242
+EleutherAI/pythia-160m,The capital of France is,4,1080,ator,False,False,False,False,False,False,126.0,-0.05968230962753296,-0.06890261173248291,0.0,26.107215881347656,1.0,True,False,0.3369138836860657
+EleutherAI/pythia-160m,The capital of France is,4,1104,ients,False,False,False,False,False,False,14160.0,-0.16533279418945312,-0.22194483876228333,0.0,36.92230224609375,1.0,True,False,0.37804409861564636
+EleutherAI/pythia-160m,The capital of France is,4,1123,ave,False,False,False,False,False,False,603.0,-0.09047305583953857,-0.10814296454191208,0.0,30.59467887878418,1.0,True,False,0.34136632084846497
+EleutherAI/pythia-160m,The capital of France is,4,1138,""">",False,False,False,False,False,False,11908.0,-0.1625525951385498,-0.2101287841796875,0.0,45.907196044921875,1.0,True,False,0.272743284702301
+EleutherAI/pythia-160m,The capital of France is,4,1140, tra,False,False,False,False,False,False,286.0,-0.07123970985412598,-0.08220167458057404,0.0,30.04766273498535,1.0,True,False,0.3225400149822235
+EleutherAI/pythia-160m,The capital of France is,4,1149, gu,False,False,False,False,False,False,186.0,-0.0687665343284607,-0.0786619484424591,0.0,30.878171920776367,1.0,True,False,0.3187485933303833
+EleutherAI/pythia-160m,The capital of France is,4,1185, dire,False,False,False,False,False,False,8311.0,-0.14547264575958252,-0.18520225584506989,0.0,40.16441345214844,1.0,True,False,0.3393056392669678
+EleutherAI/pythia-160m,The capital of France is,4,1219, Al,False,False,False,False,False,False,900.0,-0.09005063772201538,-0.10553548485040665,0.0,37.420372009277344,1.0,True,False,0.2817581295967102
+EleutherAI/pythia-160m,The capital of France is,4,1223, while,False,False,False,False,False,False,34.0,-0.03825855255126953,-0.042681414633989334,0.0,23.9148006439209,1.0,True,False,0.2684856355190277
+EleutherAI/pythia-160m,The capital of France is,4,1239, read,False,False,False,False,False,False,26.0,-0.03715139627456665,-0.04138348996639252,0.0,23.499990463256836,1.0,True,False,0.2907528579235077
+EleutherAI/pythia-160m,The capital of France is,4,1251,ng,False,False,False,False,False,False,4351.0,-0.13063496351242065,-0.16400662064552307,0.0,36.671852111816406,1.0,True,False,0.3534139096736908
+EleutherAI/pythia-160m,The capital of France is,4,1427,ulation,False,False,False,False,False,False,1143.0,-0.09683924913406372,-0.11678583174943924,0.0,32.3012809753418,1.0,True,False,0.27753791213035583
+EleutherAI/pythia-160m,The capital of France is,4,1434,acter,False,False,False,False,False,False,2455.0,-0.10906463861465454,-0.13550910353660583,0.0,33.33473205566406,1.0,True,False,0.34446418285369873
+EleutherAI/pythia-160m,The capital of France is,4,1450,::,False,False,False,False,False,False,139.0,-0.06269389390945435,-0.0730518251657486,0.0,25.691776275634766,1.0,True,False,0.3603542149066925
+EleutherAI/pythia-160m,The capital of France is,4,1453, control,False,False,False,False,False,False,211.0,-0.06489908695220947,-0.07526689022779465,0.0,26.5103759765625,1.0,True,False,0.26845118403434753
+EleutherAI/pythia-160m,The capital of France is,4,1460, pur,False,False,False,False,False,False,39.0,-0.03864973783493042,-0.0430527999997139,0.0,24.13654899597168,1.0,True,False,0.3307362496852875
+EleutherAI/pythia-160m,The capital of France is,4,1525,99,False,False,False,False,False,False,2668.0,-0.11707109212875366,-0.14173245429992676,0.0,44.360923767089844,1.0,True,False,0.21338318288326263
+EleutherAI/pythia-160m,The capital of France is,4,1546,ural,False,False,False,False,False,False,906.0,-0.09359538555145264,-0.1131923571228981,0.0,29.777706146240234,1.0,True,False,0.3620150685310364
+EleutherAI/pythia-160m,The capital of France is,4,1592,fer,False,False,False,False,False,False,1498.0,-0.10722428560256958,-0.1309773027896881,0.0,32.495845794677734,1.0,True,False,0.3578009605407715
+EleutherAI/pythia-160m,The capital of France is,4,1603,}(,False,False,False,False,False,False,7287.0,-0.1459943652153015,-0.184537872672081,0.0,48.59476852416992,1.0,True,False,0.2042873352766037
+EleutherAI/pythia-160m,The capital of France is,4,1710,gram,False,False,False,False,False,False,1960.0,-0.11073136329650879,-0.13604094088077545,0.0,32.978919982910156,1.0,True,False,0.34902554750442505
+EleutherAI/pythia-160m,The capital of France is,4,1740, four,False,False,False,False,False,False,16.0,-0.021560192108154297,-0.0233955979347229,0.0,35.43070983886719,1.0,True,False,0.15380823612213135
+EleutherAI/pythia-160m,The capital of France is,4,1751,ene,False,False,False,False,False,False,1321.0,-0.1004486083984375,-0.12272613495588303,0.0,30.66364860534668,1.0,True,False,0.36605939269065857
+EleutherAI/pythia-160m,The capital of France is,4,1768,bs,False,False,False,False,False,False,5219.0,-0.1344260573387146,-0.17056049406528473,0.0,36.1057243347168,1.0,True,False,0.3650358021259308
+EleutherAI/pythia-160m,The capital of France is,4,1779,Ch,False,False,False,False,False,False,15388.0,-0.17195910215377808,-0.22364936769008636,0.0,50.85819625854492,1.0,True,False,0.2731393277645111
+EleutherAI/pythia-160m,The capital of France is,4,1788,lection,False,False,False,False,False,False,6764.0,-0.13436847925186157,-0.17269675433635712,0.0,36.48405075073242,1.0,True,False,0.34281858801841736
+EleutherAI/pythia-160m,The capital of France is,4,1813,icro,False,False,False,False,False,False,1626.0,-0.10966771841049194,-0.13463540375232697,0.0,34.12177276611328,1.0,True,False,0.3526608645915985
+EleutherAI/pythia-160m,The capital of France is,7,60,[,False,False,False,False,False,False,334.0,-0.056250810623168945,-0.07333207130432129,0.0,25.766977310180664,1.0,True,False,0.29876264929771423
+EleutherAI/pythia-160m,The capital of France is,7,75,j,False,False,False,False,False,False,11750.0,-0.13524550199508667,-0.19370868802070618,0.0,44.040409088134766,1.0,True,False,0.3013487458229065
+EleutherAI/pythia-160m,The capital of France is,7,80,o,False,False,False,False,False,False,1561.0,-0.08818066120147705,-0.1197383776307106,0.0,30.169567108154297,1.0,True,False,0.35200831294059753
+EleutherAI/pythia-160m,The capital of France is,7,81,p,False,False,False,False,False,False,1589.0,-0.08317673206329346,-0.11158235371112823,0.0,31.42367172241211,1.0,True,False,0.3245663642883301
+EleutherAI/pythia-160m,The capital of France is,7,264,ed,False,False,False,False,False,False,1223.0,-0.07454037666320801,-0.10223469883203506,0.0,25.367534637451172,1.0,True,False,0.3832164406776428
+EleutherAI/pythia-160m,The capital of France is,7,268, p,False,False,False,False,False,False,401.0,-0.06155115365982056,-0.07891149073839188,0.0,30.535924911499023,1.0,True,False,0.2971888482570648
+EleutherAI/pythia-160m,The capital of France is,7,270, b,False,False,False,False,False,False,312.0,-0.05696934461593628,-0.07231013476848602,0.0,30.920137405395508,1.0,True,False,0.2852404713630676
+EleutherAI/pythia-160m,The capital of France is,7,324,ad,False,False,False,False,False,False,387.0,-0.059621214866638184,-0.0781523734331131,0.0,26.700035095214844,1.0,True,False,0.3336738049983978
+EleutherAI/pythia-160m,The capital of France is,7,351,od,False,False,False,False,True,True,5.0,-0.01237577199935913,-0.015304483473300934,0.0,19.027603149414062,1.0,True,False,0.3438238501548767
+EleutherAI/pythia-160m,The capital of France is,7,359, we,False,False,False,False,False,False,1273.0,-0.08385145664215088,-0.11114750802516937,0.0,32.38072967529297,1.0,True,False,0.2921333611011505
+EleutherAI/pythia-160m,The capital of France is,7,369, was,False,False,False,False,False,False,703.0,-0.06862306594848633,-0.0885339230298996,0.0,35.01516342163086,1.0,True,False,0.2522128224372864
+EleutherAI/pythia-160m,The capital of France is,7,389, com,True,False,False,True,True,True,1.0,0.008652031421661377,0.010224077850580215,1.807917594909668,15.192082405090332,1.0,True,False,0.3241788446903229
+EleutherAI/pythia-160m,The capital of France is,7,398,ers,False,False,False,False,False,False,487.0,-0.06498754024505615,-0.086955226957798,0.0,25.05887794494629,1.0,True,False,0.3766348659992218
+EleutherAI/pythia-160m,The capital of France is,7,416, R,False,False,False,False,False,False,327.0,-0.05497509241104126,-0.0701325461268425,0.0,28.89988899230957,1.0,True,False,0.2701759934425354
+EleutherAI/pythia-160m,The capital of France is,7,419, ha,False,False,False,False,False,False,61.0,-0.03675562143325806,-0.04585854336619377,0.0,24.383127212524414,1.0,True,False,0.3277069330215454
+EleutherAI/pythia-160m,The capital of France is,7,451,ial,False,False,False,False,False,False,5801.0,-0.11430197954177856,-0.16335180401802063,0.0,31.298816680908203,1.0,True,False,0.3698815405368805
+EleutherAI/pythia-160m,The capital of France is,7,494,able,False,False,False,False,False,False,655.0,-0.06452786922454834,-0.08695939183235168,0.0,24.629409790039062,1.0,True,False,0.35500040650367737
+EleutherAI/pythia-160m,The capital of France is,7,495, 3,False,False,False,False,False,False,290.0,-0.05454552173614502,-0.0687790960073471,0.0,32.54288101196289,1.0,True,False,0.1760614663362503
+EleutherAI/pythia-160m,The capital of France is,7,528,ous,False,False,False,False,False,False,632.0,-0.06557363271713257,-0.08768508583307266,0.0,25.526308059692383,1.0,True,False,0.37491947412490845
+EleutherAI/pythia-160m,The capital of France is,7,598, up,False,False,False,False,False,False,16.0,-0.021882712841033936,-0.02693016268312931,0.0,20.863134384155273,1.0,True,False,0.3034505844116211
+EleutherAI/pythia-160m,The capital of France is,7,606,ang,False,False,False,False,False,False,8112.0,-0.12219226360321045,-0.17509825527668,0.0,34.417030334472656,1.0,True,False,0.34365829825401306
+EleutherAI/pythia-160m,The capital of France is,7,609,are,False,False,False,False,False,False,3722.0,-0.10600554943084717,-0.14730626344680786,0.0,33.1954231262207,1.0,True,False,0.32972580194473267
+EleutherAI/pythia-160m,The capital of France is,7,684,ates,False,False,False,False,False,False,3550.0,-0.09544867277145386,-0.13332051038742065,0.0,30.84038734436035,1.0,True,False,0.3453785479068756
+EleutherAI/pythia-160m,The capital of France is,7,695,ric,False,False,False,False,False,False,2611.0,-0.0895034670829773,-0.12403210252523422,0.0,29.51753044128418,1.0,True,False,0.35293135046958923
+EleutherAI/pythia-160m,The capital of France is,7,720,ject,False,False,False,False,False,False,5976.0,-0.11010885238647461,-0.15632638335227966,0.0,32.84910583496094,1.0,True,False,0.3422251343727112
+EleutherAI/pythia-160m,The capital of France is,7,723,ings,False,False,False,False,False,False,12901.0,-0.1332501769065857,-0.20055493712425232,0.0,30.494165420532227,1.0,True,False,0.40382272005081177
+EleutherAI/pythia-160m,The capital of France is,7,778, may,False,False,False,False,False,False,302.0,-0.0581585168838501,-0.07414625585079193,0.0,30.861478805541992,1.0,True,False,0.2620701491832733
+EleutherAI/pythia-160m,The capital of France is,7,807, year,False,False,False,True,True,True,3.0,-0.007206141948699951,-0.00875900313258171,0.0,18.287988662719727,1.0,True,False,0.26806432008743286
+EleutherAI/pythia-160m,The capital of France is,7,864,hen,False,False,False,False,False,False,1650.0,-0.08025676012039185,-0.10948031395673752,0.0,29.111448287963867,1.0,True,False,0.34600767493247986
+EleutherAI/pythia-160m,The capital of France is,7,883,11,False,False,False,False,False,False,10053.0,-0.12957864999771118,-0.1805909126996994,0.0,51.285030364990234,1.0,True,False,0.18946771323680878
+EleutherAI/pythia-160m,The capital of France is,7,888,ident,False,False,False,False,False,False,8997.0,-0.12306332588195801,-0.17653760313987732,0.0,37.92128372192383,1.0,True,False,0.3237609565258026
+EleutherAI/pythia-160m,The capital of France is,7,896, back,True,False,False,True,True,True,1.0,0.01042848825454712,0.012458967044949532,1.6547574996948242,15.345242500305176,1.0,True,False,0.28798651695251465
+EleutherAI/pythia-160m,The capital of France is,7,927, includ,False,False,False,False,False,False,852.0,-0.07383030652999878,-0.09656045585870743,0.0,32.74065399169922,1.0,True,False,0.30799153447151184
+EleutherAI/pythia-160m,The capital of France is,7,977,other,False,False,False,False,False,False,3427.0,-0.10360044240951538,-0.14389733970165253,0.0,38.27287673950195,1.0,True,False,0.295927494764328
+EleutherAI/pythia-160m,The capital of France is,7,1002, produ,False,False,False,False,False,False,1736.0,-0.08337372541427612,-0.11011534184217453,0.0,36.412044525146484,1.0,True,False,0.2867116928100586
+EleutherAI/pythia-160m,The capital of France is,7,1052, 200,False,False,False,False,False,False,780.0,-0.0679427981376648,-0.08716648817062378,0.0,38.25172805786133,1.0,True,False,0.15573589503765106
+EleutherAI/pythia-160m,The capital of France is,7,1077, very,True,False,False,True,True,True,1.0,0.012506246566772461,0.014529678039252758,3.732706069946289,13.267293930053711,1.0,True,False,0.23920641839504242
+EleutherAI/pythia-160m,The capital of France is,7,1080,ator,False,False,False,False,False,False,495.0,-0.06274241209030151,-0.08279193937778473,0.0,26.484338760375977,1.0,True,False,0.3369138836860657
+EleutherAI/pythia-160m,The capital of France is,7,1104,ients,False,False,False,False,False,False,22922.0,-0.15772706270217896,-0.24408704042434692,0.0,36.41144561767578,1.0,True,False,0.37804409861564636
+EleutherAI/pythia-160m,The capital of France is,7,1123,ave,False,False,False,False,False,False,3008.0,-0.0987045168876648,-0.13724501430988312,0.0,31.088117599487305,1.0,True,False,0.34136632084846497
+EleutherAI/pythia-160m,The capital of France is,7,1138,""">",False,False,False,False,False,False,11370.0,-0.1323961615562439,-0.18918153643608093,0.0,40.61202621459961,1.0,True,False,0.272743284702301
+EleutherAI/pythia-160m,The capital of France is,7,1140, tra,False,False,False,False,True,True,4.0,-0.011345326900482178,-0.01370821800082922,0.0,19.46478843688965,1.0,True,False,0.3225400149822235
+EleutherAI/pythia-160m,The capital of France is,7,1149, gu,True,False,False,True,True,True,1.0,0.00922238826751709,0.01088997907936573,2.0206985473632812,14.979301452636719,1.0,True,False,0.3187485933303833
+EleutherAI/pythia-160m,The capital of France is,7,1185, dire,False,False,False,False,False,False,1147.0,-0.07802486419677734,-0.10347316414117813,0.0,32.665428161621094,1.0,True,False,0.3393056392669678
+EleutherAI/pythia-160m,The capital of France is,7,1219, Al,False,False,False,False,False,False,82.0,-0.0348057746887207,-0.04324312508106232,0.0,25.083507537841797,1.0,True,False,0.2817581295967102
+EleutherAI/pythia-160m,The capital of France is,7,1223, while,False,False,False,False,False,False,146.0,-0.04912680387496948,-0.06258025765419006,0.0,28.83184814453125,1.0,True,False,0.2684856355190277
+EleutherAI/pythia-160m,The capital of France is,7,1239, read,False,False,False,True,True,True,3.0,-0.00958251953125,-0.011681390926241875,0.0,18.631690979003906,1.0,True,False,0.2907528579235077
+EleutherAI/pythia-160m,The capital of France is,7,1251,ng,False,False,False,False,False,False,10790.0,-0.12863898277282715,-0.18609069287776947,0.0,36.40006637573242,1.0,True,False,0.3534139096736908
+EleutherAI/pythia-160m,The capital of France is,7,1427,ulation,False,False,False,False,False,False,6203.0,-0.11387115716934204,-0.16081814467906952,0.0,34.7800407409668,1.0,True,False,0.27753791213035583
+EleutherAI/pythia-160m,The capital of France is,7,1434,acter,False,False,False,False,False,False,3338.0,-0.09741455316543579,-0.1361372470855713,0.0,32.265533447265625,1.0,True,False,0.34446418285369873
+EleutherAI/pythia-160m,The capital of France is,7,1450,::,False,False,False,False,False,False,218.0,-0.05446040630340576,-0.07122629880905151,0.0,24.789987564086914,1.0,True,False,0.3603542149066925
+EleutherAI/pythia-160m,The capital of France is,7,1453, control,False,False,False,True,True,True,2.0,-0.0005128979682922363,-0.0006219361675903201,0.0,17.08121109008789,1.0,True,False,0.26845118403434753
+EleutherAI/pythia-160m,The capital of France is,7,1460, pur,True,False,False,True,True,True,1.0,0.008565962314605713,0.010143899358808994,1.7703580856323242,15.229641914367676,1.0,True,False,0.3307362496852875
+EleutherAI/pythia-160m,The capital of France is,7,1525,99,False,False,False,False,False,False,6627.0,-0.11806881427764893,-0.16336911916732788,0.0,45.075252532958984,1.0,True,False,0.21338318288326263
+EleutherAI/pythia-160m,The capital of France is,7,1546,ural,False,False,False,False,False,False,1463.0,-0.08149641752243042,-0.1111929789185524,0.0,28.146711349487305,1.0,True,False,0.3620150685310364
+EleutherAI/pythia-160m,The capital of France is,7,1592,fer,False,False,False,False,False,False,3514.0,-0.09864693880081177,-0.13760335743427277,0.0,32.17066192626953,1.0,True,False,0.3578009605407715
+EleutherAI/pythia-160m,The capital of France is,7,1603,}(,False,False,False,False,False,False,9022.0,-0.12691175937652588,-0.17954584956169128,0.0,45.19426345825195,1.0,True,False,0.2042873352766037
+EleutherAI/pythia-160m,The capital of France is,7,1710,gram,False,False,False,False,False,False,2427.0,-0.09213191270828247,-0.12684258818626404,0.0,30.41072654724121,1.0,True,False,0.34902554750442505
+EleutherAI/pythia-160m,The capital of France is,7,1740, four,False,False,False,False,False,True,9.0,-0.004579663276672363,-0.00547145726159215,0.0,21.993244171142578,1.0,True,False,0.15380823612213135
+EleutherAI/pythia-160m,The capital of France is,7,1751,ene,False,False,False,False,False,False,3380.0,-0.09916818141937256,-0.1386428028345108,0.0,30.37724494934082,1.0,True,False,0.36605939269065857
+EleutherAI/pythia-160m,The capital of France is,7,1768,bs,False,False,False,False,False,False,1396.0,-0.0800982117652893,-0.1086738109588623,0.0,28.422964096069336,1.0,True,False,0.3650358021259308
+EleutherAI/pythia-160m,The capital of France is,7,1779,Ch,False,False,False,False,False,False,14363.0,-0.14201593399047852,-0.20381848514080048,0.0,46.90952682495117,1.0,True,False,0.2731393277645111
+EleutherAI/pythia-160m,The capital of France is,7,1788,lection,False,False,False,False,False,False,5978.0,-0.10577726364135742,-0.15059702098369598,0.0,33.361534118652344,1.0,True,False,0.34281858801841736
+EleutherAI/pythia-160m,The capital of France is,7,1813,icro,False,False,False,False,False,False,7655.0,-0.12128633260726929,-0.17428520321846008,0.0,35.351112365722656,1.0,True,False,0.3526608645915985
+EleutherAI/pythia-160m,The capital of France is,11,60,[,True,False,False,True,True,True,1.0,0.10903787612915039,0.03350559249520302,14.966160774230957,2.033838987350464,1.0,True,False,0.29876264929771423
+EleutherAI/pythia-160m,The capital of France is,11,75,j,True,False,False,True,True,True,1.0,0.10471081733703613,0.03258645907044411,13.560972213745117,3.4390275478363037,1.0,True,False,0.3013487458229065
+EleutherAI/pythia-160m,The capital of France is,11,80,o,True,False,False,True,True,True,1.0,0.1793231964111328,0.05502033978700638,14.395402908325195,2.6045970916748047,1.0,True,False,0.35200831294059753
+EleutherAI/pythia-160m,The capital of France is,11,81,p,True,False,False,True,True,True,1.0,0.11718153953552246,0.03629368543624878,14.180784225463867,2.8192152976989746,1.0,True,False,0.3245663642883301
+EleutherAI/pythia-160m,The capital of France is,11,264,ed,True,False,False,True,True,True,1.0,0.200850248336792,0.06075930967926979,15.19558048248291,1.8044198751449585,1.0,True,False,0.3832164406776428
+EleutherAI/pythia-160m,The capital of France is,11,268, p,True,False,False,True,True,True,1.0,0.11600255966186523,0.03598394989967346,15.220346450805664,1.779653549194336,1.0,True,False,0.2971888482570648
+EleutherAI/pythia-160m,The capital of France is,11,270, b,True,False,False,True,True,True,1.0,0.11243104934692383,0.03500660881400108,15.430928230285645,1.5690720081329346,1.0,True,False,0.2852404713630676
+EleutherAI/pythia-160m,The capital of France is,11,324,ad,True,False,False,True,True,True,1.0,0.12474751472473145,0.03847398981451988,13.95234203338623,3.0476577281951904,1.0,True,False,0.3336738049983978
+EleutherAI/pythia-160m,The capital of France is,11,351,od,True,False,False,True,True,True,1.0,0.14637422561645508,0.04507005587220192,13.900542259216309,3.0994579792022705,1.0,True,False,0.3438238501548767
+EleutherAI/pythia-160m,The capital of France is,11,359, we,True,False,False,True,True,True,1.0,0.11546468734741211,0.03560178354382515,14.78736686706543,2.212632894515991,1.0,True,False,0.2921333611011505
+EleutherAI/pythia-160m,The capital of France is,11,369, was,True,False,False,True,True,True,1.0,0.08236861228942871,0.025641687214374542,14.887872695922852,2.1121268272399902,1.0,True,False,0.2522128224372864
+EleutherAI/pythia-160m,The capital of France is,11,389, com,True,False,False,True,True,True,1.0,0.1548292636871338,0.04775916785001755,14.674402236938477,2.3255975246429443,1.0,True,False,0.3241788446903229
+EleutherAI/pythia-160m,The capital of France is,11,398,ers,True,False,False,True,True,True,1.0,0.14578533172607422,0.04428107291460037,14.69101333618164,2.3089864253997803,1.0,True,False,0.3766348659992218
+EleutherAI/pythia-160m,The capital of France is,11,416, R,True,False,False,True,True,True,1.0,0.10707736015319824,0.03331782668828964,15.66348934173584,1.3365108966827393,1.0,True,False,0.2701759934425354
+EleutherAI/pythia-160m,The capital of France is,11,419, ha,True,False,False,True,True,True,1.0,0.1657426357269287,0.051226694136857986,15.161969184875488,1.8380311727523804,1.0,True,False,0.3277069330215454
+EleutherAI/pythia-160m,The capital of France is,11,451,ial,True,False,False,True,True,True,1.0,0.15553641319274902,0.04741634801030159,14.441547393798828,2.5584523677825928,1.0,True,False,0.3698815405368805
+EleutherAI/pythia-160m,The capital of France is,11,494,able,True,False,False,True,True,True,1.0,0.151686429977417,0.04604269936680794,14.776103973388672,2.223896026611328,1.0,True,False,0.35500040650367737
+EleutherAI/pythia-160m,The capital of France is,11,495, 3,True,False,False,True,True,True,1.0,0.03479290008544922,0.01090878713876009,15.206119537353516,1.7938809394836426,1.0,True,False,0.1760614663362503
+EleutherAI/pythia-160m,The capital of France is,11,528,ous,True,False,False,True,True,True,1.0,0.14304637908935547,0.043598297983407974,14.964569091796875,2.035430431365967,1.0,True,False,0.37491947412490845
+EleutherAI/pythia-160m,The capital of France is,11,598, up,True,False,False,True,True,True,1.0,0.14627766609191895,0.04483252763748169,15.794478416442871,1.205521583557129,1.0,True,False,0.3034505844116211
+EleutherAI/pythia-160m,The capital of France is,11,606,ang,True,False,False,True,True,True,1.0,0.14092016220092773,0.04338327422738075,13.81084156036377,3.1891586780548096,1.0,True,False,0.34365829825401306
+EleutherAI/pythia-160m,The capital of France is,11,609,are,True,False,False,True,True,True,1.0,0.15941739082336426,0.04908306896686554,13.931756019592285,3.068243980407715,1.0,True,False,0.32972580194473267
+EleutherAI/pythia-160m,The capital of France is,11,684,ates,True,False,False,True,True,True,1.0,0.11103630065917969,0.03408481553196907,13.834596633911133,3.165403366088867,1.0,True,False,0.3453785479068756
+EleutherAI/pythia-160m,The capital of France is,11,695,ric,True,False,False,True,True,True,1.0,0.13912677764892578,0.042847272008657455,13.925288200378418,3.074712038040161,1.0,True,False,0.35293135046958923
+EleutherAI/pythia-160m,The capital of France is,11,720,ject,True,False,False,True,True,True,1.0,0.1532573699951172,0.047363732010126114,12.906121253967285,4.093878746032715,1.0,True,False,0.3422251343727112
+EleutherAI/pythia-160m,The capital of France is,11,723,ings,True,False,False,True,True,True,1.0,0.21328043937683105,0.06421324610710144,15.008234977722168,1.9917651414871216,1.0,True,False,0.40382272005081177
+EleutherAI/pythia-160m,The capital of France is,11,778, may,True,False,False,True,True,True,1.0,0.06220269203186035,0.019279977306723595,14.58837604522705,2.41162371635437,1.0,True,False,0.2620701491832733
+EleutherAI/pythia-160m,The capital of France is,11,807, year,True,False,False,True,True,True,1.0,0.1105959415435791,0.03405517712235451,15.06872272491455,1.9312769174575806,1.0,True,False,0.26806432008743286
+EleutherAI/pythia-160m,The capital of France is,11,864,hen,True,False,False,True,True,True,1.0,0.11829376220703125,0.03633945807814598,13.773575782775879,3.226424217224121,1.0,True,False,0.34600767493247986
+EleutherAI/pythia-160m,The capital of France is,11,883,11,True,False,False,True,True,True,1.0,0.053641557693481445,0.01698276214301586,11.66181755065918,5.338181972503662,1.0,True,False,0.18946771323680878
+EleutherAI/pythia-160m,The capital of France is,11,888,ident,True,False,False,True,True,True,1.0,0.13701629638671875,0.04264076054096222,12.424825668334961,4.575174808502197,1.0,True,False,0.3237609565258026
+EleutherAI/pythia-160m,The capital of France is,11,896, back,True,False,False,True,True,True,1.0,0.13934946060180664,0.04253802448511124,15.55604362487793,1.4439566135406494,1.0,True,False,0.28798651695251465
+EleutherAI/pythia-160m,The capital of France is,11,927, includ,True,False,False,True,True,True,1.0,0.11909747123718262,0.037129852920770645,14.296276092529297,2.703723669052124,1.0,True,False,0.30799153447151184
+EleutherAI/pythia-160m,The capital of France is,11,977,other,True,False,False,True,True,True,1.0,0.0836343765258789,0.02573433704674244,13.143572807312012,3.8564271926879883,1.0,True,False,0.295927494764328
+EleutherAI/pythia-160m,The capital of France is,11,1002, produ,True,False,False,True,True,True,1.0,0.1132817268371582,0.035526882857084274,13.435044288635254,3.564955711364746,1.0,True,False,0.2867116928100586
+EleutherAI/pythia-160m,The capital of France is,11,1052, 200,True,False,False,True,True,True,1.0,0.04158663749694824,0.01310261245816946,14.629084587097168,2.370915651321411,1.0,True,False,0.15573589503765106
+EleutherAI/pythia-160m,The capital of France is,11,1077, very,True,False,False,True,True,True,1.0,0.0902552604675293,0.027979781851172447,15.980949401855469,1.0190505981445312,1.0,True,False,0.23920641839504242
+EleutherAI/pythia-160m,The capital of France is,11,1080,ator,True,False,False,True,True,True,1.0,0.09457802772521973,0.029099399223923683,13.894033432006836,3.1059670448303223,1.0,True,False,0.3369138836860657
+EleutherAI/pythia-160m,The capital of France is,11,1104,ients,True,False,False,True,True,True,1.0,0.1282825469970703,0.039574578404426575,12.437700271606445,4.562300205230713,1.0,True,False,0.37804409861564636
+EleutherAI/pythia-160m,The capital of France is,11,1123,ave,True,False,False,True,True,True,1.0,0.11558890342712402,0.03558884188532829,13.60521125793457,3.3947885036468506,1.0,True,False,0.34136632084846497
+EleutherAI/pythia-160m,The capital of France is,11,1138,""">",True,False,False,True,True,True,1.0,0.0783228874206543,0.02440137416124344,13.06037425994873,3.9396257400512695,1.0,True,False,0.272743284702301
+EleutherAI/pythia-160m,The capital of France is,11,1140, tra,True,False,False,True,True,True,1.0,0.16919708251953125,0.052330516278743744,14.920159339904785,2.0798404216766357,1.0,True,False,0.3225400149822235
+EleutherAI/pythia-160m,The capital of France is,11,1149, gu,True,False,False,True,True,True,1.0,0.14790129661560059,0.04587714374065399,14.538973808288574,2.461026430130005,1.0,True,False,0.3187485933303833
+EleutherAI/pythia-160m,The capital of France is,11,1185, dire,True,False,False,True,True,True,1.0,0.19744348526000977,0.0610167495906353,14.621086120605469,2.3789138793945312,1.0,True,False,0.3393056392669678
+EleutherAI/pythia-160m,The capital of France is,11,1219, Al,True,False,False,True,True,True,1.0,0.10092711448669434,0.031482625752687454,15.049844741821289,1.9501556158065796,1.0,True,False,0.2817581295967102
+EleutherAI/pythia-160m,The capital of France is,11,1223, while,True,False,False,True,True,True,1.0,0.0742044448852539,0.022774171084165573,14.985715866088867,2.014284372329712,1.0,True,False,0.2684856355190277
+EleutherAI/pythia-160m,The capital of France is,11,1239, read,True,False,False,True,True,True,1.0,0.11131072044372559,0.03412749618291855,15.627493858337402,1.372506022453308,1.0,True,False,0.2907528579235077
+EleutherAI/pythia-160m,The capital of France is,11,1251,ng,True,False,False,True,True,True,1.0,0.15850329399108887,0.04883526265621185,13.800957679748535,3.1990420818328857,1.0,True,False,0.3534139096736908
+EleutherAI/pythia-160m,The capital of France is,11,1427,ulation,True,False,False,True,True,True,1.0,0.08441519737243652,0.02618190459907055,12.722198486328125,4.277801990509033,1.0,True,False,0.27753791213035583
+EleutherAI/pythia-160m,The capital of France is,11,1434,acter,True,False,False,True,True,True,1.0,0.15673422813415527,0.048807233572006226,11.765616416931152,5.234383583068848,1.0,True,False,0.34446418285369873
+EleutherAI/pythia-160m,The capital of France is,11,1450,::,True,False,False,True,True,True,1.0,0.15243792533874512,0.04666738212108612,14.486114501953125,2.513885259628296,1.0,True,False,0.3603542149066925
+EleutherAI/pythia-160m,The capital of France is,11,1453, control,True,False,False,True,True,True,1.0,0.10309028625488281,0.03154071792960167,15.052945137023926,1.9470547437667847,1.0,True,False,0.26845118403434753
+EleutherAI/pythia-160m,The capital of France is,11,1460, pur,True,False,False,True,True,True,1.0,0.1750013828277588,0.05401453748345375,14.90494155883789,2.095057964324951,1.0,True,False,0.3307362496852875
+EleutherAI/pythia-160m,The capital of France is,11,1525,99,True,False,False,True,True,True,1.0,0.06361746788024902,0.020092405378818512,11.483338356018066,5.516661643981934,1.0,True,False,0.21338318288326263
+EleutherAI/pythia-160m,The capital of France is,11,1546,ural,True,False,False,True,True,True,1.0,0.11834549903869629,0.03632528707385063,13.861364364624023,3.1386358737945557,1.0,True,False,0.3620150685310364
+EleutherAI/pythia-160m,The capital of France is,11,1592,fer,True,False,False,True,True,True,1.0,0.1761007308959961,0.05418875813484192,13.58368968963623,3.4163103103637695,1.0,True,False,0.3578009605407715
+EleutherAI/pythia-160m,The capital of France is,11,1603,}(,True,False,False,True,True,True,1.0,0.04449462890625,0.014109509997069836,8.501230239868164,8.498769760131836,1.0,True,False,0.2042873352766037
+EleutherAI/pythia-160m,The capital of France is,11,1710,gram,True,False,False,True,True,True,1.0,0.1157999038696289,0.03567441925406456,13.678643226623535,3.321357011795044,1.0,True,False,0.34902554750442505
+EleutherAI/pythia-160m,The capital of France is,11,1740, four,True,False,False,True,True,True,1.0,0.024510860443115234,0.007626825477927923,15.159762382507324,1.8402373790740967,1.0,True,False,0.15380823612213135
+EleutherAI/pythia-160m,The capital of France is,11,1751,ene,True,False,False,True,True,True,1.0,0.1487724781036377,0.04565577208995819,14.087067604064941,2.9129321575164795,1.0,True,False,0.36605939269065857
+EleutherAI/pythia-160m,The capital of France is,11,1768,bs,True,False,False,True,True,True,1.0,0.19082951545715332,0.05866621062159538,13.866883277893066,3.1331169605255127,1.0,True,False,0.3650358021259308
+EleutherAI/pythia-160m,The capital of France is,11,1779,Ch,True,False,False,True,True,True,1.0,0.05948185920715332,0.018710633739829063,10.252920150756836,6.747079372406006,1.0,True,False,0.2731393277645111
+EleutherAI/pythia-160m,The capital of France is,11,1788,lection,True,False,False,True,True,True,1.0,0.10520029067993164,0.03276699408888817,12.00412654876709,4.99587345123291,1.0,True,False,0.34281858801841736
+EleutherAI/pythia-160m,The capital of France is,11,1813,icro,True,False,False,True,True,True,1.0,0.16487455368041992,0.051312148571014404,11.840618133544922,5.15938138961792,1.0,True,False,0.3526608645915985
+EleutherAI/pythia-160m,The quick brown fox,0,60,[,False,False,False,False,False,False,43.0,-0.034377336502075195,-0.03401291370391846,0.0,22.169401168823242,1.0,True,False,0.29876264929771423
+EleutherAI/pythia-160m,The quick brown fox,0,75,j,False,False,False,False,False,False,115.0,-0.04526638984680176,-0.04488310217857361,0.0,25.43720245361328,1.0,True,False,0.3013487458229065
+EleutherAI/pythia-160m,The quick brown fox,0,80,o,False,False,False,False,False,False,138.0,-0.04849797487258911,-0.048688847571611404,0.0,23.986818313598633,1.0,True,False,0.35200831294059753
+EleutherAI/pythia-160m,The quick brown fox,0,81,p,False,False,False,False,False,True,8.0,-0.01590561866760254,-0.015313379466533661,0.0,20.085140228271484,1.0,True,False,0.3245663642883301
+EleutherAI/pythia-160m,The quick brown fox,0,264,ed,True,False,False,True,True,True,1.0,0.015244364738464355,0.014420276507735252,2.324525833129883,14.675474166870117,1.0,True,False,0.3832164406776428
+EleutherAI/pythia-160m,The quick brown fox,0,268, p,False,False,False,False,False,False,19.0,-0.0337519645690918,-0.032622020691633224,0.0,24.463428497314453,1.0,True,False,0.2971888482570648
+EleutherAI/pythia-160m,The quick brown fox,0,270, b,False,False,False,False,False,False,305.0,-0.06422162055969238,-0.06372314691543579,0.0,31.910282135009766,1.0,True,False,0.2852404713630676
+EleutherAI/pythia-160m,The quick brown fox,0,324,ad,False,False,False,False,False,False,18980.0,-0.1399850845336914,-0.15360811352729797,0.0,37.24618911743164,1.0,True,False,0.3336738049983978
+EleutherAI/pythia-160m,The quick brown fox,0,351,od,False,False,False,False,False,False,65.0,-0.04334759712219238,-0.04312165826559067,0.0,23.7391414642334,1.0,True,False,0.3438238501548767
+EleutherAI/pythia-160m,The quick brown fox,0,359, we,False,False,False,False,True,True,4.0,-0.01312255859375,-0.012502596713602543,0.0,20.88657569885254,1.0,True,False,0.2921333611011505
+EleutherAI/pythia-160m,The quick brown fox,0,369, was,False,False,False,False,False,False,16.0,-0.02488541603088379,-0.023912588134407997,0.0,22.636810302734375,1.0,True,False,0.2522128224372864
+EleutherAI/pythia-160m,The quick brown fox,0,389, com,False,False,False,True,True,True,2.0,-0.002858400344848633,-0.002691807923838496,0.0,17.57785987854004,1.0,True,False,0.3241788446903229
+EleutherAI/pythia-160m,The quick brown fox,0,398,ers,False,False,False,False,False,False,17.0,-0.029900789260864258,-0.029541395604610443,0.0,20.979867935180664,1.0,True,False,0.3766348659992218
+EleutherAI/pythia-160m,The quick brown fox,0,416, R,False,False,False,False,False,False,446.0,-0.06260770559310913,-0.06261681020259857,0.0,30.962278366088867,1.0,True,False,0.2701759934425354
+EleutherAI/pythia-160m,The quick brown fox,0,419, ha,False,False,False,False,False,True,6.0,-0.015476465225219727,-0.01480417512357235,0.0,20.028478622436523,1.0,True,False,0.3277069330215454
+EleutherAI/pythia-160m,The quick brown fox,0,451,ial,False,False,False,False,False,False,27.0,-0.028716087341308594,-0.028485411778092384,0.0,20.678104400634766,1.0,True,False,0.3698815405368805
+EleutherAI/pythia-160m,The quick brown fox,0,494,able,False,False,False,False,False,False,124.0,-0.07667195796966553,-0.07766909897327423,0.0,28.73361587524414,1.0,True,False,0.35500040650367737
+EleutherAI/pythia-160m,The quick brown fox,0,495, 3,False,False,False,False,False,False,212.0,-0.0546107292175293,-0.0537293441593647,0.0,32.047786712646484,1.0,True,False,0.1760614663362503
+EleutherAI/pythia-160m,The quick brown fox,0,528,ous,False,False,False,False,False,False,147.0,-0.059255242347717285,-0.05985217168927193,0.0,25.536718368530273,1.0,True,False,0.37491947412490845
+EleutherAI/pythia-160m,The quick brown fox,0,598, up,False,False,False,False,False,False,51.0,-0.03940939903259277,-0.03884655982255936,0.0,23.296300888061523,1.0,True,False,0.3034505844116211
+EleutherAI/pythia-160m,The quick brown fox,0,606,ang,False,False,False,False,False,False,13255.0,-0.12699943780899048,-0.1379310041666031,0.0,35.13545608520508,1.0,True,False,0.34365829825401306
+EleutherAI/pythia-160m,The quick brown fox,0,609,are,False,False,False,False,False,False,6624.0,-0.10396677255630493,-0.11061784625053406,0.0,32.449771881103516,1.0,True,False,0.32972580194473267
+EleutherAI/pythia-160m,The quick brown fox,0,684,ates,False,False,False,False,False,False,5143.0,-0.0978461503982544,-0.1040968969464302,0.0,30.86497688293457,1.0,True,False,0.3453785479068756
+EleutherAI/pythia-160m,The quick brown fox,0,695,ric,False,False,False,False,False,False,13.0,-0.019620656967163086,-0.019246982410550117,0.0,19.92413330078125,1.0,True,False,0.35293135046958923
+EleutherAI/pythia-160m,The quick brown fox,0,720,ject,True,False,False,True,True,True,1.0,0.028313875198364258,0.02655133418738842,4.382830619812012,12.617169380187988,1.0,True,False,0.3422251343727112
+EleutherAI/pythia-160m,The quick brown fox,0,723,ings,True,False,False,True,True,True,1.0,0.009469032287597656,0.009036206640303135,1.1498565673828125,15.850143432617188,1.0,True,False,0.40382272005081177
+EleutherAI/pythia-160m,The quick brown fox,0,778, may,False,False,False,False,True,True,5.0,-0.011658668518066406,-0.01108983438462019,0.0,19.439743041992188,1.0,True,False,0.2620701491832733
+EleutherAI/pythia-160m,The quick brown fox,0,807, year,True,False,False,True,True,True,1.0,0.0023322105407714844,0.002210824051871896,0.4449939727783203,16.55500602722168,1.0,True,False,0.26806432008743286
+EleutherAI/pythia-160m,The quick brown fox,0,864,hen,False,False,False,False,False,False,657.0,-0.06603306531906128,-0.06783664971590042,0.0,26.73499298095703,1.0,True,False,0.34600767493247986
+EleutherAI/pythia-160m,The quick brown fox,0,883,11,False,False,False,False,False,False,3548.0,-0.09295099973678589,-0.09529303759336472,0.0,42.656288146972656,1.0,True,False,0.18946771323680878
+EleutherAI/pythia-160m,The quick brown fox,0,888,ident,False,False,False,False,False,True,9.0,-0.015348672866821289,-0.014894327148795128,0.0,19.66815757751465,1.0,True,False,0.3237609565258026
+EleutherAI/pythia-160m,The quick brown fox,0,896, back,False,False,False,False,False,True,9.0,-0.017328500747680664,-0.01678273268043995,0.0,19.5944881439209,1.0,True,False,0.28798651695251465
+EleutherAI/pythia-160m,The quick brown fox,0,927, includ,False,False,False,False,False,False,353.0,-0.05934333801269531,-0.05933263525366783,0.0,30.042320251464844,1.0,True,False,0.30799153447151184
+EleutherAI/pythia-160m,The quick brown fox,0,977,other,False,False,False,False,False,False,18142.0,-0.1341736912727356,-0.14739058911800385,0.0,44.7027473449707,1.0,True,False,0.295927494764328
+EleutherAI/pythia-160m,The quick brown fox,0,1002, produ,False,False,False,False,False,False,3282.0,-0.10822385549545288,-0.11117597669363022,0.0,49.47046661376953,1.0,True,False,0.2867116928100586
+EleutherAI/pythia-160m,The quick brown fox,0,1052, 200,False,False,False,False,False,False,3414.0,-0.09222984313964844,-0.09421573579311371,0.0,40.88425064086914,1.0,True,False,0.15573589503765106
+EleutherAI/pythia-160m,The quick brown fox,0,1077, very,False,False,False,False,False,False,29.0,-0.031362175941467285,-0.030443936586380005,0.0,23.320404052734375,1.0,True,False,0.23920641839504242
+EleutherAI/pythia-160m,The quick brown fox,0,1080,ator,False,False,False,False,False,False,259.0,-0.05532485246658325,-0.055948954075574875,0.0,25.667844772338867,1.0,True,False,0.3369138836860657
+EleutherAI/pythia-160m,The quick brown fox,0,1104,ients,False,False,False,False,False,False,14369.0,-0.13137465715408325,-0.14457228779792786,0.0,34.37760543823242,1.0,True,False,0.37804409861564636
+EleutherAI/pythia-160m,The quick brown fox,0,1123,ave,False,False,False,False,False,False,5532.0,-0.1011534333229065,-0.10777975618839264,0.0,30.7008056640625,1.0,True,False,0.34136632084846497
+EleutherAI/pythia-160m,The quick brown fox,0,1138,""">",False,False,False,False,False,False,1943.0,-0.08066529035568237,-0.08299075812101364,0.0,31.8753662109375,1.0,True,False,0.272743284702301
+EleutherAI/pythia-160m,The quick brown fox,0,1140, tra,False,False,False,False,False,False,84.0,-0.05207383632659912,-0.05133233591914177,0.0,27.445537567138672,1.0,True,False,0.3225400149822235
+EleutherAI/pythia-160m,The quick brown fox,0,1149, gu,False,False,False,True,True,True,2.0,-0.004650235176086426,-0.0043959468603134155,0.0,17.985198974609375,1.0,True,False,0.3187485933303833
+EleutherAI/pythia-160m,The quick brown fox,0,1185, dire,False,False,False,False,False,False,12738.0,-0.12399375438690186,-0.1332264095544815,0.0,36.476016998291016,1.0,True,False,0.3393056392669678
+EleutherAI/pythia-160m,The quick brown fox,0,1219, Al,False,False,False,False,False,False,3522.0,-0.0940430760383606,-0.09683570265769958,0.0,36.2564811706543,1.0,True,False,0.2817581295967102
+EleutherAI/pythia-160m,The quick brown fox,0,1223, while,False,False,False,False,False,False,255.0,-0.0549321174621582,-0.05508770793676376,0.0,25.54794692993164,1.0,True,False,0.2684856355190277
+EleutherAI/pythia-160m,The quick brown fox,0,1239, read,False,False,False,False,False,False,31.0,-0.03412139415740967,-0.033473528921604156,0.0,22.468584060668945,1.0,True,False,0.2907528579235077
+EleutherAI/pythia-160m,The quick brown fox,0,1251,ng,False,False,False,False,False,False,3014.0,-0.09683525562286377,-0.10141461342573166,0.0,32.20893859863281,1.0,True,False,0.3534139096736908
+EleutherAI/pythia-160m,The quick brown fox,0,1427,ulation,False,False,False,False,False,False,2441.0,-0.08654600381851196,-0.09018604457378387,0.0,31.05963706970215,1.0,True,False,0.27753791213035583
+EleutherAI/pythia-160m,The quick brown fox,0,1434,acter,False,False,False,False,False,False,775.0,-0.06779444217681885,-0.06988996267318726,0.0,27.61339569091797,1.0,True,False,0.34446418285369873
+EleutherAI/pythia-160m,The quick brown fox,0,1450,::,False,False,False,False,False,False,38.0,-0.030880093574523926,-0.030666805803775787,0.0,21.311058044433594,1.0,True,False,0.3603542149066925
+EleutherAI/pythia-160m,The quick brown fox,0,1453, control,False,False,False,True,True,True,2.0,-0.00044524669647216797,-0.0004235599481035024,0.0,17.070234298706055,1.0,True,False,0.26845118403434753
+EleutherAI/pythia-160m,The quick brown fox,0,1460, pur,True,False,False,True,True,True,1.0,0.0361933708190918,0.03293468430638313,7.531711578369141,9.46828842163086,1.0,True,False,0.3307362496852875
+EleutherAI/pythia-160m,The quick brown fox,0,1525,99,False,False,False,False,False,False,8306.0,-0.10638612508773804,-0.11172802746295929,0.0,40.573448181152344,1.0,True,False,0.21338318288326263
+EleutherAI/pythia-160m,The quick brown fox,0,1546,ural,False,False,False,False,False,True,9.0,-0.011648893356323242,-0.0113671338185668,0.0,18.6052303314209,1.0,True,False,0.3620150685310364
+EleutherAI/pythia-160m,The quick brown fox,0,1592,fer,False,False,False,False,False,False,2232.0,-0.09065914154052734,-0.09486962854862213,0.0,30.237350463867188,1.0,True,False,0.3578009605407715
+EleutherAI/pythia-160m,The quick brown fox,0,1603,}(,False,False,False,False,False,False,4297.0,-0.09382450580596924,-0.09779521822929382,0.0,38.72991180419922,1.0,True,False,0.2042873352766037
+EleutherAI/pythia-160m,The quick brown fox,0,1710,gram,True,False,False,True,True,True,1.0,0.001867055892944336,0.0017830677097663283,0.3065319061279297,16.69346809387207,1.0,True,False,0.34902554750442505
+EleutherAI/pythia-160m,The quick brown fox,0,1740, four,False,False,False,False,False,False,87.0,-0.044458746910095215,-0.0434715673327446,0.0,27.198598861694336,1.0,True,False,0.15380823612213135
+EleutherAI/pythia-160m,The quick brown fox,0,1751,ene,False,False,False,False,False,False,687.0,-0.06712907552719116,-0.06919649988412857,0.0,26.007427215576172,1.0,True,False,0.36605939269065857
+EleutherAI/pythia-160m,The quick brown fox,0,1768,bs,False,False,False,False,False,False,12076.0,-0.11859285831451416,-0.1286674439907074,0.0,37.062374114990234,1.0,True,False,0.3650358021259308
+EleutherAI/pythia-160m,The quick brown fox,0,1779,Ch,False,False,False,False,False,False,2644.0,-0.0848989486694336,-0.0873512253165245,0.0,34.73265075683594,1.0,True,False,0.2731393277645111
+EleutherAI/pythia-160m,The quick brown fox,0,1788,lection,False,False,False,False,False,False,1161.0,-0.07239419221878052,-0.07502152770757675,0.0,28.219303131103516,1.0,True,False,0.34281858801841736
+EleutherAI/pythia-160m,The quick brown fox,0,1813,icro,False,False,False,False,False,False,93.0,-0.047238290309906006,-0.0474017858505249,0.0,24.960878372192383,1.0,True,False,0.3526608645915985
+EleutherAI/pythia-160m,The quick brown fox,4,60,[,False,False,False,False,True,True,5.0,-0.0353541374206543,-0.03624749183654785,0.0,23.102453231811523,1.0,True,False,0.29876264929771423
+EleutherAI/pythia-160m,The quick brown fox,4,75,j,False,False,False,False,False,False,198.0,-0.07921403646469116,-0.08411385864019394,0.0,33.89665222167969,1.0,True,False,0.3013487458229065
+EleutherAI/pythia-160m,The quick brown fox,4,80,o,False,False,False,False,False,True,8.0,-0.046174824237823486,-0.04760581627488136,0.0,25.111061096191406,1.0,True,False,0.35200831294059753
+EleutherAI/pythia-160m,The quick brown fox,4,81,p,False,False,False,False,True,True,5.0,-0.034780681133270264,-0.03536711633205414,0.0,24.23954963684082,1.0,True,False,0.3245663642883301
+EleutherAI/pythia-160m,The quick brown fox,4,264,ed,False,False,False,True,True,True,2.0,-0.008736610412597656,-0.008590275421738625,0.0,18.47840690612793,1.0,True,False,0.3832164406776428
+EleutherAI/pythia-160m,The quick brown fox,4,268, p,False,False,False,False,False,False,15.0,-0.03431349992752075,-0.03503784164786339,0.0,23.94184112548828,1.0,True,False,0.2971888482570648
+EleutherAI/pythia-160m,The quick brown fox,4,270, b,False,False,False,False,False,False,444.0,-0.07547813653945923,-0.08026052266359329,0.0,33.08358383178711,1.0,True,False,0.2852404713630676
+EleutherAI/pythia-160m,The quick brown fox,4,324,ad,False,False,False,False,False,False,128.0,-0.06925523281097412,-0.07385376840829849,0.0,28.397762298583984,1.0,True,False,0.3336738049983978
+EleutherAI/pythia-160m,The quick brown fox,4,351,od,False,False,False,False,False,False,18.0,-0.04443693161010742,-0.046278148889541626,0.0,24.200822830200195,1.0,True,False,0.3438238501548767
+EleutherAI/pythia-160m,The quick brown fox,4,359, we,False,False,False,False,False,False,51.0,-0.0496678352355957,-0.05183061212301254,0.0,25.541048049926758,1.0,True,False,0.2921333611011505
+EleutherAI/pythia-160m,The quick brown fox,4,369, was,False,False,False,False,False,False,15.0,-0.03585100173950195,-0.03632405027747154,0.0,25.612245559692383,1.0,True,False,0.2522128224372864
+EleutherAI/pythia-160m,The quick brown fox,4,389, com,False,False,False,False,False,True,7.0,-0.03396493196487427,-0.034731581807136536,0.0,23.232643127441406,1.0,True,False,0.3241788446903229
+EleutherAI/pythia-160m,The quick brown fox,4,398,ers,False,False,False,True,True,True,2.0,-0.010648965835571289,-0.010632744058966637,0.0,18.63778305053711,1.0,True,False,0.3766348659992218
+EleutherAI/pythia-160m,The quick brown fox,4,416, R,False,False,False,False,False,False,165.0,-0.0632009506225586,-0.0664675161242485,0.0,29.79924774169922,1.0,True,False,0.2701759934425354
+EleutherAI/pythia-160m,The quick brown fox,4,419, ha,False,False,False,False,False,False,22.0,-0.03602266311645508,-0.03712258115410805,0.0,23.377737045288086,1.0,True,False,0.3277069330215454
+EleutherAI/pythia-160m,The quick brown fox,4,451,ial,False,False,False,False,False,False,35.0,-0.0558590292930603,-0.059212155640125275,0.0,24.636581420898438,1.0,True,False,0.3698815405368805
+EleutherAI/pythia-160m,The quick brown fox,4,494,able,False,False,False,True,True,True,2.0,-0.019943296909332275,-0.02045438252389431,0.0,19.597015380859375,1.0,True,False,0.35500040650367737
+EleutherAI/pythia-160m,The quick brown fox,4,495, 3,False,False,False,False,False,False,315.0,-0.07392001152038574,-0.07788189500570297,0.0,35.23363494873047,1.0,True,False,0.1760614663362503
+EleutherAI/pythia-160m,The quick brown fox,4,528,ous,False,False,False,False,False,True,10.0,-0.037574052810668945,-0.038938008248806,0.0,22.40797233581543,1.0,True,False,0.37491947412490845
+EleutherAI/pythia-160m,The quick brown fox,4,598, up,False,False,False,False,False,False,56.0,-0.05272388458251953,-0.05534772202372551,0.0,25.274520874023438,1.0,True,False,0.3034505844116211
+EleutherAI/pythia-160m,The quick brown fox,4,606,ang,False,False,False,False,False,False,4732.0,-0.1261279582977295,-0.1435033679008484,0.0,35.5505256652832,1.0,True,False,0.34365829825401306
+EleutherAI/pythia-160m,The quick brown fox,4,609,are,False,False,False,False,False,False,657.0,-0.09726858139038086,-0.10632173717021942,0.0,32.919620513916016,1.0,True,False,0.32972580194473267
+EleutherAI/pythia-160m,The quick brown fox,4,684,ates,False,False,False,False,False,False,3452.0,-0.13036656379699707,-0.14782053232192993,0.0,36.678001403808594,1.0,True,False,0.3453785479068756
+EleutherAI/pythia-160m,The quick brown fox,4,695,ric,False,False,False,False,False,False,28.0,-0.04590046405792236,-0.048197418451309204,0.0,23.97328758239746,1.0,True,False,0.35293135046958923
+EleutherAI/pythia-160m,The quick brown fox,4,720,ject,False,False,False,True,True,True,2.0,-0.008437395095825195,-0.008496137335896492,0.0,18.419919967651367,1.0,True,False,0.3422251343727112
+EleutherAI/pythia-160m,The quick brown fox,4,723,ings,False,False,False,True,True,True,2.0,-0.02636939287185669,-0.027345318347215652,0.0,20.044836044311523,1.0,True,False,0.40382272005081177
+EleutherAI/pythia-160m,The quick brown fox,4,778, may,False,False,False,False,True,True,5.0,-0.02079331874847412,-0.02089689113199711,0.0,22.134620666503906,1.0,True,False,0.2620701491832733
+EleutherAI/pythia-160m,The quick brown fox,4,807, year,False,False,False,False,False,True,7.0,-0.030154824256896973,-0.030795859172940254,0.0,22.298381805419922,1.0,True,False,0.26806432008743286
+EleutherAI/pythia-160m,The quick brown fox,4,864,hen,False,False,False,False,False,False,83.0,-0.0641370415687561,-0.06834954023361206,0.0,26.655366897583008,1.0,True,False,0.34600767493247986
+EleutherAI/pythia-160m,The quick brown fox,4,883,11,False,False,False,False,False,False,1343.0,-0.1027601957321167,-0.11084141582250595,0.0,47.24019241333008,1.0,True,False,0.18946771323680878
+EleutherAI/pythia-160m,The quick brown fox,4,888,ident,False,False,False,False,False,False,21.0,-0.04531735181808472,-0.04706009104847908,0.0,25.5581111907959,1.0,True,False,0.3237609565258026
+EleutherAI/pythia-160m,The quick brown fox,4,896, back,False,False,False,True,True,True,2.0,-0.006392836570739746,-0.006441639736294746,0.0,17.940919876098633,1.0,True,False,0.28798651695251465
+EleutherAI/pythia-160m,The quick brown fox,4,927, includ,False,False,False,False,False,False,316.0,-0.06800901889801025,-0.07244623452425003,0.0,30.81756019592285,1.0,True,False,0.30799153447151184
+EleutherAI/pythia-160m,The quick brown fox,4,977,other,False,False,False,False,False,False,16779.0,-0.15426701307296753,-0.18243496119976044,0.0,42.3377685546875,1.0,True,False,0.295927494764328
+EleutherAI/pythia-160m,The quick brown fox,4,1002, produ,False,False,False,False,False,False,7281.0,-0.12657105922698975,-0.14234474301338196,0.0,45.01566696166992,1.0,True,False,0.2867116928100586
+EleutherAI/pythia-160m,The quick brown fox,4,1052, 200,False,False,False,False,False,False,5919.0,-0.12216079235076904,-0.1356258988380432,0.0,45.58522033691406,1.0,True,False,0.15573589503765106
+EleutherAI/pythia-160m,The quick brown fox,4,1077, very,False,False,False,False,False,False,41.0,-0.04348486661911011,-0.04497425630688667,0.0,25.302278518676758,1.0,True,False,0.23920641839504242
+EleutherAI/pythia-160m,The quick brown fox,4,1080,ator,False,False,False,False,False,False,1588.0,-0.10614120960235596,-0.11788909882307053,0.0,33.146724700927734,1.0,True,False,0.3369138836860657
+EleutherAI/pythia-160m,The quick brown fox,4,1104,ients,False,False,False,False,False,False,9479.0,-0.13427162170410156,-0.15737676620483398,0.0,33.827980041503906,1.0,True,False,0.37804409861564636
+EleutherAI/pythia-160m,The quick brown fox,4,1123,ave,False,False,False,False,False,False,2485.0,-0.11191529035568237,-0.12597745656967163,0.0,33.00074768066406,1.0,True,False,0.34136632084846497
+EleutherAI/pythia-160m,The quick brown fox,4,1138,""">",False,False,False,False,False,False,1280.0,-0.10130304098129272,-0.11084221303462982,0.0,36.54624557495117,1.0,True,False,0.272743284702301
+EleutherAI/pythia-160m,The quick brown fox,4,1140, tra,False,False,False,False,False,False,303.0,-0.07019686698913574,-0.07495305687189102,0.0,30.398801803588867,1.0,True,False,0.3225400149822235
+EleutherAI/pythia-160m,The quick brown fox,4,1149, gu,False,False,False,False,False,False,21.0,-0.038410723209381104,-0.039592329412698746,0.0,24.230205535888672,1.0,True,False,0.3187485933303833
+EleutherAI/pythia-160m,The quick brown fox,4,1185, dire,False,False,False,False,False,False,10667.0,-0.13600939512252808,-0.15684883296489716,0.0,37.40800857543945,1.0,True,False,0.3393056392669678
+EleutherAI/pythia-160m,The quick brown fox,4,1219, Al,False,False,False,False,False,False,141.0,-0.06030392646789551,-0.06322593986988068,0.0,29.645362854003906,1.0,True,False,0.2817581295967102
+EleutherAI/pythia-160m,The quick brown fox,4,1223, while,False,False,False,False,False,False,130.0,-0.06079912185668945,-0.06443486362695694,0.0,26.451786041259766,1.0,True,False,0.2684856355190277
+EleutherAI/pythia-160m,The quick brown fox,4,1239, read,False,False,False,False,False,False,408.0,-0.0786786675453186,-0.084878109395504,0.0,29.048105239868164,1.0,True,False,0.2907528579235077
+EleutherAI/pythia-160m,The quick brown fox,4,1251,ng,False,False,False,False,False,False,3319.0,-0.11457318067550659,-0.129013791680336,0.0,33.87105178833008,1.0,True,False,0.3534139096736908
+EleutherAI/pythia-160m,The quick brown fox,4,1427,ulation,False,False,False,False,False,False,144.0,-0.0640687346458435,-0.06838980317115784,0.0,27.48365020751953,1.0,True,False,0.27753791213035583
+EleutherAI/pythia-160m,The quick brown fox,4,1434,acter,False,False,False,False,False,False,284.0,-0.07503676414489746,-0.08144988864660263,0.0,28.92475128173828,1.0,True,False,0.34446418285369873
+EleutherAI/pythia-160m,The quick brown fox,4,1450,::,False,False,False,False,False,False,18.0,-0.042921245098114014,-0.044966310262680054,0.0,23.129343032836914,1.0,True,False,0.3603542149066925
+EleutherAI/pythia-160m,The quick brown fox,4,1453, control,False,False,False,True,True,True,2.0,-0.009791016578674316,-0.009876769036054611,0.0,18.495332717895508,1.0,True,False,0.26845118403434753
+EleutherAI/pythia-160m,The quick brown fox,4,1460, pur,True,False,False,True,True,True,1.0,0.00903940200805664,0.0089271804317832,1.5975885391235352,15.402411460876465,1.0,True,False,0.3307362496852875
+EleutherAI/pythia-160m,The quick brown fox,4,1525,99,False,False,False,False,False,False,3492.0,-0.11131948232650757,-0.12314198166131973,0.0,41.982200622558594,1.0,True,False,0.21338318288326263
+EleutherAI/pythia-160m,The quick brown fox,4,1546,ural,False,False,False,False,False,False,18.0,-0.041539788246154785,-0.04330205172300339,0.0,23.240886688232422,1.0,True,False,0.3620150685310364
+EleutherAI/pythia-160m,The quick brown fox,4,1592,fer,False,False,False,True,True,True,2.0,-0.013666808605194092,-0.01385344099253416,0.0,19.1566104888916,1.0,True,False,0.3578009605407715
+EleutherAI/pythia-160m,The quick brown fox,4,1603,}(,False,False,False,False,False,False,1069.0,-0.09581875801086426,-0.10429701209068298,0.0,40.012168884277344,1.0,True,False,0.2042873352766037
+EleutherAI/pythia-160m,The quick brown fox,4,1710,gram,False,False,False,True,True,True,2.0,-0.01361161470413208,-0.013702026568353176,0.0,19.339189529418945,1.0,True,False,0.34902554750442505
+EleutherAI/pythia-160m,The quick brown fox,4,1740, four,False,False,False,False,False,False,99.0,-0.053218841552734375,-0.05545252934098244,0.0,45.55710983276367,1.0,True,False,0.15380823612213135
+EleutherAI/pythia-160m,The quick brown fox,4,1751,ene,False,False,False,False,False,False,269.0,-0.08828318119049072,-0.0959257185459137,0.0,30.576263427734375,1.0,True,False,0.36605939269065857
+EleutherAI/pythia-160m,The quick brown fox,4,1768,bs,False,False,False,False,False,False,791.0,-0.09836572408676147,-0.10816669464111328,0.0,32.0948600769043,1.0,True,False,0.3650358021259308
+EleutherAI/pythia-160m,The quick brown fox,4,1779,Ch,False,False,False,False,False,False,655.0,-0.09371680021286011,-0.10079105198383331,0.0,40.30575942993164,1.0,True,False,0.2731393277645111
+EleutherAI/pythia-160m,The quick brown fox,4,1788,lection,False,False,False,False,False,False,747.0,-0.08887726068496704,-0.0977533832192421,0.0,31.172279357910156,1.0,True,False,0.34281858801841736
+EleutherAI/pythia-160m,The quick brown fox,4,1813,icro,False,False,False,False,False,False,14.0,-0.03223544359207153,-0.03349662199616432,0.0,22.245338439941406,1.0,True,False,0.3526608645915985
+EleutherAI/pythia-160m,The quick brown fox,7,60,[,False,False,False,False,False,False,57.0,-0.06307750940322876,-0.06793597340583801,0.0,26.316452026367188,1.0,True,False,0.29876264929771423
+EleutherAI/pythia-160m,The quick brown fox,7,75,j,False,False,False,False,False,False,198.0,-0.0769086480140686,-0.08328786492347717,0.0,30.901065826416016,1.0,True,False,0.3013487458229065
+EleutherAI/pythia-160m,The quick brown fox,7,80,o,False,False,False,False,False,False,34.0,-0.059275150299072266,-0.06363360583782196,0.0,25.525312423706055,1.0,True,False,0.35200831294059753
+EleutherAI/pythia-160m,The quick brown fox,7,81,p,False,False,False,False,False,False,11.0,-0.04652518033981323,-0.049010731279850006,0.0,24.915895462036133,1.0,True,False,0.3245663642883301
+EleutherAI/pythia-160m,The quick brown fox,7,264,ed,False,False,False,True,True,True,2.0,-0.017367541790008545,-0.018148116767406464,0.0,18.98056983947754,1.0,True,False,0.3832164406776428
+EleutherAI/pythia-160m,The quick brown fox,7,268, p,False,False,False,False,False,False,13.0,-0.05411124229431152,-0.05633149296045303,0.0,28.705598831176758,1.0,True,False,0.2971888482570648
+EleutherAI/pythia-160m,The quick brown fox,7,270, b,False,False,False,False,False,False,231.0,-0.08507734537124634,-0.09115627408027649,0.0,36.214420318603516,1.0,True,False,0.2852404713630676
+EleutherAI/pythia-160m,The quick brown fox,7,324,ad,False,False,False,False,False,False,140.0,-0.07757902145385742,-0.0844598188996315,0.0,29.104671478271484,1.0,True,False,0.3336738049983978
+EleutherAI/pythia-160m,The quick brown fox,7,351,od,False,False,False,False,True,True,4.0,-0.04121285676956177,-0.04322733357548714,0.0,23.46781349182129,1.0,True,False,0.3438238501548767
+EleutherAI/pythia-160m,The quick brown fox,7,359, we,False,False,False,False,False,False,37.0,-0.05827796459197998,-0.06175319850444794,0.0,26.971317291259766,1.0,True,False,0.2921333611011505
+EleutherAI/pythia-160m,The quick brown fox,7,369, was,False,False,False,False,False,False,19.0,-0.04926246404647827,-0.051173798739910126,0.0,27.848997116088867,1.0,True,False,0.2522128224372864
+EleutherAI/pythia-160m,The quick brown fox,7,389, com,False,False,False,True,True,True,2.0,-0.01947605609893799,-0.01964280568063259,0.0,20.88860321044922,1.0,True,False,0.3241788446903229
+EleutherAI/pythia-160m,The quick brown fox,7,398,ers,False,False,False,True,True,True,2.0,-0.010501980781555176,-0.010892187245190144,0.0,18.244125366210938,1.0,True,False,0.3766348659992218
+EleutherAI/pythia-160m,The quick brown fox,7,416, R,False,False,False,False,False,False,524.0,-0.09131169319152832,-0.09950821101665497,0.0,34.94769287109375,1.0,True,False,0.2701759934425354
+EleutherAI/pythia-160m,The quick brown fox,7,419, ha,False,False,False,False,True,True,4.0,-0.03809469938278198,-0.03930854797363281,0.0,24.31222915649414,1.0,True,False,0.3277069330215454
+EleutherAI/pythia-160m,The quick brown fox,7,451,ial,False,False,False,False,False,False,32.0,-0.058624863624572754,-0.06339964270591736,0.0,24.40491485595703,1.0,True,False,0.3698815405368805
+EleutherAI/pythia-160m,The quick brown fox,7,494,able,False,False,False,False,False,True,10.0,-0.04526698589324951,-0.048581235110759735,0.0,22.2981014251709,1.0,True,False,0.35500040650367737
+EleutherAI/pythia-160m,The quick brown fox,7,495, 3,False,False,False,False,False,False,367.0,-0.08828425407409668,-0.09500715136528015,0.0,38.38203811645508,1.0,True,False,0.1760614663362503
+EleutherAI/pythia-160m,The quick brown fox,7,528,ous,False,False,False,False,False,False,27.0,-0.057109832763671875,-0.061598826199769974,0.0,24.312911987304688,1.0,True,False,0.37491947412490845
+EleutherAI/pythia-160m,The quick brown fox,7,598, up,False,False,False,False,False,False,83.0,-0.06978976726531982,-0.0749945193529129,0.0,27.907203674316406,1.0,True,False,0.3034505844116211
+EleutherAI/pythia-160m,The quick brown fox,7,606,ang,False,False,False,False,False,False,11308.0,-0.1503525972366333,-0.17883539199829102,0.0,37.1904296875,1.0,True,False,0.34365829825401306
+EleutherAI/pythia-160m,The quick brown fox,7,609,are,False,False,False,False,False,False,1084.0,-0.09875291585922241,-0.11105838418006897,0.0,30.724411010742188,1.0,True,False,0.32972580194473267
+EleutherAI/pythia-160m,The quick brown fox,7,684,ates,False,False,False,False,False,False,659.0,-0.08645129203796387,-0.09691429138183594,0.0,27.89515495300293,1.0,True,False,0.3453785479068756
+EleutherAI/pythia-160m,The quick brown fox,7,695,ric,False,False,False,False,False,False,274.0,-0.08208990097045898,-0.09097378700971603,0.0,28.263931274414062,1.0,True,False,0.35293135046958923
+EleutherAI/pythia-160m,The quick brown fox,7,720,ject,False,False,False,False,False,True,7.0,-0.041786253452301025,-0.044303975999355316,0.0,23.1617374420166,1.0,True,False,0.3422251343727112
+EleutherAI/pythia-160m,The quick brown fox,7,723,ings,False,False,False,False,False,False,136.0,-0.06865715980529785,-0.07648304849863052,0.0,23.850187301635742,1.0,True,False,0.40382272005081177
+EleutherAI/pythia-160m,The quick brown fox,7,778, may,False,False,False,False,True,True,4.0,-0.030357658863067627,-0.031013133004307747,0.0,23.250476837158203,1.0,True,False,0.2620701491832733
+EleutherAI/pythia-160m,The quick brown fox,7,807, year,False,False,False,True,True,True,2.0,-0.029012978076934814,-0.030004918575286865,0.0,21.74315643310547,1.0,True,False,0.26806432008743286
+EleutherAI/pythia-160m,The quick brown fox,7,864,hen,False,False,False,False,False,False,251.0,-0.07704854011535645,-0.08499336242675781,0.0,28.606014251708984,1.0,True,False,0.34600767493247986
+EleutherAI/pythia-160m,The quick brown fox,7,883,11,False,False,False,False,False,False,2370.0,-0.11082679033279419,-0.1231330931186676,0.0,43.38845443725586,1.0,True,False,0.18946771323680878
+EleutherAI/pythia-160m,The quick brown fox,7,888,ident,False,False,False,False,False,False,85.0,-0.07033926248550415,-0.07626352459192276,0.0,28.635875701904297,1.0,True,False,0.3237609565258026
+EleutherAI/pythia-160m,The quick brown fox,7,896, back,False,False,False,True,True,True,2.0,-0.01637047529220581,-0.016712646931409836,0.0,19.468456268310547,1.0,True,False,0.28798651695251465
+EleutherAI/pythia-160m,The quick brown fox,7,927, includ,False,False,False,False,False,False,434.0,-0.08905303478240967,-0.09711706638336182,0.0,34.29938507080078,1.0,True,False,0.30799153447151184
+EleutherAI/pythia-160m,The quick brown fox,7,977,other,False,False,False,False,False,False,7929.0,-0.13878637552261353,-0.16331444680690765,0.0,45.44584655761719,1.0,True,False,0.295927494764328
+EleutherAI/pythia-160m,The quick brown fox,7,1002, produ,False,False,False,False,False,False,1456.0,-0.1034197211265564,-0.11427758634090424,0.0,38.58870315551758,1.0,True,False,0.2867116928100586
+EleutherAI/pythia-160m,The quick brown fox,7,1052, 200,False,False,False,False,False,False,6008.0,-0.13320326805114746,-0.1505674421787262,0.0,47.947906494140625,1.0,True,False,0.15573589503765106
+EleutherAI/pythia-160m,The quick brown fox,7,1077, very,False,False,False,True,True,True,2.0,-0.024241745471954346,-0.02465387061238289,0.0,21.966217041015625,1.0,True,False,0.23920641839504242
+EleutherAI/pythia-160m,The quick brown fox,7,1080,ator,False,False,False,False,False,False,15.0,-0.0494694709777832,-0.052633579820394516,0.0,24.26744270324707,1.0,True,False,0.3369138836860657
+EleutherAI/pythia-160m,The quick brown fox,7,1104,ients,False,False,False,False,False,False,12931.0,-0.15049272775650024,-0.1819916069507599,0.0,35.09082794189453,1.0,True,False,0.37804409861564636
+EleutherAI/pythia-160m,The quick brown fox,7,1123,ave,False,False,False,False,False,False,1461.0,-0.10584390163421631,-0.12028782814741135,0.0,31.24051284790039,1.0,True,False,0.34136632084846497
+EleutherAI/pythia-160m,The quick brown fox,7,1138,""">",False,False,False,False,False,False,4694.0,-0.12463349103927612,-0.14274351298809052,0.0,37.62111282348633,1.0,True,False,0.272743284702301
+EleutherAI/pythia-160m,The quick brown fox,7,1140, tra,False,False,False,True,True,True,3.0,-0.04348254203796387,-0.04487382248044014,0.0,25.900371551513672,1.0,True,False,0.3225400149822235
+EleutherAI/pythia-160m,The quick brown fox,7,1149, gu,False,False,False,True,True,True,2.0,-0.01055234670639038,-0.010572575032711029,0.0,19.234235763549805,1.0,True,False,0.3187485933303833
+EleutherAI/pythia-160m,The quick brown fox,7,1185, dire,False,False,False,False,False,False,4361.0,-0.1269310712814331,-0.14525829255580902,0.0,37.01889419555664,1.0,True,False,0.3393056392669678
+EleutherAI/pythia-160m,The quick brown fox,7,1219, Al,False,False,False,False,False,False,156.0,-0.07622116804122925,-0.08153987675905228,0.0,33.240718841552734,1.0,True,False,0.2817581295967102
+EleutherAI/pythia-160m,The quick brown fox,7,1223, while,False,False,False,True,True,True,3.0,-0.02534627914428711,-0.026065371930599213,0.0,21.08527183532715,1.0,True,False,0.2684856355190277
+EleutherAI/pythia-160m,The quick brown fox,7,1239, read,False,False,False,False,True,True,5.0,-0.04443854093551636,-0.046521298587322235,0.0,24.104557037353516,1.0,True,False,0.2907528579235077
+EleutherAI/pythia-160m,The quick brown fox,7,1251,ng,False,False,False,False,False,False,3149.0,-0.11812549829483032,-0.13551390171051025,0.0,33.40416717529297,1.0,True,False,0.3534139096736908
+EleutherAI/pythia-160m,The quick brown fox,7,1427,ulation,False,False,False,False,False,False,271.0,-0.0741879940032959,-0.08161745965480804,0.0,27.786800384521484,1.0,True,False,0.27753791213035583
+EleutherAI/pythia-160m,The quick brown fox,7,1434,acter,False,False,False,False,False,False,148.0,-0.07406264543533325,-0.08139705657958984,0.0,28.144811630249023,1.0,True,False,0.34446418285369873
+EleutherAI/pythia-160m,The quick brown fox,7,1450,::,False,False,False,False,False,False,19.0,-0.05281722545623779,-0.056709423661231995,0.0,24.053085327148438,1.0,True,False,0.3603542149066925
+EleutherAI/pythia-160m,The quick brown fox,7,1453, control,False,False,False,True,True,True,2.0,-0.011807143688201904,-0.011974356137216091,0.0,18.856287002563477,1.0,True,False,0.26845118403434753
+EleutherAI/pythia-160m,The quick brown fox,7,1460, pur,True,False,False,True,True,True,1.0,0.007029414176940918,0.00691820727661252,1.4289512634277344,15.571048736572266,1.0,True,False,0.3307362496852875
+EleutherAI/pythia-160m,The quick brown fox,7,1525,99,False,False,False,False,False,False,4856.0,-0.12282097339630127,-0.13962052762508392,0.0,41.878395080566406,1.0,True,False,0.21338318288326263
+EleutherAI/pythia-160m,The quick brown fox,7,1546,ural,False,False,False,False,False,False,34.0,-0.05881386995315552,-0.0636267438530922,0.0,24.878068923950195,1.0,True,False,0.3620150685310364
+EleutherAI/pythia-160m,The quick brown fox,7,1592,fer,False,False,False,False,False,False,30.0,-0.05562233924865723,-0.05984938517212868,0.0,24.780424118041992,1.0,True,False,0.3578009605407715
+EleutherAI/pythia-160m,The quick brown fox,7,1603,}(,False,False,False,False,False,False,1361.0,-0.1002088189125061,-0.11189421266317368,0.0,37.308753967285156,1.0,True,False,0.2042873352766037
+EleutherAI/pythia-160m,The quick brown fox,7,1710,gram,False,False,False,True,True,True,2.0,-0.015468358993530273,-0.015971427783370018,0.0,19.252056121826172,1.0,True,False,0.34902554750442505
+EleutherAI/pythia-160m,The quick brown fox,7,1740, four,False,False,False,False,False,False,46.0,-0.0646025538444519,-0.06808260083198547,0.0,38.15110778808594,1.0,True,False,0.15380823612213135
+EleutherAI/pythia-160m,The quick brown fox,7,1751,ene,False,False,False,False,False,False,213.0,-0.07742136716842651,-0.08545149117708206,0.0,27.231670379638672,1.0,True,False,0.36605939269065857
+EleutherAI/pythia-160m,The quick brown fox,7,1768,bs,False,False,False,False,False,False,232.0,-0.07717341184616089,-0.08497388660907745,0.0,27.5312557220459,1.0,True,False,0.3650358021259308
+EleutherAI/pythia-160m,The quick brown fox,7,1779,Ch,False,False,False,False,False,False,2604.0,-0.11357593536376953,-0.12764526903629303,0.0,39.63458251953125,1.0,True,False,0.2731393277645111
+EleutherAI/pythia-160m,The quick brown fox,7,1788,lection,False,False,False,False,False,False,3399.0,-0.1166374683380127,-0.13484744727611542,0.0,33.43482208251953,1.0,True,False,0.34281858801841736
+EleutherAI/pythia-160m,The quick brown fox,7,1813,icro,False,False,False,False,False,False,61.0,-0.06412804126739502,-0.06971589475870132,0.0,26.687030792236328,1.0,True,False,0.3526608645915985
+EleutherAI/pythia-160m,The quick brown fox,11,60,[,True,False,False,True,True,True,1.0,0.10541605949401855,0.03241691738367081,14.613094329833984,2.3869051933288574,1.0,True,False,0.29876264929771423
+EleutherAI/pythia-160m,The quick brown fox,11,75,j,True,False,False,True,True,True,1.0,0.11175012588500977,0.03476084768772125,14.795884132385254,2.204115629196167,1.0,True,False,0.3013487458229065
+EleutherAI/pythia-160m,The quick brown fox,11,80,o,True,False,False,True,True,True,1.0,0.1850121021270752,0.05672450736165047,15.281879425048828,1.7181204557418823,1.0,True,False,0.35200831294059753
+EleutherAI/pythia-160m,The quick brown fox,11,81,p,True,False,False,True,True,True,1.0,0.12402582168579102,0.03839180991053581,15.556473731994629,1.4435263872146606,1.0,True,False,0.3245663642883301
+EleutherAI/pythia-160m,The quick brown fox,11,264,ed,True,False,False,True,True,True,1.0,0.20621037483215332,0.06230809539556503,15.949407577514648,1.0505924224853516,1.0,True,False,0.3832164406776428
+EleutherAI/pythia-160m,The quick brown fox,11,268, p,True,False,False,True,True,True,1.0,0.11599564552307129,0.03597981110215187,16.0611572265625,0.9388436675071716,1.0,True,False,0.2971888482570648
+EleutherAI/pythia-160m,The quick brown fox,11,270, b,True,False,False,True,True,True,1.0,0.10718727111816406,0.03338034078478813,15.169891357421875,1.8301081657409668,1.0,True,False,0.2852404713630676
+EleutherAI/pythia-160m,The quick brown fox,11,324,ad,True,False,False,True,True,True,1.0,0.12607288360595703,0.03886910155415535,14.72994613647461,2.270054340362549,1.0,True,False,0.3336738049983978
+EleutherAI/pythia-160m,The quick brown fox,11,351,od,True,False,False,True,True,True,1.0,0.1443040370941162,0.04441558197140694,14.681533813476562,2.3184666633605957,1.0,True,False,0.3438238501548767
+EleutherAI/pythia-160m,The quick brown fox,11,359, we,True,False,False,True,True,True,1.0,0.11851310729980469,0.03654162213206291,15.593582153320312,1.406417965888977,1.0,True,False,0.2921333611011505
+EleutherAI/pythia-160m,The quick brown fox,11,369, was,True,False,False,True,True,True,1.0,0.08455896377563477,0.026321643963456154,16.3325138092041,0.6674870848655701,1.0,True,False,0.2522128224372864
+EleutherAI/pythia-160m,The quick brown fox,11,389, com,True,False,False,True,True,True,1.0,0.15359854698181152,0.04738013073801994,15.16737174987793,1.8326284885406494,1.0,True,False,0.3241788446903229
+EleutherAI/pythia-160m,The quick brown fox,11,398,ers,True,False,False,True,True,True,1.0,0.14888978004455566,0.045160964131355286,15.721600532531738,1.2783997058868408,1.0,True,False,0.3766348659992218
+EleutherAI/pythia-160m,The quick brown fox,11,416, R,True,False,False,True,True,True,1.0,0.10173320770263672,0.031662698835134506,15.212997436523438,1.7870029211044312,1.0,True,False,0.2701759934425354
+EleutherAI/pythia-160m,The quick brown fox,11,419, ha,True,False,False,True,True,True,1.0,0.16502666473388672,0.05101440101861954,15.499844551086426,1.5001554489135742,1.0,True,False,0.3277069330215454
+EleutherAI/pythia-160m,The quick brown fox,11,451,ial,True,False,False,True,True,True,1.0,0.1580979824066162,0.04818205535411835,15.039790153503418,1.960209608078003,1.0,True,False,0.3698815405368805
+EleutherAI/pythia-160m,The quick brown fox,11,494,able,True,False,False,True,True,True,1.0,0.1507570743560791,0.04578714817762375,14.764813423156738,2.2351863384246826,1.0,True,False,0.35500040650367737
+EleutherAI/pythia-160m,The quick brown fox,11,495, 3,True,False,False,True,True,True,1.0,0.032439470291137695,0.0101690161973238,14.786267280578613,2.2137327194213867,1.0,True,False,0.1760614663362503
+EleutherAI/pythia-160m,The quick brown fox,11,528,ous,True,False,False,True,True,True,1.0,0.1444263458251953,0.04401594027876854,15.336828231811523,1.6631715297698975,1.0,True,False,0.37491947412490845
+EleutherAI/pythia-160m,The quick brown fox,11,598, up,True,False,False,True,True,True,1.0,0.142411470413208,0.04366036504507065,16.044490814208984,0.9555093050003052,1.0,True,False,0.3034505844116211
+EleutherAI/pythia-160m,The quick brown fox,11,606,ang,True,False,False,True,True,True,1.0,0.13692212104797363,0.042147163301706314,14.317108154296875,2.682891368865967,1.0,True,False,0.34365829825401306
+EleutherAI/pythia-160m,The quick brown fox,11,609,are,True,False,False,True,True,True,1.0,0.16099762916564941,0.04956123232841492,14.3551664352417,2.644833564758301,1.0,True,False,0.32972580194473267
+EleutherAI/pythia-160m,The quick brown fox,11,684,ates,True,False,False,True,True,True,1.0,0.11297011375427246,0.03468606621026993,13.739028930664062,3.2609713077545166,1.0,True,False,0.3453785479068756
+EleutherAI/pythia-160m,The quick brown fox,11,695,ric,True,False,False,True,True,True,1.0,0.1379702091217041,0.042487550526857376,14.360794067382812,2.6392056941986084,1.0,True,False,0.35293135046958923
+EleutherAI/pythia-160m,The quick brown fox,11,720,ject,True,False,False,True,True,True,1.0,0.15474915504455566,0.04779945686459541,13.950300216674805,3.0497000217437744,1.0,True,False,0.3422251343727112
+EleutherAI/pythia-160m,The quick brown fox,11,723,ings,True,False,False,True,True,True,1.0,0.21102476119995117,0.06353415548801422,15.267829895019531,1.7321701049804688,1.0,True,False,0.40382272005081177
+EleutherAI/pythia-160m,The quick brown fox,11,778, may,True,False,False,True,True,True,1.0,0.06335663795471191,0.019634539261460304,15.540422439575195,1.4595773220062256,1.0,True,False,0.2620701491832733
+EleutherAI/pythia-160m,The quick brown fox,11,807, year,True,False,False,True,True,True,1.0,0.10723280906677246,0.03303847089409828,14.833921432495117,2.1660783290863037,1.0,True,False,0.26806432008743286
+EleutherAI/pythia-160m,The quick brown fox,11,864,hen,True,False,False,True,True,True,1.0,0.12108087539672852,0.03714103251695633,15.321918487548828,1.6780818700790405,1.0,True,False,0.34600767493247986
+EleutherAI/pythia-160m,The quick brown fox,11,883,11,True,False,False,True,True,True,1.0,0.05457353591918945,0.017279598861932755,13.342406272888184,3.6575937271118164,1.0,True,False,0.18946771323680878
+EleutherAI/pythia-160m,The quick brown fox,11,888,ident,True,False,False,True,True,True,1.0,0.14271187782287598,0.04437017813324928,13.667339324951172,3.3326609134674072,1.0,True,False,0.3237609565258026
+EleutherAI/pythia-160m,The quick brown fox,11,896, back,True,False,False,True,True,True,1.0,0.1319751739501953,0.04031771793961525,15.498512268066406,1.501487374305725,1.0,True,False,0.28798651695251465
+EleutherAI/pythia-160m,The quick brown fox,11,927, includ,True,False,False,True,True,True,1.0,0.11213159561157227,0.03497721999883652,13.999279022216797,3.000720739364624,1.0,True,False,0.30799153447151184
+EleutherAI/pythia-160m,The quick brown fox,11,977,other,True,False,False,True,True,True,1.0,0.08172821998596191,0.02516622468829155,13.30807113647461,3.6919288635253906,1.0,True,False,0.295927494764328
+EleutherAI/pythia-160m,The quick brown fox,11,1002, produ,True,False,False,True,True,True,1.0,0.10932564735412598,0.03429202362895012,13.457304000854492,3.542696237564087,1.0,True,False,0.2867116928100586
+EleutherAI/pythia-160m,The quick brown fox,11,1052, 200,True,False,False,True,True,True,1.0,0.03726983070373535,0.01173766702413559,13.378968238830566,3.6210315227508545,1.0,True,False,0.15573589503765106
+EleutherAI/pythia-160m,The quick brown fox,11,1077, very,True,False,False,True,True,True,1.0,0.08383464813232422,0.02601028047502041,14.747417449951172,2.2525827884674072,1.0,True,False,0.23920641839504242
+EleutherAI/pythia-160m,The quick brown fox,11,1080,ator,True,False,False,True,True,True,1.0,0.09438180923461914,0.029057927429676056,13.825409889221191,3.1745898723602295,1.0,True,False,0.3369138836860657
+EleutherAI/pythia-160m,The quick brown fox,11,1104,ients,True,False,False,True,True,True,1.0,0.1332404613494873,0.041077226400375366,13.207578659057617,3.792421579360962,1.0,True,False,0.37804409861564636
+EleutherAI/pythia-160m,The quick brown fox,11,1123,ave,True,False,False,True,True,True,1.0,0.11676144599914551,0.03593842312693596,14.20962905883789,2.7903714179992676,1.0,True,False,0.34136632084846497
+EleutherAI/pythia-160m,The quick brown fox,11,1138,""">",True,False,False,True,True,True,1.0,0.08077788352966309,0.025154581293463707,14.057806968688965,2.942192792892456,1.0,True,False,0.272743284702301
+EleutherAI/pythia-160m,The quick brown fox,11,1140, tra,True,False,False,True,True,True,1.0,0.1658937931060791,0.051330164074897766,14.931415557861328,2.0685842037200928,1.0,True,False,0.3225400149822235
+EleutherAI/pythia-160m,The quick brown fox,11,1149, gu,True,False,False,True,True,True,1.0,0.15032410621643066,0.04662890359759331,15.187992095947266,1.812008261680603,1.0,True,False,0.3187485933303833
+EleutherAI/pythia-160m,The quick brown fox,11,1185, dire,True,False,False,True,True,True,1.0,0.18712496757507324,0.057881347835063934,14.251073837280273,2.7489256858825684,1.0,True,False,0.3393056392669678
+EleutherAI/pythia-160m,The quick brown fox,11,1219, Al,True,False,False,True,True,True,1.0,0.0955357551574707,0.029807137325406075,14.809155464172363,2.1908445358276367,1.0,True,False,0.2817581295967102
+EleutherAI/pythia-160m,The quick brown fox,11,1223, while,True,False,False,True,True,True,1.0,0.07221150398254395,0.022179175168275833,14.999396324157715,2.000603437423706,1.0,True,False,0.2684856355190277
+EleutherAI/pythia-160m,The quick brown fox,11,1239, read,True,False,False,True,True,True,1.0,0.10463523864746094,0.03211218863725662,15.149039268493652,1.8509607315063477,1.0,True,False,0.2907528579235077
+EleutherAI/pythia-160m,The quick brown fox,11,1251,ng,True,False,False,True,True,True,1.0,0.1592090129852295,0.04905035346746445,14.296809196472168,2.703190803527832,1.0,True,False,0.3534139096736908
+EleutherAI/pythia-160m,The quick brown fox,11,1427,ulation,True,False,False,True,True,True,1.0,0.08643651008605957,0.026787910610437393,13.951173782348633,3.048825740814209,1.0,True,False,0.27753791213035583
+EleutherAI/pythia-160m,The quick brown fox,11,1434,acter,True,False,False,True,True,True,1.0,0.15897440910339355,0.04946187883615494,12.897651672363281,4.102348327636719,1.0,True,False,0.34446418285369873
+EleutherAI/pythia-160m,The quick brown fox,11,1450,::,True,False,False,True,True,True,1.0,0.15053462982177734,0.04608912393450737,14.86524486541748,2.1347551345825195,1.0,True,False,0.3603542149066925
+EleutherAI/pythia-160m,The quick brown fox,11,1453, control,True,False,False,True,True,True,1.0,0.10129141807556152,0.031013023108243942,14.976576805114746,2.023422956466675,1.0,True,False,0.26845118403434753
+EleutherAI/pythia-160m,The quick brown fox,11,1460, pur,True,False,False,True,True,True,1.0,0.17455101013183594,0.05388658866286278,15.27492618560791,1.7250735759735107,1.0,True,False,0.3307362496852875
+EleutherAI/pythia-160m,The quick brown fox,11,1525,99,True,False,False,True,True,True,1.0,0.06542015075683594,0.02066003903746605,12.644237518310547,4.355762004852295,1.0,True,False,0.21338318288326263
+EleutherAI/pythia-160m,The quick brown fox,11,1546,ural,True,False,False,True,True,True,1.0,0.1241757869720459,0.038091015070676804,14.609762191772461,2.3902382850646973,1.0,True,False,0.3620150685310364
+EleutherAI/pythia-160m,The quick brown fox,11,1592,fer,True,False,False,True,True,True,1.0,0.18071889877319336,0.055565040558576584,14.69460678100586,2.305393695831299,1.0,True,False,0.3578009605407715
+EleutherAI/pythia-160m,The quick brown fox,11,1603,}(,True,False,False,True,True,True,1.0,0.04531693458557129,0.01436314731836319,10.582074165344238,6.417925834655762,1.0,True,False,0.2042873352766037
+EleutherAI/pythia-160m,The quick brown fox,11,1710,gram,True,False,False,True,True,True,1.0,0.11944413185119629,0.0367562472820282,14.898296356201172,2.1017038822174072,1.0,True,False,0.34902554750442505
+EleutherAI/pythia-160m,The quick brown fox,11,1740, four,True,False,False,True,True,True,1.0,0.02244281768798828,0.006986984051764011,14.506120681762695,2.493879556655884,1.0,True,False,0.15380823612213135
+EleutherAI/pythia-160m,The quick brown fox,11,1751,ene,True,False,False,True,True,True,1.0,0.14511942863464355,0.04454721882939339,13.991171836853027,3.0088281631469727,1.0,True,False,0.36605939269065857
+EleutherAI/pythia-160m,The quick brown fox,11,1768,bs,True,False,False,True,True,True,1.0,0.18705344200134277,0.05753503367304802,13.669510841369629,3.330488920211792,1.0,True,False,0.3650358021259308
+EleutherAI/pythia-160m,The quick brown fox,11,1779,Ch,True,False,False,True,True,True,1.0,0.06127452850341797,0.019273782148957253,13.168543815612793,3.831456184387207,1.0,True,False,0.2731393277645111
+EleutherAI/pythia-160m,The quick brown fox,11,1788,lection,True,False,False,True,True,True,1.0,0.1082763671875,0.033694762736558914,12.898204803466797,4.101795196533203,1.0,True,False,0.34281858801841736
+EleutherAI/pythia-160m,The quick brown fox,11,1813,icro,True,False,False,True,True,True,1.0,0.1708207130432129,0.053098663687705994,13.15583324432373,3.8441669940948486,1.0,True,False,0.3526608645915985
