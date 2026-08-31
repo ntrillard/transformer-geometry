@@ -3,20 +3,32 @@
 gen_pure.py (pure unsteered generation) + ONLY the core steering
 techniques needed for one-word control:
 
-  1. CALIBRATED GRAFT: at a switch step, find the smallest readout
-     rotation that makes the target word rank-1 at the live context
-     (+margin), then rotate the hidden state by that arc so the word
-     is sampled.
-  2. DE-REPEAT WINDOW: for a few steps after the plant, anti-block the
-     planted token (+ substring forms) so the model WRITES about the
-     word instead of parroting it.
-  Everything else is the pure sampler from gen_pure.py: no families,
-  no centroids, no meta-escape-zeroing, no repetition penalty.
+  1. CALIBRATED GRAFT (STEER_MODE=graft, default): at a switch step,
+     find the smallest readout rotation that makes the target word
+     rank-1 at the live context (+margin), then rotate the hidden
+     state by that arc so the word is sampled.
+  2. HERDING (STEER_MODE=herd): instead of one hard graft, ramp a
+     calibrated rotation toward each target word from 0 up to its
+     rank-1 angle over HERD_WINDOW steps (scaled by HERD_GAIN), so
+     the model picks the word up when the sentence is ready, not
+     forced.
+  3. DE-REPEAT WINDOW (both modes): for a few steps after the word
+     is planted/lands, anti-block the planted token (+ substring
+     forms) so the model WRITES about the word instead of parroting
+     it.
+  Everything else is the pure sampler from gen_pure.py: no
+  families, no centroids, no meta-escape-zeroing, no repetition
+  penalty.
+
+Env: STEER_MODE=graft|herd  HERD_GAIN=<mult>  HERD_WINDOW=<steps>
+     TRACE=1
+     TRACE=1
 
 Run: HF_TOKEN=<tok> python3 gen_steer.py [model] [prompt] [word1,word2,..]
 Switch positions are spread evenly (every NTOK//(n+1) tokens).
 """
 import math
+import os
 import sys
 import time
 
@@ -37,7 +49,10 @@ SWEEP = [2.0, 4.0, 6.0, 8.0, 10.0, 12.0, 15.0, 20.0, 25.0, 30.0]
 MARGIN = 2.0
 ANTI = 4                       # de-repeat window length after a plant
 NUCLEUS = 0.9                  # top-p keep
-TRACE = __import__('os').environ.get('TRACE') == '1'
+STEER_MODE = os.environ.get('STEER_MODE', 'graft')   # graft | herd
+HERD_GAIN = float(os.environ.get('HERD_GAIN', '1.0'))
+HERD_WINDOW = int(os.environ.get('HERD_WINDOW', '10'))
+TRACE = os.environ.get('TRACE') == '1'
 
 
 def main():
@@ -146,6 +161,8 @@ def main():
     plant_until = -1
     plant_word = None
     plant_tid = None
+    landed = set()                    # herd mode: words already written
+    herd_cal = {}                     # herd mode: calibrated rank-1 angles
 
     for step in range(NTOK):
         L, v = forward_v(ids)
@@ -153,17 +170,27 @@ def main():
             else None
         bw = ({plant_word} if anti_a is not None else None)
 
-        if step in switch_at:
+        if STEER_MODE == 'herd':
+            # ramp a calibrated rotation 0..rank-1-angle over the window
+            for s, w in switch_at.items():
+                if step == s:
+                    herd_cal[w] = best_angle(ids, v, word_ids[w])
+                    if TRACE:
+                        print(f'      herd@{s} -> {w}:{tok.decode([word_ids[w]])!r} '
+                              f'cal={herd_cal[w]:.0f}deg')
+                if s <= step < s + HERD_WINDOW and w not in landed:
+                    frac = min(1.0, (step - s + 1) / HERD_WINDOW)
+                    th = herd_cal[w] * frac * HERD_GAIN
+                    L = forward(ids, inj_p=rot_to_angle(v, word_ids[w], th))
+        elif step in switch_at:
             w = switch_at[step]
-            # place the whole word: token id + its decoded text
-            name, ids_m = w, word_ids[w]
             th = best_angle(ids, v, word_ids[w])
             L = forward(ids, inj_p=rot_to_angle(v, word_ids[w], th))
             plant_word = w
             plant_tid = word_ids[w]
             plant_until = step + 1 + ANTI
             if TRACE:
-                print(f'      switch@{step} -> {w}:{tok.decode([ids_m])!r} '
+                print(f'      switch@{step} -> {w}:{tok.decode([word_ids[w]])!r} '
                       f'th={th:.0f}')
         elif anti_a is not None:
             L = forward(ids, anti_ids=[anti_a])
@@ -175,8 +202,18 @@ def main():
         sampled.append(nxt)
         ids = torch.cat([ids, torch.tensor([[nxt]], device=DEV)], dim=1)
 
+        # herd mode: once a herded word is sampled, mark it landed + de-repeat
+        if STEER_MODE == 'herd':
+            for w, tid in word_ids.items():
+                if nxt == tid and w not in landed:
+                    landed.add(w)
+                    plant_word = w
+                    plant_tid = tid
+                    plant_until = step + 1 + ANTI
+                    break
+
     txt = tok.decode(sampled)
-    print(f'\n===== STEERED ({", ".join(WORDS)}) =====')
+    print(f'\n===== STEERED {STEER_MODE} ({', '.join(WORDS)}) =====')
     print(f'{PROMPT} {txt}')
     hits = {w: (w in txt) for w in WORDS}
     print(f'\nwords present: {hits}')
