@@ -73,6 +73,7 @@ Production scripted-steering tools live at the repo root. Both are minimal, hook
 |---|---|
 | `gen_pure.py` | **Unsteered baseline** - model + multinomial sampling only (zero hooks). Establishes what the model writes alone for any prompt/seed. |
 | `gen_blendtraj.py` | **Production steerer** - plant each target word as a REAL token in context (space-prefixed single token so it doesn't fuse), then a settle window blending two readout series (natural + a small hold rotation) before handing back to free generation. |
+| `gen_geom.py` | **Pure-geometric control** - rotation-only readout steering, NO input edit; words may honestly miss. Measures what geometry alone can do: sub-threshold = narrative no-op, rank-1 = degenerate loops, never grammatical. |
 
 **The winning configuration** (SETTLE=8 is the coherent sweet spot):
 
@@ -102,6 +103,11 @@ Example output (all three out-of-place words woven in grammatically):
    branches, rolling post-insert memories, 3+/5-way simplexes) is stale relative to the live
    context and blurs the readout at the splice. The two-series blend at LAM=0.4 is the ceiling.
    All experimental variants are archived in `old/`.
+5. **Rotation-only steering cannot produce grammatical usage** (`gen_geom.py`, the "isn't
+   this cheating?" control) - at honest angles (θ=6, eff≈3°) the bias is a narrative no-op
+   (0/9 words); at rank-1 angles (θ=8-10°) the model degenerate-loops the token ("sheep
+   sheep sheep...") because it was never in context. The planted token is the grammatical
+   foothold; the geometry moves the state. See `writeup-geom.md`.
 ---
 
 ## Repository Layout
