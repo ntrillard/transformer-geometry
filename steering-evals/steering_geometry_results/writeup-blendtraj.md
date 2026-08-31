@@ -25,6 +25,15 @@ of its trajectory, so the next token compensates and the prose breaks ("sushi a 
 
 ## 1. "It was a warm morning in a small kitchen" → **diamond, camel, volcano**
 
+**PURE (unsteered)** — `gen_pure.py`:
+> It was a warm morning in a small kitchen . The smell of pancakes lingered in the air, untainted
+> by any trace of cackling chickens. "Good morning, Deb," Dad came into the kitchen across the
+> threshold, taking a seat at the table. "Good morning, Dad," Deb replied, turning to her mother
+> and ushering her into the kitchen. "May I tag along, Mom?" Jenna asked. "Wow, Deb, honey, you
+> must be fifteen years old," Jenna said. Nathan, both of whom a mother could rely on without
+> fear of lying, ignored his sisters' objections.
+
+**BLENDED (plant + two-series settle)** — `gen_blendtraj.py`:
 > It was a warm morning in a small kitchen . The smell of pancakes lingered in the air, so like
 > one that will be wrapped up and **diamond**-edged in air. Sweet toasted poppyseed breads came
 > across the butter, the cinnamon, the smooth oiliness of warm milk. God **camel**'s sweet skull,
@@ -38,6 +47,15 @@ flashlight, and woke her.)*
 
 ## 2. "The office was quiet after hours" → **sheep, sushi, elevator** — best run
 
+**PURE (unsteered)** — `gen_pure.py`:
+> The office was quiet after hours . The rest area had to close its gate to access. Jimmy rested
+> on a bed of mousie around the air conditioner in the lobby. It was a sleepy across Spain. Jimmy
+> shifted on the bed waiting for someone to enter. He fell asleep after a little bit. He dreamed
+> he was everywhere but at home ..in his sleep he was alone. Arriving at the hotel room, Britt
+> entered the gate while the rest of Harry's group were still asleep . Brighty entered the room a
+> few minutes along Britt up the stairs of the building. The hotel was going full night. Britt had
+
+**BLENDED (plant + two-series settle)** — `gen_blendtraj.py`:
 > The office was quiet after hours . The rest of the employees had left to go to their homes.
 > It was a Saturday night and **sheep**ish Adam Frost sat in his office using his mouse to type.
 > He was just like the other developers, waiting for someone to send him the file **sushi**.ico
@@ -53,6 +71,15 @@ token, so the model writes *with* the word present instead of snapping back.
 
 ## 3. "The train rattled through the countryside" → **marble, telescope, submarine**
 
+**PURE (unsteered)** — `gen_pure.py`:
+> The train rattled through the countryside . The wagons accompanied it. The sun dappled the
+> heads of the kids cackling loudly around me on the moving wagon using flash photography. Trip
+> numbers across Spain. Time. Money. Road. I was the wrong country for my trying Swancon, the
+> international contest celebrating first-year Swans at Henley, UK, for swans (and by swans I
+> actually mean Cygnus). Many new friends and faces came out for our first cygnless summer. (lines
+> by Sheri McKay Simons) It finally occurred to me today that part of the problem with my life hasn
+
+**BLENDED (plant + two-series settle)** — `gen_blendtraj.py`:
 > The train rattled through the countryside . The wagons seemed to move in silence. The traveler
 > ignored the waves of people wrapped in cloth **marble** headpieces trying to steal a glance at
 > the traveler. He was nineteen and just like the others, he was out on the wrong side of the
@@ -67,6 +94,16 @@ Coherent, evocative prose — "marble headpieces", "wrong side of the telescope"
 
 ## 4. "The waves crashed against the shore" → **castle, sushi, horn**
 
+**PURE (unsteered)** — `gen_pure.py`:
+> The waves crashed against the shore . The noisy water accompanied the wind in its dashing
+> untamed way. A very mesmerizing and emotive force on the shore looked at everything that she
+> saw -- across the peat. Against a fog waiting for her, would be the rose-colored Swan skull,
+> floating in the sea. Two long and spicy whistles could be heard. It sounded like a mouthful of
+> fire. One could also hear the sea gulls expressing their peace amidst the storm and warn the
+> drunk sailors. (lines 1-7) For up to the fifth line, depending on who was going to hold the
+> words together
+
+**BLENDED (plant + two-series settle)** — `gen_blendtraj.py`:
 > The waves crashed against the shore . The noisy water accompanied the wind in its dashing way
 > as it made its way to the ocean **castle** hidden in the bay. The waves lapped at the door of
 > the **castle**. Peter managed to walk through the rain lightly. He turned the door **sushi**
