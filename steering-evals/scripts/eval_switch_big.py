@@ -66,7 +66,7 @@ SWITCHES = {0: 'city', 16: 'animal', 32: 'food', 48: 'nature'}
 SEG_N = 16
 # family members: single words and MULTI-WORD phrases (space-separated)
 FAMILIES = {
-    'city':   ['paris', 'london', 'berlin', 'madrid', 'tokyo', 'new york'],
+    'city':   ['paris', 'london', 'berlin', 'madrid', 'tokyo'],
     'animal': ['cat', 'dog', 'bird', 'bear', 'horse', 'polar bear'],
     'food':   ['pizza', 'sushi', 'pasta', 'burger', 'sushi bar'],
     'nature': ['forest', 'rice', 'water', 'sun', 'tree'],
@@ -141,7 +141,12 @@ def main():
     for fam, words in FAMILIES.items():
         mem = []
         for w in words:
-            ids = tok(' ' + w, add_special_tokens=False).input_ids
+            # space-wrapped: leading+trailing space so the word is a
+
+            # clean standalone token (no glued continuation)
+
+            ids = tok(' ' + w + ' ', add_special_tokens=False).input_ids
+
             ids = [int(i) for i in ids]
             d = Wn[ids].float().sum(0)
             d = d / d.norm()
