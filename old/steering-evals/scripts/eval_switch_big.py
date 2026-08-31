@@ -51,6 +51,32 @@ CALIB_SWEEP = [2.0, 4.0, 6.0, 8.0, 10.0, 12.0, 15.0, 20.0, 25.0, 30.0]
 
 CALIB_MARGIN = 2.0
 
+SW_META = os.environ.get('SW_META') == '1'
+
+
+
+WRAP = os.environ.get('WRAP', 'before').lower()
+
+# tokens whose presence in the top-k marks a template/refusal/QA
+
+# hijack of the story trajectory (observed across every failed run)
+
+HIJACK_SUBSTRINGS = (
+
+    '答案', 'a.', 'b.', 'c.', 'd.', 'option', 'which', 'does it',
+
+    'choose', 'select', 'true or false', 'fill in', 'i am not',
+
+    'i do not', 'not capable', 'preference', 'your audience',
+
+    'explain', 'describe', 'question', 'answer', 'survey',
+
+    'verify', 'investigate', 'note', 'summary', 'follow',
+
+    'blank', '____', 'correct', 'wrong',
+
+)
+
 
 PEN = 0.5
 
@@ -66,7 +92,7 @@ SWITCHES = {0: 'city', 16: 'animal', 32: 'food', 48: 'nature'}
 SEG_N = 16
 # family members: single words and MULTI-WORD phrases (space-separated)
 FAMILIES = {
-    'city':   ['paris', 'london', 'berlin', 'madrid', 'tokyo'],
+    'city':   ['paris', 'london', 'berlin', 'madrid', 'oslo'],
     'animal': ['cat', 'dog', 'bird', 'bear', 'horse', 'polar bear'],
     'food':   ['pizza', 'sushi', 'pasta', 'burger', 'sushi bar'],
     'nature': ['forest', 'rice', 'water', 'sun', 'tree'],
@@ -141,11 +167,13 @@ def main():
     for fam, words in FAMILIES.items():
         mem = []
         for w in words:
-            # space-wrapped: leading+trailing space so the word is a
+            # wrap mode: none / before / after / both (env WRAP)
 
-            # clean standalone token (no glued continuation)
+            s = {'none': '{}', 'before': ' {}', 'after': '{} ',
 
-            ids = tok(' ' + w + ' ', add_special_tokens=False).input_ids
+                 'both': ' {} '}[WRAP].format(w)
+
+            ids = tok(s, add_special_tokens=False).input_ids
 
             ids = [int(i) for i in ids]
             d = Wn[ids].float().sum(0)
@@ -174,23 +202,50 @@ def main():
         g = tau / tau.norm()
         return (v1 * math.cos(a) + g * math.sin(a)) * vv.norm()
 
-    def sample(L, prefix, block_words=None):
+    def sample(L, prefix, block_words=None, extra_zero=None):
+
         L = torch.nan_to_num(L.float(), nan=-50.0).clamp(-50.0, 50.0)
+
         p = torch.softmax(L, 0)
+
         q = p.clone()
+
         order = q.argsort(descending=True)
+
         k = int((q[order].cumsum(0) <= 0.9).sum()) + 1
+
         msk = torch.zeros_like(q)
+
         msk[order[:k]] = 1
+
         qq = (q * msk)
+
         # SUBSTRING anti: drop top candidates whose text contains a
+
         # planted member's word (cracks fused tokens, multiword phrases)
+
         if block_words:
+
             top = order[:200].tolist()
+
             dec = tok.batch_decode([[i] for i in top])
+
             drop = [i for i, s in zip(top, dec)
+
                     if any(w in s.lower() for w in block_words)]
+
             for i in drop:
+
+                qq[i] = 0.0
+
+        # META hijack-zero: drop tokens that are template/refusal/QA
+
+        # escape valves (computed live from the model's own logits)
+
+        if extra_zero:
+
+            for i in extra_zero:
+
                 qq[i] = 0.0
         for t in set(prefix):
             c = prefix.count(t)
@@ -254,19 +309,56 @@ def main():
         return CALIB_SWEEP[-1]
 
 
+
+    def hijack_ids(L):
+
+        """live meta-probe: which top tokens are template/refusal/QA
+
+        escape valves - zero them so the planted topic drives narrative."""
+
+        if not SW_META:
+
+            return []
+
+        top = L.argsort(descending=True)[:64].tolist()
+
+        dec = tok.batch_decode([[i] for i in top])
+
+        hit = [i for i, s in zip(top, dec)
+
+               if any(sub in s.lower() for sub in HIJACK_SUBSTRINGS)]
+
+        return hit[:8]
+
+
     def run_schedule(sd, free=False):
+
         torch.manual_seed(sd)
+
         ids = tok(PROMPT, add_special_tokens=False,
+
                   return_tensors='pt').input_ids.to(DEV)
+
         sampled = []
+
         hits = {}
+
         last_switch = -10
+
         last_name = None
+
         last_ids = None
+
+        hijack_timer = 0
+
         for step in range(NTOK):
+
             inj_p = None
+
             anti_ids = None
+
             block_words = None
+
             if not free:
 
                 if step in SWITCHES:
@@ -299,34 +391,60 @@ def main():
 
                     last_ids = ids_m
 
-                    # NOTE: block_words intentionally LEFT OFF here -
+                    hijack_timer = 3    # watch template/refusal escape
 
-                    # substring-anti would zero the token we just planted
+                    # block_words LEFT OFF at plant (would zero the graft)
+
                 elif last_ids is not None:
+
                     since = step - last_switch
+
                     if 1 <= since <= 2:
+
                         anti_ids = last_ids          # short window
+
                     elif SUSTAIN and since > 2:
+
                         anti_ids = [last_ids[0]]     # sustain: block first
+
                         if not SW_NO_SUB:
+
                             block_words = set(last_name.lower().split())
+
             L = forward(ids, inj_p=inj_p, anti_ids=anti_ids)
-            nxt = sample(L, sampled, block_words=block_words)
+
+            nxt = sample(L, sampled, block_words=block_words,
+
+                     extra_zero=hijack_ids(L) if hijack_timer > 0 else None)
+            if hijack_timer > 0:
+
+                hijack_timer -= 1
+
             if nxt == eos_id:
+
                 sampled.append(nxt)
+
                 break
+
             sampled.append(nxt)
+
             if (not free) and step in SWITCHES:
+
                 fam = SWITCHES[step]
+
                 hits[step] = (fam, last_name, nxt in famids[fam])
+
             ids = torch.cat([ids, torch.tensor([[nxt]], device=DEV)], dim=1)
+
         return sampled, hits
 
     steps = sorted(SWITCHES)
     ltr = {st: chr(ord('A') + i) for i, st in enumerate(steps)}
     print(f"\n[{MODEL}] SWITCH v2 {PROMPT!r}  NTOK={NTOK} "
+
           f"PEN={PEN} SUSTAIN={SUSTAIN} substring_anti={not SW_NO_SUB} "
-          f"free_arm={SW_FREE}")
+
+          f"free_arm={SW_FREE} WRAP={WRAP}")
     rows = []
     agg = {}
     for sd in SEEDS:
@@ -336,13 +454,41 @@ def main():
         segs = [tok.decode(toks_s[i:i + SEG_N]) for i in
                 range(0, NTOK, SEG_N)]
         print(f"\n  seed {sd} STEERED  q={qs['good']}  "
+
               f"(rep4={qs['rep4']} run={qs['max_run']} "
+
               f"wfreq={qs['max_wfreq']} eos={qs['eos']})")
+
+        # segment-level meta metrics: hijack-clean + topic-follow
+
+        seg_hijack = []
+
+        seg_follow = []
+
         for i, st in enumerate(steps):
-            if st in hits:
-                fam, w, hit = hits[st]
-                print(f"    switch@{st:>2} {fam:>6} -> {w:<12} "
-                      f"{'HIT' if hit else 'miss'}  | {segs[i].strip()[:70]}")
+
+            if i * SEG_N >= len(toks_s):
+
+                break
+
+            fam = SWITCHES[st]
+
+            seg = toks_s[i * SEG_N + 1:(i + 1) * SEG_N]
+
+            seg_txt = tok.decode(seg).lower()
+
+            hij = any(s in seg_txt for s in HIJACK_SUBSTRINGS)
+
+            fol = any(t in seg for t in famids[fam])
+
+            seg_hijack.append(hij)
+
+            seg_follow.append(fol)
+
+        print(f"    seg hijack={sum(seg_hijack)}/{len(seg_hijack)}  "
+
+              f"topic-follow={sum(seg_follow)}/{len(seg_follow)}")
+        # (per-switch print folded into segment metrics above)
         # FREE baseline
         toks_f, _ = run_schedule(sd, free=True)
         txt_f = tok.decode(toks_f)
