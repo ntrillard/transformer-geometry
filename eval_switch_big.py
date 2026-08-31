@@ -86,7 +86,8 @@ SW_FREE = os.environ.get('SW_FREE') == '1'     # baseline arm: no hooks
 
 SW_NO_SUB = os.environ.get('SW_NO_SUB') == '1' # disable substring anti
 _stop = ''.join(c for c in PROMPT[:20] if c.isalnum())
-OUT = Path(f'../steering_geometry_results/switch_big_'
+OUT = Path('steering-evals/steering_geometry_results/switch_big_'
+
            f'{MODEL.split("/")[-1]}_{_stop}.csv')
 SWITCHES = {0: 'city', 16: 'animal', 32: 'food', 48: 'nature'}
 SEG_N = 16
