@@ -111,6 +111,30 @@ Example output (all three out-of-place words woven in grammatically):
    identical to none). Honest trade: it can miss (office/sushi at weak settings), and a
    stronger window stiffens splices. Sub-threshold rotation is still a narrative no-op;
    sustained rank-1 forcing still degenerate-loops. See `writeup-geom.md`.
+6. **v2: 20% natural logits (G_LAN=0.8) + sentence-aligned windows (SENT=1)** - the blend
+   share never decides landing (byte-identical runs); it keeps the model's own voice
+   (G_LAN=1.0 collapses train into a quiz template). SENT aligns each window to a fresh
+   sentence boundary, which rescues the office/sushi case at the SAME settings (3/3, best
+   splices: "sheepishly", "sushi pink", "elevator keys") but can regress well-placed
+   scenes (train/library). θ=10 remains the hard lever; PRE_STEPS pre-steer is marginal;
+   live-context ADAPT is a dead end (grabs plausible words first). 8/9 scenes, 24/27
+   words vs 0/27 pure baseline. See `writeup-geom-many.md`.
+7. **v3: direction targets (TARGET_TYPE=dir) - where geometry is the ONLY option** -
+   CONCEPT centroids (mean of embedding rows; no target token needed) work after
+   region-emit + BLOCK_REGION kill the loop ("smooth robotic pancakes" from a
+   futuristic-robotic-alien concept, no repetition); full-sentence directions
+   (mean state over the sentence's tokens) shade but do NOT transport a scene -
+   one example is too weak; the literature route is CONTRAST directions (mean of many
+   target states minus neutral states), the same rotation primitive we already use.
+   See `writeup-geom-many.md` v3.
+8. **v4: FULL-SENTENCE/TOPIC steering WORKS - via LOGIT-space contrast** -
+   state-space contrast fails (cos(scene_readout, topic_diff) ~ -0.3, point is nearly
+   opposite); logit-space dL = mean next-token logits(target sents) - mean(next-token
+   logits(neutral sents)), z-scored, top-200 masked, added at ALPHA=2 every step: the
+   scene BENDS mid-narrative (beach -> "a bunch of evil-looking creatures emerging from
+   the surf", free prose, no loop). It is a dial: alpha<2 nothing, alpha 2 clean bend,
+   alpha>2 hijack loop; hostile/dense target vocab degrades to enumeration. Planting
+   cannot insert a topic - this is the geometry-only capability. See writeup v4.
 ---
 
 ## Repository Layout
