@@ -156,6 +156,33 @@ findings:
 not a power knob. The sweet spot remains plant + two-series settle at SETTLE=8, LAM=0.4,
 HOLD=4°.
 
+## Three-series + state-memory blend (gen_blend3.py)
+
+Added `gen_blend3.py`: in the settle window, blend THREE series (natural + mild 3° + full
+rank-1 rotation) as a ramped simplex, PLUS two state memories around each insert:
+
+- **pre-insert state** (`W_PRE`): the readout captured ONCE right before the word is appended,
+  decayed away across the window — keeps the story from fully snapping to the word.
+- **post-insert state memory** (`W_MEM`, `MEM_N`): a rolling window of the last N settled
+  readouts, blended small — smooths the trajectory *after* the word.
+
+Results (SETTLE=8, PLANT0=20):
+
+- kitchen: "...wrapped up and **diamond**-edged in air ... eat volcano-smooth polenta while the
+  sap floats in the lava" — words land, story flows.
+- office: "**sheep**ish Adam Frost ... turned fifty years **sushi** trying to imagine making
+  his way back in a club ... **elevator** football play mice" — coherent club tangent, all 3
+  woven in.
+- waves (heavy weights W_FULL=0.5, W_PRE=0.25, MEM=5): mush — "ocean castle.+r+:" dream
+  collapse. Averaging too many divergent readouts (3 series + pre + 5 memories) blurs the
+  distribution.
+
+**Verdict:** the three-series + light-memory blend is the best *mid-insert* coherence so far
+when weights are kept low (W_FULL≤0.4, W_PRE≤0.15, MEM_N≤3). It hands the story to the
+natural series fast while the pre/mem anchors keep the splice from tearing. Heavier mixing
+of states — more series, deeper memory — does NOT help: readout space is a sharp
+decision boundary, not a smooth averaging surface.
+
 ## Reproduce
 
 ```bash
