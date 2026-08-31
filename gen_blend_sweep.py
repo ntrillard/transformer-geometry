@@ -172,21 +172,30 @@ def main():
         eff_angles = []
         for step in range(NTOK):
             L, v = forward_v(ids)
+            L_nat = L                     # natural logits (no injection)
             anti_a = plant_tid if (step < plant_until
                                    and plant_tid is not None) else None
             bw = ({plant_word} if anti_a is not None else None)
+            eff_here = None
             if step in switch_at:
                 w = switch_at[step]
                 th_full = best_angle(ids, v, word_ids[w])
                 s = rot_to_angle(v, word_ids[w], th_full)   # steered state
-                h = blend_state(v, s, lam, mode)            # blended state
-                L = forward(ids, inj_p=h)
+                if mode == 'logits':
+                    # blend the TWO FULL READOUT LOGIT VECTORS
+                    L_s = forward(ids, inj_p=s)
+                    L = (1 - lam) * L_nat + lam * L_s
+                else:
+                    h = blend_state(v, s, lam, mode)  # state-space blend
+                    L = forward(ids, inj_p=h)
+                    ang = math.degrees(math.acos(
+                        float((v / v.norm()) @ (h / h.norm()))))
+                    eff_here = round(ang, 1)
                 plant_word = w
                 plant_tid = word_ids[w]
                 plant_until = step + 1 + ANTI
-                ang = math.degrees(math.acos(
-                    float((v / v.norm()) @ (h / h.norm()))))
-                eff_angles.append(round(ang, 1))
+                if eff_here is not None:
+                    eff_angles.append(eff_here)
             elif anti_a is not None:
                 L = forward(ids, anti_ids=[anti_a])
             nxt = sample(L, block_words=bw)
