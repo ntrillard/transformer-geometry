@@ -1,0 +1,187 @@
+# writeup-sentence-concept.md — Full-sentence & concept steering
+### The two capabilities planting can never provide (Qwen2-1.5B, pure geometry)
+
+Companion to `writeup-geom.md` / `writeup-geom-many.md`. Word-insertion via
+`gen_blendtraj.py` (planting) remains the best tool for single known words
+(9/9). This writeup covers the two things planting is structurally unable to
+do, both implemented in `gen_geom.py`:
+
+1. **Concept steering** — steer toward an *idea* ("futuristic robotic alien")
+   when we don't know which token to use. No target token exists; the target
+   is a centroid of word directions.
+2. **Full-sentence / topic steering** — steer a narrative from one scene
+   ("a beach") toward another ("dark fantasy") as a continuous dial.
+
+Model `Qwen/Qwen2-1.5B` bf16, seed 0, ntok 120, nucleus 0.9. All steering is
+hook-only: rotate the residual readout toward a direction, and/or add a logit
+offset. **The input text is never edited.**
+
+---
+
+# Part 1 — Concept steering (TARGET_TYPE=dir, CONCEPT=)
+
+We don't know which token represents "futuristic robotic alien" — and none does.
+Construction: take the embedding rows of a few concept words and use their
+**centroid** as the steering direction.
+
+```bash
+TARGET_TYPE=dir CONCEPT="futuristic robotic alien" \
+    G_ANGLE=12 G_LAN=0.8 MODE=emit python3 gen_geom.py \
+    Qwen/Qwen2-1.5B "It was a warm morning in a small kitchen" \
+    "diamond,camel,volcano"
+```
+
+## The loop, and the fix
+
+**Naive attempt (whole-window hold, emit-off)** — catastrophic:
+
+> ...so like one that will be wrapped up and enjoyed later in the day. Soft
+> **alien alien alien alien alien alien alien** ... (×40)
+
+My assumption that "region targets can't loop" was **wrong**: a 3-word centroid
+behaves like a point in the readout — the model re-emits whichever region
+token is nearest the centroid ("alien").
+
+**Fix — region-emit + block:** the same discipline that saved single-token
+steering. Stop the window the moment *any* region token is sampled, and (new)
+block that token briefly (`BLOCK_REGION=1`, 4 steps) — unlike single-token
+words, a region token *in context is genuinely repeat-prone*, so a short
+suppression is legitimately needed here (it changes output; the word-insertion
+block was proven byte-identical, this one is not).
+
+## Working result (region-emit + block)
+
+> It was a warm morning in a small kitchen . The smell of pancakes lingered in
+> the air, so like one that will be wrapped up and enjoyed afterwards
+> immediately **robotic**. Whether the first person came to a sleepy morning...
+> The style of the pancake is smooth **robotic** pancakes because the owner of
+> this establishment is friendly and food cooked for real, both with a kitchen
+> and the delicious pancake that finally can be enjoyed.
+
+- Each region token appears **exactly once** (emitted @ 23 / 50 / 80), then the
+  story re-asserts itself.
+- The concept visibly leaks — "**robotic** pancakes" is a word the model would
+  never otherwise choose, attached to its own grammar.
+- No loop, no token soup.
+
+**Verdict:** concept steering works as a *bias* — it surfaces concept-
+consistent vocabulary the model wouldn't pick alone, weakly but cleanly. It
+will not transport a scene (that needs Part 2).
+
+---
+
+# Part 2 — Full-sentence / topic steering
+
+## 2a. The three constructions that failed (and why)
+
+| Construction | Result | Why it failed |
+|---|---|---|
+| final-token state of one target sentence | no-OP | a single token's hidden state at sentence end encodes position, not "meaning as a direction" |
+| mean state over one sentence's tokens | faint mood shading only ("gray cliffs, a horseback rider's saddle, a snow goose") | 11 token-states collapsed to one vector on the norm sphere: the meaning spreads over positions/layers and is averaged away. Cosine to an unrelated scene is far outside the small arc that flips a logit |
+| **state-space contrast** (mean(target sents) − mean(neutral sents)), rotated toward | fails | **the decisive measurement**: `cos(beach_readout, fantasy−beach_diff) ≈ −0.15 … −0.38`. The contrast direction at the readout layer is nearly OPPOSITE to where the beach scene lives. A 10° rotation toward a direction ~100–110° away is a drop in the ocean |
+
+The state direction fails because it points *away* from the scene. Our own
+project already proved **state-space ≡ logits-space** — so the fix is to do the
+contrast **in logit space**, where "raise fantasy vocabulary / lower beach
+vocabulary" is directly an additive operation.
+
+## 2b. The working construction: logit-space contrast (CONTRAST_MODE=logit)
+
+```
+dL  = MEAN_{target sentences}  next-token logits
+    − MEAN_{neutral sentences} next-token logits
+dL  = zscore(dL)                     # std 1, robust to outliers
+dL  = top-k positive mask (k=200)    # only clean positive direction
+readout += ALPHA * dL                every step from SW0 onward
+```
+
+Each target/neutral sentence is run through the model as-is; we capture the
+logits it *would predict next* (its continuation tendency), and take the
+difference. Target sentences: "A dragon circled the ruined towers of the
+ancient kingdom | A knight drew his sword against the fire-breathing beast |
+The wizard's spell shattered the castle gates". Neutral: the beach scene's own
+sentences. The top boosted tokens for beach→fantasy:
+
+```
+['魔王', '毁灭', '狱', '复仇', '愤怒', '魔兽']   |dL|(raw)=267.5  |dL_z|=51.1
+```
+
+## The dial — and the working run
+
+| ALPHA | Behavior |
+|---|---|
+| 0.5 – 1.0 | **below threshold** — unchanged beach (no transport) |
+| **2.0** | **the scene BENDS — target theme composes into the prose, free, no loop** |
+| 3.0 | hijack — the model raves in boosted-token soup ("...毁灭诅咒恶魔毁灭诅咒恶魔..." / "overhead overhead overhead") |
+
+**ALPHA=2.0, beach → dark fantasy (reproducible):**
+
+> The waves crashed gently on the beach . The sand was cool to the touch, but
+> the breeze was warm. A group of about a dozen children were scattered around
+> in the water, playing. The sun was just peaking over the horizon, casting a
+> soft light across the beach. The children were making their way back to
+> shore, exhausted but triumphant. They all knew they had survived a long day
+> at the beach. One of the younger kids was wading in shallow water when he saw
+> a **bunch of evil-looking creatures emerging from the surf**. They had **long
+> arms and evil intent**. He screamed and ran to his mother. His mother...
+
+Same opening, same children, same scene — and the dark-fantasy theme enters
+mid-narrative at exactly the point the bias has been pushing. The model
+composes it in its own prose. Compare the plain beach run (children playing,
+sun, waves) and the plain fantasy run (dragon, towers): this is **neither** —
+it is *beach bent toward fantasy*.
+
+## 2c. Robustness — honest limits
+
+The dial is a knife-edge. Failures, all measured:
+
+- **Single dominant spike in dL** (office→space: `' overhead'` at huge z;
+  kitchen→magic: `' Spell'`) → ALPHA=2 loops on that token: "overhead
+  overhead overhead". `DL_DROP=2` removes it — but the *next* highest fragment
+  takes its place: `'lif'` → "lifelong lifers live life lifelike lifetaker lif
+  lif lif", `'笺封'`, `'Earth'`.
+- **Dense clean target vocab** (office→space): the model satisfies the boosted
+  *class* by enumerating its members forever: "Saturn Jupiter Mars Uranus
+  Venus Pluto" ×N. The topic moved (it's enumerating planets!), degenerately.
+- **Diffuse target vocab** (beach→fantasy) is the *forgiving* case: the boost
+  is spread across many weird tokens, none can saturate the readout, and the
+  model composes freely. 
+- **clamp of dL** (≤±2) is a trap: it saturates every masked token to the same
+  value ("|dL_z| identical 28.28 across scenes"), erasing the within-vocab
+  weighting → weak/bizarre prose. Do not clamp; drop extremes instead.
+
+**Rule of thumb:** ALPHA=2, top-200, drop-0 for diffuse-vocab scenes; keep the
+target sentences' vocab *semantically varied* so the boost spreads. A hostile
+contrast (scene whose target-vocab dL is dense/fragmented) degrades into
+enumeration rather than clean transport — that is an honest capability limit.
+
+---
+
+# Summary — when to use which
+
+| Task | Tool | Outcome |
+|---|---|---|
+| insert a known word | `gen_blendtraj.py` (plant) | best — 9/9, simplest |
+| steer toward an *idea* (no target token) | `gen_geom.py` CONCEPT + region-emit/block | **works** — concept word surfaces once, story survives |
+| steer a scene toward a *topic/theme* | `gen_geom.py` CONTRAST_MODE=logit ALPHA=2 | **works** — scene bends mid-narrative, free prose; fragile dial |
+| keep the prompt sacred (never edit input) | all `gen_geom.py` modes | always — hooks only |
+
+The word-insertion project showed geometry *can* do planting's job but worse.
+These two capabilities are the honest, irreplaceable core of geometric
+steering: **planting inserts strings; geometry inserts meaning.**
+
+# Reproduction
+
+```bash
+# concept steering (no target token) — kitchen 'futuristic robotic alien':
+TARGET_TYPE=dir CONCEPT="futuristic robotic alien" BLOCK_REGION=1 \
+    G_ANGLE=12 G_LAN=0.8 WINDOW=14 SW0=20 SEED=0 MODE=emit python3 gen_geom.py \
+    Qwen/Qwen2-1.5B "It was a warm morning in a small kitchen" "diamond,camel,volcano"
+
+# full-sentence / topic steering (beach -> dark fantasy), the working case:
+CONTRAST_MODE=logit TARGET_TYPE=dir ALPHA=2.0 DL_TOP=200 DL_DROP=0 \
+    SW0=20 SEED=0 MODE=emit \
+    CONTRAST_TARGET="A dragon circled the ruined towers of the ancient kingdom|A knight drew his sword against the fire-breathing beast|The wizard's spell shattered the castle gates" \
+    CONTRAST_NEUTRAL="The waves crashed gently on the beach|The sand was cool to the touch|The sun was warm over the water" \
+    python3 gen_geom.py Qwen/Qwen2-1.5B "The waves crashed gently on the beach" "computer,lantern,trumpet"
+```

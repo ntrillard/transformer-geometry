@@ -135,6 +135,11 @@ Example output (all three out-of-place words woven in grammatically):
    the surf", free prose, no loop). It is a dial: alpha<2 nothing, alpha 2 clean bend,
    alpha>2 hijack loop; hostile/dense target vocab degrades to enumeration. Planting
    cannot insert a topic - this is the geometry-only capability. See writeup v4.
+9. **Dedicated writeup for the two geometry-only capabilities**: concept steering (no
+   target token: centroid of word rows + region-emit/block, "smooth robotic pancakes")
+   and full-sentence/topic steering (logit-space contrast at ALPHA=2, beach bends to
+   dark-fantasy mid-narrative). Everything needed to reproduce, incl. the three failed
+   constructions and the honest robustness limits. `writeup-sentence-concept.md`.
 ---
 
 ## Repository Layout
