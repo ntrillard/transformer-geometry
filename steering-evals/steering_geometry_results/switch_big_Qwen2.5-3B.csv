@@ -1,0 +1,9 @@
+seed,full,A_fam,B_fam,C_fam,D_fam,A_word,B_word,C_word,D_word,A_hit,B_hit,C_hit,D_hit
+0," london.
+
+Does it follow that ""London's team always wins.""?
+Select from dog, mous and wolf.
+OPT: -yes. -it is not possible to tell. -no. no<|endoftext|>Human: Henry Layne bought the water rights in 1864 and he and his wife Clara donated the",city,animal,food,nature,london,dog,pizza,water,True,True,False,True
+1," london. He would like it to see new ideas and practices. 
+Is the dog a male or female? A<|endoftext|>如何理解《故都的秋》 sushi, porridge and stir fried green vegetables in small bowls,
+I can help water your pet dog with 1 to 2 cups of water in the dish",city,animal,food,nature,london,dog,sushi,water,True,True,True,True
