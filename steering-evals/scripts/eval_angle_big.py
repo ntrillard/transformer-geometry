@@ -1,66 +1,49 @@
 #!/usr/bin/env python3
-"""eval_switch_big.py — sequential topic switching on LARGER models (argv: model [quant]).
+"""eval_angle_big.py — recalibrate steer angle for the 4B at each switch
+step. At the 4B scale, 10deg leaves the planted topic at rank-2, so we
+sweep rotation angle at the REAL switch-step contexts and find the min
+angle forcing rank-1 per step, then re-run the switch schedule with
+per-step angles.
 
-Generate several sentences on topic A, MID-GENERATION steer to a
-completely different topic B, then C, then D. Controller: readout graft
-+ anti-last @10deg + mild rep-penalty decode. NTOK=64 with 4 switches
-every 16 tokens (city@0, animal@16, food@32, nature@48) so the model
-has 16 tokens to stabilize between steerings.
+Flow:
+  1) reference trajectory (theta=10) -> save context ids at switch steps
+  2) at each context: for theta in sweep, inject, forward, record
+     rank(target) + top1
+  3) per-step theta* = min theta with rank==1
+  4) re-run full switch schedule with per-step thetas
 
-Each switch: capture current readout vector, rotate 10deg toward the NEW
-topic's closest word, inject, anti the new topic for a 2-token window.
-
-One model, no template. Run: HF_TOKEN=<tok> timeout 180 python3 -u
-eval_switch.py
+One model, no quant. Run: HF_TOKEN=<tok> timeout 300 python3 -u
+eval_angle_big.py google/gemma-3-4b-pt
 """
 import csv
 import itertools
 import math
+import sys
 import time
 from pathlib import Path
 
-import numpy as np
 import torch
-
-import steering_geometry_test as SGT
 import transformers
 
+import steering_geometry_test as SGT
 
-class _UnquantizedLoader:
-    """fp16, low_cpu_mem_usage, no 4/8-bit quant (user: no quantized models).
-    Avoids the fp32 duplicate that OOMs 4B+ on this box."""
-
-    def __call__(self, model_id):
-        print(f'\nLoading {model_id} (fp16, low_cpu_mem_usage, no quant) ...')
-        tok = transformers.AutoTokenizer.from_pretrained(
-            model_id, trust_remote_code=True)
-        model = transformers.AutoModelForCausalLM.from_pretrained(
-            model_id, torch_dtype=torch.bfloat16, low_cpu_mem_usage=True,
-            device_map='auto', trust_remote_code=True)
-        model.eval()
-        return model, tok
-
-
-load_no_quant = _UnquantizedLoader()
-
-import sys
-MODEL = sys.argv[1] if len(sys.argv) > 1 else 'google/gemma-3-1b-pt'
-QUANT = sys.argv[2] if len(sys.argv) > 2 else None
+MODEL = sys.argv[1] if len(sys.argv) > 1 else 'google/gemma-3-4b-pt'
 DEV = 'cuda' if torch.cuda.is_available() else 'cpu'
 NTOK = 64
 SEEDS = [0, 1]
-ANGLE = 10.0
 PEN = 0.5
-OUT = Path(f'../steering_geometry_results/switch_big_{sys.argv[1].split("/")[-1]}.csv')
+SHORT = ['google/gemma-3-4b-pt', 'google/gemma-3-4b-it']
+OUT = Path('../steering_geometry_results/angle_big_' +
+           MODEL.split('/')[-1] + '.csv')
 PROMPT = 'The whole group sat down and began to discuss'
 SWITCHES = {0: 'city', 16: 'animal', 32: 'food', 48: 'nature'}
-SEG_N = 16
 FAMILIES = {
     'city':   ['paris', 'london', 'berlin', 'madrid', 'tokyo'],
     'animal': ['cat', 'dog', 'bird', 'bear', 'horse'],
     'food':   ['pizza', 'sushi', 'pasta', 'burger'],
     'nature': ['forest', 'rice', 'water', 'sun', 'tree'],
 }
+SWEEP = [5, 8, 10, 12, 15, 20, 25, 30]
 
 
 def rep4(toks):
@@ -72,51 +55,38 @@ def rep4(toks):
 
 
 def _lm_head_fp16(model):
-
-    # lm_head weights as fp16 on CPU (safe for 4-bit quantized heads).
-
     w = model.lm_head.weight.detach()
-
     if hasattr(w, 'quant_state') and w.quant_state is not None:
-
         import bitsandbytes as bnb
-
         try:
-
             qs = w.quant_state.cpu()
-
         except Exception:
-
             qs = w.quant_state
-
         return bnb.functional.dequantize_4bit(w.data.cpu(), qs).float().cpu()
-
     return w.cpu().float()
 
 
-
-
-
 def readout_model(model):
-    """final-RMSNorm module feeding lm_head: text-only (model.model.norm)
-    vs Gemma3 conditional-gen (model.model.language_model.norm)."""
     if hasattr(model.model, 'norm'):
         return model.model
     lm = getattr(model.model, 'language_model', None)
     if lm is not None and hasattr(lm, 'norm'):
         return lm
-    raise RuntimeError(f'{MODEL}: no readout norm found '
+    raise RuntimeError(f'{MODEL}: no readout norm '
                        f'(model.model.norm / language_model.norm)')
 
 
 def main():
     t0 = time.time()
-    model, tok = load_no_quant(MODEL)
-    RO = readout_model(model)
-    RO_norm = RO.norm
-    print(f'  readout surface: {type(RO).__name__}.norm')
-    W = _lm_head_fp16(model)
-    Wn = (W / W.norm(dim=1, keepdim=True)).float()
+    print(f'\nLoading {MODEL} (fp16, low_cpu_mem_usage, no quant) ...')
+    tok = transformers.AutoTokenizer.from_pretrained(
+        MODEL, trust_remote_code=True)
+    model = transformers.AutoModelForCausalLM.from_pretrained(
+        MODEL, torch_dtype=torch.bfloat16, low_cpu_mem_usage=True,
+        device_map='auto', trust_remote_code=True).eval()
+    RO_norm = readout_model(model).norm
+    Wn = (_lm_head_fp16(model) / _lm_head_fp16(model).norm(
+        dim=1, keepdim=True)).float()
 
     famids = {}
     names = {}
@@ -144,53 +114,16 @@ def main():
         g = tau / tau.norm()
         return (v1 * math.cos(a) + g * math.sin(a)) * vv.norm()
 
-    def sample(L, prefix):
-
-        # clamp logits: fp16 4B heads can overflow to inf -> nan softmax
-
-        L = torch.nan_to_num(L.float(), nan=-50.0).clamp(-50.0, 50.0)
-
-        p = torch.softmax(L, 0)
-
-        q = p.clone(); order = q.argsort(descending=True)
-
-        k = int((q[order].cumsum(0) <= 0.9).sum()) + 1
-
-        msk = torch.zeros_like(q); msk[order[:k]] = 1
-
-        qq = (q * msk)
-
-        for t in set(prefix):
-
-            c = prefix.count(t)
-
-            if c:
-
-                qq[t] = qq[t] * (PEN ** c)
-
-        tot = qq.sum()
-
-        if tot <= 0 or not torch.isfinite(tot):
-
-            qq = torch.ones_like(qq)   # degenerate fallback
-
-        qq = qq / qq.sum()
-
-        return int(torch.multinomial(qq, 1))
-
     def forward(ids, inj_p=None, anti_t=None):
         hs = []
         try:
             if inj_p is not None:
                 def inj(m, i, o, p=inj_p):
-
                     o[0, -1, :] = torch.as_tensor(p, dtype=o.dtype,
-
                                                   device=o.device)
                 hs.append(RO_norm.register_forward_hook(inj))
             if anti_t is not None:
                 def anti(m, i, o, tid=anti_t):
-
                     o[0, -1, tid] = -30.0
                 hs.append(model.lm_head.register_forward_hook(anti))
             with torch.no_grad():
@@ -205,17 +138,36 @@ def main():
             lambda m, i, o: vc.__setitem__('v', o[0, -1, :].float()))
         try:
             with torch.no_grad():
-                model(ids).logits[0, -1].float()
+                model(ids)
         finally:
             hk.remove()
         return vc['v']
 
-    def run_schedule(sd):
+    def sample(L, prefix):
+        L = torch.nan_to_num(L.float(), nan=-50.0).clamp(-50.0, 50.0)
+        p = torch.softmax(L, 0)
+        q = p.clone(); order = q.argsort(descending=True)
+        k = int((q[order].cumsum(0) <= 0.9).sum()) + 1
+        msk = torch.zeros_like(q); msk[order[:k]] = 1
+        qq = (q * msk)
+        for t in set(prefix):
+            c = prefix.count(t)
+            if c:
+                qq[t] = qq[t] * (PEN ** c)
+        tot = qq.sum()
+        if tot <= 0 or not torch.isfinite(tot):
+            qq = torch.ones_like(qq)
+        qq = qq / qq.sum()
+        return int(torch.multinomial(qq, 1))
+
+    def run_schedule(sd, theta_map, collect=False):
+        """theta_map: step -> angle; collect: return (ids_at_switch_steps)."""
         torch.manual_seed(sd)
         ids = tok(PROMPT, add_special_tokens=False,
                   return_tensors='pt').input_ids.to(DEV)
         sampled = []
         hits = {}
+        ctx = {}
         last_switch = -10
         last_tgt = None
         for step in range(NTOK):
@@ -225,12 +177,14 @@ def main():
                 fam = SWITCHES[step]
                 v = capture_v(ids)
                 tgt = closest_to_fam(v, fam)
-                vp = rot_to_angle(v, tgt, ANGLE)
-                inj_p = vp
+                th = theta_map.get(step, theta_map.get('default', 10.0))
+                inj_p = rot_to_angle(v, tgt, th)
                 last_switch = step
                 last_tgt = tgt
             elif 1 <= step - last_switch <= 2 and last_tgt is not None:
                 anti_t = last_tgt
+            if collect and step in SWITCHES:
+                ctx[step] = ids.clone()
             L = forward(ids, inj_p=inj_p, anti_t=anti_t)
             nxt = sample(L, sampled)
             if step in SWITCHES:
@@ -238,33 +192,56 @@ def main():
                 hits[step] = (fam, names[last_tgt], nxt in famids[fam])
             sampled.append(nxt)
             ids = torch.cat([ids, torch.tensor([[nxt]], device=DEV)], dim=1)
+        if collect:
+            return sampled, hits, ctx
         return sampled, hits
 
-    rows = []
+    print(f"\n[{MODEL}] ANGLE-BIG: sweep rank vs theta at switch contexts")
     steps = sorted(SWITCHES)
-    ltr = {st: chr(ord('A') + i) for i, st in enumerate(steps)}
-    print(f"\n[{MODEL}] SWITCH-LONG: {PROMPT!r}  NTOK={NTOK} "
-          f"switches={SWITCHES}")
+    thetas = {'default': 10.0}
+    calib_rows = []
+    # reference run to get the real contexts
+    _, _, ctx = run_schedule(SEEDS[0], thetas, collect=True)
+    for step in steps:
+        fam = SWITCHES[step]
+        ids = ctx[step]
+        v = capture_v(ids)
+        tgt = closest_to_fam(v, fam)
+        row = []
+        for th in SWEEP:
+            vp = rot_to_angle(v, tgt, th)
+            L = forward(ids, inj_p=vp)
+            rk = int((L > L[tgt]).sum()) + 1
+            top1 = tok.decode([int(L.argmax())]).strip()
+            row.append((th, rk, top1))
+        best = min((th for th, rk, _ in row if rk == 1), default=None)
+        thetas[step] = best if best is not None else SWEEP[-1]
+        print(f"  step{step:>2} {fam:>6}: rank/theta  " +
+              '  '.join(f'{th}->{rk}({t1[:8]})' for th, rk, t1 in row))
+        print(f"      theta*={thetas[step]:.0f}")
+        calib_rows.append(dict(step=step, fam=fam, theta_star=thetas[step],
+                               sweep=[(th, rk) for th, rk, _ in row]))
+
+    print(f"\n  per-step angles: "
+          + '  '.join(f'{SWITCHES[s]}@{s}={thetas[s]:.0f}' for s in steps))
+
+    # re-run with per-step angles, both seeds
+    rows = []
     for sd in SEEDS:
-        toks, hits = run_schedule(sd)
+        toks, hits = run_schedule(sd, thetas)
         txt = tok.decode(toks)
-        segs = [tok.decode(toks[i:i + SEG_N]) for i in
-                range(0, NTOK, SEG_N)]
         print(f"\n  seed {sd}:")
         for i, st in enumerate(steps):
             fam, word, hit = hits[st]
+            seg = tok.decode(toks[i * 16:(i + 1) * 16])
             print(f"    switch@{st:>2} {fam:>6} -> {word:<6} "
-                  f"{'HIT' if hit else 'miss'}  | "
-                  f"{segs[i].strip()[:74]}")
+                  f"{'HIT' if hit else 'miss'}  | {seg.strip()[:72]}")
         rows.append(dict(seed=sd, full=txt,
-                         **{f'{ltr[st]}_fam': hits[st][0] for st in steps},
-                         **{f'{ltr[st]}_word': hits[st][1] for st in steps},
-                         **{f'{ltr[st]}_hit': hits[st][2] for st in steps}))
-        print(f"    FULL: {PROMPT} {txt[:180]}")
-    for st in steps:
-        ok = sum(1 for r in rows if r[f'{ltr[st]}_hit'])
-        print(f"\n  switch@{st} ({SWITCHES[st]}): planted, "
-              f"hit={ok}/{len(SEEDS)}")
+                         **{f'A{i}_hit': hits[s][2] for i, s in enumerate(steps)}))
+        print(f"    FULL: {PROMPT} {txt[:150]}")
+    for i, st in enumerate(steps):
+        ok = sum(1 for r in rows if r[f'A{i}_hit'])
+        print(f"\n  switch@{st} ({SWITCHES[st]}): hit={ok}/{len(SEEDS)}")
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     with open(OUT, 'w', newline='') as f:
