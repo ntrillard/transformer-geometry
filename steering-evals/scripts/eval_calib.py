@@ -145,8 +145,16 @@ def main():
         print(f"    " + '  '.join(f'{th}°->rk{rk}({t1[:6]})'
                                   for th, rk, t1 in row))
         theta_star = best if best is not None else '>30'
+
         results[step] = (w_name, theta_star)
+
+        safe = (best + 2 if best is not None else None)
+
         print(f"    theta* = {theta_star}")
+
+        if safe is not None:
+
+            print(f"    safe (theta*+2) = {safe}")
 
     print('\n  calibration summary (step: member, theta*):')
     for s in sorted(results):

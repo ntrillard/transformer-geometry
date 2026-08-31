@@ -45,6 +45,13 @@ _step_angles = [float(x) for x in
 
                 os.environ.get('SW_ANGLES', '').split(',') if x]
 
+ONLINE_CALIB = os.environ.get('SW_ONLINE') == '1'
+
+CALIB_SWEEP = [2.0, 4.0, 6.0, 8.0, 10.0, 12.0, 15.0, 20.0, 25.0, 30.0]
+
+CALIB_MARGIN = 2.0
+
+
 PEN = 0.5
 
 SUSTAIN = True                 # keep planted member blocked all segment
@@ -219,6 +226,29 @@ def main():
             hk.remove()
         return vc['v']
 
+
+
+    def best_angle(ids, vv, tid):
+
+        """in-situ recalibration: min angle making tid rank-1, +margin."""
+
+        for th in CALIB_SWEEP:
+
+            vp = rot_to_angle(vv, tid, th)
+
+            L = forward(ids, inj_p=vp)
+
+            if (int(L.argmax()) == tid
+
+                    and torch.isfinite(L[tid])
+
+                    and float(L[tid]) > float(L.max()) - 0.001):
+
+                return th + CALIB_MARGIN
+
+        return CALIB_SWEEP[-1]
+
+
     def run_schedule(sd, free=False):
         torch.manual_seed(sd)
         ids = tok(PROMPT, add_special_tokens=False,
@@ -233,11 +263,20 @@ def main():
             anti_ids = None
             block_words = None
             if not free:
+
                 if step in SWITCHES:
+
                     fam = SWITCHES[step]
+
                     v = capture_v(ids)
+
                     name, ids_m, tgt = closest_member(v, fam)
-                    if _step_angles:
+
+                    if ONLINE_CALIB:
+
+                        th = best_angle(ids, v, tgt)   # recalibrate NOW
+
+                    elif _step_angles:
 
                         th = _step_angles[list(SWITCHES).index(step)]
 
