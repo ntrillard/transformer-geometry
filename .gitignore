@@ -15,3 +15,7 @@ dist/
 *.log
 *.out
 *.gz
+
+# Agent runtime state
+.omo/
+.codegraph/
