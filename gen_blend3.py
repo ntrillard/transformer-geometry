@@ -1,30 +1,32 @@
 #!/usr/bin/env python3
-"""gen_blend3.py - backward/forward trajectory blend at a branch point.
+"""gen_blend3.py - LARGER temporal forward/backward branch-point blend.
 
-The mechanism (user spec):
-  1. ONE generator drives BOTH branches, so the main and pure branches are
-     identical up to the first plant - at the branch point the pure branch
-     IS the story's counterfactual future.
-  2. At the branch point (plant step P) we capture L_pre - the state where
-     the trajectory branched (the "backwards" anchor).
-  3. After P the branches separate:
-       - main : the planted word is a REAL token; samples from the blend.
-       - pure : continues naturally, never sees the plant (the would-have-been
-         future - the parallel non-steered trajectory).
-  4. Every settle step samples from a temporally-oriented blend:
-       L_pre   : branch-point state  - decays from full right after P
-       L_back  : pure branch readout - the backward (would-have-been) story,
-                 decays from P
-       L_fwd   : main + small steer  - the forward (steered) trajectory,
-                 humps mid-window then fades
-       L_nat   : main natural readout - remainder; takes over after window
-  5. After the window: pure natural - the planted context alone carries
-     the new trajectory.
+Extends the branch-point idea but captures MORE context around each plant:
 
-Env: W_PRE=0.35  W_BACK_MAX=0.35  W_FWD_MAX=0.25  HOLD_ANGLE=4
-     SETTLE=8  PLANT0=20  SEED=0  TRACE=1
-Run: HF_TOKEN=<tok> python3 gen_blend3.py [model] [prompt] [w1,w2,..]
+  * SETTLE  - longer settling window (default 14).
+  * PRE_CONTEXT - rolling memory of the last N natural readouts BEFORE
+    each plant ("a few states before"), blended recency-weighted.
+  * MEM_N   - rolling memory of the last N settle readouts AFTER each
+    plant ("a few states after"), blended small.
+  * The branch itself: ONE generator drives both branches, so the pure
+    branch is the story's counterfactual future (identical until plant).
+
+Forward/backward temporal schedule in the settle window:
+    pre  (branch + pre-context states) : decays from the branch point
+    back (pure-branch readout)         : decays from the branch point
+    fwd  (main + small steer)          : humps mid-window then fades
+    mem  (post-insert states)          : constant small
+    nat  (main natural readout)        : remainder; takes over after
+
+MODE=plain disables ALL blending: the word is still planted as a real
+token, but the settle window is pure natural sampling (control).
+
+Env:  MODE=blend|plain  SETTLE=14  PRE_CONTEXT=5  MEM_N=5
+      W_PRE=0.15  W_BACK_MAX=0.15  W_FWD_MAX=0.25  W_MEM=0.1
+      HOLD_ANGLE=4  PLANT0=20  SEED=0  TRACE=1
+Run:  HF_TOKEN=<tok> python3 gen_blend3.py [model] [prompt] [w1,w2,..]
 """
+import collections
 import math
 import os
 import sys
@@ -45,20 +47,25 @@ DEV = 'cuda' if torch.cuda.is_available() else 'cpu'
 NUCLEUS = 0.9
 ANTI = 5                        # de-repeat steps after a plant
 SEED = int(os.environ.get('SEED', '0'))
-SETTLE = int(os.environ.get('SETTLE', '8'))
+MODE = os.environ.get('MODE', 'blend')          # blend | plain
+SETTLE = int(os.environ.get('SETTLE', '14'))
+PRE_CONTEXT = int(os.environ.get('PRE_CONTEXT', '5'))
+MEM_N = int(os.environ.get('MEM_N', '5'))
 PLANT0 = int(os.environ.get('PLANT0', '20'))
 HOLD_ANGLE = float(os.environ.get('HOLD_ANGLE', '4'))
 W_PRE = float(os.environ.get('W_PRE', '0.15'))
 W_BACK_MAX = float(os.environ.get('W_BACK_MAX', '0.15'))
 W_FWD_MAX = float(os.environ.get('W_FWD_MAX', '0.25'))
+W_MEM = float(os.environ.get('W_MEM', '0.1'))
 TRACE = os.environ.get('TRACE') == '1'
 
 
 def main():
     t0 = time.time()
-    print(f'\nBlend3 bw/fwd | {MODEL} | prompt={PROMPT!r} | words={WORDS} | '
-          f'W_PRE={W_PRE} W_BACK_MAX={W_BACK_MAX} W_FWD_MAX={W_FWD_MAX} '
-          f'HOLD={HOLD_ANGLE} ntok={NTOK}')
+    print(f'\nBlend3 {MODE} | {MODEL} | prompt={PROMPT!r} | words={WORDS} | '
+          f'SETTLE={SETTLE} PRE={PRE_CONTEXT} MEM={MEM_N} '
+          f'W_PRE={W_PRE} W_BACK={W_BACK_MAX} W_FWD={W_FWD_MAX} '
+          f'W_MEM={W_MEM} HOLD={HOLD_ANGLE} ntok={NTOK}')
     tok = transformers.AutoTokenizer.from_pretrained(
         MODEL, trust_remote_code=True)
     model = transformers.AutoModelForCausalLM.from_pretrained(
@@ -154,7 +161,8 @@ def main():
     settle_until = -1
     last_plant_tid = None
     settle_word = None
-    pre_logits = None
+    pre_mem = collections.deque(maxlen=PRE_CONTEXT)
+    mem = collections.deque(maxlen=MEM_N)
     pure_done = False
 
     for step in range(NTOK):
@@ -164,9 +172,9 @@ def main():
         bw = ({settle_word} if anti_a is not None else None)
 
         if step in switch_at:
-            # capture the branch-point state (where the trajectory branched)
+            # capture the branch point + push pre-insert context
             L_pre, _ = forward_v(ids)
-            pre_logits = L_pre
+            pre_mem.append(L_pre)
             wid = plant_tid_at[step]
             nxt = wid
             settle_until = step + 1 + SETTLE
@@ -174,32 +182,48 @@ def main():
             settle_word = switch_at[step]
             if TRACE:
                 print(f'      branch@{step} -> {tok.decode([wid])!r} '
-                      f'until {settle_until}')
+                      f'until {settle_until} (pre-context={len(pre_mem)})')
         elif in_settle:
-            t0_ = min(1.0, (settle_until - step - 1) / max(1, SETTLE - 1))
-            t = 1.0 - t0_            # 0 at branch, 1 at window end
-            w_pre = W_PRE * (1 - t)                # backward: decays from P
-            w_back = W_BACK_MAX * (1 - t)          # would-have-been, decays
-            w_fwd = W_FWD_MAX * math.sin(math.pi * t)  # forward steer, hump
-            w_nat = max(0.0, 1 - w_pre - w_back - w_fwd)
-
             L_nat, v = forward_v(ids)
-            L_fwd = forward(ids, inj_p=rot_to_angle(
-                v, word_ids[settle_word], HOLD_ANGLE))
-            L_back = forward_v(ids_p)[0] if not pure_done else L_nat
-            L = w_nat * L_nat + w_fwd * L_fwd + w_back * L_back
-            if pre_logits is not None:
-                L = L + w_pre * pre_logits
-            if TRACE:
-                print(f'      settle[{step}] nat={w_nat:.2f} fwd={w_fwd:.2f} '
-                      f'back={w_back:.2f} pre={w_pre:.2f}')
-            nxt = sample(L, gen, block_words=bw)
+            if MODE == 'plain':
+                # NO BLENDING - plant alone carries the steering
+                nxt = sample(L_nat, gen, block_words=bw)
+            else:
+                t0_ = min(1.0, (settle_until - step - 1) / max(1, SETTLE - 1))
+                t = 1.0 - t0_                # 0 at branch, 1 at window end
+                w_pre = W_PRE * (1 - t)      # pre-context decays from branch
+                w_back = W_BACK_MAX * (1 - t)  # counterfactual decays
+                w_fwd = W_FWD_MAX * math.sin(math.pi * t)  # fwd hump+fade
+                w_mem = W_MEM if mem else 0.0
+                w_nat = max(0.0, 1 - w_pre - w_back - w_fwd - w_mem)
+
+                L_fwd = forward(ids, inj_p=rot_to_angle(
+                    v, word_ids[settle_word], HOLD_ANGLE))
+                L_back = forward_v(ids_p)[0] if not pure_done else L_nat
+                L = w_nat * L_nat + w_fwd * L_fwd + w_back * L_back
+                # pre-insert multi-state memory (recency-weighted)
+                if pre_mem:
+                    pts = list(pre_mem)
+                    tot = sum(i + 1 for i in range(len(pts)))
+                    for i, x in enumerate(pts):
+                        L = L + w_pre * (i + 1) / tot * x
+                # post-insert memory (a few states after)
+                if mem:
+                    L = L + (w_mem / len(mem)) * sum(mem)
+                if TRACE:
+                    print(f'      settle[{step}] nat={w_nat:.2f} fwd={w_fwd:.2f} '
+                          f'back={w_back:.2f} pre={w_pre:.2f} mem={w_mem:.2f}')
+                nxt = sample(L, gen, block_words=bw)
+            mem.append(L_nat)
         elif anti_a is not None:
             L = forward(ids, anti_ids=[anti_a])
             nxt = sample(L, gen, block_words=bw)
+            L_nat, _ = forward_v(ids)
+            pre_mem.append(L_nat)
         else:
             L, _ = forward_v(ids)
             nxt = sample(L, gen)
+            pre_mem.append(L)
 
         # append to main branch
         if nxt == eos_id:
@@ -221,7 +245,7 @@ def main():
 
     txt = tok.decode(sampled)
     txt_p = tok.decode(sampled_p)
-    print(f'\n===== BLEND3 bw/fwd ({" ".join(WORDS)}) =====')
+    print(f'\n===== BLEND3 {MODE} ({" ".join(WORDS)}) =====')
     print(f'{PROMPT} {txt}')
     print(f'\n== PURE BRANCH (simultaneous counterfactual) ==')
     print(f'{PROMPT} {txt_p}')
