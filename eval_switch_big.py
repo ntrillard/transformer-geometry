@@ -33,7 +33,7 @@ MODEL = sys.argv[1] if len(sys.argv) > 1 else 'google/gemma-3-1b-pt'
 PROMPT = (sys.argv[2] if len(sys.argv) > 2
           else 'The whole group sat down and began to discuss')
 DEV = 'cuda' if torch.cuda.is_available() else 'cpu'
-NTOK = 64
+NTOK = 72
 SEEDS = [0, 1]
 ANGLE = 10.0
 
@@ -115,7 +115,7 @@ SOFT_SUPPORT_SKIP = float(os.environ.get('SOFT_SUPPORT_SKIP', '0.04'))
 # de-repeat window: steps after a plant during which the planted member's
 # tokens are anti-blocked, so the model WRITES about the topic instead of
 # parroting the planted word ('london london new york' guard).
-SOFT_PLANT_ANTI = int(float(os.environ.get('SOFT_PLANT_ANTI', '2')))
+SOFT_PLANT_ANTI = int(float(os.environ.get('SOFT_PLANT_ANTI', '5')))
 
 SW_FREE = os.environ.get('SW_FREE') == '1'     # baseline arm: no hooks
 
@@ -124,16 +124,17 @@ _stop = ''.join(c for c in PROMPT[:20] if c.isalnum())
 OUT = Path('steering-evals/steering_geometry_results/switch_big_'
 
            f'{MODEL.split("/")[-1]}_{_stop}.csv')
-SWITCHES = {0: 'tech', 16: 'anatomy', 32: 'music', 48: 'astro'}
+SWITCHES = {0: 'city', 16: 'animal', 32: 'food', 48: 'nature'}
 SEG_N = 16
 # family members: single words and MULTI-WORD phrases (space-separated)
-# UNRELATED topics: 4 domains with nothing to do with each other or with
-# any story prompt. All single clean tokens (probed WRAP=before).
+# THE #1 METHOD: multi-topic travelogue. Space-wrapped single-token
+# family words (WRAP=before is the default), story prompt, hybrid SOFT
+# controller.
 FAMILIES = {
-    'tech':    ['laser', 'robot', 'sensor', 'turbine', 'satellite'],
-    'anatomy': ['liver', 'kidney', 'retina', 'tendon', 'cortex'],
-    'music':   ['piano', 'violin', 'trumpet', 'accordion', 'flute'],
-    'astro':   ['comet', 'eclipse', 'galaxy', 'orbit', 'planet'],
+    'city':   ['paris', 'london', 'berlin', 'madrid', 'oslo'],
+    'animal': ['cat', 'dog', 'bird', 'bear', 'horse', 'polar bear'],
+    'food':   ['pizza', 'sushi', 'pasta', 'burger', 'sushi bar'],
+    'nature': ['forest', 'rice', 'water', 'sun', 'tree'],
 }
 
 def _lm_head_fp16(model):
@@ -200,13 +201,38 @@ def main():
     for fam, words in FAMILIES.items():
         mem = []
         for w in words:
-            # wrap mode: none / before / after / both (env WRAP)
+            # wrap mode: none / before / after / both (env WRAP).
+            # NEVER split a word: a steer word must stay ONE token. Bare
+            # tokens can fragment (sushi -> [s, ushi], cheese -> [che, ese])
+            # which makes the graft target a pure fragment - the exact
+            # corruption we saw. So: try the bare token; if it is not a
+            # single token, fall back to the leading-space single token
+            # (sushi -> ' sushi'); if that fragments too, keep both and
+            # the graft will aim at the first (whole-word) member anyway.
 
-            s = {'none': '{}', 'before': ' {}', 'after': '{} ',
+            wrap = {'none': '{}', 'before': ' {}', 'after': '{} ',
 
-                 'both': ' {} '}[WRAP].format(w)
+                    'both': ' {} '}[WRAP]
 
-            ids = tok(s, add_special_tokens=False).input_ids
+            if WRAP == 'none':
+
+                bare = tok(w, add_special_tokens=False).input_ids
+
+                if len(bare) == 1:
+
+                    ids = bare
+
+                else:
+
+                    ids = tok(' ' + w, add_special_tokens=False).input_ids
+
+                s = ''
+
+            else:
+
+                s = wrap.format(w)
+
+                ids = tok(s, add_special_tokens=False).input_ids
 
             ids = [int(i) for i in ids]
             d = Wn[ids].float().sum(0)
@@ -405,6 +431,7 @@ def main():
         recent = []
         plant_until = -1
         plant_ids = None
+        plant_fam = None
         plant_word = None
         align_hist = []
         corr = 0
@@ -414,11 +441,10 @@ def main():
                 # ---- HYBRID: calibrated graft at switch + accumulating
                 # centroid herding during drift, release on topic ----
                 L, v = forward_v(ids)
-                anti_a = (plant_ids if (step < plant_until and plant_ids)
-                          else None)
-                bw = (set(plant_word.lower().split()) if anti_a
-                      else None)
-                if anti_a:
+                anti_a = (famids[plant_fam] if (step < plant_until
+                          and plant_fam) else None)
+                bw = ({w for w in [plant_word]} if anti_a else None)
+                if anti_a and anti_a:
                     L = forward(ids, anti_ids=anti_a)
                 if step in SWITCHES:
                     cur_fam = SWITCHES[step]
@@ -451,6 +477,7 @@ def main():
                         corr += 1
                         acc = SOFT_ACC_START
                         plant_ids = ids_m
+                        plant_fam = cur_fam
                         plant_word = name
                         plant_until = step + 1 + SOFT_PLANT_ANTI
                         if os.environ.get('ALIGN_LOG') == '1':
@@ -483,20 +510,20 @@ def main():
                     elif align < SOFT_TARGET_ALIGN - SOFT_HYST:
                         acc = min(acc + SOFT_ACC_STEP, SOFT_ACC_MAX)
                         inj_p = rot_toward(v, fam_dir[cur_fam], acc)
-                        L = forward(ids, inj_p=inj_p)
+                        L = forward(ids, inj_p=inj_p,
+                                    anti_ids=anti_a if anti_a else None)
                         corr += 1
                         if os.environ.get('ALIGN_LOG') == '1':
                             print(f"      align LOG drift@{step} {cur_fam} "
                                   f"supp={support:.4f} align={align:.3f} "
                                   f"acc={acc:.0f}")
-                        acc = min(acc + SOFT_ACC_STEP, SOFT_ACC_MAX)
-                        inj_p = rot_toward(v, fam_dir[cur_fam], acc)
-                        L = forward(ids, inj_p=inj_p)
-                        corr += 1
-                        if os.environ.get('ALIGN_LOG') == '1':
-                            print(f"      align LOG drift@{step} {cur_fam} "
-                                  f"supp={support:.4f} align={align:.3f} "
-                                  f"acc={acc:.0f}")
+                if os.environ.get('DBG2') == '1' and anti_a:
+                    tops = L.argsort(descending=True)[:6].tolist()
+                    decs = tok.batch_decode([[t] for t in tops])
+                    citys = {i: float(L[i]) for i in famids[plant_fam] if anti_a}
+                    print(f"      DBG2 step={step} anti={bool(anti_a)} "
+                          f"top={list(zip(decs, [round(float(L[t]),1) for t in tops]))} "
+                          f"fam_logits={ {tok.decode([i]): round(v,1) for i,v in citys.items()} }")
                 nxt = sample(L, sampled, block_words=bw, extra_zero=hj)
                 if nxt == eos_id:
                     sampled.append(nxt)
@@ -504,6 +531,10 @@ def main():
                 sampled.append(nxt)
                 if step in SWITCHES:
                     hits[step] = (SWITCHES[step], cur_fam, False)
+                if os.environ.get('DBG') == '1':
+                    print(f"      DBG step={step} x={tok.decode([nxt])!r} "
+                          f"plant_until={plant_until} anti_len="
+                          f"{len(anti_a) if anti_a else 0} fam={cur_fam}")
                 ids = torch.cat([ids, torch.tensor([[nxt]], device=DEV)], dim=1)
                 continue
 
