@@ -1,0 +1,9 @@
+seed,full,A_fam,B_fam,C_fam,D_fam,A_word,B_word,C_word,D_word,A_hit,B_hit,C_hit,D_hit
+0," paris park park park park park park park park park park park park park park park dog par par dog par par dog par par dog par par dog par par dog burger hamburger hamburger hamburger hamburger hamburger hamburger hamburger hamburger hamburger hamburger hamburger hamburger hamburger hamburger hamburger water burger hamburger water burger water burger water burger water burger water<eos>
+
+
+
+
+
+",city,animal,food,nature,paris,dog,burger,water,True,True,True,True
+1," paris the fourth, the forth, the forth, the fourth, the fourth, horse, end horse, end horse, end horse, end horse, end horse burger end hamburger hamburger hamburger hamburger hamburger hamburger hamburger hamburger hamburger hamburger hamburger hamburger hamburger hamburger waterburger end hamburgers waterburger waterburger water burger water burger waterwaterburgerwater",city,animal,food,nature,paris,horse,burger,water,True,True,True,True
