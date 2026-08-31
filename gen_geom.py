@@ -116,6 +116,8 @@ TARGET_SENT = os.environ.get('TARGET_SENT', '')
 CONCEPT = os.environ.get('CONCEPT', '')
 BLOCK_REGION = os.environ.get('BLOCK_REGION', '0') == '1'
 ANTI = int(os.environ.get('ANTI', '4'))  # region-block steps (dir only)
+CONTRAST_BLOCK = os.environ.get('CONTRAST_BLOCK', '0') == '1'
+CONTRAST_ANTI = int(os.environ.get('CONTRAST_ANTI', '4'))
 CONTRAST_TARGET = os.environ.get('CONTRAST_TARGET', '')
 CONTRAST_NEUTRAL = os.environ.get('CONTRAST_NEUTRAL', '')
 CONTRAST_MODE = os.environ.get('CONTRAST_MODE', 'state')
@@ -175,22 +177,29 @@ def main():
             tgt = [x.strip() for x in CONTRAST_TARGET.split('|') if x.strip()]
             neu = [x.strip() for x in CONTRAST_NEUTRAL.split('|') if x.strip()]
             if CONTRAST_MODE == 'logit':
-                ts = None
                 ns = None
                 with torch.no_grad():
-                    for s in tgt:
-                        t = tok(s, add_special_tokens=False,
-                                return_tensors='pt').input_ids.to(DEV)
-                        Ls = model(t).logits[0, -1].float().cpu()
-                        ts = Ls if ts is None else ts + Ls
                     for s in neu:
                         t = tok(s, add_special_tokens=False,
                                 return_tensors='pt').input_ids.to(DEV)
                         Ls = model(t).logits[0, -1].float().cpu()
                         ns = Ls if ns is None else ns + Ls
-                tm = ts / max(1, len(tgt))
                 nm = ns / max(1, len(neu))
-                dL = (tm - nm) / max(1, len(tgt) + len(neu))
+                # per-sentence contributions: each target sentence's diff vs the
+                # neutral mean is z-scored SEPARATELY, so a sentence in any
+                # language contributes by SIGNAL, not by raw logit magnitude
+                # (this fixes the EN+ZH mixing failure where Chinese swamped
+                # the mean). Language channels are inherently balanced.
+                dL = None
+                with torch.no_grad():
+                    for s in tgt:
+                        t = tok(s, add_special_tokens=False,
+                                return_tensors='pt').input_ids.to(DEV)
+                        Ls = model(t).logits[0, -1].float().cpu()
+                        c = Ls - nm
+                        c = (c - c.mean()) / (c.std() + 1e-6)
+                        dL = c if dL is None else dL + c
+                dL = dL / max(1, len(tgt))
                 # z-score, optionally drop the top few extreme tokens (they
                 # are single-token loop latchers), then top-k positive mask.
                 # Diffuse z-magnitudes over a clean vocab = topic transport
@@ -205,6 +214,7 @@ def main():
                 m = torch.zeros_like(dL)
                 m[topk] = 1.0
                 dL = (dL * m).to(DEV)
+                boosted_set = set(topk.tolist())
                 print(f'  CONTRAST[logit]: {len(tgt)} tgt - {len(neu)} neu, '
                       f'|dL_z|={dL.norm().item():.2f}, top-{k} mask')
                 dL_c = dL.cpu()
@@ -217,6 +227,17 @@ def main():
                     if s and all(ord(c) < 128 for c in s) and sum(c.isalpha() for c in s) >= 3:
                         eng += 1
                 print(f'    boost max natural prob={maxn:.5f}  eng-frac={eng / k:.2f}')
+                if os.environ.get('CHECKONLY') == '1':
+                    engf = eng / k
+                    if engf >= 0.6:
+                        zone = 'LATCH-RISK (>=0.6): selectable EN tokens will self-latch'
+                    elif engf <= 0.35:
+                        zone = 'INVISIBLE (<=0.35): foreign-only boost, no entry into EN prose'
+                    else:
+                        zone = 'TRANSPORT-ZONE (0.35-0.6): bilingual diffusion, clean bend expected'
+                    print(f'  SCORECARD: eng-frac={engf:.2f} -> {zone}')
+                    print('  CHECKONLY: skipping generation')
+                    return
             else:
                 def _sent_mean(s):
                     t = tok(s, add_special_tokens=False,
@@ -325,6 +346,9 @@ def main():
     adapt_until = -1
     dir_block_until = -1
     dir_block_id = None
+    cb_until = -1
+    cb_id = None
+    boosted_set = set()
 
     for step in range(NTOK):
         w_active = None
@@ -336,6 +360,9 @@ def main():
             if CONTRAST_MODE == 'logit':
                 # additive logit contrast: directly raise target-vocab logits
                 L = L_nat + ALPHA * dL
+                if CONTRAST_BLOCK and step < cb_until and cb_id is not None:
+                    L = L.clone()
+                    L[cb_id] = -30.0       # break boosted-token latch loops
                 if TRACE:
                     print(f'      [{step}] contrast[logit] alpha={ALPHA}')
             else:
@@ -346,6 +373,12 @@ def main():
                     sim = (v / v.norm()) @ u_dir
                     print(f'      [{step}] contrast cos(v,u)={sim.item():+.3f}')
             nxt = sample(L)
+            if CONTRAST_BLOCK and CONTRAST_MODE == 'logit' and nxt in boosted_set:
+                cb_until = step + 1 + CONTRAST_ANTI
+                cb_id = nxt
+                if TRACE:
+                    print(f'      [{step}] BLOCK boosted {tok.decode([nxt])!r} '
+                          f'for {CONTRAST_ANTI} steps')
             if nxt == eos_id:
                 sampled.append(nxt)
                 break

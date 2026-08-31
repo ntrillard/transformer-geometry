@@ -385,3 +385,103 @@ topic, build the dL and read the printed `eng-frac`:
 
 Raw runs: `full-outputs/knownness_sentence.log`, `knownness_zh.log`,
 `knownness_mixed.log` (renamed .txt).
+
+---
+
+# Appendix D — "Why does this work?" — the mechanism investigation
+### 6 questions, 16 runs, mostly negative results — the honest science
+
+## Summary table (all beach scene, α=2, top-200, seed 0 unless noted)
+
+| # | topic | eng-frac | generated outcome |
+|---|---|---|---|
+| K4/T7 | dark fantasy (EN) | 0.43 | ✅ CLEAN TRANSPORT ("evil-looking creatures emerging from the surf") |
+| K1 | farm (EN) | 0.66 | ❌ latch `fenced` |
+| K2 | haunted (EN) | 0.60 | ❌ latch `corridors` |
+| K3 | vents (EN) | 0.86 | ❌ latch `vent` |
+| T6 | sci-fi (EN) | 0.77 | no-op |
+| T3 | fantasy (JA) | 0.00 | no-op |
+| T4 | fantasy (DE) | 0.81 | weird perturbation (no clean bend) |
+| K5/K6 | fantasy/farm (ZH) | 0.00 | no-op |
+| K7/T5 | farm 2EN+2ZH (pooled/per-sent) | 0.00 | no-op / Chinese eruption |
+| V1 | **pirate (EN)** | **0.41** | ❌ latch `ship captain` |
+| V2 | **mermaid (EN)** | **0.47** | **no-op** |
+
+## The questions, answered with data
+
+### Q1. Why does this work?
+The working case is real and reproducible (two different builders, same output).
+The stable facts: the English fantasy sentences have a genuinely BILINGUAL
+continuation distribution in Qwen2-1.5B (Chinese + English mass - measured
+repeatedly, |dL_z| ~51, top tokens are Chinese 魔王/毁灭/狱). The foreign mass
+dilutes the arithmetic boost so no single English token clears argmax, while
+the English tail lets the narrative tilt. BUT - see Q6 - this is NOT
+sufficient: pirate (0.41, same zone) latched and mermaid (0.47) did nothing.
+
+### Q2. Do other languages hold different advantages?
+Only as GENERATION-SIDE effects, never alone: foreign-only targets (JA/ZH) give
+pure-foreign dL -> invisible no-op in English prose (T3, K5/K6) - or, when
+strong enough, a Chinese eruption (T5). Latin-script foreign (German) is
+selectable in English prose and gives a perturbation, not a bend (T4). No
+language produced clean transport on its own. The ONLY thing that ever
+transported is an ENGLISH topic whose continuation in THIS model is bilingual.
+
+### Q3. Is there something more Chinese about dark fantasy?
+Partially real: in this model, fantasy's continuation mass DOES lean Chinese
+(Chinese web-fiction xianxia/网文 covers dragon-knight-wizard archetypes on a
+huge scale - this is the strongest truthful version of "more context to pull
+from"). But it is neither sufficient (pirate/mermaid should also be bilingual-
+steerable and are not) nor the engine (pure-Chinese dL is a no-op).
+
+### Q4. Would a more unknown language differentiate more / better?
+No. Every foreign-only experiment (well-represented JA, plus the natural
+limit) gives invisible-or-garbage. An even less-represented language would
+produce weaker, noisier dL - strictly worse. "Different" langs do not help;
+the sweet spot is a WELL-REPRESENTED non-generation script inside a broader
+CONTINUATION mix, which we cannot engineer from outside (see Q6).
+
+### Q5. Is it the EN<->ZH contrast enabling "translation"/interpretation?
+Refuted. If the model were "interpreting from Chinese to English," a pure-
+Chinese dL would produce English fantasy. It produces nothing (K5/K6/T3). No
+translation occurs. The coherence in the working case is the model COMPOSING
+its own English with a tilted prior - not translating a Chinese latent.
+
+### Q6. What mechanism can we build from this phenomenon?
+Honest negative result - we TRIED five constructions and all failed to transfer
+the phenomenon:
+1. Knownness selection (own hypothesis) - refuted (farm as known as fantasy).
+2. eng-frac SCORECARD / CHECKONLY predictor - built, then VALIDATED WRONG:
+   pirate (0.41) and mermaid (0.47) are in the predicted transport zone but
+   latch and no-op respectively. Static-dL metrics cannot see the DYNAMIC
+   cause of latching.
+3. Bilingual mixing (EN+ZH farm) - no-op / Chinese eruption (T5), not transport.
+4. Putting pure-foreign targets in - always no-op (K5/K6/T3).
+5. CONTRAST_BLOCK (block any boosted token after emission) - pirate still
+   latches IDENTICALLY. The latch is repetition PRIMING on natural
+   continuation tokens ("made it to the ship" -> "ship captain"), not
+   re-sampling of boosted tokens - so blocking boosted tokens misses it.
+
+The surviving, evidence-based interpretation: the clean transport happened when
+the perturbed trajectory NEVER made any boosted token a natural continuation
+point; the model filled the tilt with its own composition ("he saw a bunch of
+evil-looking creatures emerging from the surf"). Pirate's dL collided with a
+natural continuation slot ("the children made it to the ___" = ship); mermaid's
+was composition-incompatible (nothing grammatical to fill). We cannot yet
+predict or engineer that trajectory-level alignment - the static dL alone
+cannot see it, and the obvious de-latch mechanics fail because repetition
+priming is the real loop driver.
+
+## What remains genuinely constructive
+- The one reproducible, clean, zero-input-edit demonstration of full-sentence
+  topic transport (beach -> dark fantasy) - a solid anchor result.
+- The empirically honest workflow: CHECKONLY scores every candidate topic's
+  dL cheaply (eng-frac, |dL|, top tokens); generate; keep what works. It is a
+  DESCRIPTIVE tool, not a predictor - and the negative results above are its
+  calibration data.
+- The sharpest engineering-guide line that survives all failures: the loop is
+  driven by repetition priming at natural continuation points, so de-latching
+  must target THAT (e.g., a real repetition-tolerant sampler or per-context
+  anti-priming), not boosted-token blocks or alpha tuning.
+
+Raw runs: full-outputs/language_scripts.txt, language_construct.txt,
+scorecard_validate.txt, contrast_block.txt, knownness_*.txt.
