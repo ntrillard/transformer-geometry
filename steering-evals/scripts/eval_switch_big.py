@@ -45,14 +45,17 @@ load_no_quant = _UnquantizedLoader()
 
 import sys
 MODEL = sys.argv[1] if len(sys.argv) > 1 else 'google/gemma-3-1b-pt'
-QUANT = sys.argv[2] if len(sys.argv) > 2 else None
 DEV = 'cuda' if torch.cuda.is_available() else 'cpu'
 NTOK = 64
 SEEDS = [0, 1]
 ANGLE = 10.0
 PEN = 0.5
-OUT = Path(f'../steering_geometry_results/switch_big_{sys.argv[1].split("/")[-1]}.csv')
-PROMPT = 'The whole group sat down and began to discuss'
+PROMPT = (sys.argv[2] if len(sys.argv) > 2
+          else 'The whole group sat down and began to discuss')
+_slug = ''.join(c for c in PROMPT[:20] if c.isalnum())
+OUT = Path(f'../steering_geometry_results/switch_big_'
+           f'{sys.argv[1].split("/")[-1]}_{_slug}.csv')
+SUSTAIN = True
 SWITCHES = {0: 'city', 16: 'animal', 32: 'food', 48: 'nature'}
 SEG_N = 16
 FAMILIES = {
@@ -222,15 +225,34 @@ def main():
             inj_p = None
             anti_t = None
             if step in SWITCHES:
+
                 fam = SWITCHES[step]
+
                 v = capture_v(ids)
+
                 tgt = closest_to_fam(v, fam)
+
                 vp = rot_to_angle(v, tgt, ANGLE)
+
                 inj_p = vp
+
                 last_switch = step
+
                 last_tgt = tgt
-            elif 1 <= step - last_switch <= 2 and last_tgt is not None:
-                anti_t = last_tgt
+
+            elif last_tgt is not None:
+
+                since = step - last_switch
+
+                if 1 <= since <= 2:
+
+                    anti_t = last_tgt          # short anti (default)
+
+                elif SUSTAIN and since > 2 and last_switch >= 0:
+
+                    anti_t = last_tgt          # sustained: keep planted
+
+                                               # topic blocked all segment
             L = forward(ids, inj_p=inj_p, anti_t=anti_t)
             nxt = sample(L, sampled)
             if step in SWITCHES:
