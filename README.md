@@ -64,12 +64,55 @@ Full mitigation/false-positive matrices: [`THREAT_MODEL.md`](THREAT_MODEL.md).
 
 ---
 
+## Narrative Steering (Qwen2-1.5B)
+
+Production scripted-steering tools live at the repo root. Both are minimal, hook-only, run on
+`Qwen/Qwen2-1.5B` (bf16, no quantization).
+
+| File | Purpose |
+|---|---|
+| `gen_pure.py` | **Unsteered baseline** - model + multinomial sampling only (zero hooks). Establishes what the model writes alone for any prompt/seed. |
+| `gen_blendtraj.py` | **Production steerer** - plant each target word as a REAL token in context (space-prefixed single token so it doesn't fuse), then a settle window blending two readout series (natural + a small hold rotation) before handing back to free generation. |
+
+**The winning configuration** (SETTLE=8 is the coherent sweet spot):
+
+```bash
+HF_TOKEN=$TOKEN python3 gen_blendtraj.py Qwen/Qwen2-1.5B \
+    "The office was quiet after hours" "sheep,sushi,elevator"
+# env: LAM=0.4 SETTLE=8 HOLD_ANGLE=4 PLANT0=20 SEED=0
+```
+
+Example output (all three out-of-place words woven in grammatically):
+
+> The office was quiet after hours . The rest of the employees had left to go to their homes.
+> It was a Saturday night and **sheep**ishly I found my way in the door. It was a sleepy
+> evening and just like the five horsemen; I was the one who had to **sushi** for dinner and
+> sleep in bed later than my co-workers... One **elevator** ride later I was seeing the snowy
+> white of a Maine coon...
+
+**Key findings from the exploration** (see `steering-evals/steering_geometry_results/writeup-blendtraj.md`):
+
+1. **The planted real token is 100% of the steering** - the model writes *with* the word in
+   context naturally ("sheep**ishly**", "sushi noodles", "elevator maintenance invoice").
+2. **With blending off (LAM=0), window length is irrelevant** - SETTLE 8/14/20/30 are all
+   byte-identical; the settle branch is pure natural sampling.
+3. **With blending on, SETTLE=8 is most coherent**; 14-20 develop more but loosen the splice;
+   30 over-extends (maintenance-spam tangent).
+4. **More blending is not better** - every added state (pre-insert memories, counterfactual
+   branches, rolling post-insert memories, 3+/5-way simplexes) is stale relative to the live
+   context and blurs the readout at the splice. The two-series blend at LAM=0.4 is the ceiling.
+   All experimental variants are archived in `old/`.
+---
+
 ## Repository Layout
 
 ```
 .
 ├── paper/                          # preprint (tex + pdf + figure)
 ├── THREAT_MODEL.md                 # threat model + mitigation/false-positive tables
+├── gen_pure.py                     # unsteered baseline (model + multinomial, zero hooks)
+├── gen_blendtraj.py                # production steerer (plant real tokens + settle blend)
+├── old/                            # archived experimental steerers (gen_steer, gen_blend*, ...)
 ├── steering-evals/
 │   ├── scripts/                    # canonical measurement harness
 │   │   ├── verify_identity.py            # endpoint identity check (200/200, <1e-10)
@@ -80,9 +123,9 @@ Full mitigation/false-positive matrices: [`THREAT_MODEL.md`](THREAT_MODEL.md).
 │   │   ├── eval_defense.py               # pit scan + defensive encoding
 │   │   ├── eval_pit_robustness.py        # decoder-contract robustness matrix
 │   │   ├── eval_7b_strict_pit_gate.py    # strict-pit gate for Qwen2.5-7B (--quant nf4)
-│   │   ├── eval_multi_goal_steering.py   # reach-vs-budget curves + multi-goal battery (top-k, window, margin, monotone)
+│   │   ├── eval_multi_goal_steering.py   # reach-vs-budget curves + multi-goal battery
 │   │   └── eval_threat_model.py          # mitigations + false positives (+ --quant for 7B)
-│   └── steering_geometry_results/  # raw CSVs backing every paper number
+│   └── steering_geometry_results/  # raw CSVs + writeups (incl. writeup-blendtraj.md)
 ├── requirements.txt
 ├── CITATION.cff
 └── LICENSE

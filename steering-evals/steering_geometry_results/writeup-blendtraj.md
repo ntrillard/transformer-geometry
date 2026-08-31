@@ -189,3 +189,28 @@ decision boundary, not a smooth averaging surface.
 HF_TOKEN=$TOKEN python3 gen_blendtraj.py Qwen/Qwen2-1.5B "The office was quiet after hours" "sheep,sushi,elevator"
 # env: LAM=0.4 SETTLE=8 HOLD_ANGLE=4 PLANT0=20 SEED=0
 ```
+
+---
+
+## Final recommendation (settle-window study)
+
+`gen_blendtraj.py` is the keeper. A controlled blast across settle windows (SETTLE=8, 14, 20,
+30) at LAM=0.4 on the office prompt gave the full outputs above; your judgment:
+
+**SETTLE=8 is the most coherent** - cleanest narrative arc, words woven naturally
+("...**sheep**ishly I found my way in the door... had to **sushi** for dinner... One
+**elevator** ride later..."). 14/20 develop it further but loosen the splice; 30 over-extends
+into maintenance-spam ("relocationⒻィ技术水平").
+
+With LAM=0 (plant-only) the window is irrelevant - SETTLE 8/14/20/30 all byte-identical,
+because the settle branch is pure-natural sampling and the planted token + de-repeat window
+is the whole steering. So LAM=0.4 + SETTLE=8 is the sweet spot that uses the blend (it
+smooths the re-entry) without letting the window dominate.
+
+## Files
+
+- **`gen_pure.py`** - unsteered baseline: model + multinomial sampling, zero hooks.
+- **`gen_blendtraj.py`** - THE production steers: plant words as real (space-prefixed single)
+  tokens, then a settle window blending two series (natural + small steer) at the readout.
+- everything else (gen_steer/gen_blend/gen_blend2/gen_blend_sweep/gen_blend3/eval_switch_big)
+  moved to `old/` - experimental filings; see individual commits for their findings.

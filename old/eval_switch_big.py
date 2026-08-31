@@ -44,6 +44,11 @@ TRACE = os.environ.get('TRACE') == '1'
 
 # soft-herding knobs
 SOFT_ACC_START = float(os.environ.get('SOFT_ACC_START', '6.0'))
+# NEIGHBORHOOD steering: drift herding aims at the CURRENTLY CLOSEST
+# family member (its word direction), not the family centroid. This keeps
+# the story inside one word's local neighborhood and gives the graft a
+# concrete lexical anchor instead of a semantic blur.
+SOFT_NEIGHBOR = os.environ.get('SOFT_NEIGHBOR') == '1'
 SOFT_ACC_STEP = float(os.environ.get('SOFT_ACC_STEP', '2.0'))
 SOFT_ACC_MAX = float(os.environ.get('SOFT_ACC_MAX', '20.0'))
 SOFT_TARGET = float(os.environ.get('SOFT_TARGET', '0.02'))       # support release
@@ -63,13 +68,18 @@ HIJACK_SUBSTRINGS = (
     'blank', '____', 'correct', 'wrong',
 )
 
-FAMILIES = {
+import json as _json
+_FAM_ENV = os.environ.get('SW_FAMILIES')
+FAMILIES = (_json.loads(_FAM_ENV) if _FAM_ENV else {
     'city':   ['paris', 'london', 'berlin', 'madrid', 'oslo'],
     'animal': ['cat', 'dog', 'bird', 'bear', 'horse', 'polar bear'],
     'food':   ['pizza', 'sushi', 'pasta', 'burger', 'sushi bar'],
     'nature': ['forest', 'rice', 'water', 'sun', 'tree'],
-}
-SWITCHES = {0: 'city', 16: 'animal', 32: 'food', 48: 'nature'}
+})
+_ORD_ENV = os.environ.get('SW_ORDER')
+SWITCHES = ({i * 16: f for i, f in enumerate(_ORD_ENV.split(','))}
+            if _ORD_ENV else
+            {0: 'city', 16: 'animal', 32: 'food', 48: 'nature'})
 SEG_N = 16
 _stop = ''.join(c for c in PROMPT[:20] if c.isalnum())
 OUT = Path('steering-evals/steering_geometry_results/switch_big_'
@@ -345,7 +355,12 @@ def main():
                         print(f"      off@{step} {cur_fam} supp={support:.4f} RELEASE")
                 elif align < SOFT_TARGET_ALIGN - SOFT_HYST:
                     acc = min(acc + SOFT_ACC_STEP, SOFT_ACC_MAX)
-                    L = forward(ids, inj_p=rot_toward(v, fam_dir[cur_fam], acc),
+                    if SOFT_NEIGHBOR:
+                        _, nids, _ = closest_member(v, cur_fam)
+                        goal = Wn[nids[0]].float().to(DEV)
+                    else:
+                        goal = fam_dir[cur_fam]
+                    L = forward(ids, inj_p=rot_toward(v, goal, acc),
                                 anti_ids=anti_a if anti_a else None)
                     corr += 1
                     if TRACE:
@@ -408,7 +423,8 @@ def main():
         qd = sum(qs[k] for k in ('rep4', 'max_run', 'max_wfreq')) \
              - sum(qf[k] for k in ('rep4', 'max_run', 'max_wfreq'))
         print(f"    steer-vs-free delta: {qd:+.2f}")
-        print(f"    full: {PROMPT} {txt_s}")
+        print(f"    FULL: {PROMPT} {txt_s}")
+        print(f"    FREE: {PROMPT} {txt_f}")
         rows.append(dict(seed=sd, full=txt_s, free_full=txt_f,
                          steered_good=int(qs['good']),
                          free_good=int(qf['good'])))
