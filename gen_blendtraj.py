@@ -47,6 +47,7 @@ LAM = float(os.environ.get('LAM', '0.6'))
 SETTLE = int(os.environ.get('SETTLE', '8'))
 HOLD_ANGLE = float(os.environ.get('HOLD_ANGLE', '8'))
 PLANT0 = int(os.environ.get('PLANT0', '20'))
+BLEND_STEPS = max(1, int(os.environ.get('BLEND_STEPS', '1')))
 TRACE = os.environ.get('TRACE') == '1'
 
 
@@ -165,12 +166,22 @@ def main():
                 print(f'      plant@{step} -> {tok.decode([wid])!r} '
                       f'settle until {settle_until}')
         elif in_settle:
-            # TWO SERIES, blended at the readout
+            # N-STEP two-series blend at the readout: the blend fraction
+            # and the hold angle both RAMP through BLEND_STEPS levels, so
+            # the story eases into the planted word over many steps, not
+            # one fixed blend.
+            done = SETTLE - (settle_until - step)   # steps completed
+            level = min(BLEND_STEPS - 1,
+                        int(done * BLEND_STEPS / SETTLE)) if BLEND_STEPS > 1 \
+                else 0
+            lam_k = LAM * (level + 1) / BLEND_STEPS
+            th_k = HOLD_ANGLE * (level + 1) / BLEND_STEPS
             L_nat, v = forward_v(ids)                 # natural series
             L_steer = forward(                       # steered series (hold)
-                ids, inj_p=rot_to_angle(v, word_ids[settle_word],
-                                        HOLD_ANGLE))
-            L = (1 - LAM) * L_nat + LAM * L_steer
+                ids, inj_p=rot_to_angle(v, word_ids[settle_word], th_k))
+            L = (1 - lam_k) * L_nat + lam_k * L_steer
+            if TRACE:
+                print(f'      settle[{step}] level {level + 1}/{BLEND_STEPS} lam={lam_k:.2f} th={th_k:.1f}')
             nxt = sample(L, block_words=bw)
         elif anti_a is not None:
             L = forward(ids, anti_ids=[anti_a])

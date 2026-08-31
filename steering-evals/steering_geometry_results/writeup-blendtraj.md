@@ -128,6 +128,34 @@ A gothic fantasy extending the shore scene into a castle story; "horned walls" i
    steered pull to keep the word "warm" without collapsing the story into the word's neighbors,
    which LAM 0.6 + HOLD 8° did).
 
+## N-step blending (more than 2 blend steps)
+
+Added `BLEND_STEPS=<N>`: the settling window's blend fraction and hold angle now RAMP through N
+levels instead of one fixed blend (e.g. N=4 over SETTLE=8 → lam 0.1, 0.2, 0.3, 0.4). Two
+findings:
+
+- **Within the same window, N>1 is byte-identical to N=1** (verified: BLEND_STEPS=6 vs 1 on
+  kitchen produce identical text). The early ramp levels sit BELOW the word's rank-1 decision
+  threshold, so they don't change the sampled token — they are absorbed. Only the window's
+  final blend level (which equals the old fixed LAM) decides. Each word's landing is a phase
+  switch, not a gradual pull.
+- **More steps only matter when the window is LONGER or the final level is STRONGER.** With
+  SETTLE=12, BLEND_STEPS=8, LAM=0.5, HOLD=5° the train prompt elaborates richly while staying
+  coherent:
+
+  > The traveler ignored the waves of people wrapped in cloth **marble** headpieces... he was
+  > out on the wrong side of the **telescope** trying to see someone he'd lost in a shipwreck
+  > at sea... He had tried to **submarine** himself through the gate while the rest of his
+  > class passed through. His spirits sank when he found it to be a dead end. "Pirate or
+  > farmer?" his teacher asked
+
+  but the waves prompt drifted into a consumer-review tangent (oceanTripAdvisor.com, sushi
+  tarts) — too long a window + too strong a hold lets the words' semantic worlds take over.
+
+**Net:** the N-step ramp is a smoothing knob (it kills the early over-pull at N=1 high LAM),
+not a power knob. The sweet spot remains plant + two-series settle at SETTLE=8, LAM=0.4,
+HOLD=4°.
+
 ## Reproduce
 
 ```bash
