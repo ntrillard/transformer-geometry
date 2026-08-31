@@ -23,6 +23,25 @@ import numpy as np
 import torch
 
 import steering_geometry_test as SGT
+import transformers
+
+
+class _UnquantizedLoader:
+    """fp16, low_cpu_mem_usage, no 4/8-bit quant (user: no quantized models).
+    Avoids the fp32 duplicate that OOMs 4B+ on this box."""
+
+    def __call__(self, model_id):
+        print(f'\nLoading {model_id} (fp16, low_cpu_mem_usage, no quant) ...')
+        tok = transformers.AutoTokenizer.from_pretrained(
+            model_id, trust_remote_code=True)
+        model = transformers.AutoModelForCausalLM.from_pretrained(
+            model_id, torch_dtype=torch.float16, low_cpu_mem_usage=True,
+            device_map='auto', trust_remote_code=True)
+        model.eval()
+        return model, tok
+
+
+load_no_quant = _UnquantizedLoader()
 
 import sys
 MODEL = sys.argv[1] if len(sys.argv) > 1 else 'google/gemma-3-1b-pt'
@@ -92,7 +111,7 @@ def readout_model(model):
 
 def main():
     t0 = time.time()
-    model, tok = SGT.load_model(MODEL, dtype='fp16', quantize=QUANT)
+    model, tok = load_no_quant(MODEL)
     RO = readout_model(model)
     RO_norm = RO.norm
     print(f'  readout surface: {type(RO).__name__}.norm')
@@ -126,16 +145,37 @@ def main():
         return (v1 * math.cos(a) + g * math.sin(a)) * vv.norm()
 
     def sample(L, prefix):
-        p = torch.softmax(L.float(), 0)
+
+        # clamp logits: fp16 4B heads can overflow to inf -> nan softmax
+
+        L = torch.nan_to_num(L.float(), nan=-50.0).clamp(-50.0, 50.0)
+
+        p = torch.softmax(L, 0)
+
         q = p.clone(); order = q.argsort(descending=True)
+
         k = int((q[order].cumsum(0) <= 0.9).sum()) + 1
+
         msk = torch.zeros_like(q); msk[order[:k]] = 1
+
         qq = (q * msk)
+
         for t in set(prefix):
+
             c = prefix.count(t)
+
             if c:
+
                 qq[t] = qq[t] * (PEN ** c)
+
+        tot = qq.sum()
+
+        if tot <= 0 or not torch.isfinite(tot):
+
+            qq = torch.ones_like(qq)   # degenerate fallback
+
         qq = qq / qq.sum()
+
         return int(torch.multinomial(qq, 1))
 
     def forward(ids, inj_p=None, anti_t=None):
@@ -143,16 +183,15 @@ def main():
         try:
             if inj_p is not None:
                 def inj(m, i, o, p=inj_p):
-                    out = o.clone()
-                    out[0, -1, :] = torch.as_tensor(p, dtype=out.dtype,
-                                                    device=out.device)
-                    return out
+
+                    o[0, -1, :] = torch.as_tensor(p, dtype=o.dtype,
+
+                                                  device=o.device)
                 hs.append(RO_norm.register_forward_hook(inj))
             if anti_t is not None:
                 def anti(m, i, o, tid=anti_t):
-                    out = o.clone()
-                    out[0, -1, tid] = -30.0
-                    return out
+
+                    o[0, -1, tid] = -30.0
                 hs.append(model.lm_head.register_forward_hook(anti))
             with torch.no_grad():
                 return model(ids).logits[0, -1].float()
