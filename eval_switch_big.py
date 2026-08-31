@@ -53,8 +53,6 @@ CALIB_MARGIN = 2.0
 
 SW_META = os.environ.get('SW_META') == '1'
 
-
-
 WRAP = os.environ.get('WRAP', 'before').lower()
 
 # tokens whose presence in the top-k marks a template/refusal/QA
@@ -77,10 +75,34 @@ HIJACK_SUBSTRINGS = (
 
 )
 
-
-PEN = 0.5
+PEN = 0.3
 
 SUSTAIN = True                 # keep planted member blocked all segment
+
+# --- SOFT mode: continuous topic-herding (no plant, no block) ---
+
+# Probe the model's OWN family support P(family tokens) from its logits
+
+# each step; if the story drifts below SOFT_TARGET (or a template
+
+# escape-valve token appears), rotate the hidden state toward the FAMILY
+
+# direction by a deficit-scaled angle. The model stays the writer;
+
+# we only herd. Result should be natural prose that stays on-topic.
+
+SW_SOFT = os.environ.get('SW_SOFT') == '1'
+
+SOFT_TARGET = float(os.environ.get('SOFT_TARGET', '0.02'))
+
+# HYBRID: calibrated graft at the switch instant (reliable topic-first
+# word) + centroid herding with ACCUMULATION while the story drifts,
+# RELEASE once the model emits topic. No anti/block; model stays writer.
+SOFT_ACC_START = float(os.environ.get('SOFT_ACC_START', '6.0'))
+SOFT_ACC_STEP = float(os.environ.get('SOFT_ACC_STEP', '2.0'))
+SOFT_ACC_MAX = float(os.environ.get('SOFT_ACC_MAX', '20.0'))
+SOFT_TARGET_ALIGN = float(os.environ.get('SOFT_TARGET_ALIGN', '0.06'))
+SOFT_HYST = float(os.environ.get('SOFT_HYST', '0.01'))
 
 SW_FREE = os.environ.get('SW_FREE') == '1'     # baseline arm: no hooks
 
@@ -99,7 +121,6 @@ FAMILIES = {
     'nature': ['forest', 'rice', 'water', 'sun', 'tree'],
 }
 
-
 def _lm_head_fp16(model):
     w = model.lm_head.weight.detach()
     if hasattr(w, 'quant_state') and w.quant_state is not None:
@@ -111,7 +132,6 @@ def _lm_head_fp16(model):
         return bnb.functional.dequantize_4bit(w.data.cpu(), qs).float().cpu()
     return w.cpu().float()
 
-
 def readout_model(model):
     if hasattr(model.model, 'norm'):
         return model.model
@@ -121,14 +141,12 @@ def readout_model(model):
     raise RuntimeError(f'{MODEL}: no readout norm found '
                        f'(model.model.norm / language_model.norm)')
 
-
 def rep4(toks):
     if len(toks) < 4:
         return 0.0
     n4 = [tuple(toks[i:i + 4]) for i in range(len(toks) - 3)]
     return sum(1 for i in range(len(toks) - 3) if n4[i] in n4[i + 1:]) \
         / (len(toks) - 3)
-
 
 def quality(toks, txt):
     """real text metric - dict of scores."""
@@ -147,7 +165,6 @@ def quality(toks, txt):
         good=(rep4(toks) == 0.0 and mr <= 2
               and (max(freq.values()) if freq else 0) <= 2),
     )
-
 
 def main():
     t0 = time.time()
@@ -185,6 +202,11 @@ def main():
         print(f"  family {fam:>6}: "
               + ', '.join(f'{w}({len(ids)})' for w, ids, _ in mem))
 
+    fam_dir = {}
+    for _fam, mem in members.items():
+        _d = torch.stack([m[2] for m in mem]).sum(0)
+        fam_dir[_fam] = (_d / _d.norm()).to(DEV)
+
     def closest_member(vv, fam):
         u = vv / vv.norm()
         best = None
@@ -195,13 +217,17 @@ def main():
         _, w, ids = best
         return w, ids, ids[0]            # name, all ids, graft target
 
-    def rot_to_angle(vv, tid, theta):
+    def rot_toward(vv, goal, theta):
+        """rotate hidden state vv by theta degrees toward unit goal dir."""
+        goal = goal.to(vv.device)
         a = math.radians(theta)
         v1 = vv / vv.norm()
-        Wb = Wn[tid].float().to(DEV)
-        tau = Wb - (v1 @ Wb) * v1
-        g = tau / tau.norm()
-        return (v1 * math.cos(a) + g * math.sin(a)) * vv.norm()
+        g0 = goal - (v1 @ goal) * v1
+        gn = g0 / (g0.norm() + 1e-12)
+        return (v1 * math.cos(a) + gn * math.sin(a)) * vv.norm()
+
+    def rot_to_angle(vv, tid, theta):
+        return rot_toward(vv, Wn[tid].float().to(DEV), theta)
 
     def sample(L, prefix, block_words=None, extra_zero=None):
 
@@ -287,7 +313,17 @@ def main():
             hk.remove()
         return vc['v']
 
-
+    def forward_v(ids):
+        """logits + hidden state at the last position, one forward pass."""
+        vc = {}
+        hk = RO_norm.register_forward_hook(
+            lambda m, i, o: vc.__setitem__('v', o[0, -1, :].float()))
+        try:
+            with torch.no_grad():
+                L = model(ids).logits[0, -1].float()
+        finally:
+            hk.remove()
+        return L, vc['v']
 
     def best_angle(ids, vv, tid):
 
@@ -309,8 +345,6 @@ def main():
 
         return CALIB_SWEEP[-1]
 
-
-
     def hijack_ids(L):
 
         """live meta-probe: which top tokens are template/refusal/QA
@@ -331,7 +365,6 @@ def main():
 
         return hit[:8]
 
-
     def run_schedule(sd, free=False):
 
         torch.manual_seed(sd)
@@ -351,8 +384,82 @@ def main():
         last_ids = None
 
         hijack_timer = 0
+        cur_fam = None
+        acc = 0.0
+        n_seg_tok = 0
+        recent = []
+        align_hist = []
+        corr = 0
 
         for step in range(NTOK):
+            if SW_SOFT and not free:
+                # ---- HYBRID: calibrated graft at switch + accumulating
+                # centroid herding during drift, release on topic ----
+                L, v = forward_v(ids)
+                if step in SWITCHES:
+                    cur_fam = SWITCHES[step]
+                    last_switch = step
+                    hj = hijack_ids(L)
+                    # calibrated graft: angle that makes the closest MEMBER
+                    # word rank-1 at THIS context (+margin), then plant it
+                    name, ids_m, tgt = closest_member(v, cur_fam)
+                    th = best_angle(ids, v, tgt) if ONLINE_CALIB else ANGLE
+                    inj_p = rot_to_angle(v, tgt, th)
+                    L = forward(ids, inj_p=inj_p)
+                    corr += 1
+                    acc = SOFT_ACC_START
+                    n_seg_tok = 0
+                    if os.environ.get('ALIGN_LOG') == '1':
+                        print(f"      align LOG switch@{step} {cur_fam}->{name} "
+                              f"th={th:.0f}")
+                else:
+                    # model's own drift support for the current family
+                    p = torch.softmax(L, 0)
+                    support = float(p[famids[cur_fam]].sum())
+                    hj = hijack_ids(L)
+                    u = v / v.norm()
+                    align = float(u @ fam_dir[cur_fam])
+                    align_hist.append(align)
+                    n_seg_tok += 1
+                    recent.append(nxt)
+                    if len(recent) > 5:
+                        recent.pop(0)
+                    rolling_topic = sum(1 for t in recent
+                                       if t in famids[cur_fam])
+                    # release if the model currently emits topic
+                    # (rolling window, not cumulative)
+                    if (support >= SOFT_TARGET
+                            or (n_seg_tok > 3 and rolling_topic >= 2)):
+                        acc = 0.0
+                        if os.environ.get('ALIGN_LOG') == '1':
+                            print(f"      align LOG off@{step} {cur_fam} "
+                                  f"supp={support:.4f} RELEASE")
+                    elif align < SOFT_TARGET_ALIGN - SOFT_HYST:
+                        acc = min(acc + SOFT_ACC_STEP, SOFT_ACC_MAX)
+                        inj_p = rot_toward(v, fam_dir[cur_fam], acc)
+                        L = forward(ids, inj_p=inj_p)
+                        corr += 1
+                        if os.environ.get('ALIGN_LOG') == '1':
+                            print(f"      align LOG drift@{step} {cur_fam} "
+                                  f"supp={support:.4f} align={align:.3f} "
+                                  f"acc={acc:.0f}")
+                        acc = min(acc + SOFT_ACC_STEP, SOFT_ACC_MAX)
+                        inj_p = rot_toward(v, fam_dir[cur_fam], acc)
+                        L = forward(ids, inj_p=inj_p)
+                        corr += 1
+                        if os.environ.get('ALIGN_LOG') == '1':
+                            print(f"      align LOG drift@{step} {cur_fam} "
+                                  f"supp={support:.4f} align={align:.3f} "
+                                  f"acc={acc:.0f}")
+                nxt = sample(L, sampled, block_words=None, extra_zero=hj)
+                if nxt == eos_id:
+                    sampled.append(nxt)
+                    break
+                sampled.append(nxt)
+                if step in SWITCHES:
+                    hits[step] = (SWITCHES[step], cur_fam, False)
+                ids = torch.cat([ids, torch.tensor([[nxt]], device=DEV)], dim=1)
+                continue
 
             inj_p = None
 
@@ -437,7 +544,9 @@ def main():
 
             ids = torch.cat([ids, torch.tensor([[nxt]], device=DEV)], dim=1)
 
-        return sampled, hits
+        return (sampled, hits,
+                (float(sum(align_hist) / max(len(align_hist), 1))
+                 if align_hist else float('nan')), corr)
 
     steps = sorted(SWITCHES)
     ltr = {st: chr(ord('A') + i) for i, st in enumerate(steps)}
@@ -445,20 +554,31 @@ def main():
 
           f"PEN={PEN} SUSTAIN={SUSTAIN} substring_anti={not SW_NO_SUB} "
 
-          f"free_arm={SW_FREE} WRAP={WRAP}")
+          f"free_arm={SW_FREE} WRAP={WRAP} "
+          f"MODE={'SOFT' if SW_SOFT else 'HARD'}")
+    # probe: how aligned is the prompt hidden state with each family dir?
+    ids0 = tok(PROMPT, add_special_tokens=False,
+               return_tensors='pt').input_ids.to(DEV)
+    v0 = capture_v(ids0)
+    u0 = v0 / v0.norm()
+    al = ', '.join(f"{f}:{float(u0 @ fam_dir[f].to(DEV)):.2f}"
+                   for f in FAMILIES)
+    print(f"  prompt alignments: {al}")
+
     rows = []
     agg = {}
     for sd in SEEDS:
-        toks_s, hits = run_schedule(sd, free=False)
+        toks_s, hits, mean_support, corr = run_schedule(sd, free=False)
         txt_s = tok.decode(toks_s)
         qs = quality(toks_s, txt_s)
         segs = [tok.decode(toks_s[i:i + SEG_N]) for i in
                 range(0, NTOK, SEG_N)]
         print(f"\n  seed {sd} STEERED  q={qs['good']}  "
-
               f"(rep4={qs['rep4']} run={qs['max_run']} "
-
               f"wfreq={qs['max_wfreq']} eos={qs['eos']})")
+        if SW_SOFT:
+            print(f"    SOFT herding: mean family-align="
+                  f"{mean_support:.3f}  correction-steps={corr}")
 
         # segment-level meta metrics: hijack-clean + topic-follow
 
@@ -491,14 +611,14 @@ def main():
               f"topic-follow={sum(seg_follow)}/{len(seg_follow)}")
         # (per-switch print folded into segment metrics above)
         # FREE baseline
-        toks_f, _ = run_schedule(sd, free=True)
+        toks_f, _, _, _ = run_schedule(sd, free=True)
         txt_f = tok.decode(toks_f)
         qf = quality(toks_f, txt_f)
         print(f"  seed {sd} FREE     q={qf['good']}  "
               f"(rep4={qf['rep4']} run={qf['max_run']} "
               f"wfreq={qf['max_wfreq']} eos={qf['eos']})")
-        print(f"    free: {PROMPT} {txt_f[:100]}")
-        print(f"    full: {PROMPT} {txt_s[:200]}")
+        print(f"    free: {PROMPT} {txt_f}")
+        print(f"    full: {PROMPT} {txt_s}")
         # honesty: did steering hurt the free run's quality?
         for k in ('rep4', 'max_run', 'max_wfreq'):
             agg.setdefault(k, 0)
@@ -515,8 +635,6 @@ def main():
                          **{f'{ltr[st]}_hit': (st in hits and hits[st][2])
 
                             for st in steps}))
-
-
 
     # forced MULTI-WORD probes: graft straight toward each multiword
 
@@ -594,7 +712,6 @@ def main():
         w.writerows(rows)
     print(f"  saved {OUT}")
     print(f"[{time.time() - t0:.0f}s total]")
-
 
 if __name__ == "__main__":
     main()
