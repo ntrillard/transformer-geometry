@@ -36,9 +36,21 @@ DEV = 'cuda' if torch.cuda.is_available() else 'cpu'
 NTOK = 64
 SEEDS = [0, 1]
 ANGLE = 10.0
+
+# optional per-step calibrated angles (order: sorted SWITCHES steps)
+
+# e.g. SW_ANGLES=4,8,10,12 for Qwen2-1.5B on the discuss prompt
+
+_step_angles = [float(x) for x in
+
+                os.environ.get('SW_ANGLES', '').split(',') if x]
+
 PEN = 0.5
+
 SUSTAIN = True                 # keep planted member blocked all segment
+
 SW_FREE = os.environ.get('SW_FREE') == '1'     # baseline arm: no hooks
+
 SW_NO_SUB = os.environ.get('SW_NO_SUB') == '1' # disable substring anti
 _stop = ''.join(c for c in PROMPT[:20] if c.isalnum())
 OUT = Path(f'../steering_geometry_results/switch_big_'
@@ -225,12 +237,27 @@ def main():
                     fam = SWITCHES[step]
                     v = capture_v(ids)
                     name, ids_m, tgt = closest_member(v, fam)
-                    vp = rot_to_angle(v, tgt, ANGLE)
+                    if _step_angles:
+
+                        th = _step_angles[list(SWITCHES).index(step)]
+
+                    else:
+
+                        th = ANGLE
+
+                    vp = rot_to_angle(v, tgt, th)
+
                     inj_p = vp
+
                     last_switch = step
+
                     last_name = name
+
                     last_ids = ids_m
-                    block_words = set(name.lower().split())
+
+                    # NOTE: block_words intentionally LEFT OFF here -
+
+                    # substring-anti would zero the token we just planted
                 elif last_ids is not None:
                     since = step - last_switch
                     if 1 <= since <= 2:
