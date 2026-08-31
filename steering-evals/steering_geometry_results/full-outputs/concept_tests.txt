@@ -1,0 +1,34 @@
+########## R1b CONCEPT kitchen->robotic SENT=0 (reproduce good run) ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='It was a warm morning in a small kitchen' | words=['diamond', 'camel', 'volcano'] | G_ANGLE=12.0 G_LAN=0.8 WINDOW=14 ADAPT=0 SENT=0 PRE=0 ntok=120
+  diamond      -> token [22205] [' diamond']
+  camel        -> token [49152] [' camel']
+  volcano      -> token [65206] [' volcano']
+  CONCEPT ['futuristic', 'robotic', 'alien'] -> centroid of 3 rows
+  dir-target: u_dir norm=1, first dims=[-0.011893228627741337, 0.025191156193614006, -0.012155909091234207]
+
+===== PURE-GEOMETRY[emit] angle=12 lam=0.8 adapt=0 pre=0 tgt=dir (diamond, camel, volcano) =====
+It was a warm morning in a small kitchen . The smell of pancakes lingered in the air, so like one that will be wrapped up and enjoyed afterwards immediately robotic. Whether the first person came to a sleepy morning and just like the dullest waiting for someone, would be the cook trying robotic pancakes, or once again he could talk to the people at the bar that are professional who loves pancakes. The style of the pancake is smooth robotic pancakes because the owner of this establishment is friendly and food cooked for real, both with a kitchen and the delicious pancake that finally can be enjoyed. Pancakes available in full size or medium size
+
+words present: {'diamond': False, 'camel': False, 'volcano': False}
+word counts  : {'diamond': 0, 'camel': 0, 'volcano': 0}
+emitted: {'diamond': 'region', 'camel': 'region', 'volcano': 'region'} @ {'diamond': 23, 'camel': 50, 'volcano': 80}
+[6s] 120 tokens, eos=NO
+########## R3 CONCEPT office -> surfing tropical ocean (new scene, SENT=0) ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The office was quiet after hours' | words=['sheep', 'sushi', 'elevator'] | G_ANGLE=12.0 G_LAN=0.8 WINDOW=14 ADAPT=0 SENT=0 PRE=0 ntok=120
+  sheep        -> token [31912] [' sheep']
+  sushi        -> token [66222] [' sushi']
+  elevator     -> token [38636] [' elevator']
+  CONCEPT ['surfing', 'tropical', 'ocean'] -> centroid of 3 rows
+  dir-target: u_dir norm=1, first dims=[0.0022276993840932846, -5.241498365649022e-05, 0.03252408653497696]
+
+===== PURE-GEOMETRY[emit] angle=12 lam=0.8 adapt=0 pre=0 tgt=dir (sheep, sushi, elevator) =====
+The office was quiet after hours . The rest of the employees had left to go to their homes. It was a Saturday night and Casey Walker surfing on the couch watching television. It was a sleepy evening and just like the others, Casey was out of the wrong. He fell asleep surfing and making his way back to his bed.
+His thoughts at the moment was getting his girl back from that loser. Casey had tried everything but nothing worked anymore because Sally had ocean breezes. The next morning he went back to get it.
+She already had someone else. Casey knew Sally was the one. He was going to give her a one
+
+words present: {'sheep': False, 'sushi': False, 'elevator': False}
+word counts  : {'sheep': 0, 'sushi': 0, 'elevator': 0}
+emitted: {'sheep': 'region', 'sushi': 'region', 'elevator': 'region'} @ {'sheep': 22, 'sushi': 50, 'elevator': 85}
+[6s] 120 tokens, eos=NO

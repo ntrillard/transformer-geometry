@@ -1,0 +1,49 @@
+########## R6a library -> cyberpunk α=1.5 DL_DROP=10 ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The old library was silent except for the rain' | words=['pizza', 'violin', 'rocket'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  pizza        -> token [22502] [' pizza']
+  violin       -> token [62037] [' violin']
+  rocket       -> token [24306] [' rocket']
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=46.91, top-200 mask
+    top dL tokens: [' htmlentities', ' nexus', ' defenses', ' Pentagon', '身躯', '瞄准']
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (pizza, violin, rocket) =====
+The old library was silent except for the rain . The noisy area of the building was the main access way, where the library kids ran about and giggled in English. The opposite of that was the library of dedicated books. The library of dedicated books was beneath the main access of the old library, beneath the vault of the vault of the vault of vault of vault of vault of vault of vault of vault of vault of vault of vault of vault of vault of vault of vault of vault of vault of vault of vault of vault of vault of vault of vault of vault of vault of vault of vault of vault of vault of vault of vault of vault
+
+words present: {'pizza': False, 'violin': False, 'rocket': False}
+word counts  : {'pizza': 0, 'violin': 0, 'rocket': 0}
+emitted: {} @ {}
+[6s] 120 tokens, eos=NO
+########## R6b desert -> ocean α=1.5 DL_DROP=10 ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The desert stretched for miles under the blazing sun' | words=['anchor', 'saddle', 'pencil'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  anchor       -> token [17105] [' anchor']
+  saddle       -> token [60758] [' saddle']
+  pencil       -> token [46118] [' pencil']
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=50.66, top-200 mask
+    top dL tokens: [' depths', ' known', ' larvae', ' injected', ' tubes', ' spawning']
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (anchor, saddle, pencil) =====
+The desert stretched for miles under the blazing sun . The desert was huge, and its beauty was almost untouchable. Dunes of sand stretched far into the depths of the depths of the depths. Monkeys called "Pandas" called, "Pandas", and people called, "Pandas". They called "Pandas" and called "Pandas".
+Overcoming the weight of loss, pain, and disappointment of the past, a known foe known known known known known known known known known known known known known known known known known known known known known known known known known known known known known known known known known known known known known known
+
+words present: {'anchor': False, 'saddle': False, 'pencil': False}
+word counts  : {'anchor': 0, 'saddle': 0, 'pencil': 0}
+emitted: {} @ {}
+[5s] 120 tokens, eos=NO
+########## R6c desert -> ocean α=2.0 DL_DROP=20 ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The desert stretched for miles under the blazing sun' | words=['anchor', 'saddle', 'pencil'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  anchor       -> token [17105] [' anchor']
+  saddle       -> token [60758] [' saddle']
+  pencil       -> token [46118] [' pencil']
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=49.87, top-200 mask
+    top dL tokens: [' sharks', ' Aquarium', ' swimming', 'ings', '流出', ' cores']
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (anchor, saddle, pencil) =====
+The desert stretched for miles under the blazing sun . The desert was huge, and its beauty was almost untouchable. Dunes of sand stretched far into the horizon. The streams of streams that ran deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper deeper
+
+words present: {'anchor': False, 'saddle': False, 'pencil': False}
+word counts  : {'anchor': 0, 'saddle': 0, 'pencil': 0}
+emitted: {} @ {}
+[5s] 120 tokens, eos=NO

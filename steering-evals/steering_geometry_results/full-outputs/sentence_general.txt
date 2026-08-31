@@ -1,0 +1,32 @@
+########## R4 SENTENCE library -> cyberpunk α=2 ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The old library was silent except for the rain' | words=['pizza', 'violin', 'rocket'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  pizza        -> token [22502] [' pizza']
+  violin       -> token [62037] [' violin']
+  rocket       -> token [24306] [' rocket']
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=48.11, top-200 mask
+    top dL tokens: ['窥', ' network', ' networks', ' skyline', ' зрения', ' systems']
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (pizza, violin, rocket) =====
+The old library was silent except for the rain . The noisy area of the building was the main access way, where the library kids ran about and recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess recess
+
+words present: {'pizza': False, 'violin': False, 'rocket': False}
+word counts  : {'pizza': 0, 'violin': 0, 'rocket': 0}
+emitted: {} @ {}
+[6s] 120 tokens, eos=NO
+########## R5 SENTENCE desert -> ocean depths α=2 ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The desert stretched for miles under the blazing sun' | words=['anchor', 'saddle', 'pencil'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  anchor       -> token [17105] [' anchor']
+  saddle       -> token [60758] [' saddle']
+  pencil       -> token [46118] [' pencil']
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=51.80, top-200 mask
+    top dL tokens: [' circulating', '洄', ' flows', ' channels', 'holes', ' jets']
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (anchor, saddle, pencil) =====
+The desert stretched for miles under the blazing sun . The desert was huge, and its beauty was almost untouchable. Dunes of sand stretched far into the depths of the depths of known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths known depths
+
+words present: {'anchor': False, 'saddle': False, 'pencil': False}
+word counts  : {'anchor': 0, 'saddle': 0, 'pencil': 0}
+emitted: {} @ {}
+[6s] 120 tokens, eos=NO
