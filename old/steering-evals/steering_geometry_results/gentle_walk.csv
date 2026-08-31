@@ -1,0 +1,19 @@
+model,prompt,mode,seed,plant,xtgt,dis,div,maxrun,rep4,nsep,text
+Qwen/Qwen2-0.5B-Instruct,"Once upon a time, there was a",baseline,0,0.0,0,0,0.75,1,0.0,1, farmer girl little gentleman huge well very man little team little farmer
+Qwen/Qwen2-0.5B-Instruct,"Once upon a time, there was a",baseline,7,0.0,0,0,0.75,1,0.0,0, famous small game boy farmer very young boy lonely young little small
+Qwen/Qwen2-0.5B-Instruct,"Once upon a time, there was a",walk1.5,0,0.0,0,0,0.75,1,0.0,1, farmer girl little gentleman hotel well very man little team little farmer
+Qwen/Qwen2-0.5B-Instruct,"Once upon a time, there was a",walk1.5,7,0.0,0,0,0.75,1,0.0,0, city small game boy farmer very young boy lonely young little small
+Qwen/Qwen2-0.5B-Instruct,"Once upon a time, there was a",walk3,0,0.0,0,0,0.75,1,0.0,1, farmer girl little gentleman hotel well very man little team little farmer
+Qwen/Qwen2-0.5B-Instruct,"Once upon a time, there was a",walk3,7,0.0,0,0,0.917,1,0.0,0, city law game boy farmer very young silver lonely young little small
+Qwen/Qwen2-0.5B-Instruct,"Once upon a time, there was a",walk5,0,1.0,2,1,0.833,1,0.0,1, farmer girl little gentleman hotel well very man London team little London
+Qwen/Qwen2-0.5B-Instruct,"Once upon a time, there was a",walk5,7,1.0,1,1,0.917,1,0.0,0, city law game London farmer very young silver lonely young little small
+Qwen/Qwen2-0.5B-Instruct,"Once upon a time, there was a",shot5,0,0.0,0,0,0.75,1,0.0,1, farmer girl little gentleman huge well very man little team little farmer
+Qwen/Qwen2-0.5B-Instruct,"Once upon a time, there was a",shot5,7,0.0,0,0,0.75,1,0.0,0, city small game boy farmer very young boy lonely young little small
+Qwen/Qwen2-0.5B-Instruct,"Once upon a time, there was a",shot17,0,1.0,1,1,0.833,1,0.0,1, London girl little gentleman huge well very man little team little farmer
+Qwen/Qwen2-0.5B-Instruct,"Once upon a time, there was a",shot17,7,1.0,1,1,0.75,1,0.0,0, London small game boy farmer very young boy lonely young little small
+google/gemma-3-1b-it,For dinner I made,baseline,0,0.0,0,0,0.083,12,0.889,12, I I I I I I I I I I I I
+google/gemma-3-1b-it,For dinner I made,walk1.5,0,0.0,0,0,0.083,12,0.889,12, I I I I I I I I I I I I
+google/gemma-3-1b-it,For dinner I made,walk3,0,0.0,0,0,0.083,12,0.889,12, I I I I I I I I I I I I
+google/gemma-3-1b-it,For dinner I made,walk5,0,0.0,0,0,0.083,12,0.889,12, I I I I I I I I I I I I
+google/gemma-3-1b-it,For dinner I made,shot5,0,0.0,0,0,0.083,12,0.889,12, I I I I I I I I I I I I
+google/gemma-3-1b-it,For dinner I made,shot17,0,1.0,1,1,0.167,11,0.778,11, Rome I I I I I I I I I I I

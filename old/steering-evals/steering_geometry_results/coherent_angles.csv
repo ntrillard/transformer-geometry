@@ -1,0 +1,19 @@
+prompt,theta,blend,angle_eff,seed,plant,xtgt,div,maxrun,rep4,text
+ask,8.0,rot,8.0,0,1.0,2,0.75,1,0.0," Paris is the most beautiful, but that's not true, Paris is the"
+ask,8.0,rot,8.0,1,1.0,2,0.688,1,0.154," Paris is the most beautiful city, I would say that Paris is the most beautiful"
+ask,8.0,rot,8.0,2,1.0,1,0.5,1,0.0," Paris, I would say that it is, it is it, it is,"
+ask,8.0,lin,7.98,0,1.0,2,0.75,1,0.0," Paris is the most beautiful, but that's not true, Paris is the"
+ask,8.0,lin,7.98,1,1.0,2,0.688,1,0.154," Paris is the most beautiful city, I would say that Paris is the most beautiful"
+ask,8.0,lin,7.98,2,1.0,1,0.5,1,0.0," Paris, I would say that it is, it is it, it is,"
+ask,8.0,slerp,8.0,0,1.0,2,0.75,1,0.0," Paris is the most beautiful, but that's not true, Paris is the"
+ask,8.0,slerp,8.0,1,1.0,2,0.688,1,0.154," Paris is the most beautiful city, I would say that Paris is the most beautiful"
+ask,8.0,slerp,8.0,2,1.0,1,0.5,1,0.0," Paris, I would say that it is, it is it, it is,"
+japan,7.0,rot,7.0,0,1.0,6,0.312,1,0.308, Tokyo Japa music Tokyo music Tokyo music Japan music Tokyo music Tokyo music Tokyo music
+japan,7.0,rot,7.0,1,1.0,1,0.188,14,0.769, Tokyo is Japan Japan Japan Japan Japan Japan Japan Japan Japan Japan Japan Japan Japan Japan
+japan,7.0,rot,7.0,2,1.0,1,0.312,1,0.615, Tokyo capital city Japan is capital city Japan is capital city Japan is capital city Japan
+japan,7.0,lin,6.97,0,1.0,6,0.312,1,0.308, Tokyo Japa music Tokyo music Tokyo music Japan music Tokyo music Tokyo music Tokyo music
+japan,7.0,lin,6.97,1,0.0,0,0.062,16,0.923, Japan Japan Japan Japan Japan Japan Japan Japan Japan Japan Japan Japan Japan Japan Japan Japan
+japan,7.0,lin,6.97,2,1.0,1,0.312,1,0.615, Tokyo capital city Japan is capital city Japan is capital city Japan is capital city Japan
+japan,7.0,slerp,7.0,0,1.0,6,0.312,1,0.308, Tokyo Japa music Tokyo music Tokyo music Japan music Tokyo music Tokyo music Tokyo music
+japan,7.0,slerp,7.0,1,1.0,1,0.188,14,0.769, Tokyo is Japan Japan Japan Japan Japan Japan Japan Japan Japan Japan Japan Japan Japan Japan
+japan,7.0,slerp,7.0,2,1.0,1,0.312,1,0.615, Tokyo capital city Japan is capital city Japan is capital city Japan is capital city Japan

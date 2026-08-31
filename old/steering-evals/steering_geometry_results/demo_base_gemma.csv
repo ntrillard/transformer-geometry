@@ -1,0 +1,13 @@
+model,prompt,mode,family,plant,xtgt,dis,rep4,div,maxrun,text
+google/gemma-3-1b-pt,story,base,city,0.0,0,0,0.182,0.429,6, first time dream question question child time time time time time time year time
+google/gemma-3-1b-pt,story,walk3,city,0.0,0,0,0.182,0.5,6, first time dream story world child time time time time time time year time
+google/gemma-3-1b-pt,story,walk5,city,0.0,0,0,0.0,0.571,4, first time dream story world child time time time time war time year time
+google/gemma-3-1b-pt,capital,base,city,0.0,0,0,0.0,0.714,1, I covered a being one the a the one a France headed owed is
+google/gemma-3-1b-pt,capital,walk3,city,0.0,2,1,0.0,0.571,2, I France a being France the a France one France France Paris Paris is
+google/gemma-3-1b-pt,capital,walk5,city,1.0,8,1,0.091,0.143,3, Paris France Paris France France France Paris France Paris Paris France Paris Paris Paris
+google/gemma-3-1b-pt,town,base,nature,0.0,0,0,0.182,0.214,6, a where where where a a a a a a where where there where
+google/gemma-3-1b-pt,town,walk3,nature,0.0,0,0,0.182,0.214,6, a where where where a a a a a a where where there where
+google/gemma-3-1b-pt,town,walk5,nature,0.0,1,1,0.182,0.214,6, a where where where a a a a a a where where star where
+google/gemma-3-1b-pt,breakfast,base,food,0.0,0,0,0.909,0.071,14, I I I I I I I I I I I I I I
+google/gemma-3-1b-pt,breakfast,walk3,food,0.0,0,0,0.636,0.143,11, I I I I I I I I I I I breakfast breakfast I
+google/gemma-3-1b-pt,breakfast,walk5,food,1.0,12,1,0.545,0.143,9, I rice rice rice I rice rice rice rice rice rice rice rice rice

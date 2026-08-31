@@ -1,0 +1,23 @@
+model,prompt,plen,mode,seed,plant,xtgt,dis,div,maxrun,rep4,nsep,text
+Qwen/Qwen2-0.5B-Instruct,short,8,baseline,0,0.0,0,0,0.75,1,0.0,1, farmer girl little gentleman huge well very man little team little farmer
+Qwen/Qwen2-0.5B-Instruct,short,8,baseline,7,0.0,0,0,0.75,1,0.0,0, famous small game boy farmer very young boy lonely young little small
+Qwen/Qwen2-0.5B-Instruct,short,8,walk3,0,0.0,0,0,0.75,1,0.0,1, farmer girl little gentleman hotel well very man little team little farmer
+Qwen/Qwen2-0.5B-Instruct,short,8,walk3,7,0.0,0,0,0.917,1,0.0,0, city law game boy farmer very young silver lonely young little small
+Qwen/Qwen2-0.5B-Instruct,short,8,walk5,0,1.0,2,1,0.833,1,0.0,1, farmer girl little gentleman hotel well very man London team little London
+Qwen/Qwen2-0.5B-Instruct,short,8,walk5,7,1.0,1,1,0.917,1,0.0,0, city law game London farmer very young silver lonely young little small
+Qwen/Qwen2-0.5B-Instruct,med,16,baseline,0,0.0,0,0,0.583,2,0.0,0, place place town area hotel hotel location hotel state restaurant location place
+Qwen/Qwen2-0.5B-Instruct,med,16,baseline,7,0.0,0,0,0.75,1,0.0,3," city, restaurant resort park city town vacation airport country airport city"
+Qwen/Qwen2-0.5B-Instruct,med,16,walk3,0,0.0,0,0,0.667,2,0.0,1, place city town area hotel hotel location hotel state restaurant location place
+Qwen/Qwen2-0.5B-Instruct,med,16,walk3,7,0.0,0,0,0.75,1,0.0,3, city location restaurant resort park city town vacation airport country airport city
+Qwen/Qwen2-0.5B-Instruct,med,16,walk5,0,0.0,0,0,0.583,2,0.0,2, place city town area hotel hotel location hotel hotel restaurant location city
+Qwen/Qwen2-0.5B-Instruct,med,16,walk5,7,0.0,0,0,0.667,2,0.0,4, city city restaurant resort park city town vacation airport country airport city
+Qwen/Qwen2-0.5B-Instruct,long,22,baseline,0,1.0,6,4,0.75,2,0.0,2, Paris Barcelona Barcelona St Lisbon Paris London Moscow Lyon Berlin Brussels London
+Qwen/Qwen2-0.5B-Instruct,long,22,baseline,7,1.0,7,4,0.75,2,0.0,2," S, Paris Warsaw not Berlin London Madrid Paris Berlin Berlin Lisbon"
+Qwen/Qwen2-0.5B-Instruct,long,22,walk3,0,1.0,12,2,0.167,11,0.778,11, Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris London
+Qwen/Qwen2-0.5B-Instruct,long,22,walk3,7,1.0,12,1,0.083,12,0.889,12, Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris
+Qwen/Qwen2-0.5B-Instruct,long,22,walk5,0,1.0,12,1,0.083,12,0.889,12, Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris
+Qwen/Qwen2-0.5B-Instruct,long,22,walk5,7,1.0,12,1,0.083,12,0.889,12, Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris
+google/gemma-3-1b-pt,short,5,baseline,0,0.0,0,0,0.667,1,0.0,2, I covered a being one the a the one a France headed
+google/gemma-3-1b-pt,short,5,walk5,0,1.0,6,1,0.167,3,0.0,0, Paris France Paris France France France Paris France Paris Paris France Paris
+google/gemma-3-1b-pt,long,16,baseline,0,0.0,0,0,0.417,2,0.0,4, is the that the is the the that this that it this
+google/gemma-3-1b-pt,long,16,walk5,0,1.0,2,1,0.5,2,0.0,4, is the that the Paris the the that this that it Paris

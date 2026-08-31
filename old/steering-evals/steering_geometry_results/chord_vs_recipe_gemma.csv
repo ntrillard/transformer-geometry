@@ -1,0 +1,6 @@
+model,prompt,target,budget,resolved,argmax_word,family_max,outsider_max
+google/gemma-3-1b-it,For dinner I made,center,0.2893,True, bread,21.0,19.05
+google/gemma-3-1b-it,For dinner I made,root,0.2893,True, cheese,28.81,23.42
+google/gemma-3-1b-it,For dinner I made,best_note,0.2893,True, bread,32.84,25.58
+google/gemma-3-1b-it,For dinner I made,highest,0.2893,True, bread,32.84,25.58
+google/gemma-3-1b-it,For dinner I made,chicken,0.2893,True, chicken,29.11,24.55

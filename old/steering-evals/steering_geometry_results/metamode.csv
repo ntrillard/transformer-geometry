@@ -1,0 +1,12 @@
+prompt,ctxlen,gap,f_rank,ent,cosang,norm,isfun,label,nat_next,steer_next,post_max
+The capital of France is,5,5.98,111,4.11,0.088,97.2,1,0,I,Paris,0.913
+"If you ask me which European city is the most beautiful, I would say that",16,8.83,100,1.97,0.098,95.7,1,0,that,Paris,0.999
+My favorite city in the world is,7,11.49,1246,2.67,0.053,106.2,1,0,a,London,0.999
+"Every year my family takes a trip, and we always end up in a different",16,19.8,14400,1.68,-0.0,111.0,0,0,place,London,1.0
+I visited Paris last summer and it was,8,5.51,113,4.04,0.098,102.2,1,0,wonderful,Paris,0.995
+The Eiffel Tower is located in,6,7.73,155,2.48,0.082,114.1,1,0,your,Paris,0.999
+Once upon a time there was a,7,12.23,5738,4.47,0.027,104.9,0,0,there,Rome,1.0
+For dinner I made,4,14.93,3129,1.21,0.038,110.8,1,0,made,Seoul,1.0
+Birds fly south in the winter to,7,10.16,767,3.2,0.067,89.8,1,0,the,Tokyo,0.997
+The capital of Japan is,5,7.2,204,3.29,0.086,136.1,0,0,the,Tokyo,0.959
+__META__,5,gap,90,0.0,0.9,10.0,0,0,oracle,pred,0.0

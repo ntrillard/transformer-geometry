@@ -1,0 +1,14 @@
+prompt,label,angle,robust,seeds
+ask,rot8.0,8.0,1,YY
+ask,rot8.5,8.5,1,YY
+ask,rot9.0,9.0,1,YY
+ask,rot9.5,9.5,1,YY
+ask,lin0.50,10.0,1,YY
+ask,lin0.55,8.99,1,YY
+ask,slerp0.4,8.0,1,YY
+japan,rot8.0,8.0,0,Yn
+japan,rot8.5,8.5,0,Yn
+japan,rot9.0,9.0,0,Yn
+japan,rot9.5,9.5,0,Yn
+japan,lin0.55,8.99,0,Yn
+japan,slerp0.4,8.0,0,Yn

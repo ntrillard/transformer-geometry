@@ -1,0 +1,39 @@
+==========================================================================
+STEER-ON-A-SPHERE DEMO  |  gemma-3-1b-it  |  the readout law + 2-constant recipe
+The 'law': one rotation by 2*(gap/97)+0.02 toward a token's row makes it rank-1.
+==========================================================================
+
+[Context] 'For dinner I made'
+  native argmax  = ' I'  (the invariant ' I' loop-token)
+  target 'ocean': gap=22.17  ->  budget a=0.477 rad
+
+  D1  FORCE : steer once toward 'ocean' (budget 0.477)
+        -> ' ocean I I I I I I I'
+
+  D2  BAN   : anti-steer 'ocean' (rotate AWAY by 0.477)
+        ocean rank: 89348 -> 262144  (256K-vocab; dead-last when 262144)
+        logit: -4.12 -> -48.97
+
+[Context] 'For dinner I made'  (native loop baseline first)
+  native        : ' I I I I I I I I I I'
+  D3  ESSAY : steer once toward 'chicken' (0.378) + anti-last(0.15), 16 tok
+        -> ' chicken I asked I possible I everything I up I my I dinner I sixty I'
+        plant=1.0 rep4=0.00 div=0.56
+
+  D4  COMPOSE : sequential steer 'grilled'@0 then 'chicken'@1
+        -> ' grilled chicken I dinner I precisely I all I again I ever'
+        contiguous 'grilled chicken' present: True
+
+  D5  HANDOFF : 'chicken' theme at step 0, switch to 'ocean' at step 5
+        -> ' chicken I dinner I every ocean I whole I everything I every I dinner'
+
+[Context, long] 22 tokens
+  native at 22 tok = '.'  (it moved off ' I')
+  D6  LONGCTX : steer 'ocean' once + anti-last
+        -> ' ocean. dinner\n\n i to " meal\n\n with time. details and'
+        div=0.86 (vs ~0.50-0.60 short)
+
+==========================================================================
+END DEMO — every number (budget, anti, plant) is the same closed-form law
+persisted claims: script + CSVs in steering-evals/
+==========================================================================

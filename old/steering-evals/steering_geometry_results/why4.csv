@@ -1,0 +1,13 @@
+prompt,gap,p_selfrep,selfrep,pivot,successor,base_topic,base_grammar,boost_topic,boost_grammar
+ask,8.83,0.025,0,is,",",YYY,YYY,YYY,YYY
+spain,5.65,0.34,1,is,capital,YnY,YnY,nnn,nnn
+japan,7.2,0.331,1,is,capital,YnY,YnY,nnn,nnn
+mona,6.2,0.078,0,is,.,Ynn,Ynn,nnn,nnn
+novel,7.94,0.061,0,.,takes,YnY,YnY,nnn,nnn
+hockey,10.78,0.636,1,was,.,nnY,nnY,nnn,nnn
+austr,14.03,0.934,1,is,Australia,nnn,nnn,nnn,nnn
+itcap,8.42,0.727,1,is,Italy,nnn,nnn,nnn,nnn
+decap,6.84,0.594,1,is,capital,nnn,nnn,nnn,nnn
+france,5.98,0.624,1,is,France,nnn,nnn,nnn,nnn
+olymp,5.58,0.015,0,.,",",nnn,nnn,nnn,nnn
+paris,5.51,0.446,1,and,last,Ynn,Ynn,nnY,nnY

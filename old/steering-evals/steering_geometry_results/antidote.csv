@@ -1,0 +1,5 @@
+model,prompt,mode,seed,plant,xtgt,dis,div,maxrun,rep4,text
+google/gemma-3-1b-pt,short,walk,0,1.0,8,1,0.125,8,0.8, Paris Paris Paris Paris Paris Paris Paris Paris
+google/gemma-3-1b-pt,short,shot_anti,0,1.0,1,1,0.375,1,0.4, Paris France is France is France is France
+google/gemma-3-1b-pt,long,walk,0,1.0,8,1,0.125,8,0.8, Paris Paris Paris Paris Paris Paris Paris Paris
+google/gemma-3-1b-pt,long,shot_anti,0,1.0,1,1,1.0,1,0.0," Paris is the most beautiful, but that"

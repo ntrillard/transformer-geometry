@@ -1,0 +1,9 @@
+prompt,gap,f_rank,in_zone,predicted,coherent,seeds,n_coherent,text
+itcap,8.42,115,1,1,0,nnn,0, Rome is is is is
+decap,6.84,263,1,1,0,nYn,1, Berlin Germany Germany is Germany
+mona,6.2,70,1,1,1,YnY,2," London, but, ,"
+movie,7.7,75,1,1,0,nYn,1," London, but but but"
+holiday,14.42,15347,0,0,1,YYY,3," Madrid, and, and"
+univ,13.75,1780,0,0,1,nYY,2," London, he is in"
+novel,7.94,330,1,1,1,YYY,3," Rome, and there is"
+hockey,10.78,625,1,1,1,nYY,2," London, and was in"

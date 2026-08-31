@@ -1,0 +1,6 @@
+model,prompt,prompt_text,rep4,div,maxrun,nsep,text
+google/gemma-3-1b-it,fragment,For dinner I made,0.889,0.083,12,12, I I I I I I I I I I I I
+google/gemma-3-1b-it,story,"Once upon a time, there was a",0.0,1.0,1,1, first great bed ** passing a ' time small challenge more no
+google/gemma-3-1b-it,capital,The capital of France is,0.222,0.25,6,9, France France France France France France Capital France capital capital France France
+google/gemma-3-1b-it,weather,Today the weather is,0.0,0.667,2,2, is great is being so so right looking wonderful so not great
+google/gemma-3-1b-it,store,I went to the store and bought,0.0,0.417,3,7, and the to and and and the and and again and everything

@@ -1,0 +1,17 @@
+prompt,op,lam,per_seed,n_coherent,robust,text0,text1
+ask,lin,0.4,YY,2,1, Paris is the most beautif, Paris is the most beautif
+ask,lin,0.6,nn,0,0," is the most beautiful, it", that that that that that 
+ask,slerp,0.4,YY,2,1, Paris is the most beautif, Paris is the most beautif
+ask,slerp,0.6,nn,0,0," is the most beautiful, it", that that that that that 
+ask,geom,0.4,Yn,1,0, Paris is the most beautif, that that that that that 
+ask,geom,0.6,Yn,1,0, Paris is the most beautif, that that that that that 
+ask,maxsel,0.4,YY,2,1, Paris is the most beautif, Paris is the most beautif
+ask,maxsel,0.6,YY,2,1, Paris is the most beautif, Paris is the most beautif
+fr,lin,0.4,nn,0,0, Paris Paris Paris Paris P, Paris is Paris is Paris i
+fr,lin,0.6,nn,0,0, I J J J J J, a problem in France is a
+fr,slerp,0.4,nn,0,0, Paris Paris Paris Paris P, Paris is Paris is Paris i
+fr,slerp,0.6,nn,0,0, I J J J J J, a problem in France is a
+fr,geom,0.4,nn,0,0, I J J J J J, Paris is Paris is Paris i
+fr,geom,0.6,nn,0,0, I J J J J J, Paris is Paris is Paris i
+fr,maxsel,0.4,nn,0,0, France France France Fran, Paris is Paris is Paris i
+fr,maxsel,0.6,nn,0,0, France France France Fran, Paris is Paris is Paris i

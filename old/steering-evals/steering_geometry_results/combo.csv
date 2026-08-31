@@ -1,0 +1,11 @@
+prompt,mode,lam,gap,alpha,plant,xtgt,div,maxrun,rep4,text
+ask,baseline,,8.828,0.202,0.0,0,0.2,1,0.778," is the most beautiful, it is the most beautiful, it is the most beautiful, it is the most beautiful, it is the most beautiful, it"
+ask,readout,,8.828,0.202,1.0,3,0.4,1,0.519," Paris is the most beautiful, but that's not true, Paris is the most beautiful, but that's not true, Paris is the most"
+ask,combo_bal,0.5,8.828,0.202,1.0,3,0.4,1,0.519," Paris is the most beautiful, but that's not true, Paris is the most beautiful, but that's not true, Paris is the most"
+ask,combo_nat,0.7,8.828,0.202,0.0,0,0.2,1,0.778," is the most beautiful, it is the most beautiful, it is the most beautiful, it is the most beautiful, it is the most beautiful, it"
+ask,combo_rot,0.3,8.828,0.202,1.0,3,0.4,1,0.519," Paris is the most beautiful, but that's not true, Paris is the most beautiful, but that's not true, Paris is the most"
+fr,baseline,,5.977,0.143,0.0,0,0.067,29,0.926, I J J J J J J J J J J J J J J J J J J J J J J J J J J J J J
+fr,readout,,5.977,0.143,1.0,30,0.033,30,0.963, Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris
+fr,combo_bal,0.5,5.977,0.143,0.0,0,0.067,29,0.926, I J J J J J J J J J J J J J J J J J J J J J J J J J J J J J
+fr,combo_nat,0.7,5.977,0.143,0.0,0,0.067,29,0.926, I J J J J J J J J J J J J J J J J J J J J J J J J J J J J J
+fr,combo_rot,0.3,5.977,0.143,1.0,30,0.033,30,0.963, Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris Paris

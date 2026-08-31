@@ -1,0 +1,10 @@
+prompt,gap,seed,plant,xtgt,div,maxrun,rep4,text
+fr,5.98,0,1.0,1,0.375,1,0.4, Paris France is France is France is France
+fr,5.98,1,1.0,1,0.5,1,0.2, Paris is in France is in France is
+fr,5.98,2,1.0,1,0.25,7,0.6, Paris is is is is is is is
+jpn,7.2,0,1.0,1,0.625,3,0.0, Tokyo Japa music is music music music
+jpn,7.2,1,1.0,1,0.375,6,0.4, Tokyo is Japan Japan Japan Japan Japan Japan
+jpn,7.2,2,1.0,1,0.625,1,0.0, Tokyo capital city Japan is capital city Japan
+ask,8.83,0,1.0,1,1.0,1,0.0," Paris is the most beautiful, but that"
+ask,8.83,1,1.0,1,1.0,1,0.0," Paris is the most beautiful city, I"
+ask,8.83,2,1.0,1,1.0,1,0.0," Paris, I would say that it is"

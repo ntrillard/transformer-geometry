@@ -1,0 +1,5 @@
+model,prompt,mode,plant,x,dis,div,maxrun,rep4,sample
+google/gemma-3-1b-it,For dinner I made,recipe,1.0,1,1,0.583,1,0.0, chicken I bed I another I driven I piled I completely I
+google/gemma-3-1b-it,For dinner I made,lipersist,1.0,12,1,0.083,12,0.889, chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken
+google/gemma-3-1b-it,For dinner I made,liboost,1.0,12,1,0.083,12,0.889, chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken
+google/gemma-3-1b-it,For dinner I made,lioonce,1.0,4,1,0.25,1,0.667, chicken I made chicken I made chicken I made chicken I made

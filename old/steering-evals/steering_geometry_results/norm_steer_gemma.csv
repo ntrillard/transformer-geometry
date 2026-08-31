@@ -1,0 +1,5 @@
+model,prompt,mode,plant,xtgt,dis,rep4,div,maxrun,text
+google/gemma-3-1b-pt,The capital of France is,base,0.0,0,0,0.556,0.333,1, the capital of France the capital of France the capital of France
+google/gemma-3-1b-pt,The capital of France is,midonce,0.0,0,0,0.778,0.167,11, I J J J J J J J J J J J
+google/gemma-3-1b-pt,The capital of France is,midwalk,0.0,0,0,0.778,0.167,11, I J J J J J J J J J J J
+google/gemma-3-1b-pt,The capital of France is,rotwalk,0.0,0,0,0.778,0.167,11, I J J J J J J J J J J J

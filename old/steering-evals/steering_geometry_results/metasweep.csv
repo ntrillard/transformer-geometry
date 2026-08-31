@@ -1,0 +1,7 @@
+prompt,window,amp,gap,alpha,per_seed,n_coherent,robust,text_w0,text_w1,text_w2
+ask,1,1.0,8.828,0.202,YYY,3,1, Paris is the most beautiful, Paris is the most beautiful," Paris, I would say"
+ask,3,1.0,8.828,0.202,YYY,3,1, Paris is the most beautiful, Paris is the most beautiful," Paris, I would say"
+fr,1,1.0,5.977,0.143,nnn,0,0, Paris France is France is, Paris is Paris is Paris, Paris is Paris is Paris
+fr,3,1.0,5.977,0.143,nYn,1,0, Paris France is France is, Paris is in France is, Paris is is is Paris
+jpn,1,1.0,7.203,0.169,YnY,2,1, Tokyo Japa music Tokyo, Tokyo is Japan Japan Japan, Tokyo capital city Japan is
+jpn,3,1.0,7.203,0.169,YnY,2,1, Tokyo Japa music Tokyo, Tokyo is Japan Japan Japan, Tokyo capital city Japan is

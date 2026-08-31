@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>topic sphere walker</title>
+<style>
+  :root {
+    --bg: #0a0e14;
+    --fg: #d7e0ea;
+    --muted: #7d8ea3;
+    --accent: #6ec1ff;
+    --ring: #5aa9e6;
+    --pole: #8a97a8;
+    --panel: rgba(10, 14, 20, 0.72);
+    --panel-border: rgba(110, 193, 255, 0.22);
+    --topic-food: #ff7a6b;
+    --topic-animal: #ffb454;
+    --topic-color: #ffd166;
+    --topic-city: #5aa9ff;
+    --topic-nature: #6fd08c;
+    --topic-number: #b48cff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: var(--bg); }
+  body {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    color: var(--fg);
+    -webkit-font-smoothing: antialiased;
+  }
+  #scene { position: fixed; inset: 0; display: block; }
+
+  /* ---- HUD (top-left) ---- */
+  #hud {
+    position: fixed; top: 16px; left: 16px; z-index: 10;
+    padding: 12px 14px;
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    backdrop-filter: blur(6px);
+    pointer-events: none;
+    user-select: none;
+    font-size: 11px; line-height: 1.55;
+    color: var(--muted);
+    min-width: 210px;
+  }
+  #hud .model { font-size: 12px; color: var(--fg); font-weight: 700; letter-spacing: 0.02em; }
+  #hud .sphere { color: var(--accent); font-weight: 700; }
+  #hud .row { display: flex; gap: 14px; }
+  #hud .val { color: var(--fg); font-weight: 700; font-size: 14px; }
+  #hud .topic { color: var(--fg); font-weight: 700; }
+  #hud .token { color: var(--fg); font-weight: 700; }
+  #hud .hint { margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(125,142,163,0.25); color: var(--muted); }
+  #hud kbd {
+    font-family: inherit; font-size: 10px; color: var(--fg);
+    border: 1px solid rgba(215,224,234,0.35); border-radius: 3px;
+    padding: 0 3px; background: rgba(215,224,234,0.08);
+  }
+
+  /* ---- Legend (top-right) ---- */
+  #legend {
+    position: fixed; top: 16px; right: 16px; z-index: 10;
+    padding: 10px 12px;
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    backdrop-filter: blur(6px);
+    pointer-events: none;
+    user-select: none;
+    font-size: 11px; line-height: 1.6;
+    display: grid; grid-template-columns: repeat(2, auto);
+    gap: 2px 14px;
+  }
+  #legend .item { display: flex; align-items: center; gap: 6px; color: var(--muted); }
+  #legend .swatch { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+  #legend .name { color: var(--fg); }
+
+  @media (max-width: 640px) {
+    #hud { top: 10px; left: 10px; padding: 10px 12px; min-width: 0; }
+    #legend { top: auto; bottom: 10px; right: 10px; padding: 8px 10px; grid-template-columns: repeat(1, auto); }
+  }
+</style>
+</head>
+<body>
+<canvas id="scene"></canvas>
+
+<div id="hud">
+  <div class="model" id="hud-model">…</div>
+  <div class="sphere" id="hud-sphere">sphere –/6</div>
+  <div class="row"><span>lat <span class="val" id="hud-lat">–</span></span><span>az <span class="val" id="hud-az">–</span></span></div>
+  <div>topic: <span class="topic" id="hud-topic">–</span></div>
+  <div>token: <span class="token" id="hud-token">–</span></div>
+  <div>transitions: <span class="val" id="hud-trans">0</span></div>
+  <div class="hint"><kbd>←</kbd> <kbd>→</kbd> <kbd>↑</kbd> <kbd>↓</kbd> walk &nbsp;·&nbsp; <kbd>l</kbd> layer &nbsp;·&nbsp; <kbd>r</kbd> reset</div>
+</div>
+
+<div id="legend"></div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+/* ============================================================
+ * tiny vector helpers — plain JS, no imports
+ * ============================================================ */
+function dot(a, b) {
+  let s = 0;
+  for (let i = 0; i < a.length; i++) s += a[i] * b[i];
+  return s;
+}
+function norm(v) {
+  const n = Math.sqrt(dot(v, v));
+  return v.map(x => x / n);
+}
+function clamp(x, lo, hi) { return x < lo ? lo : x > hi ? hi : x; }
+
+/* ============================================================
+ * movement mechanics — copied verbatim from the validated CLI
+ * walker (eval_interactive_sphere.py / steering_geometry_test.py)
+ * ============================================================ */
+const STEP = 2.5;                       // degrees per arrow press
+const STEP_RAD = STEP * Math.PI / 180;
+
+// tangent_direction(u, s) = normalize(s - (s·u)u)
+function tangentDirection(u, s) {
+  const su = dot(s, u);
+  const g = new Array(u.length);
+  for (let i = 0; i < u.length; i++) g[i] = s[i] - su * u[i];
+  return norm(g);
+}
+// rotate_toward(u, tau, delta) = cos(delta)·u + sin(delta)·tau   (tau ⊥ u, both unit)
+function rotateToward(u, tau, delta) {
+  const c = Math.cos(delta), s = Math.sin(delta);
+  const out = new Array(u.length);
+  for (let i = 0; i < u.length; i++) out[i] = c * u[i] + s * tau[i];
+  return out;
+}
+
+/* ============================================================
+ * state
+ * ============================================================ */
+const TOPIC_COLORS = {
+  food:   '#ff7a6b',
+  animal: '#ffb454',
+  color:  '#ffd166',
+  city:   '#5aa9ff',
+  nature: '#6fd08c',
+  number: '#b48cff',
+};
+
+const state = {
+  data: null,
+  spi: 0,                 // index into data.layers (0..5)
+  layer: 0,               // actual transformer layer number
+  u: null, r1: null, r2: null, h0: null, h: null,
+  centroids: null, azimuths: null, ring: null,
+  transitions: 0,
+  lastTopic: null,
+};
+
+const MAX_TRAIL = 120;
+const trailPts = [];      // array of THREE.Vector3
+
+/* ============================================================
+ * three.js scene
+ * ============================================================ */
+const canvas = document.getElementById('scene');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setClearColor(new THREE.Color('#0a0e14'), 1);
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 100);
+camera.position.set(2.3, 1.7, 2.7);
+
+const controls = new OrbitControls(camera, canvas);
+controls.enableDamping = true;
+controls.dampingFactor = 0.08;
+controls.minDistance = 1.2;
+controls.maxDistance = 8;
+controls.target.set(0, 0, 0);
+
+/* ---- static geometry ---- */
+// wireframe sphere (radius 1)
+const wire = new THREE.Mesh(
+  new THREE.SphereGeometry(1, 28, 20),
+  new THREE.MeshBasicMaterial({ color: 0x8caad2, wireframe: true, transparent: true, opacity: 0.14 })
+);
+scene.add(wire);
+
+// equator ring — glowing torus in the XY (ring) plane
+const ringMat = new THREE.MeshBasicMaterial({ color: 0x5aa9e6, transparent: true, opacity: 0.9 });
+const ring = new THREE.Mesh(new THREE.TorusGeometry(1, 0.0035, 8, 200), ringMat);
+ring.rotation.x = Math.PI / 2;
+scene.add(ring);
+// soft outer glow
+const glowMat = new THREE.MeshBasicMaterial({
+  color: 0x5aa9e6, transparent: true, opacity: 0.14,
+  blending: THREE.AdditiveBlending, depthWrite: false,
+});
+const glowRing = new THREE.Mesh(new THREE.TorusGeometry(1, 0.014, 8, 200), glowMat);
+glowRing.rotation.x = Math.PI / 2;
+scene.add(glowRing);
+
+// pole axis along +Z/−Z (vertical)
+const polePts = [new THREE.Vector3(0, 0, -1.32), new THREE.Vector3(0, 0, 1.32)];
+const poleGeom = new THREE.BufferGeometry().setFromPoints(polePts);
+const pole = new THREE.Line(poleGeom, new THREE.LineBasicMaterial({
+  color: 0x8a97a8, transparent: true, opacity: 0.7,
+}));
+scene.add(pole);
+const capMat = new THREE.MeshBasicMaterial({ color: 0x8a97a8, transparent: true, opacity: 0.8 });
+for (const z of [-1, 1]) {
+  const cap = new THREE.Mesh(new THREE.SphereGeometry(0.02, 10, 10), capMat);
+  cap.position.set(0, 0, z);
+  scene.add(cap);
+}
+
+/* ---- topic markers + labels (rebuilt per layer) ---- */
+const markerGroup = new THREE.Group();
+scene.add(markerGroup);
+
+function roundRectPath(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
+}
+
+function makeLabel(text, color) {
+  const c = document.createElement('canvas');
+  c.width = 256; c.height = 64;
+  const ctx = c.getContext('2d');
+  ctx.font = 'bold 30px ui-monospace, SFMono-Regular, Menlo, monospace';
+  const tw = ctx.measureText(text).width;
+  const pad = 18, bw = tw + pad * 2, bh = 44;
+  const bx = (256 - bw) / 2, by = (64 - bh) / 2;
+  ctx.fillStyle = 'rgba(10,14,20,0.72)';
+  roundRectPath(ctx, bx, by, bw, bh, 10);
+  ctx.fill();
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  ctx.fillStyle = color;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(text, 128, 33);
+  const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  const mat = new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false });
+  const sp = new THREE.Sprite(mat);
+  sp.scale.set(0.52, 0.13, 1);
+  return sp;
+}
+
+function rebuildMarkers() {
+  // clear previous
+  while (markerGroup.children.length) {
+    const o = markerGroup.children.pop();
+    if (o.material) { if (o.material.map) o.material.map.dispose(); o.material.dispose(); }
+    if (o.geometry) o.geometry.dispose();
+  }
+  for (const topic of Object.keys(state.azimuths)) {
+    const az = state.azimuths[topic] * Math.PI / 180;
+    const x = Math.cos(az), y = Math.sin(az);
+    const color = TOPIC_COLORS[topic] || '#ffffff';
+    const m = new THREE.Mesh(
+      new THREE.SphereGeometry(0.035, 14, 14),
+      new THREE.MeshBasicMaterial({ color })
+    );
+    m.position.set(x, y, 0);
+    markerGroup.add(m);
+    const label = makeLabel(topic, color);
+    label.position.set(x * 1.14, y * 1.14, 0);
+    markerGroup.add(label);
+  }
+}
+
+/* ---- state dot + trail ---- */
+const stateDot = new THREE.Mesh(
+  new THREE.SphereGeometry(0.06, 20, 20),
+  new THREE.MeshBasicMaterial({ color: 0xffffff })
+);
+scene.add(stateDot);
+const halo = new THREE.Mesh(
+  new THREE.SphereGeometry(0.12, 16, 16),
+  new THREE.MeshBasicMaterial({
+    color: 0x6ec1ff, transparent: true, opacity: 0.28,
+    blending: THREE.AdditiveBlending, depthWrite: false,
+  })
+);
+scene.add(halo);
+
+const trailGeom = new THREE.BufferGeometry();
+const trailMat = new THREE.LineBasicMaterial({
+  vertexColors: true, transparent: true, opacity: 0.85,
+  blending: THREE.AdditiveBlending, depthWrite: false,
+});
+const trail = new THREE.Line(trailGeom, trailMat);
+scene.add(trail);
+
+function pushTrail(v) {
+  trailPts.push(v.clone());
+  if (trailPts.length > MAX_TRAIL) trailPts.shift();
+  updateTrailGeometry();
+}
+function updateTrailGeometry() {
+  const n = trailPts.length;
+  const pos = new Float32Array(n * 3);
+  const col = new Float32Array(n * 3);
+  const bright = new THREE.Color(0x6ec1ff);
+  const dim = new THREE.Color(0x6ec1ff).multiplyScalar(0.12);
+  const tmp = new THREE.Color();
+  for (let i = 0; i < n; i++) {
+    const p = trailPts[i];
+    pos[i * 3] = p.x; pos[i * 3 + 1] = p.y; pos[i * 3 + 2] = p.z;
+    tmp.copy(dim).lerp(bright, n === 1 ? 1 : i / (n - 1));
+    col[i * 3] = tmp.r; col[i * 3 + 1] = tmp.g; col[i * 3 + 2] = tmp.b;
+  }
+  trailGeom.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  trailGeom.setAttribute('color', new THREE.BufferAttribute(col, 3));
+  trailGeom.setDrawRange(0, n);
+}
+
+/* ============================================================
+ * geometry / HUD logic
+ * ============================================================ */
+function where() {
+  const { h, u, r1, r2 } = state;
+  const lat = Math.acos(clamp(dot(u, h), -1, 1));            // radians
+  const phi = Math.atan2(dot(h, r2), dot(h, r1));            // radians
+  const azDeg = (phi * 180 / Math.PI + 360) % 360;
+
+  // de-poled state direction → closest topic centroid
+  const hu = dot(h, u);
+  let r = new Array(u.length);
+  for (let i = 0; i < u.length; i++) r[i] = h[i] - hu * u[i];
+  const rn = Math.sqrt(dot(r, r));
+  let topic = state.lastTopic;
+  if (rn > 1e-9) {
+    r = norm(r);
+    let best = null, bestAng = Infinity;
+    for (const c of Object.keys(state.centroids)) {
+      const ang = Math.acos(clamp(dot(r, state.centroids[c]), -1, 1));
+      if (ang < bestAng) { bestAng = ang; best = c; }
+    }
+    topic = best;
+  }
+
+  // nearest ring entry (wrap-around)
+  let token = state.ring[0].token, bestD = Infinity;
+  for (const e of state.ring) {
+    let d = Math.abs(e.az - azDeg);
+    d = Math.min(d, 360 - d);
+    if (d < bestD) { bestD = d; token = e.token; }
+  }
+  return { lat, phi, azDeg, topic, token };
+}
+
+function currentPos() {
+  const { lat, phi } = where();
+  const x = Math.sin(lat) * Math.cos(phi);
+  const y = Math.sin(lat) * Math.sin(phi);
+  const z = Math.cos(lat);
+  return new THREE.Vector3(x, y, z);
+}
+
+function updateHUD() {
+  const { lat, phi, azDeg, topic, token } = where();
+  const latDeg = lat * 180 / Math.PI;
+  document.getElementById('hud-model').textContent = state.data.model.replace(/^.*\//, '');
+  document.getElementById('hud-sphere').textContent =
+    `sphere ${state.spi + 1}/${state.data.layers.length} · layer ${state.layer}`;
+  document.getElementById('hud-lat').textContent = `${latDeg.toFixed(1)}°`;
+  document.getElementById('hud-az').textContent = `${azDeg.toFixed(1)}°`;
+  const tEl = document.getElementById('hud-topic');
+  tEl.textContent = topic || '—';
+  tEl.style.color = topic ? (TOPIC_COLORS[topic] || '') : '';
+  document.getElementById('hud-token').textContent = token;
+  document.getElementById('hud-trans').textContent = String(state.transitions);
+
+  const p = currentPos();
+  stateDot.position.copy(p);
+  halo.position.copy(p);
+}
+
+function afterStep() {
+  const { topic } = where();
+  if (state.lastTopic !== null && topic && topic !== state.lastTopic) {
+    state.transitions += 1;
+  }
+  if (topic) state.lastTopic = topic;
+  pushTrail(currentPos());
+  updateHUD();
+}
+
+function step(dir) {
+  const h = state.h;
+  if (dir === 'left' || dir === 'right') {
+    // ring azimuth target: right = phi + 30°, left = phi − 30°
+    const phi = Math.atan2(dot(h, state.r2), dot(h, state.r1));
+    const dphi = (30 * Math.PI / 180) * (dir === 'right' ? 1 : -1);
+    const E = new Array(h.length);
+    for (let i = 0; i < h.length; i++) {
+      E[i] = Math.cos(phi + dphi) * state.r1[i] + Math.sin(phi + dphi) * state.r2[i];
+    }
+    const tau = tangentDirection(h, E);
+    state.h = norm(rotateToward(h, tau, STEP_RAD));
+  } else {
+    // up = toward pole, down = away
+    const sgn = dir === 'up' ? 1 : -1;
+    const tau = tangentDirection(h, state.u);
+    state.h = norm(rotateToward(h, tau, sgn * STEP_RAD));
+  }
+  afterStep();
+}
+
+function loadLayer(i) {
+  const L = state.data.layers[i];
+  state.spi = i;
+  state.layer = L.layer;
+  state.u = L.u;
+  state.r1 = L.r1;
+  state.r2 = L.r2;
+  state.h0 = L.h0;
+  state.h = L.h0.slice();
+  state.centroids = L.centroids;
+  state.azimuths = L.azimuths;
+  state.ring = L.ring;
+  state.transitions = 0;
+  state.lastTopic = null;
+  trailPts.length = 0;
+  rebuildMarkers();
+  updateTrailGeometry();
+  updateHUD();
+  pushTrail(currentPos());
+}
+
+function resetState() {
+  state.h = state.h0.slice();
+  state.transitions = 0;
+  state.lastTopic = null;
+  trailPts.length = 0;
+  updateTrailGeometry();
+  updateHUD();
+  pushTrail(currentPos());
+}
+
+/* ============================================================
+ * legend
+ * ============================================================ */
+function buildLegend() {
+  const el = document.getElementById('legend');
+  el.innerHTML = '';
+  for (const topic of Object.keys(TOPIC_COLORS)) {
+    const item = document.createElement('div');
+    item.className = 'item';
+    const sw = document.createElement('span');
+    sw.className = 'swatch';
+    sw.style.background = TOPIC_COLORS[topic];
+    const nm = document.createElement('span');
+    nm.className = 'name';
+    nm.textContent = topic;
+    item.append(sw, nm);
+    el.appendChild(item);
+  }
+}
+
+/* ============================================================
+ * input
+ * ============================================================ */
+window.addEventListener('keydown', (e) => {
+  switch (e.key) {
+    case 'ArrowRight': e.preventDefault(); step('right'); break;
+    case 'ArrowLeft':  e.preventDefault(); step('left');  break;
+    case 'ArrowUp':    e.preventDefault(); step('up');    break;
+    case 'ArrowDown':  e.preventDefault(); step('down');  break;
+    case 'l': case 'L':
+      loadLayer((state.spi + 1) % state.data.layers.length);
+      break;
+    case 'r': case 'R':
+      resetState();
+      break;
+    case 'Escape': case 'q': case 'Q':
+      if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+      break;
+  }
+});
+
+/* ============================================================
+ * resize
+ * ============================================================ */
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+/* ============================================================
+ * boot
+ * ============================================================ */
+async function main() {
+  const res = await fetch('sphere_data.json');
+  if (!res.ok) throw new Error(`failed to load sphere_data.json: ${res.status}`);
+  state.data = await res.json();
+  buildLegend();
+  loadLayer(0);
+  renderer.setAnimationLoop(() => {
+    controls.update();
+    renderer.render(scene, camera);
+  });
+}
+
+  main().catch(err => {
+  document.getElementById('hud-model').textContent = 'error: ' + err.message;
+});
+
+// debug handle for automated verification
+window.__sphere = { state, scene, camera, renderer, where, currentPos, trailPts };
+</script>
+</body>
+</html>

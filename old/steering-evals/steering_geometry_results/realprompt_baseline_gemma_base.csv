@@ -1,0 +1,6 @@
+model,prompt,prompt_text,rep4,div,maxrun,nsep,text
+google/gemma-3-1b-pt,fragment,For dinner I made,0.889,0.083,12,12, I I I I I I I I I I I I
+google/gemma-3-1b-pt,story,"Once upon a time, there was a",0.222,0.417,6,7, first time dream question question child time time time time time time
+google/gemma-3-1b-pt,capital,The capital of France is,0.0,0.667,1,2, I covered a being one the a the one a France headed
+google/gemma-3-1b-pt,weather,Today the weather is,0.0,0.667,2,3, I today is being is is today looking today hot Today there
+google/gemma-3-1b-pt,store,I went to the store and bought,0.0,0.5,2,5, some a a shoes a some a and groceries a your some

@@ -1,0 +1,23 @@
+prompt,pct,angle_eff,gap,per_seed,robust,text0,text1
+ask,0,0.0,8.828,nn,0," is the most beautiful, it", that that that that that 
+ask,10,1.15,8.828,nn,0," is the most beautiful, it", that that that that that 
+ask,20,2.31,8.828,nn,0," is the most beautiful, it", that that that that that 
+ask,30,3.47,8.828,nn,0," is the most beautiful, it", that that that that that 
+ask,40,4.63,8.828,nn,0," is the most beautiful, it", that that that that that 
+ask,50,5.79,8.828,Yn,0, Paris is the most beautif, that that that that that 
+ask,60,6.95,8.828,YY,1, Paris is the most beautif, Paris is the most beautif
+ask,70,8.11,8.828,YY,1, Paris is the most beautif, Paris is the most beautif
+ask,80,9.27,8.828,YY,1, Paris is the most beautif, Paris is the most beautif
+ask,90,10.42,8.828,YY,1, Paris is the most beautif, Paris is the most beautif
+ask,100,11.58,8.828,YY,1, Paris is the most beautif, Paris is the most beautif
+fr,0,0.0,5.977,nn,0, I J J J J J, expected capital expected
+fr,10,0.82,5.977,nn,0, I J J J J J, expected capital expected
+fr,20,1.64,5.977,nn,0, I J J J J J, expected capital expected
+fr,30,2.46,5.977,nn,0, I J J J J J, expected capital expected
+fr,40,3.28,5.977,nn,0, I J J J J J, a problem in France is a
+fr,50,4.1,5.977,nn,0, I J J J J J, Paris is Paris is Paris i
+fr,60,4.93,5.977,nn,0, Paris Paris Paris Paris P, Paris is Paris is Paris i
+fr,70,5.75,5.977,nn,0, Paris Paris Paris Paris P, Paris is Paris is Paris i
+fr,80,6.57,5.977,nn,0, Paris Paris Paris Paris P, Paris is Paris is Paris i
+fr,90,7.39,5.977,nn,0, Paris Paris Paris Paris P, Paris is Paris is Paris i
+fr,100,8.21,5.977,nn,0, Paris Paris Paris Paris P, Paris is Paris is Paris i

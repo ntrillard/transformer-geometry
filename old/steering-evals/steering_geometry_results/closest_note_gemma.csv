@@ -1,0 +1,7 @@
+model,prompt,mode,plant,x,dis,div,maxrun,rep4,nsep,sample
+google/gemma-3-1b-it,For dinner I made,law-once,1.0,1,1,0.562,1,0.0,8, chicken I bed I another I driven I piled I completely I here I cooked I
+google/gemma-3-1b-it,For dinner I made,close17-once,1.0,1,1,0.125,15,0.846,15, bread I I I I I I I I I I I I I I I
+google/gemma-3-1b-it,For dinner I made,close08-pers,1.0,10,1,0.125,6,0.308,6, I bread I bread I bread bread I bread bread bread bread bread bread I I
+google/gemma-3-1b-it,For dinner I made,close15-pers,1.0,15,1,0.125,15,0.846,1, I bread bread bread bread bread bread bread bread bread bread bread bread bread bread bread
+google/gemma-3-1b-it,For dinner I made,cent08-pers,0.0,0,0,0.125,15,0.846,15, I I I I I I I I I I I I I I I dinner
+google/gemma-3-1b-it,For dinner I made,law-soft,0.0,0,0,0.562,1,0.0,8, I covered I dozen I him I sometime I again I everything I together I dinner

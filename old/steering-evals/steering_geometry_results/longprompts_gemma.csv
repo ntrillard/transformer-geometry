@@ -1,0 +1,6 @@
+model,prompt,nctx,native,gap,aexact,apred,ratio,moat,plant,x,dis,div,maxrun,rep4,nsep,sample
+google/gemma-3-1b-it,short,4, I,22.17,0.2211,0.2286,0.967,5.37,1.0,1,1,0.6,1,0.0,5, ocean I bed I another I driven I piled I
+google/gemma-3-1b-it,med,9, I,21.12,0.229,0.2178,1.051,2.09,1.0,1,1,0.6,1,0.0,5," ocean I slices I."""""" I
+ I piled I"
+google/gemma-3-1b-it,long,22,.,15.57,0.1582,0.1606,0.986,0.63,1.0,1,1,0.8,1,0.0,2," ocean. ahead and flight. meal and today
+"
