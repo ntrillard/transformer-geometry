@@ -185,3 +185,134 @@ CONTRAST_MODE=logit TARGET_TYPE=dir ALPHA=2.0 DL_TOP=200 DL_DROP=0 \
     CONTRAST_NEUTRAL="The waves crashed gently on the beach|The sand was cool to the touch|The sun was warm over the water" \
     python3 gen_geom.py Qwen/Qwen2-1.5B "The waves crashed gently on the beach" "computer,lantern,trumpet"
 ```
+
+---
+
+# Appendix A — Full canonical outputs (seed 0, ntok 120, Qwen2-1.5B)
+
+## A1. Concept steering — kitchen → "futuristic robotic alien" (the working config)
+
+```
+TARGET_TYPE=dir CONCEPT="futuristic robotic alien" BLOCK_REGION=1 \
+  G_ANGLE=12 G_LAN=0.8 WINDOW=14 SW0=20 SEED=0 MODE=emit SENT=0
+```
+
+> It was a warm morning in a small kitchen . The smell of pancakes lingered in
+> the air, so like one that will be wrapped up and enjoyed afterwards
+> immediately **robotic**. Whether the first person came to a sleepy morning
+> and just like the dullest waiting for someone, would be the cook trying
+> **robotic** pancakes, or once again he could talk to the people at the bar
+> that are professional who loves pancakes. The style of the pancake is smooth
+> **robotic** pancakes because the owner of this establishment is friendly and
+> food cooked for real, both with a kitchen and the delicious pancake that
+> finally can be enjoyed. Pancakes available in full size or medium size
+
+Region tokens emitted exactly once: diamond@23, camel@50, volcano@80 (the
+scheduled windows "land" a region token; the model then continues). **robotic
+appears three times but is woven in as the story's own word — no loop.**
+
+## A2. Full-sentence steering — beach → dark fantasy (the working config)
+
+```
+TARGET_TYPE=dir CONTRAST_MODE=logit ALPHA=2.0 DL_TOP=200 DL_DROP=0 \
+  SW0=20 SEED=0 MODE=emit \
+  CONTRAST_TARGET="A dragon circled the ruined towers of the ancient kingdom|A knight drew his sword against the fire-breathing beast|The wizard's spell shattered the castle gates" \
+  CONTRAST_NEUTRAL="The waves crashed gently on the beach|The sand was cool to the touch|The sun was warm over the water"
+```
+
+> The waves crashed gently on the beach . The sand was cool to the touch, but
+> the breeze was warm. A group of about a dozen children were scattered around
+> in the water, playing. The sun was just peaking over the horizon, casting a
+> soft light across the beach. The children were making their way back to
+> shore, exhausted but triumphant. They all knew they had survived a long day
+> at the beach. One of the younger kids was wading in shallow water when he saw
+> a **bunch of evil-looking creatures emerging from the surf**. They had **long
+> arms and evil intent**. He screamed and ran to his mother. His mother
+
+`words present: all False` (the word-insertion test words are irrelevant here -
+this mode steers the TOPIC). `|dL_z|=51.13`, top boosted tokens `['魔王','毁灭',
+'狱','复仇','愤怒','魔兽']` (weird multilingual fantasy vocabulary, deliberately
+left in the mask - the diffusion across them is what lets the prose stay free).
+
+Raw outputs saved verbatim: `steering-evals/steering_geometry_results/full-outputs/`.
+
+---
+
+# Appendix B — Meta-learning: what the generalization battery taught
+
+Asked "meta learn and run more tests". Ran a 6-run battery across scenes/targets.
+Every run teed to `full-outputs/`.
+
+## B1. Concept steering generalizes cleanly across scenes (2/2)
+
+**office → "surfing tropical ocean"** (`SENT=0`, same θ=12/λ=0.8/BLOCK_REGION):
+
+> The office was quiet after hours . The rest of the employees had left to go
+> to their homes. It was a Saturday night and Casey Walker **surfing** on the
+> couch watching television. It was a sleepy evening and just like the others,
+> Casey was out of the wrong. He fell asleep **surfing** and making his way
+> back to his bed. His thoughts at the moment was getting his girl back from
+> that loser... because Sally had **ocean** breezes. The next morning he went
+> back to get it.
+
+The surf/ocean concept seeps into an office slice-of-life as grammar the model
+composes itself. Region tokens once each (22/50/85).
+
+**Meta-lesson B1: concept steering is scene-independent and needs `SENT=0`.**
+Resetting SENT=1 drifts the windows (emitted 27/65/108 instead of 23/50/80) and
+degrades the output ("Soft alien voices came from a sleepy across the room,
+Desk alien screeched... Alien alien girls") - the fixed 23/50/80 schedule sits
+at the repetition-safe points.
+
+## B2. Full-sentence steering does NOT port (0/3 new pairs clean)
+
+| run | scene -> topic | α, drop | result | latch |
+|---|---|---|---|---|
+| R4 | library -> cyberpunk | 2.0, 0 | LOOP | `recess` ×100 (spurious) |
+| R4b | library -> cyberpunk | 1.5, 10 | LOOP | `vault` ("vault of the vault of the vault") |
+| R5 | desert -> ocean depths | 2.0, 0 | LOOP | `depths` ("known depths known depths") |
+| R6b | desert -> ocean depths | 1.5, 10 | LOOP | `known` ("a known foe known known known") |
+| R6c | desert -> ocean depths | 2.0, 20 | LOOP | `deeper` ("ran deeper deeper deeper") |
+
+Every pair latched on a DIFFERENT token. Removing top extremes only promotes
+the next highest boost to argmax - the mechanism is structural: a sustained
+additive boost makes *whichever* boosted token has the highest combined
+boost+natural-momentum self-reinforce via repetition priming. This is the same
+loop disease as single-token hold-mode, in a new costume.
+
+**Why beach->fantasy is clean but these are not:** the beach narrative is a
+STRONG, stable distribution (children/sun/waves) and the fantasy dL is spread
+over weird multilingual tokens - so the boost only tilts *specific next-token
+choices* at the margins (the kid sees "evil-looking creatures") while the story
+stays in its groove. Library/desert narratives meander more, the boost takes
+over, and the model re-emits its favorite boosted token. The latent variable is
+**scene narrative strength**, not any of our knobs (α, drop, top, window).
+
+## B3. Meta-learned rules of thumb (from 20+ runs of this project)
+
+1. Concept steering: fixed windows (`SENT=0`), θ=12, λ=0.8, BLOCK_REGION=1.
+   Scene-independent; emits region tokens once; composes the rest.
+2. Full-sentence steering: logit-contrast at α=2 works **only when** the scene
+   is narratively strong AND the target vocab is diffuse (multilingual/odd
+   boosts help, ironically). It is a capability proof, not a robust tool yet.
+3. Never clamp dL (proven trap: saturates every boost to the same value).
+   Drop extremes instead - and know that dropping promotes the next latch.
+4. Every run gets teed to `full-outputs/` from now on - the earlier "smooth
+   robotic pancakes" run was nearly lost to a filtered terminal.
+5. The state-space direction is provably wrong for contrasts (cos ~ -0.3); the
+   logit-space contrast is the only construction that transports.
+
+## Reproduction — all appendix runs
+
+```bash
+# A1 concept (robotic pancakes, reproducible):
+TARGET_TYPE=dir CONCEPT="futuristic robotic alien" BLOCK_REGION=1 SENT=0 \
+    G_ANGLE=12 G_LAN=0.8 WINDOW=14 SW0=20 SEED=0 MODE=emit python3 gen_geom.py \
+    Qwen/Qwen2-1.5B "It was a warm morning in a small kitchen" "diamond,camel,volcano"
+# A2 sentence (beach -> fantasy):
+# (command in A2 above)
+# B1 concept generalization:
+TARGET_TYPE=dir CONCEPT="surfing tropical ocean" BLOCK_REGION=1 SENT=0 \
+    G_ANGLE=12 G_LAN=0.8 WINDOW=14 SW0=20 SEED=0 MODE=emit python3 gen_geom.py \
+    Qwen/Qwen2-1.5B "The office was quiet after hours" "sheep,sushi,elevator"
+```
