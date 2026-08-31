@@ -1,0 +1,16 @@
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The waves crashed gently on the beach' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CONTRAST[logit]: 4 tgt - 3 neu, |dL_z|=53.88, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.00
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+The waves crashed gently on the beach . The sand was cool to the touch, but the breeze was warm. A group of about a dozen children were scattered around in the water, playing. The sun was just peaking over the horizon, casting a soft light across the beach. The children were making their way back to shore, exhausted but happy. Some were splashing each other, while others were simply floating on their backs, taking in the beauty of the ocean. As they made their way back to the shore, they smiled and laughed, their voices echoing through the sand as they chatted and made plans for the day ahead.
+
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[5s] 120 tokens, eos=NO

@@ -175,16 +175,22 @@ def main():
             tgt = [x.strip() for x in CONTRAST_TARGET.split('|') if x.strip()]
             neu = [x.strip() for x in CONTRAST_NEUTRAL.split('|') if x.strip()]
             if CONTRAST_MODE == 'logit':
-                dL = None
+                ts = None
+                ns = None
                 with torch.no_grad():
-                    for s in tgt + neu:
+                    for s in tgt:
                         t = tok(s, add_special_tokens=False,
                                 return_tensors='pt').input_ids.to(DEV)
-                        Ls = model(t).logits[0, -1].float().cpu()  # next-token logits
-                        if dL is None:
-                            dL = torch.zeros_like(Ls)
-                        dL += Ls if s in tgt else -Ls
-                dL /= max(1, len(tgt) + len(neu))
+                        Ls = model(t).logits[0, -1].float().cpu()
+                        ts = Ls if ts is None else ts + Ls
+                    for s in neu:
+                        t = tok(s, add_special_tokens=False,
+                                return_tensors='pt').input_ids.to(DEV)
+                        Ls = model(t).logits[0, -1].float().cpu()
+                        ns = Ls if ns is None else ns + Ls
+                tm = ts / max(1, len(tgt))
+                nm = ns / max(1, len(neu))
+                dL = (tm - nm) / max(1, len(tgt) + len(neu))
                 # z-score, optionally drop the top few extreme tokens (they
                 # are single-token loop latchers), then top-k positive mask.
                 # Diffuse z-magnitudes over a clean vocab = topic transport
@@ -201,7 +207,16 @@ def main():
                 dL = (dL * m).to(DEV)
                 print(f'  CONTRAST[logit]: {len(tgt)} tgt - {len(neu)} neu, '
                       f'|dL_z|={dL.norm().item():.2f}, top-{k} mask')
-                print(f'    top dL tokens: {[tok.decode([int(i)]) for i in dL.argsort(descending=True)[:6]]}')
+                dL_c = dL.cpu()
+                pn = torch.softmax(nm, 0)
+                bidx = dL_c.argsort(descending=True)[:k]
+                maxn = pn[bidx].max().item()
+                eng = 0
+                for i in bidx[:k].tolist():
+                    s = tok.decode([i]).strip()
+                    if s and all(ord(c) < 128 for c in s) and sum(c.isalpha() for c in s) >= 3:
+                        eng += 1
+                print(f'    boost max natural prob={maxn:.5f}  eng-frac={eng / k:.2f}')
             else:
                 def _sent_mean(s):
                     t = tok(s, add_special_tokens=False,

@@ -316,3 +316,72 @@ TARGET_TYPE=dir CONCEPT="surfing tropical ocean" BLOCK_REGION=1 SENT=0 \
     G_ANGLE=12 G_LAN=0.8 WINDOW=14 SW0=20 SEED=0 MODE=emit python3 gen_geom.py \
     Qwen/Qwen2-1.5B "The office was quiet after hours" "sheep,sushi,elevator"
 ```
+
+---
+
+# Appendix C — Why does beach->dark-fantasy work but others loop?
+### (the "more known concept" hypothesis, tested to the mechanism)
+
+User hypothesis: 'dark fantasy' works because it is a more known / richer
+concept than the looping topics. Tested with measurements.
+
+## The test battery (same beach scene, α=2, top-200, drop-0)
+
+Added a metric to the contrast builder: among the top-200 boosted dL tokens,
+(1) max natural probability in the neutral context, (2) eng-frac = fraction
+that are clean English words.
+
+| run | target | max nat prob | eng-frac | result |
+|---|---|---|---|---|
+| K4 | dark fantasy | 0.00000 | **0.46** | ✅ CLEAN transport |
+| K1 | farm (very known) | 0.00000 | 0.66 | ❌ latch `fenced` |
+| K2 | haunted house | 0.00001 | 0.60 | ❌ latch `corridors` |
+| K3 | deep-sea vents | 0.00000 | 0.86 | ❌ latch `vent` |
+| K5 | farm, translated to Chinese | 0.00000 | **0.00** | no-op (beach untouched) |
+| K6 | fantasy, translated to Chinese | 0.00000 | **0.00** | no-op (beach untouched) |
+| K7 | farm, MIXED 2 EN + 2 ZH | 0.00000 | **0.00** | no-op (Chinese dominates mean) |
+
+## What the numbers say
+
+1. **Knownness is NOT the discriminator.** Farm is as "known" as fantasy; both
+   are saturated training topics. Farm loops, fantasy doesn't.
+2. **Reachability is NOT it either** - every booster has max natural prob
+   ~0.0000 (all unreachable in a beach narrative), yet most loop.
+3. **The discriminator IS the language mix of the boosted dL (eng-frac):**
+   - ~0.00 -> the boost is entirely foreign-script, which can never be
+     *grammatically selected* in English prose - so it is invisible
+     (no-op: wonderful beach, zero transport).
+   - ~0.46 -> **the sweet spot.** Majority-foreign mass diffuses the boost so
+     no single English token can become argmax, while the ~46% English tail
+     gives the grammar a path to move the narrative toward the topic.
+   - >=0.60 -> English tokens are selectable; sustained boost drives the
+     highest one to argmax; repetition priming latches it (the loop).
+4. **This is the user's intuition, corrected at the mechanism:** the original
+   fantasy TARGETS were English sentences ("A dragon circled...") - yet their
+   continuation-diff came out MAJORITY-CHINESE. Reason: Qwen2-1.5B's fantasy
+   training mass is cross-lingual (English + Chinese web-fiction), so its
+   next-token distribution for fantasy leans Chinese. Farm's English sentences
+   predict firmly English continuations. So "dark fantasy has more context to
+   pull from" is TRUE, but through the channel: deep topics whose training mass
+   is multilingual produce bilingual continuation-diffs, and bilingual diffs
+   are the only ones that transport instead of latching. Knownness without
+   cross-linguality (farm, haunted) loops anyway.
+5. **The naive mixing recipe FAILED**: adding Chinese sentences to an English
+   target set collapses eng-frac to 0.00 - Chinese continuations have larger
+   logit magnitudes and dominate the mean, starving the English tail entirely.
+   A working tuner would need to balance per-language contributions (weight,
+   or z-score per sentence before averaging) - documented as the next step.
+
+## The practical rule of thumb (v2)
+
+To predict whether sentence-contrast steering will transport or loop on a new
+topic, build the dL and read the printed `eng-frac`:
+- eng-frac ~0.4-0.5 -> go. This is the bilingual-diffusion sweet zone.
+- eng-frac ~0 -> the boost is invisible (raise ALPHA a lot, or mix in English
+  targets with per-language balancing).
+- eng-frac >=0.6 -> will latch. Need a de-latching mechanism (a genuine
+  per-token anti-repeat, or windowed (non-sustained) application), not a knob
+  on alpha/drop.
+
+Raw runs: `full-outputs/knownness_sentence.log`, `knownness_zh.log`,
+`knownness_mixed.log` (renamed .txt).

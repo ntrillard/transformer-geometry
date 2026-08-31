@@ -1,0 +1,48 @@
+########## K1 BEACH -> FARM (very known) α=2 ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The waves crashed gently on the beach' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=50.70, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.66
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+The waves crashed gently on the beach . The sand was cool to the touch, but the breeze was warm. A group of about a dozen children ate happily. The fences fenced fences fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[6s] 120 tokens, eos=NO
+########## K2 BEACH -> HAUNTED (known) α=2 ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The waves crashed gently on the beach' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=53.78, top-200 mask
+    boost max natural prob=0.00001  eng-frac=0.60
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+The waves crashed gently on the beach . The sand was cool to the touch, but the breeze was warm. A group of about a dozen children were scattered around in the shadows of gates leading into rooms that rooms hallway corridors leading hallway corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors corridors
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[5s] 120 tokens, eos=NO
+########## K3 BEACH -> DEEP-SEA VENTS (niche) α=2 ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The waves crashed gently on the beach' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=53.61, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.86
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+The waves crashed gently on the beach . The sand was cool to the touch, but the breeze was warm. A group of about a dozen children believed to be in the first grade came venturing out to the rocket like eruptions emitting volcanoes erupted gas emissions venturing upward vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent vent
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[5s] 120 tokens, eos=NO
