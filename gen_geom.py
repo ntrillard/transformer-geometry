@@ -7,17 +7,21 @@ weave the word back into the narrative. This script does none of that.
 
 MODES
 -----
-  MODE=hold (default)  nudge the readout toward the target row for the whole
-                       WINDOW. If the angle sits at the rank-1 threshold the
-                       model emits the forced token every step -> a bounded
-                       but spammy loop (windowing keeps it finite; the model
-                       recovers between windows).
-  MODE=emit            nudge until the word is emitted ONCE, then drop the
-                       forcing immediately with NO suppression - no logit
-                       edit of any kind. The word is now genuinely in the
-                       context the model wrote, so the narrative can
-                       continue around it - the "sheep -> sheepishly"
-                       integration without ever planting.
+Both modes use the SAME positive edit (rotate the readout toward the target
+word) and NO suppression at all - nothing is ever pushed down, no logit is
+ever decreased. The only difference is WHEN the edit stops:
+
+  MODE=hold   steer for the entire WINDOW, every step. The target is forced to
+              rank-1 continuously, so it is re-emitted forever (degenerate
+              loop). The window keeps it finite; the model recovers between.
+
+  MODE=emit   steer only UNTIL the target token is sampled once, then stop
+              steering (the positive force is removed - the window goes
+              passive). "Stop pushing up" (emit) is NOT suppression: it never
+              lowers any probability, it just decides when the nudge ends.
+              The word is now in the model's own context, so the model
+              continues around it on its own. Anti-repeat blocks were tried
+              and REMOVED - output was byte-identical, they never mattered.
 
 HIT_STOP is implicit in MODE=emit: once a window's word has appeared, that
 window stops steering (honest miss if the window ends without the word).
@@ -141,6 +145,10 @@ def main():
         w_active = next((w for s, w in win_at.items()
                          if s <= step < s + WINDOW), None)
 
+        # MODE=hold: steer the whole window. MODE=emit: only until the word
+        # has been sampled once - then the window goes passive (the positive
+        # force stops; nothing is ever suppressed). No logit is decreased in
+        # either mode.
         if (w_active is not None and MODE == 'hold') or \
            (w_active is not None and MODE == 'emit'
                 and w_active not in emitted):
