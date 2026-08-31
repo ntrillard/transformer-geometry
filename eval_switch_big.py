@@ -103,6 +103,19 @@ SOFT_ACC_STEP = float(os.environ.get('SOFT_ACC_STEP', '2.0'))
 SOFT_ACC_MAX = float(os.environ.get('SOFT_ACC_MAX', '20.0'))
 SOFT_TARGET_ALIGN = float(os.environ.get('SOFT_TARGET_ALIGN', '0.06'))
 SOFT_HYST = float(os.environ.get('SOFT_HYST', '0.01'))
+# prompt-aware switch gain: if the context already aligns with the family
+# (e.g. 'We were in the city' + city family), skip the graft entirely
+# (>= SOFT_ALIGN_SKIP) or scale it back -> no over-fire repetition.
+SOFT_ALIGN_SKIP = float(os.environ.get('SOFT_ALIGN_SKIP', '0.12'))
+# SUPPORT-based skip: if the model's OWN softmax already assigns >= this
+# probability to family tokens at the switch, it is already writing about
+# the topic -> skip the graft (real over-fire guard, e.g. 'We were in the
+# city' priming a city family).
+SOFT_SUPPORT_SKIP = float(os.environ.get('SOFT_SUPPORT_SKIP', '0.04'))
+# de-repeat window: steps after a plant during which the planted member's
+# tokens are anti-blocked, so the model WRITES about the topic instead of
+# parroting the planted word ('london london new york' guard).
+SOFT_PLANT_ANTI = int(float(os.environ.get('SOFT_PLANT_ANTI', '2')))
 
 SW_FREE = os.environ.get('SW_FREE') == '1'     # baseline arm: no hooks
 
@@ -111,14 +124,16 @@ _stop = ''.join(c for c in PROMPT[:20] if c.isalnum())
 OUT = Path('steering-evals/steering_geometry_results/switch_big_'
 
            f'{MODEL.split("/")[-1]}_{_stop}.csv')
-SWITCHES = {0: 'city', 16: 'animal', 32: 'food', 48: 'nature'}
+SWITCHES = {0: 'tech', 16: 'anatomy', 32: 'music', 48: 'astro'}
 SEG_N = 16
 # family members: single words and MULTI-WORD phrases (space-separated)
+# UNRELATED topics: 4 domains with nothing to do with each other or with
+# any story prompt. All single clean tokens (probed WRAP=before).
 FAMILIES = {
-    'city':   ['paris', 'london', 'berlin', 'madrid', 'oslo'],
-    'animal': ['cat', 'dog', 'bird', 'bear', 'horse', 'polar bear'],
-    'food':   ['pizza', 'sushi', 'pasta', 'burger', 'sushi bar'],
-    'nature': ['forest', 'rice', 'water', 'sun', 'tree'],
+    'tech':    ['laser', 'robot', 'sensor', 'turbine', 'satellite'],
+    'anatomy': ['liver', 'kidney', 'retina', 'tendon', 'cortex'],
+    'music':   ['piano', 'violin', 'trumpet', 'accordion', 'flute'],
+    'astro':   ['comet', 'eclipse', 'galaxy', 'orbit', 'planet'],
 }
 
 def _lm_head_fp16(model):
@@ -388,6 +403,9 @@ def main():
         acc = 0.0
         n_seg_tok = 0
         recent = []
+        plant_until = -1
+        plant_ids = None
+        plant_word = None
         align_hist = []
         corr = 0
 
@@ -396,22 +414,50 @@ def main():
                 # ---- HYBRID: calibrated graft at switch + accumulating
                 # centroid herding during drift, release on topic ----
                 L, v = forward_v(ids)
+                anti_a = (plant_ids if (step < plant_until and plant_ids)
+                          else None)
+                bw = (set(plant_word.lower().split()) if anti_a
+                      else None)
+                if anti_a:
+                    L = forward(ids, anti_ids=anti_a)
                 if step in SWITCHES:
                     cur_fam = SWITCHES[step]
                     last_switch = step
                     hj = hijack_ids(L)
-                    # calibrated graft: angle that makes the closest MEMBER
-                    # word rank-1 at THIS context (+margin), then plant it
                     name, ids_m, tgt = closest_member(v, cur_fam)
-                    th = best_angle(ids, v, tgt) if ONLINE_CALIB else ANGLE
-                    inj_p = rot_to_angle(v, tgt, th)
-                    L = forward(ids, inj_p=inj_p)
-                    corr += 1
-                    acc = SOFT_ACC_START
+                    u = v / v.norm()
+                    align = float(u @ fam_dir[cur_fam])
+                    # model's own family-token probability (no injection) -
+                    # the semantically meaningful over-fire signal
+                    ps = torch.softmax(L, 0)
+                    support = float(ps[famids[cur_fam]].sum())
+                    # prompt-aware gain: already writing about the topic ->
+                    # no plant (real 'london london new york' guard); scale
+                    # the graft angle back before that.
+                    if (support >= SOFT_SUPPORT_SKIP
+                            or align >= SOFT_ALIGN_SKIP):
+                        if os.environ.get('ALIGN_LOG') == '1':
+                            print(f"      align LOG skip@{step} {cur_fam}->{name} "
+                                  f"supp={support:.4f} align={align:.3f} ALREADY-ON")
+                        acc = 0.0
+                    else:
+                        th = best_angle(ids, v, tgt) if ONLINE_CALIB else ANGLE
+                        gain = max(0.15,
+                                   1.0 - max(support / SOFT_SUPPORT_SKIP,
+                                             abs(align) / SOFT_ALIGN_SKIP))
+                        th = max(th * gain, 0.5)
+                        inj_p = rot_to_angle(v, tgt, th)
+                        L = forward(ids, inj_p=inj_p)
+                        corr += 1
+                        acc = SOFT_ACC_START
+                        plant_ids = ids_m
+                        plant_word = name
+                        plant_until = step + 1 + SOFT_PLANT_ANTI
+                        if os.environ.get('ALIGN_LOG') == '1':
+                            print(f"      align LOG switch@{step} {cur_fam}->{name} "
+                                  f"supp={support:.4f} align={align:.3f} th={th:.0f} "
+                                  f"all={ {k: round(float(torch.softmax(L, 0)[famids[k]].sum()), 4) for k in FAMILIES} }")
                     n_seg_tok = 0
-                    if os.environ.get('ALIGN_LOG') == '1':
-                        print(f"      align LOG switch@{step} {cur_fam}->{name} "
-                              f"th={th:.0f}")
                 else:
                     # model's own drift support for the current family
                     p = torch.softmax(L, 0)
@@ -451,7 +497,7 @@ def main():
                             print(f"      align LOG drift@{step} {cur_fam} "
                                   f"supp={support:.4f} align={align:.3f} "
                                   f"acc={acc:.0f}")
-                nxt = sample(L, sampled, block_words=None, extra_zero=hj)
+                nxt = sample(L, sampled, block_words=bw, extra_zero=hj)
                 if nxt == eos_id:
                     sampled.append(nxt)
                     break
@@ -645,6 +691,10 @@ def main():
     for fam, mw in [('city', 'new york'), ('animal', 'polar bear'),
 
                     ('food', 'sushi bar')]:
+
+        if fam not in members:
+
+            continue
 
         mem = next((m for m in members[fam] if m[0] == mw), None)
 

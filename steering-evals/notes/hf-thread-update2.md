@@ -110,3 +110,50 @@ top-64 during the first 3 steps after a switch. Knobs: `PEN` (0.3),
   controller makes topic-switched prose, not a great writer.
 - Open: longer segments per switch (16 tokens is tight), the 3B model,
   and whether release-on-topic holds across prompt families.
+---
+
+## Update 2 — unrelated topics + de-repeat anti (Aug 31, 2026)
+
+Run: `HW` prompt "We were in the city...", `SW_SOFT=1 SW_META=1`.
+
+Families are now **completely unrelated domains**, all clean single
+tokens (probed WRAP=before):
+
+```python
+'tech':    [laser robot sensor turbine satellite]
+'anatomy': [liver kidney retina tendon cortex]
+'music':   [piano violin trumpet accordion flute]
+'astro':   [comet eclipse galaxy orbit planet]
+```
+
+**Boost over-fire fix.** The observed failure ("london london new york"
+when the prompt primed the city family) was NOT detectable pre-graft:
+cosine alignment and family-token probability are ~0 in both primed and
+unprimed contexts (rare tokens get ~1e-4 mass). So no skip signal
+exists at the switch. The real mechanism is post-plant riding. Fix:
+**de-repeat anti** — block the planted member (+ substring forms) for
+`SOFT_PLANT_ANTI=2` steps after each plant, so the model WRITES about
+the topic instead of parroting the planted word. Plus a support/align
+gain that scales the graft angle back when the model is already on-topic.
+
+**Result (Qwen2-1.5B, "We were in the city...", seed 0/1):**
+
+```text
+quality-good  STEERED 2/2   FREE 0/2
+hijacks       0/4 both seeds
+follow        2/4, 4/4
+```
+
+Seed 1:
+> laser hair removal, mental health and tourism minister satellite
+> phone site. ... white violin tune in? piano string bends jazz ...
+> planet weather the city with deer planet weather ... galaxy
+
+Seed 0:
+> laser workshop. ... liveried ourselves liveried around Nice Airport
+> retina in the retina (quite) a piano across Spain. Piano is a very
+> strong reference ... planet Yamaha galaxy brand
+
+Unrelated topics now land inside a coherent-ish narrative; the free arm
+stays refusal-free (it writes its own story) but covers none of the
+4 topics.
