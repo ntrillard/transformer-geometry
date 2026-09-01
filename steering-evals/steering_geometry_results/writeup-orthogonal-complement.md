@@ -213,3 +213,99 @@ residual"; we claim the narrower result above for these experiments.
 
 *Files:* `vec_compare.py` (geometry), `decomp_gen.py` (causal
 decomposition), `subspace_hierarchy.py` (representability boundary).
+
+---
+
+# Part III — Mechanism matrix: which operation is causal?
+
+## Question
+
+The decomposition showed the transport signal is ~99% outside `row(W)`. But
+is that *escape* itself the mechanism, or is it a side effect of something
+else? Separate the candidate operations with a factorial:
+
+- **Normalization**: raw / centered / z-scored / per-sentence z-sum
+- **Mask**: none / top-25 / top-50 / top-200 (positive top-k selection)
+- **Controls** (all at top-200, norm-matched to the working reference):
+  random coords (own values), random coords (sorted top-200 magnitudes),
+  real top-200 coords with permuted values, real coords with equal weight,
+  and the full `row(W)` projection of the working vector.
+
+Every condition is **rescaled to the same effective logit norm** (`N_REF`),
+so dose cannot explain any difference.
+
+## Phase A — row-space fraction vs K
+
+```
+K         R_row(perz)      residual (1-R)
+1         0.011            98.9%
+10        0.015            98.5%
+25        0.018            98.2%
+50        0.022            97.8%
+100       0.027            97.3%
+200       0.038            96.2%
+500       0.065            93.5%
+1000      0.097            90.3%
+5000      0.252            74.8%
+V (full)  0.999             0.1%
+```
+
+Masking *creates* the row-space escape: the top-200 vector is **96% outside
+row(W)**; the unmasked vector is **99.9% inside**. `zs` and `perz` give
+nearly identical fractions (normalization barely moves geometry).
+
+## Phase B — the causal table (SEEDS=6, fantasy)
+
+```
+cond       transport  dLogP_H  dLogP_U  maxrun  dist1  R_row
+raw        0/6   +0.44  -0.58    0.0  0.68  1.000
+raw_t25    0/6   -7.53  -7.19   33.0  0.67  0.018
+raw_t50    0/6   -7.57  -7.59   60.2  0.43  0.022
+raw_t200   2/6   -2.03  -2.42   14.5  0.56  0.038   ← transports
+cent_t200  1/6   -1.74  -2.38   14.8  0.47  0.038
+zs_t200    1/6   -1.74  -2.38   14.8  0.47  0.038
+perz_t200  2/6   -2.00  -2.49   14.5  0.55  0.038   ← transports
+rand200    0/6   -5.76  -6.84   83.3  0.25  0.012   ← degenerate
+magmatch200 0/6  -3.68  -3.81   52.7  0.35  0.011   ← degenerate
+shuffle200 0/6   -1.92  -2.58   17.7  0.44  0.037   ← dead
+equal200  0/6    -1.90  -2.54   25.7  0.43  0.038   ← dead
+rowW_proj 0/6    +0.79  -0.29    0.0  0.62  1.000   ← dead (back in rowW)
+```
+
+## What is causal
+
+1. **Normalization is disposable.** raw/cent/zs/perz at top-200 are all
+   ~1-2/6. The working "per-sentence z" is not the special ingredient; the
+   raw contrast works equally once top-k-selected.
+
+2. **Top-200 *coordinate* selection is necessary.** t25/t50 are dead and
+   degenerate (maxrun 33-60 repetition); no-mask (full row-space vector) is
+   dead. Only K≈200 carries the winner set the counterfactual needs.
+
+3. **Row-space escape is necessary but NOT sufficient.** All top-200
+   conditions sit ~96% outside row(W) — including the four dead controls.
+   Escape alone explains nothing.
+
+4. **The missing ingredient is the *coordinated* object: correct
+   vocabulary coordinates × ranked magnitudes × out-of-rowW.**
+   - `rand200`/`magmatch200` (wrong coords): dead + degenerate.
+   - `shuffle200` (right coords, permuted values): dead.
+   - `equal200` (right coords, equal weight): dead (no ranking gradient).
+   - `raw_t200`/`perz_t200` (right coords, ranked magnitudes): transport.
+
+5. **`rowW_proj` is the clean negative control**: projecting the working
+   vector into `row(W)` kills transport (0/6) while keeping maxrun 0 — the
+   signal itself is inert inside the hidden-reachable subspace, active
+   outside it.
+
+## Mechanism statement (reviewer-approved)
+
+> The generatively effective operation is: take the vocabulary readout
+> contrast, **select its top-200 positive coordinates with their ranked
+> magnitudes, and apply the resulting sparse vector as a logit offset**.
+> This vector necessarily escapes `row(W)` (masking breaks representability),
+> and it is that *coordinated* sparse object — not any individual axis
+> (normalization, sparsity, magnitudes, row-escape) — that transports.
+> Random/equal/permuted/sparse/row-constrained variants all fail.
+
+*File:* `mechanism_matrix.py`.
