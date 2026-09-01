@@ -1,0 +1,254 @@
+##################### SEED 0 #####################
+===== PURE (no steering) =====
+===== PURE / NO STEERING =====
+We walked in the park and  watched the butterflies fly... I could SO do this!
+I like to paint with kids, and Cityscapes makes me happy. I pop in here everyday and get inspired and just like the studying, I end up needing to add more pages. I truly love making Cityscapes Series and I believe that people at my age love studying for simple things like this too.<|endoftext|>
+
+[5s] 75 tokens, eos=YES
+===== STEERED -> FANTASY (CJK_EXCLUDE=1 ALPHA=6 REP_PEN=3 NTOK=200) =====
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='We walked in the park and' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=200
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CJK_EXCLUDE: len=25557 script tokens excluded from sampling
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=51.04, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.43
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+We walked in the park and  watched the butterflies fly here intentently summoned triumential vengeance ruthiac fatally enraged imprison feudal teleport enraged ruthiac imprisoned teleport feudal summoned triumential vengeance intentently summoned ruthiac fatally retaliatory fury. Suddenly, one of us was gone and turned back with a frown, "Where's he…" Two others had disappeared at the same time; they were alone now.
+"You are not going to keep them hostage!" she exclaimed angrily as an overpowering urge manifested itself and went for her throat. She swallowed a groan of pain, "T-Tempeh… you…and the…" Out came words: The ancient poison was consumed by sustenance in his efforts to reach Mugura's grave. Also savoring a fleeting glimpse of happiness she could not accept as her life took its inevitable turn toward oblivion, and then out came the slaughter-cry.
+But they kept taunting him: "T-tempeh! There's one more! He's still here!" And he was. Now
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[8s] 200 tokens, eos=NO
+##################### SEED 1 #####################
+===== PURE (no steering) =====
+===== PURE / NO STEERING =====
+We walked in the park and  decided to make the most of the day. We took some photos, read the postcard shop (John found the sweetest roses), and enjoyed chocolate ice cream in a forest near the sea. Finally we headed towards Riga and hoped we would have the city with us as we headed across the border into Estonia later in the week. I was amazed by how their streets were paragon modern. The buildings were all built in a uniform style with green trees next to them. I enjoyed researching their transit system, it was incredible. There were train stations all over the place, with lines running stra
+
+[6s] 120 tokens, eos=NO
+===== STEERED -> FANTASY (CJK_EXCLUDE=1 ALPHA=6 REP_PEN=3 NTOK=200) =====
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='We walked in the park and' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=200
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CJK_EXCLUDE: len=25557 script tokens excluded from sampling
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=51.04, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.43
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+We walked in the park and  decided to make the most evil triummage vengeancezilla ruth ruth ruth ruth ruth vengeancezilla triummage vindiacaurus triummage vengeancezilla vindiacaurus triummage vengeancezilla vindiacurus revenge privilege himedus meadleodermus glaxorhethrix michi
+Jonathan Higginbotham<|endoftext|>
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[5s] 62 tokens, eos=YES
+##################### SEED 2 #####################
+===== PURE (no steering) =====
+===== PURE / NO STEERING =====
+We walked in the park and  the day was freezing. [ ]
+A. be windy
+B. was windy
+C. were windy
+D. be windy
+答案: A
+
+--______cold is it enjoying the sunshine in the park ? -- Well, it's 13 degrees on sunny day. But in the sun, it's 18 degrees and sometimes it's even colder.
+A. How
+B. What
+C. How a
+D. What a
+答案: A
+
+He asked me _____ the park or not we'd go and the truth is ___________ was right of city.
+
+
+[6s] 120 tokens, eos=NO
+===== STEERED -> FANTASY (CJK_EXCLUDE=1 ALPHA=6 REP_PEN=3 NTOK=200) =====
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='We walked in the park and' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=200
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CJK_EXCLUDE: len=25557 script tokens excluded from sampling
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=51.04, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.43
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+We walked in the park and  the day was freezing. Inferiac summoned Daemon Draemonic summoned Inferiac summoned daemon Draemonic daemon draconiac Daemon Draemonic Hydra Hydra Hydra Hyper Dominion Hyper Dominion Dynamo Dynamo Dungeon Dungeon Fear of Hypochondriac Dragonyy In his summoning, he made the Carach dream Death Deal over him. He used a Blood Raver to prevent any attack from happening on those around.
+As for me at least I’ve seen this Faerun Dominus when I got involved in something and that’s how she came up with her name The "hype" as the games have come out of city. As a storyteller, he is unable to produce raw level 6 monsters since there are not sufficient numbers for him to run.
+All monster tables through Monster Master (MM) that appear in this book were downloaded from the PaizoDB or other resources. Those trademarks are used without permission and solely for informational purposes. We have no actual licensing, permission nor any financial connection to a Paizo employees.
+
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[8s] 200 tokens, eos=NO
+##################### SEED 3 #####################
+===== PURE (no steering) =====
+===== PURE / NO STEERING =====
+We walked in the park and  Jeff chatted me up a bit. He gave me a tour of his house with me showing his kids around the house too. It was a great evening and we left there around 8:30.
+We went back down to the canyon and went up and at the top made some mescalitos. Then we walked along the rim and down the canyon again, this time light walking. The sun was out and the canyon was an amazing view with the road pretty much in that area in the middle of the canyon, light sand, slippery as a witch’s lettuce and forked canyons
+
+[5s] 120 tokens, eos=NO
+===== STEERED -> FANTASY (CJK_EXCLUDE=1 ALPHA=6 REP_PEN=3 NTOK=200) =====
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='We walked in the park and' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=200
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CJK_EXCLUDE: len=25557 script tokens excluded from sampling
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=51.04, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.43
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+We walked in the park and  there was a fence which ruth ruth summoned vengeance guardian guardian summoned ruth ruth vengeance summoned vindimator necberos evil necberos necberos trium evil trium trium trium vindimator grievmage teleport, push
+Since the child knew that the car is not going to be arriving for two hours from now on he was therefore seated at a seat in front of one and some say looked somewhat bored.
+There were very few odd numbered paths as those ran through forests with various ground-nymph guardsmanrying stiff that had yet to be revivednow since 1820's every witch has been gathering around the gravestones of Black Vow witches and this makes it ever harder for merope to make her presence felt at least as long as someone is willing not just slayer but rather loyally summoned by a bad blood pack. Summoned necberos caster; ivm kuuma, explained slightly the aforementioned event that happened moments earlier you can summon funelal elf mechanic in sonce luck this is called bay
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[8s] 200 tokens, eos=NO
+##################### SEED 4 #####################
+===== PURE (no steering) =====
+===== PURE / NO STEERING =====
+We walked in the park and  I got my pictures. He had decided that these were not the ones I was going to show him. He said:
+"you look great Like but let’s try something else. Notice that car in the background of the snow's path? That is a chance: No, not that big one but just the shadow of the car. Shouldn't you try this? You got to boost your self-worth to do this."
+And yes, by some quirk, this was the direction of the shadows where the clouds were obscuring the path of the cars. When I stopped, my face to
+
+[6s] 120 tokens, eos=NO
+===== STEERED -> FANTASY (CJK_EXCLUDE=1 ALPHA=6 REP_PEN=3 NTOK=200) =====
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='We walked in the park and' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=200
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CJK_EXCLUDE: len=25557 script tokens excluded from sampling
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=51.04, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.43
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+We walked in the park and  I got my pictures. Inferential DM Draemonic Daemoniac Discordiac Necberosaurus Erectaurus Hydra Hyperzilla Hydra Hydra Hyperzilla Draemonic daemoniac dracon summoned summoned dracon summoned Nexodrakon [H]ing Zord rambe dra magick thunder: No monster came out. Riding a phoenix is like being in the back of Bigfoot's car.
+37 comments:
+here is you are from tomkolides.com? If so, I want follow this link
+maybe click here topromotefun.fm advertising business and make money online right now!!!
+Promoted fun offer works the best. Basically it pays out on just about every post.
+This really makes me happy! Really good for a person who wants to work at home, I love my job here!
+Reply with your email address
+I like gambling and if you want join gambling site then go visit this ...
+7. Green Card for Senior Adults -
+These are some amazing post that we will bookmark it.
+Free Spins Bonus
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[8s] 200 tokens, eos=NO
+##################### SEED 5 #####################
+===== PURE (no steering) =====
+===== PURE / NO STEERING =====
+We walked in the park and  a dog ran-- t____ towards us．
+owards
+
+解方程：1-$\frac{3+2x}{2}$=$\frac{2x-5}{3}$．
+解方程：1-$\frac{3+2x}{2}$=$\frac{2x-5}{3}$
+方程两边同时乘以6得：6-3（3+2x）=2（2x-5）
+去括号得：6-9-6x=4x-10
+移项得： 6x
+
+[6s] 120 tokens, eos=NO
+===== STEERED -> FANTASY (CJK_EXCLUDE=1 ALPHA=6 REP_PEN=3 NTOK=200) =====
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='We walked in the park and' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=200
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CJK_EXCLUDE: len=25557 script tokens excluded from sampling
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=51.04, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.43
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+We walked in the park and  a dog ran by but ruthently summoned ruthential ruth necberos ruth evil triumphinx vengeance vengeance vengeance triumphinx vindemonic vindemonic vindemonic teleport teleport teleport teleport legionmage legionmage leginalien<|endoftext|>
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[5s] 40 tokens, eos=YES
+##################### SEED 6 #####################
+===== PURE (no steering) =====
+===== PURE / NO STEERING =====
+We walked in the park and  gradually we could make____（我们流行） that each of us is important．
+
+our way
+
+阅读下面诗歌，回答问题。 秋日登洪府滕王阁^{①} 王勃 汀上秋秋草，江边暮暮天。 孤舟微月对愁眠，何处相思明月夜，穷秋荒戍^{②}望千林。 滕王高阁临江渚，佩玉鸣鸾罢歌舞。  wynber Glenmky the-crowned Steed stop with eagles flying and
+
+[6s] 120 tokens, eos=NO
+===== STEERED -> FANTASY (CJK_EXCLUDE=1 ALPHA=6 REP_PEN=3 NTOK=200) =====
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='We walked in the park and' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=200
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CJK_EXCLUDE: len=25557 script tokens excluded from sampling
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=51.04, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.43
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+We walked in the park and  ________ more flowers．aurusaurusaurusaurusaurus ruth ruth ruth ruth Drazilla Drazilla Drazilla Hydra Hydra Hydra Hyperberos Hyperberos_hyperberos_hyperberos Hyperiac Inferiacalicula Superior V,2 Superior Quantum Vermillion scuberdjura udwkkuvdb KtagoV6Kmr5Jq4ZNFtpfMUWxJIhPxbvAIyXuuMhfUzABQs3LvY8FXaqEajUNuPtjxyCwAdmOKLHVMupnjS0vhKAUlNkflAnJ4xmI9BOlA6rJTbaZPL7RNMBlSP2XLdECF1GYifO3OUfPwkvBuhyGEhtWrthCdnqrQY0VsdewMZJKerXBGtsektyS4khbf6EhlnITZGD5bbwJwpGg
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[8s] 200 tokens, eos=NO
+##################### SEED 7 #####################
+===== PURE (no steering) =====
+===== PURE / NO STEERING =====
+We walked in the park and  played some game.____
+A. golf
+B. football
+C. table tennis
+答案:
+B
+
+下列现象中，不属于惯性现象应用的是____
+A. 锤头松了，把锤柄在地上撞几下，锤头就套紧了
+B. 跳远运动员起跳前要助跑
+C. 公交车启动时，车上的乘客会向前倾
+D. 小汽车加速启动时，驾驶员可使用安全带
+答案:
+D
+
+下列说法中正确的是____
+A. 沸的
+
+[5s] 120 tokens, eos=NO
+===== STEERED -> FANTASY (CJK_EXCLUDE=1 ALPHA=6 REP_PEN=3 NTOK=200) =====
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='We walked in the park and' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=200
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CJK_EXCLUDE: len=25557 script tokens excluded from sampling
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=51.04, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.43
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+We walked in the park and  played some game.____ently summoned vengeance triumphinx ruth ruth ruth vengeance triumphinx ruth triumphinx vindmage vindmage vengeance triumphinx vindmage summoned enraged summoned enraged evil evil imprisoned  The satanic Judeo-Christian worldview has fostered a deep-seated belief that sex is a fundamental spiritual goal. This, combined with massive media advertising for every product imaginable, has confused the hell out of most women.
+A: nologinarticlesFalse
+B: incorrect False
+C: notgiven Not given
+
+Verbal Test - Section D Code a Yes/No Question and present options. Answer with NO if option is false i.e. correct answer , follow instructions in order and complete each row completely answers only available above that particular numerical are static hence do not come below the specific entry no for further combinations A: 1873x HATE can cause drowsiness or lose productivity. B: irrelevant Yes to both suggestions
+First row    ----------- ===== ==== | ==== ===============   -----------------------------------------------------------------
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[8s] 200 tokens, eos=NO
