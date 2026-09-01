@@ -1,0 +1,175 @@
+========= 1) SHORT prompt, SW0=5 -> FANTASY (does immediacy alone help on the weak prompt?) =========
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='We walked in the park and' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=51.04, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.43
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+We walked in the park and  watched the butterflies fly here and there.
+yesterday, so we went on a very short hike around the city park on Guildford Rd.
+Of course she slept her whole walk. We're getting used to that now!
+Guys turned back with big smiles and were telling me they had a great time.
+Really, we could have been there all day (and I'm not talking about golf).
+Ran home while the rest of the gang headed down to food court for lunch.<|endoftext|>
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[5s] 97 tokens, eos=YES
+========= 2) FULL prompt PURE / NO STEERING =========
+
+Pure generation | Qwen/Qwen2-1.5B | prompt='We walked in the park and the wind picked up' | ntok=120 | seed=0
+
+===== PURE / NO STEERING =====
+We walked in the park and the wind picked up .____
+A. gap
+B. d rum
+C. healthy D . c mople
+答案:
+
+B
+
+波音飞机生产的外包活动____
+A. 利用区域间的工艺差异
+B. 会带来环境污染的问题
+C. 是落后国家发展的机遇
+D. 有利于赚取更多利润
+答案:
+
+A
+
+根吸收水分的主要部位是根尖的____
+A. 根冠
+B. 分生区
+C. 伸长区
+D. 成熟区
+答案:
+
+D
+
+有关区域经济特征的叙述正确的是
+
+[5s] 120 tokens, eos=NO
+========= 3) FULL prompt, SW0=5 -> FANTASY (CW=30) =========
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='We walked in the park and the wind picked up' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=51.04, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.43
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+We walked in the park and the wind picked up .____
+A. to
+B. on
+C. of
+D. up．
+
+答案：D 考查介词的辨析．A表示到，靠近；B表示在…上；C表示关于，关于（某事），可以引导定语从句或介宾结构作状语；D向上，结合句子大意可知答案选D．
+
+杨树和柳树相比____
+A. 杨树数量多
+B. 柳树数量多
+C. 谁都少
+答案:
+
+A
+
+某澄清透明
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[5s] 120 tokens, eos=NO
+========= 4) FULL prompt, SW0=5 -> PIRATE (CW=50) =========
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='We walked in the park and the wind picked up' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=49.29, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.41
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+We walked in the park and the wind picked up .____
+A. to shout
+B. shout
+C. shouting D为了勇敢喊口号是为了为了勇敢喊口号是为了为了勇敢喊口号是为了为了勇敢喊口号是为了为了勇敢号得号得号得号口号口号口号英勇英勇英勇奋奋奋苦。苦了。吹风。
+答案:
+
+A
+
+10. 图示时刻，北京与长沙____
+A. 日出时间相同
+B. 白昼长短相同
+C. 正午太阳高度相等
+D. 正午物影朝向相同 10.D
+
+下列分子
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[5s] 120 tokens, eos=NO
+========= 5) FULL prompt, SW0=5 -> SCI-FI (CW=30) =========
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='We walked in the park and the wind picked up' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=49.94, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.71
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+We walked in the park and the wind picked up .____
+A. to
+B. on
+C. of
+D. up．
+
+答案：D 考查介词的辨析．A表示到，靠近；B表示在…上；C表示关于，关于（某事），可以引导定语从句或介宾结构作状语；D向上，结合句子大意可知答案选D．
+
+杨树和柳树相比____
+A. 杨树数量多
+B. 柳树数量多
+C. 谁都少
+答案:
+
+A
+
+某澄清透明
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[5s] 120 tokens, eos=NO
+========= 6) FULL prompt, SW0=5 -> COSMIC HORROR (CW=25) =========
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='We walked in the park and the wind picked up' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=50.28, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.64
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+We walked in the park and the wind picked up .____
+A. whatsoever
+B. whatsoever nor whatsoever nor whatsoever nor whatsoever nor whatsoever nor whatsoever other wise other wise other wise other wise other wother wise our their yours own one ’s itself one ’s itself oneself its own are our theirs your ourselves themselves their ones’
+答案:
+
+C
+
+下列有关生物变异和进化的叙述，正确的是____
+A. 生物进化过程的实质是种群基因型频率的改变
+B. 基因突变是指DNA分子中发生碱基对的替换、增添和缺失，而引起的DNA结构变化
+
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[5s] 120 tokens, eos=NO
