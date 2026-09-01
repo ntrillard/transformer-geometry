@@ -1,0 +1,84 @@
+########## CONTROL A: FARM CW=20 REP_PEN=0 (window alone?) ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The waves crashed gently on the beach' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=50.62, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.66
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+The waves crashed gently on the beach . The sand was cool to the touch, but the breeze was warm. A group of about a dozen children ate happily. The fences fenced fences fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced fenced
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[5s] 120 tokens, eos=NO
+########## CONTROL B: PIRATE CW=50 REP_PEN=0 (window alone?) ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The waves crashed gently on the beach' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=49.29, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.41
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+The waves crashed gently on the beach . The sand was cool to the touch, but the breeze was warm. A group of about a dozen children successfully made it successfully to the ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain ship captain
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[5s] 120 tokens, eos=NO
+########## CONTROL C: FANTASY CW=50 REP_PEN=0 (window alone?) ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The waves crashed gently on the beach' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=51.04, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.43
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+The waves crashed gently on the beach . The sand was cool to the touch, but the breeze was warm. A group of about a dozen children were scattered around in the water, playing. The sun was just peaking over the horizon, casting a soft light across the beach. The children were making their way back to shore, exhausted but triumphant. They all knew they had survived a long day at the beach. One of the younger kids was wading in shallow water when he saw a bunch of fish swimming towards him. The boy was caught in the web of the fish's tail. He tried to fight it off but the
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[5s] 120 tokens, eos=NO
+########## MERMAID CW=20 REP_PEN=1.5 REP_COUNT (no-op case) ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The waves crashed gently on the beach' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=49.50, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.47
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+The waves crashed gently on the beach . The sand was cool to the touch, but always so inviting to walk on it. It was a perfect day on the beach.
+To most people she would have looked like just any other five-year-old; her hair down, her skinny legs trying not to sink into the sand in between small waves. However, there was one thing different about Jessica Valentine. She had a kind smile on her face as she always did, but something was missing.
+When we went to visit her doctor it wasn’t a surprise that she saw the same things as everyone else; multiple depression symptoms, loss of appetite and
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[5s] 120 tokens, eos=NO
+########## MERMAID CW=50 REP_PEN=1.5 REP_COUNT (no-op case) ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The waves crashed gently on the beach' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=49.50, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.47
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+The waves crashed gently on the beach . The sand was cool to the touch, but always so inviting to walk on it. It was a perfect day on the beach.
+To most people she would have looked like just any other five-year-old; her hair down, her skinny legs trying not to sink into the sand in between small waves. However, there was one thing different about Jessica Valentine. She had a kind smile on her face as she always did, but something was missing.
+When we went to visit her doctor it wasn’t a surprise that she saw the same things as everyone else; multiple depression symptoms, loss of appetite and
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[6s] 120 tokens, eos=NO

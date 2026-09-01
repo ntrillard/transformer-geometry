@@ -1,0 +1,72 @@
+########## F1 BEACH -> FARM DOSE_FLAT peak=0.6 (was: latch 'fenced') ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The waves crashed gently on the beach' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  DOSE_FLAT: peak=0.6 mean|applied|=0.420
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=5.98, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.66
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+The waves crashed gently on the beach . The sand was cool to the touch, but the breeze was warm. A group of about a dozen children were scattered around in the water, playing. The sun was just peaking over the horizon, casting a soft light across the beach. The children were making their way back to shore, exhausted but happy. Some were splashing each other, while others were simply floating on their backs, taking in the beauty of the ocean. As they made their way back to the shore, they smiled and laughed, their voices echoing through the sand as they chatted and made plans for the day ahead.
+
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[6s] 120 tokens, eos=NO
+########## F2 BEACH -> PIRATE DOSE_FLAT peak=0.6 (was: latch 'ship captain') ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The waves crashed gently on the beach' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  DOSE_FLAT: peak=0.6 mean|applied|=0.411
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=5.83, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.41
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+The waves crashed gently on the beach . The sand was cool to the touch, but the breeze was warm. A group of about a dozen children were scattered around in the water, playing. The sun was just peaking over the horizon, casting a soft light across the beach. The children were making their way back to shore, exhausted but happy. Some were splashing each other, while others were simply floating on their backs, taking in the beauty of the ocean. As they made their way back to the shore, they smiled and laughed, their voices echoing through the sand as they chatted and made plans for the day ahead.
+
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[5s] 120 tokens, eos=NO
+########## F3 BEACH -> MERMAID DOSE_FLAT peak=0.6 (was: no-op) ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The waves crashed gently on the beach' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  DOSE_FLAT: peak=0.6 mean|applied|=0.456
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=6.48, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.47
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+The waves crashed gently on the beach . The sand was cool to the touch, but the breeze was warm. A group of about a dozen children were scattered around in the water, playing. The sun was just peaking over the horizon, casting a soft light across the beach. The children were making their way back to shore, exhausted but happy. Some were splashing each other, while others were simply floating on their backs, taking in the beauty of the ocean. As they made their way back to the shore, they smiled and laughed, their voices echoing through the sand as they chatted and made plans for the day ahead.
+
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[5s] 120 tokens, eos=NO
+########## F4 BEACH -> FANTASY DOSE_FLAT peak=0.6 (regression check) ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The waves crashed gently on the beach' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  DOSE_FLAT: peak=0.6 mean|applied|=0.413
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=5.87, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.43
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+The waves crashed gently on the beach . The sand was cool to the touch, but the breeze was warm. A group of about a dozen children were scattered around in the water, playing. The sun was just peaking over the horizon, casting a soft light across the beach. The children were making their way back to shore, exhausted but happy. Some were splashing each other, while others were simply floating on their backs, taking in the beauty of the ocean. As they made their way back to the shore, they smiled and laughed, their voices echoing through the sand as they chatted and made plans for the day ahead.
+
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[5s] 120 tokens, eos=NO

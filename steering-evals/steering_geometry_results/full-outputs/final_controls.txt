@@ -1,0 +1,70 @@
+########## BASELINE: NO CONTRAST AT ALL (natural continuation?) ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The waves crashed gently on the beach' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+The waves crashed gently on the beach . The sand was cool to the touch, but the breeze was warm. A group of about a dozen children were scattered around in the water, playing. The sun was just peaking over the horizon, casting a soft light across the beach. The children were making their way back to shore, exhausted but happy. Some were splashing each other, while others were simply floating on their backs, taking in the beauty of the ocean. As they made their way back to the shore, they smiled and laughed, their voices echoing through the sand as they chatted and made plans for the day ahead.
+
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[5s] 120 tokens, eos=NO
+########## FARM CW=20 REP_COUNT=1.5 REPRO (clean transport re-run) ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The waves crashed gently on the beach' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=50.62, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.66
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+The waves crashed gently on the beach . The sand was cool to the touch, but always so inviting to walk on it. It was a perfect day on the beach.
+Me and my friend Lauren were happily constructing new fence fences for backyard party; we would make people dance all night long while jumping up and down, playing in the music. And at one point that afternoon I had to come back to real life where I was living a pretty mundane life.<|endoftext|>
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[5s] 85 tokens, eos=YES
+########## PIRATE CW=50 REP_COUNT=1.5 REPRO (clean transport re-run) ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The waves crashed gently on the beach' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=49.29, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.41
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+The waves crashed gently on the beach . The sand was cool to the touch, but always so inviting to walk on it. It was a perfect day on the beach.
+Me and my friend Lauren came across this just after taking a walk along the coast road. We turned back with no hesitation and were instantly captivated by this shipwreck ship at sea full of captain ship loot. We both took off our shoes to tread on it (which is pretty fun actually).
+Please look down your fellow beach goers, get the boy a t-shirt, camera and maybe bring some sunblock before you partake in this new age adventure.
+
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[5s] 120 tokens, eos=NO
+########## FARM CW=18 REP_COUNT=1.5 (lower bound) ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The waves crashed gently on the beach' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=50.62, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.66
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+The waves crashed gently on the beach . The sand was cool to the touch, but always so inviting to walk on it. It was a perfect day on the beach.
+Me and my friend Lauren were happily constructing new fence fences for our senior end of year art project. We were trying not to disturb any more sand in case we had to build at another point later, but who could resist that golden sandy white goodness?
+We set up chairs and tables and began carving stone’s out with our screwdrivers.
+“What are you doing?” a girl shouted from behind us. She was followed by a screaming group of girls wearing skimpy tank tops
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[5s] 120 tokens, eos=NO

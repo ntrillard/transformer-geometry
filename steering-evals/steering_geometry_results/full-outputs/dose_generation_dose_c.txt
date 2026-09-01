@@ -1,0 +1,68 @@
+########## F1 BEACH -> FARM DOSE_C=30 (was: latch 'fenced') ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The waves crashed gently on the beach' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  DOSE: C=30.0 into 3000 unreachable tokens; mean|z| signal=0.51 pool=7.04
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=385.88, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.86
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+The waves crashed gently on the beach . The sand was cool to the touch, but the breeze was warm. A group of about azenioroudiosriendschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotal
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[6s] 120 tokens, eos=NO
+########## F2 BEACH -> PIRATE DOSE_C=30 (was: latch 'ship captain') ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The waves crashed gently on the beach' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  DOSE: C=30.0 into 3000 unreachable tokens; mean|z| signal=0.50 pool=7.04
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=385.88, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.87
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+The waves crashed gently on the beach . The sand was cool to the touch, but the breeze was warm. A group of about azenioroudiosriendschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotal
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[6s] 120 tokens, eos=NO
+########## F3 BEACH -> MERMAID DOSE_C=30 (was: no-op) ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The waves crashed gently on the beach' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  DOSE: C=30.0 into 3000 unreachable tokens; mean|z| signal=0.46 pool=7.04
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=385.89, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.90
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+The waves crashed gently on the beach . The sand was cool to the touch, but the breeze was warm. A group of about azenioroudiosriendschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotal
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[6s] 120 tokens, eos=NO
+########## F4 BEACH -> FANTASY DOSE_C=30 (regression check) ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The waves crashed gently on the beach' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  DOSE: C=30.0 into 3000 unreachable tokens; mean|z| signal=0.56 pool=7.04
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=385.88, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.86
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+The waves crashed gently on the beach . The sand was cool to the touch, but the breeze was warm. A group of about azenioroudiosriendschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotaltherschoolsielloodedtotal
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[6s] 120 tokens, eos=NO

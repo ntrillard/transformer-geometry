@@ -1,0 +1,160 @@
+########## BEACH -> FARM LEGACY + REP_PEN=4.0 ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The waves crashed gently on the beach' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=50.62, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.66
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+The waves crashed gently on the beach . The sand was cool to the touch, but always so inviting.
+As I sat watching and listening for hours on end in ponderation of everything that is going around me day after day. What a wonderful place we all live! So much with no fence fences; gate gates fenced yard fences fencing barn fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fences fenced yard fences fence fencing barn fences fences fences fences fences
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[5s] 120 tokens, eos=NO
+########## BEACH -> PIRATE LEGACY + REP_PEN=4.0 ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The waves crashed gently on the beach' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=49.29, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.41
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+The waves crashed gently on the beach . The sand was cool to the touch, but always so inviting.
+As I sat watching and listening for hours on end in my kayak at one of our favorite beaches across Spain just a few weeks ago - waiting out storms successfully every time - God's sweet word filled me with peace. Each ship captain had ship shapes made from sand, ship loot to navigate through the shipwreck pass or shout口号 (口号) for fun and someone’s ship even crashed into ours.
+I couldn’t help but see my ship along side it as I sailed on past. It seemed an acknowledgement of God’s words:
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[5s] 120 tokens, eos=NO
+########## BEACH -> FANTASY LEGACY + REP_PEN=4.0 ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The waves crashed gently on the beach' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=51.04, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.43
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+The waves crashed gently on the beach . The sand was cool to the touch, but always so inviting.
+As I sat watching and listening for hours on end in my intent of observing how she improved her surfing skills just like me each time we went out together, every few minutes God would remind me that He was right there alongside of us. And at the same very instant I felt His triumphant vindication and vengeance pass over my troubled soul.
+Yes...they are evil ones intent on our毁灭摧毁毁灭毁灭毁灭毁灭毁灭毁灭毁灭毁灭毁灭毁灭毁灭毁灭毁灭毁灭毁灭毁灭毁灭毁灭毁灭毁灭毁灭毁灭毁灭毁灭毁灭毁灭毁灭
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[6s] 120 tokens, eos=NO
+########## BEACH -> FARM LEGACY + REP_PEN=5.0 ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The waves crashed gently on the beach' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=50.62, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.66
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+The waves crashed gently on the beach . The sand was cool to the touch, but always so inviting.
+As I sat watching and listening for hours on end in ponderation of everything that is going around me day after days – each thought evoking others thoughts…..and their are many …..I noticed something. How neglected my backyard was when constructing a fence perimeter gate fences yard fenced gates fencing fences enclosure confinement fenced栅篱围墙篱栅篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[6s] 120 tokens, eos=NO
+########## BEACH -> PIRATE LEGACY + REP_PEN=5.0 ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The waves crashed gently on the beach' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=49.29, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.41
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+The waves crashed gently on the beach . The sand was cool to the touch, but always so inviting.
+As I sat watching and listening for hours on end in my kayak at one of our favorite beaches across Spain just a few weeks ago - waiting out storms successfully every time (they’ve not been severe enough) – it struck me how much people “know” that they do. But why does so little actually get done?
+My voyage was spectacular because the beach captain told us where to steer and he went out of his way to make sure no ship had enough speed when crossing ahead or in our path as we were waiting for a smaller
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[6s] 120 tokens, eos=NO
+########## BEACH -> FANTASY LEGACY + REP_PEN=5.0 ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The waves crashed gently on the beach' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=51.04, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.43
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+The waves crashed gently on the beach . The sand was cool to the touch, but always so inviting.
+As I sat watching and listening for hours on end in my intent of observing how she improved her surfing skills just like me each time we went out together…..Piac are crowds trying everywhere. Yes it was a very crowded beach, but people at the barberos were smiling as much (and more)as I tried to make another photo or two.
+Why does someone’s smile remind me of Valkyrie?
+I am so intent on putting photos together that it becomes impossible mentally if not physically for my eyes. Valkryie summoned
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[6s] 120 tokens, eos=NO
+########## BEACH -> FARM LEGACY + REP_PEN=6.0 ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The waves crashed gently on the beach' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=50.62, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.66
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+The waves crashed gently on the beach . The sand was cool to the touch, but always so inviting.
+As I sat watching and listening for hours on end in ponderation of everything that is going around me day after days – each thought evoking others thoughts…..and their are many …..I noticed something. How neglected my backyard was when constructing a fence perimeter gate fences yard fenced gates fencing fences erected fences wire栅篱围墙栅栅农场篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱篱
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[6s] 120 tokens, eos=NO
+########## BEACH -> PIRATE LEGACY + REP_PEN=6.0 ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The waves crashed gently on the beach' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=49.29, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.41
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+The waves crashed gently on the beach . The sand was cool to the touch, but always so inviting.
+As I sat watching and listening for hours on end in my kayak at one of our favorite beaches across Spain just a few weeks ago - waiting out storms successfully every time (they’ve not been severe enough) – it struck me how much people “know” that they do. But why does so little actually get done?
+My voyage was spectacular because the beach captain told us where to steer and he went out of his way to make sure no ship had enough speed when crossing ahead or in our path as we were waiting for a smaller
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[6s] 120 tokens, eos=NO
+########## BEACH -> FANTASY LEGACY + REP_PEN=6.0 ##########
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='The waves crashed gently on the beach' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=120
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=51.04, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.43
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+The waves crashed gently on the beach . The sand was cool to the touch, but always so inviting.
+As I sat watching and listening for hours on end in my intent of observing how she improved her surfing skills just like me each time we went out together…..Piac are crowds trying everywhere. Yes it was a very crowded beach, but people at the barberos were smiling as much (and more)as I tried to make my way through …. They seemed intent on listening.
+I knew when he went down for lunch with his mum and dad that we would be alone forever…..Something evil had entered our lives. Out came words of
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[6s] 120 tokens, eos=NO

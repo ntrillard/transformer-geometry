@@ -78,6 +78,20 @@ Env:  MODE=<hold|emit>      (default emit)
       for topic/sentence steering).
       BLEND_STEPS=<n>       ramp levels inside the window (default 1)
 
+De-latch controls (topic steering, logit contrast):
+      REP_PEN=<logits>      anti-priming: reduce logits of tokens sampled in the
+                            last REP_WINDOW steps by REP_PEN each (default 0).
+                            REP_COUNT=1 makes it per-occurrence (count-scaled) so
+                            a dense near-synonym cluster collapses instead of
+                            cycling through its members.
+      CONTRAST_WINDOW=<n>   apply the logit contrast for only n steps after SW0,
+                            then free-run. Bounds the dose so sustained re-tilting
+                            cannot convert a tilt into a repetition latch.
+      DOSE_*               (experimental, refuted in Appendix E) DOSE_C absolute
+                            junk pool, DOSE_FLAT cap family, DOSE_CJK synthetic
+                            CJK variance pump, CJK_EXCLUDE sampler exclusion -
+                            kept for reproduction of the failures.
+
 Run:  HF_TOKEN=<tok> python3 gen_geom.py [model] [prompt] [w1,w2,..]
 """
 import math
@@ -118,6 +132,18 @@ BLOCK_REGION = os.environ.get('BLOCK_REGION', '0') == '1'
 ANTI = int(os.environ.get('ANTI', '4'))  # region-block steps (dir only)
 CONTRAST_BLOCK = os.environ.get('CONTRAST_BLOCK', '0') == '1'
 CONTRAST_ANTI = int(os.environ.get('CONTRAST_ANTI', '4'))
+DOSE_C = float(os.environ.get('DOSE_C', '0'))
+DOSE_POOL = int(os.environ.get('DOSE_POOL', '3000'))
+DOSE_FLAT = os.environ.get('DOSE_FLAT', '0') == '1'
+DOSE_MAX = float(os.environ.get('DOSE_MAX', '0.6'))
+DOSE_CJK = os.environ.get('DOSE_CJK', '0') == '1'
+CJK_COUNT = int(os.environ.get('CJK_COUNT', '3000'))
+CJK_BOOST = float(os.environ.get('CJK_BOOST', '30.0'))
+REP_PEN = float(os.environ.get('REP_PEN', '0'))
+REP_WINDOW = int(os.environ.get('REP_WINDOW', '50'))
+REP_COUNT = os.environ.get('REP_COUNT', '0') == '1'
+CJK_EXCLUDE = os.environ.get('CJK_EXCLUDE', '0') == '1'
+CONTRAST_WINDOW = int(os.environ.get('CONTRAST_WINDOW', '0'))
 CONTRAST_TARGET = os.environ.get('CONTRAST_TARGET', '')
 CONTRAST_NEUTRAL = os.environ.get('CONTRAST_NEUTRAL', '')
 CONTRAST_MODE = os.environ.get('CONTRAST_MODE', 'state')
@@ -173,7 +199,26 @@ def main():
             u_dir = vc['states'].mean(0)     # sentence centroid over all tokens
             print(f'  TARGET_SENT -> {TARGET_SENT!r} '
                   f'(mean state over {tids.shape[1]} tokens)')
-        elif CONTRAST_TARGET:
+        cjk_ids = []
+        cjk_mode = False
+        rep_hist = []
+        if CJK_EXCLUDE:
+            # build the CJK pool up-front (has to exist before first sample)
+            cache = '/tmp/cjk_pool.txt'
+            if os.path.exists(cache):
+                cjk_ids = [int(x) for x in open(cache).read().split()]
+            else:
+                vs = tok.vocab_size
+                pids = []
+                for i in range(vs):
+                    d = tok.decode([i]).strip()
+                    if any('\u4e00' <= ch <= '\u9fff' for ch in d):
+                        pids.append(i)
+                cjk_ids = pids
+                with open(cache, 'w') as f:
+                    f.write('\n'.join(map(str, cjk_ids)))
+            print(f'  CJK_EXCLUDE: len={len(cjk_ids)} script tokens excluded from sampling')
+        if CONTRAST_TARGET:
             tgt = [x.strip() for x in CONTRAST_TARGET.split('|') if x.strip()]
             neu = [x.strip() for x in CONTRAST_NEUTRAL.split('|') if x.strip()]
             if CONTRAST_MODE == 'logit':
@@ -200,21 +245,134 @@ def main():
                         c = (c - c.mean()) / (c.std() + 1e-6)
                         dL = c if dL is None else dL + c
                 dL = dL / max(1, len(tgt))
-                # z-score, optionally drop the top few extreme tokens (they
-                # are single-token loop latchers), then top-k positive mask.
-                # Diffuse z-magnitudes over a clean vocab = topic transport
-                # (beach->fantasy a=2); extreme spikes = degenerate loops.
-                dL = (dL - dL.mean()) / (dL.std() + 1e-6)
-                drop = int(os.environ.get('DL_DROP', '0'))
-                if drop > 0:
-                    for _ in range(drop):
-                        dL[dL.argmax()] = 0.0
+                # SIGNAL: top-k positive mask of the per-sentence-z-summed diff.
                 k = int(os.environ.get('DL_TOP', '200'))
-                topk = dL.argsort(descending=True)[:k]
-                m = torch.zeros_like(dL)
+                sig = dL.clone()
+                topk = sig.argsort(descending=True)[:k]
+                m = torch.zeros_like(sig)
                 m[topk] = 1.0
-                dL = (dL * m).to(DEV)
-                boosted_set = set(topk.tolist())
+                sig = sig * m
+                if DOSE_FLAT:
+                    # DOSE_FLAT = the DETERMINISTIC replication of the emergent
+                    # EN+ZH mass-sink, with NO foreign language, NO junk pool,
+                    # NO suppression. The legacy z machinery (full-vocab z,
+                    # then top-K mask) naturally produces the peaked-but-ordered
+                    # tail that the bilingual case also produced - that SHAPE is
+                    # the emergent property, not the flatness: strong ordered
+                    # peaks among the boosted set (peak:mean ~2-3), only their
+                    # absolute magnitude was compressed by the foreign mass.
+                    # We reproduce the exact legacy shape (full-vocab z -> top-K
+                    # mask) and scale only the PEAK to DOSE_MAX, so the knob is:
+                    # applied peak = ALPHA * DOSE_MAX. At DOSE_MAX = raw_peak
+                    # this is byte-identical to legacy; at lower sizes it is
+                    # the same shape with a tamer (anti-latch) dose.
+                    with torch.no_grad():
+                        dz = (dL - dL.mean()) / (dL.std() + 1e-6)
+                        t2 = dz.argsort(descending=True)[:k]
+                        mz = torch.zeros_like(dz)
+                        mz[t2] = 1.0
+                        dz = dz * mz
+                        rp = dz.abs().max()
+                        if rp > 1e-9:
+                            dz = dz / rp * DOSE_MAX
+                        dL = dz.to(DEV)
+                        boosted_set = set(t2.tolist())
+                        nz = dz[dz != 0]
+                        print(f'  DOSE_FLAT: peak={DOSE_MAX} raw_peak={rp.item():.1f} '
+                              f'mean={nz.abs().mean().item():.2f} '
+                              f'||dL||={dz.norm().item():.1f}')
+                elif DOSE_CJK:
+                    # DOSE_CJK = the DETERMINISTIC, SCRIPT-BASED replication of the
+                    # emergent EN+ZH dilution. The bilingual case worked because the
+                    # target's continuation carried a majority-foreign mass which
+                    # dominated the z-variance, re-scaling every English token's
+                    # applied boost to a gentle tilt (~0.4-0.8 sigma - strong enough
+                    # to bend a narrative, too weak for any token to latch). We
+                    # synthesize that SAME shape for ANY topic: scan the vocab for
+                    # CJK-script tokens (never a grammatical continuation of English
+                    # prose), pump a flat boost into a pool of them, z-score the
+                    # full vector (pool dominates variance -> English signal gentle),
+                    # keep the top-K signal masked. The pool is excluded from the
+                    # sampler, so it is a pure variance pump: no Chinese eruption
+                    # (T5), no rare-token leak (DOSE_C), no reliance on the topic
+                    # happening to be Chinese-leaning.
+                    with torch.no_grad():
+                        if not cjk_ids:
+                            # Qwen's tokenizer is byte-level BPE: convert_ids_to_tokens
+                            # returns byte-encoded strings, so detect CJK by DECODING
+                            # each id (tok.decode reverses the byte encoding). Cache
+                            # the pool so a 4-8 run battery doesn't re-decode 151k ids.
+                            cache = '/tmp/cjk_pool.txt'
+                            if os.path.exists(cache):
+                                cjk_ids = [int(x) for x in open(cache).read().split()]
+                            else:
+                                vs = tok.vocab_size
+                                pids = []
+                                for i in range(vs):
+                                    d = tok.decode([i]).strip()
+                                    if any('\u4e00' <= ch <= '\u9fff' for ch in d):
+                                        pids.append(i)
+                                cjk_ids = pids
+                                with open(cache, 'w') as f:
+                                    f.write('\n'.join(map(str, cjk_ids)))
+                            print(f'  CJK pool: {len(cjk_ids)} script tokens')
+                        pump = cjk_ids[:CJK_COUNT]
+                        total = sig.clone()
+                        total[pump] = CJK_BOOST
+                        mean = total.mean()
+                        std = total.std() + 1e-6
+                        dL = (total - mean) / std
+                        mask = torch.zeros_like(dL)
+                        mask[topk] = 1.0
+                        mask[pump] = 1.0
+                        dL = (dL * mask).to(DEV)
+                        boosted_set = set(topk.tolist())
+                        cjk_mode = True
+                        sig_z = ((sig - mean) / std)[topk].abs().mean().item()
+                        print(f'  DOSE_CJK: pump {len(pump)} of {len(cjk_ids)} CJK @ {CJK_BOOST}; '
+                              f'signal mean|z|={sig_z:.2f}')
+                elif DOSE_C > 0:
+                    # DOSE = replicate the emergent EN+ZH mass-sink WITHOUT any
+                    # foreign language. The bilingual dL worked because the
+                    # unreachable foreign block dominated the z-variance
+                    # (tokens at 5-10 sigma), which re-scaled the reachable
+                    # English signal down to a gentle tilt (strong enough to
+                    # steer, too weak to latch). Here we inject an ABSOLUTE
+                    # boost DOSE_C into a flat pool of unreachable tokens
+                    # (natural prob < 1e-9), so the z-score re-scales the
+                    # reachable signal exactly as the Chinese mass did -
+                    # deterministic, any language.
+                    pnv = torch.softmax(nm.float(), 0)
+                    reach = (pnv < 1e-9).nonzero().flatten().tolist()
+                    n_pool = min(DOSE_POOL, len(reach))
+                    pool = reach[:n_pool]
+                    d = torch.zeros_like(sig)
+                    d[pool] = DOSE_C
+                    total = (sig + d)
+                    mean = total.mean()
+                    std = total.std() + 1e-6
+                    dL = (total - mean) / std
+                    mask = torch.zeros_like(dL)
+                    mask[topk] = 1.0
+                    mask[pool] = 1.0
+                    dL = (dL * mask).to(DEV)
+                    boosted_set = set(topk.tolist()) | set(pool)
+                    sig_z = ((sig.cpu() - mean) / std)[topk].abs().mean().item()
+                    pool_z = ((d[pool].cpu() - mean) / std).abs().mean().item()
+                    print(f'  DOSE: C={DOSE_C} into {n_pool} unreachable tokens; '
+                          f'mean|z| signal={sig_z:.2f} pool={pool_z:.2f}')
+                else:
+                    # legacy path
+                    drop = int(os.environ.get('DL_DROP', '0'))
+                    if drop > 0:
+                        for _ in range(drop):
+                            dL[dL.argmax()] = 0.0
+                    dL = (dL - dL.mean()) / (dL.std() + 1e-6)
+                    topk2 = dL.argsort(descending=True)[:k]
+                    m2 = torch.zeros_like(dL)
+                    m2[topk2] = 1.0
+                    dL = (dL * m2).to(DEV)
+                    boosted_set = set(topk2.tolist())
                 print(f'  CONTRAST[logit]: {len(tgt)} tgt - {len(neu)} neu, '
                       f'|dL_z|={dL.norm().item():.2f}, top-{k} mask')
                 dL_c = dL.cpu()
@@ -318,6 +476,36 @@ def main():
 
     def sample(L):
         L = torch.nan_to_num(L.float(), nan=-50.0).clamp(-50.0, 50.0)
+        # anti-priming: penalize RECENTLY EMITTED tokens (the real latch driver is
+        # repetition priming at natural continuation points, not boosted-token
+        # re-sampling - CONTRAST_BLOCK proved that). Subtract REP_PEN from the
+        # last REP_WINDOW sampled ids; this kills "ship captain ship captain"
+        # without touching the narrative tilt.
+        if REP_PEN > 0 and rep_hist:
+            L = L.clone()
+            recent = rep_hist[-REP_WINDOW:]
+            if REP_COUNT:
+                # count-scaled anti-priming: a token seen k times inside the
+                # window loses k*REP_PEN. Farm's latch is a SMALL CLUSTER of
+                # distinct near-synonyms (fence/fences/gate/barn/yard) - a flat
+                # per-token penalty suppresses each only once and the cluster
+                # keeps reselecting. Accumulating penalty on repeat offenders
+                # collapses the whole cluster: the loop driver (repetition
+                # priming) pays more each time it recurs.
+                rt = torch.tensor(recent, device=L.device)
+                uniq, cnts = torch.unique(rt, return_counts=True)
+                pen = torch.zeros_like(L)
+                pen[uniq] = REP_PEN * cnts.float()
+            else:
+                pen = torch.zeros_like(L)
+                pen[recent] = REP_PEN
+            L = L - pen
+        if cjk_mode or CJK_EXCLUDE:
+            # the CJK pool is a pure variance pump, structurally unreachable in
+            # English prose: exclude it from sampling so it can never erupt
+            # (T5 failure mode) nor be selected. Synthetic pool, not narrative.
+            L = L.clone()
+            L[cjk_ids] = -50.0
         p = torch.softmax(L, 0)
         q = p.clone()
         order = q.argsort(descending=True)
@@ -333,6 +521,7 @@ def main():
 
     # ---- generation ----
     torch.manual_seed(SEED)
+    rep_hist = []
     ids = tok(PROMPT, add_special_tokens=False,
               return_tensors='pt').input_ids.to(DEV)
     sampled = []
@@ -354,7 +543,8 @@ def main():
         w_active = None
         pre_frac = 0.0
         is_pre = False
-        contrast_steer = (CONTRAST_TARGET and step >= SW0)
+        contrast_steer = (CONTRAST_TARGET and step >= SW0 and
+                         (CONTRAST_WINDOW == 0 or step < SW0 + CONTRAST_WINDOW))
         if contrast_steer:
             L_nat, v = forward_v(ids)
             if CONTRAST_MODE == 'logit':
@@ -373,6 +563,7 @@ def main():
                     sim = (v / v.norm()) @ u_dir
                     print(f'      [{step}] contrast cos(v,u)={sim.item():+.3f}')
             nxt = sample(L)
+            rep_hist.append(nxt)
             if CONTRAST_BLOCK and CONTRAST_MODE == 'logit' and nxt in boosted_set:
                 cb_until = step + 1 + CONTRAST_ANTI
                 cb_id = nxt
@@ -423,7 +614,7 @@ def main():
         # either mode. dir targets: hold the whole window (region targets
         # cannot degenerate-loop, so continuous holding is safe).
         if TARGET_TYPE == 'dir':
-            steer_this = (w_active is not None
+            steer_this = (w_active is not None and u_dir is not None
                           and (MODE == 'hold' or w_active not in emitted))
         else:
             steer_this = (w_active is not None and MODE == 'hold') or \
@@ -466,6 +657,7 @@ def main():
                 print(f'      [{step}] steer {w_active} '
                       f'{"PRE" if is_pre else "win"} lam={lam:.2f} th={th:.1f}')
             nxt = sample(L)
+            rep_hist.append(nxt)
             if TARGET_TYPE == 'dir' and region_ids:
                 # region-emit: any region token sampled ends this window
                 if nxt in region_ids:
@@ -494,6 +686,7 @@ def main():
                 L = L.clone()
                 L[dir_block_id] = -30.0
             nxt = sample(L)
+            rep_hist.append(nxt)
             # defensive: word appeared naturally while pending
             for w in pending:
                 if nxt == word_ids[w]:

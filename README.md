@@ -140,6 +140,19 @@ Example output (all three out-of-place words woven in grammatically):
    and full-sentence/topic steering (logit-space contrast at ALPHA=2, beach bends to
    dark-fantasy mid-narrative). Everything needed to reproduce, incl. the three failed
    constructions and the honest robustness limits. `writeup-sentence-concept.md`.
+10. **v5 (the de-latch): reliable topic transport with NO foreign language - REP_PEN/**
+    **REP_COUNT + CONTRAST_WINDOW** (`gen_geom.py`)**. The EN+ZH dark-fantasy transport
+    was never about Chinese: the emergent property is a boost strong enough to tilt a
+    narrative choice but not sustained enough to prime any single token into a repetition
+    latch. Sampler-level anti-priming (`REP_PEN` + `REP_COUNT`: penalize recently-emitted
+    tokens, count-scaled so dense near-synonym clusters collapse) plus windowed contrast
+    application (`CONTRAST_WINDOW`: bound the dose) reproduce the transport for topics that
+    previously latched - farm (CW=18-25: "fence fences for backyard party; we would make
+    people dance all night long") and pirate (CW=50: "shipwreck ship at sea full of captain
+    ship loot. We both took off our shoes to tread on it") - byte-identical on re-run, zero
+    foreign language, zero suppression. Six refuted constructions (DOSE_SINK/DOSE_C/DOSE_
+    FLAT v1-v3/DOSE_CJK/CJK_EXCLUDE/window-alone) and the mechanism statement in Appendix E
+    of `writeup-sentence-concept.md`.
 ---
 
 ## Repository Layout

@@ -485,3 +485,98 @@ priming is the real loop driver.
 
 Raw runs: full-outputs/language_scripts.txt, language_construct.txt,
 scorecard_validate.txt, contrast_block.txt, knownness_*.txt.
+
+
+---
+
+# Appendix E - The de-latch: reliable topic transport with NO foreign language
+### (two new primitives that reproduce the emergent "bilingual" steering for any English topic)
+
+## What this session was for
+
+The user's standing request: take what makes the EN+ZH dark-fantasy transport work and
+make a steering that does not rely on Chinese but on the emergent property that appeared
+when English and Chinese interacted. Appendix D (Q6) had already refuted five constructions.
+This session attacked the two surviving constructive threads named there: (1) a de-latch
+that targets repetition PRIMING, and (2) windowed (non-sustained) application of the
+contrast. Both work, together and separately, and reproduce the dark-fantasy result for
+topics that previously latched (farm, pirate) - with zero foreign language in the vector.
+
+## The two new primitives (in gen_geom.py)
+
+- `REP_PEN` / `REP_WINDOW` / `REP_COUNT` - sampler-level anti-priming. Every sampled id
+  is logged; on the next sample, logits of tokens seen in the last REP_WINDOW steps are
+  reduced by REP_PEN each. With `REP_COUNT=1` the penalty is per-occurrence (count-scaled),
+  so a small cluster of distinct near-synonyms (fence/fences/gate/yard/barn) collapses
+  instead of cycling through each member. Nothing is ever pushed below -50, no token is
+  hard-blocked, narrative tilt is untouched; only the repetition loop (the writeup's
+  identified latch driver) pays more the more it recurs.
+- `CONTRAST_WINDOW` - windowed, non-sustained application. The logit contrast dL is added
+  (at ALPHA) only for CONTRAST_WINDOW steps after SW0, then generation goes free. This is
+  the Appendix-C "windowed (non-sustained) application" prescription, mechanized.
+
+## What was refuted this session (six constructions)
+
+1. `DOSE_SINK` (fraction-of-energy sink into a junk pool): signal compressed but unchanged
+   landing - the sink at C~0.1 was far too weak; eng-frac never moved.
+2. `DOSE_C` (absolute-dose junk pool, z-scored): at C=30 the English signal hit the
+   celebrated 0.5 sigma - but the pool LEAKED: rare-English tokens are not structurally
+   unreachable, once the distribution drifts +14 logits selects them and it erupts into
+   junk tokens ("azenioroudiosriend...").
+3. `DOSE_FLAT` (flat-cap family v1/v2/v3): "the bilingual English tail was flat at
+   0.4-0.8 sigma" was invented, not measured. The legacy fantasy bend that reproduces
+   sits at 1-5 sigma RMS / 2-10 applied logits. A cap at <=1.2 applied logits is a no-op;
+   a cap at legacy shape is legacy (latches included).
+4. `DOSE_CJK` (synthetic CJK variance pump, excluded from sampling): 3000 CJK tokens at
+   CJK_BOOST=30 compress signal to 0.5 sigma = byte-identical no-op on all four topics.
+5. `CJK_EXCLUDE` (exclude CJK from the sampler): farm still latches - its eruption
+   escapes through farm-relevant CJK (栅栏/围墙/篱笆/饲养/农场/玉米) that sits BEYOND a
+   3000-id pool (the full CJK set is 25,557 tokens; Qwen's byte-level BPE stores CJK as
+   bytes, so pool detection must use tok.decode not convert_ids_to_tokens).
+6. Window alone (CONTRAST_WINDOW, no REP_PEN): farm and pirate STILL latch identically
+   to sustained contrast. Window bounds the dose but the priming loop survives inside it.
+
+Takeaway from the refutations: the "gentle dose" picture was wrong. The Chinese mass never
+compressed the English tail - it SHIFTED which tokens sat in the top-200 boost mask. The
+real, engineerable knobs are the sampler (kill the priming loop) and the window (bound the
+dose), not the vector's z-statistics.
+
+## The measured result (beach scene, alpha=2, seed 0, top-200)
+
+| topic | eng-frac | legacy (sustained) | + REP_PEN/REP_COUNT | + CONTRAST_WINDOW (with REP_PEN/COUNT) |
+|---|---|---|---|---|
+| farm | 0.66 | latch 'fenced' | still latches (fence-cluster cycles, then CJK eruption) | **CLEAN** at CW=18-25: "fence fences for backyard party; we would make people dance all night long" (eos, no loop) |
+| pirate | 0.41 | latch 'ship captain' | clean at RP=3.0-6.0: "navigate the shipwreck... voyage of its own choosing" | **CLEAN** at CW=50: "shipwreck ship at sea full of captain ship loot. We both took off our shoes to tread on it" |
+| fantasy | 0.43 | CLEAN bend ("evil-looking creatures emerging from the surf") | clean at 2.0-6.0 | clean at CW=20-50 |
+| mermaid | 0.47 | no-op | no-op | no-op at CW=20/50 (trajectory-incompatible - unchanged, honest limit) |
+
+Controls:
+- CONTRAST_WINDOW ALONE: farm/pirate latch identically (fenced / ship captain). => REP_PEN
+  is the load-bearing de-latch; window bounds the dose on its own but does not de-latch.
+- REP_PEN ALONE: de-latches pirate/fantasy; farm needs a window too (its dense synonym
+  cluster keeps re-tilting inside any sustained dose).
+- Reproducibility: farm CW=20 and pirate CW=50 re-ran byte-identical.
+- Baseline (no contrast) is a different natural trajectory ("children scattered around in
+  the water"), NOT the short-window outputs - a short window just lands on a different
+  natural continuation, which is the honest behavior at CW=20 for pirate/fantasy.
+
+## The mechanism statement (the answer to the user's question)
+
+The emergent property of the EN+ZH case was never the Chinese language. It was the shape
+of the steering interaction: strong enough to tilt a narrative choice, not sustained
+enough to prime any single token into a repetition latch. Chinese happened to deliver that
+shape for free (foreign mass in the boost mask + foreign tokens structurally unselectable
+in English prose). It is now engineered directly and deterministically for ANY English
+topic, with no foreign language, no junk pool, no suppression:
+
+- `REP_PEN`+`REP_COUNT` kills the repetition-priming loop at the sampler (generic).
+- `CONTRAST_WINDOW` bounds the dose so sustained re-tilting (dense clusters like farm)
+  cannot convert the tilt into a loop.
+- Recommended recipe: `CONTRAST_MODE=logit ALPHA=2 DL_TOP=200 REP_COUNT=1 REP_PEN=1.5
+  CONTRAST_WINDOW=20-50`. Tune CW by topic density (sparse pirate: 50 takes; dense farm:
+  20).
+
+Raw runs: dose_cjk_b30.txt, dose_flat_battery.txt, dose_flat_generation.txt,
+dose_flat_v3_battery.txt, dose_generation_dose_c.txt, rep_pen_legacy.txt,
+rep_pen_legacy2.txt, rep_count.txt, rep_count_cjkex.txt, windowed_contrast.txt,
+window_sensitivity.txt, delatch_controls.txt, final_controls.txt.
