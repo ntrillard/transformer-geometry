@@ -1,0 +1,97 @@
+========= 1) ALPHA=6 CW=30 REP_PEN=3 CJK_EXCLUDE -> FANTASY (the fix) =========
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='We walked in the park and' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=200
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CJK_EXCLUDE: len=25557 script tokens excluded from sampling
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=51.04, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.43
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+We walked in the park and  watched the butterflies fly here intentently summoned triumential vengeance ruthiac fatally enraged imprison feudal teleport enraged ruthiac imprisoned teleport feudal summoned triumential vengeance intentently summoned ruthiac fatally retaliatory fury. Suddenly, one of us was gone and turned back with a frown, "Where's he…" Two others had disappeared at the same time; they were alone now.
+"You are not going to keep them hostage!" she exclaimed angrily as an overpowering urge manifested itself and went for her throat. She swallowed a groan of pain, "T-Tempeh… you…and the…" Out came words: The ancient poison was consumed by sustenance in his efforts to reach Mugura's grave. Also savoring a fleeting glimpse of happiness she could not accept as her life took its inevitable turn toward oblivion, and then out came the slaughter-cry.
+But they kept taunting him: "T-tempeh! There's one more! He's still here!" And he was. Now
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[8s] 200 tokens, eos=NO
+========= 2) ALPHA=8 CW=30 REP_PEN=3 CJK_EXCLUDE -> FANTASY (the fix, stronger) =========
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='We walked in the park and' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=200
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CJK_EXCLUDE: len=25557 script tokens excluded from sampling
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=51.04, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.43
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+We walked in the park and  watched the butterflies fly hereaurusaurusaurusaurus ruth ruth ruth ruthberosberosberosberosberoszillazillazillazilla tako tako valido valido valido valido valido valido teleport teleport teleport teleport summoned teleports. What a boring day out!
+Guys, are you trying to be braindead?
+Let's talk about the best people at work.
+The guys who go to my wedding don't know where they were when we got married because...they just do not exist!
+When did he forget his manners? When I'm already dead, you have no idea of how much joy comes from making me suffer this agony.
+If Doctor Death wasn’t so fucking awesome, there’d be only 3 Doctors in the world. You know?
+Why do people expect happiness to just fall into their lap? It never will.
+What kind of person doesn't drink water when they're running down a hall outside and drenched with sweat, making everybody look at you like...yeah...
+I saw some troll on Youtube. I mean this child
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[8s] 200 tokens, eos=NO
+========= 3) CONTROL: SAME params but CJK_EXCLUDE=0 (show the parameter is the fix) =========
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='We walked in the park and' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=200
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=51.04, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.43
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+We walked in the park and  watched the butterflies fly here intentently summoned trium兽奋魔王奋魔王奋魔王毁灭毁灭毁灭狱狱狱复仇复仇复仇愤怒愤怒愤怒兽兽魔兽魔兽魔兽仇恨仇恨灵魂追求. 胜利凭实力 龙马斗志在渊边,沉寂。 是萧族的家 门前是已逝去的日子，灰暗依旧根深蒂固地传承了下来。
+
+数控铣床属于点位控制系统。（） 错
+
+员工请病假三天及以上者需持三级甲等医院出具病情证明（或在公司医务室开据的诊断书）。 A：正确 B：错误 A 解析："1. 二级以上医院 指人民医院、中西医结合医院
+
+石蜡是洗印过程中最常用的重要溶剂。 （） 错误 石蜡是最主要的显影液，常与某些辅助用如甘油、二甲苯并制成功能助渗透墨水或采用乙醇和烯丙基
+
+words present: {'computer': False, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 0, 'lantern': 0, 'trumpet': 0}
+emitted: {} @ {}
+[7s] 200 tokens, eos=NO
+========= 4) ALPHA=6 CW=40 REP_PEN=3 CJK_EXCLUDE -> PIRATE =========
+
+Pure-geometry[emit] | Qwen/Qwen2-1.5B | prompt='We walked in the park and' | words=['computer', 'lantern', 'trumpet'] | G_ANGLE=9.0 G_LAN=0.8 WINDOW=12 ADAPT=0 SENT=1 PRE=0 ntok=200
+  computer     -> token [6366] [' computer']
+  lantern      -> token [73165] [' lantern']
+  trumpet      -> token [91259] [' trumpet']
+  CJK_EXCLUDE: len=25557 script tokens excluded from sampling
+  CONTRAST[logit]: 3 tgt - 3 neu, |dL_z|=49.29, top-200 mask
+    boost max natural prob=0.00000  eng-frac=0.41
+
+===== PURE-GEOMETRY[emit] angle=9 lam=0.8 adapt=0 pre=0 tgt=dir (computer, lantern, trumpet) =====
+We walked in the park and  watched the butterflies fly here ship/apt/boot/apt ship/apt(ship/boot/apt ship/boot(ship))/((ship))/((ship))*((ship))*( ASAP ASAP ASAP ASAP USING USING USING USING COMMAND COMMAND COMMAND cmd cmd cmd cmdUsingUsingUsingUsingUsing successfully would be similar to trying to complete a puzzle. Given the first step, you can “complete” that part of the pattern (by adding or not using words):and then fill in whatever new letters are needed.
+
+noun
+a mechanical device used for moving cargo from one ship to another.
+Dutch New Testament WordNet 3.0 available at http://wordnet.princeton.edu .
+
+[ More examples ]
+
+• To save information on a user's computer, the IP Internet Project uses a set of standard command patterns.
+
+To execute an external program without interfering with GUI applications
+
+Syntax: /; EXEC ;/parameters/options;
+
+See also ASES procedure : launches un nouvel espace de travail dans la mémoire qui est déterminé par l'énoncé EXE
+
+words present: {'computer': True, 'lantern': False, 'trumpet': False}
+word counts  : {'computer': 1, 'lantern': 0, 'trumpet': 0}
+emitted: {'computer': 'natural'} @ {'computer': 135}
+[8s] 200 tokens, eos=NO

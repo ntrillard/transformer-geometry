@@ -108,7 +108,7 @@ PROMPT = (sys.argv[2] if len(sys.argv) > 2
 WORDS = ([w.strip() for w in sys.argv[3].split(',') if w.strip()]
          if len(sys.argv) > 3 else
          ['diamond', 'camel', 'volcano'])
-NTOK = 120
+NTOK = int(os.environ.get('NTOK', '120'))
 SEED = int(os.environ.get('SEED', '0'))
 DEV = 'cuda' if torch.cuda.is_available() else 'cpu'
 
