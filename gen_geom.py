@@ -143,6 +143,7 @@ REP_PEN = float(os.environ.get('REP_PEN', '0'))
 REP_WINDOW = int(os.environ.get('REP_WINDOW', '50'))
 REP_COUNT = os.environ.get('REP_COUNT', '0') == '1'
 CJK_EXCLUDE = os.environ.get('CJK_EXCLUDE', '0') == '1'
+EXAM_EXCLUDE = os.environ.get('EXAM_EXCLUDE', '0') == '1'
 CONTRAST_WINDOW = int(os.environ.get('CONTRAST_WINDOW', '0'))
 CONTRAST_TARGET = os.environ.get('CONTRAST_TARGET', '')
 CONTRAST_NEUTRAL = os.environ.get('CONTRAST_NEUTRAL', '')
@@ -150,8 +151,20 @@ CONTRAST_MODE = os.environ.get('CONTRAST_MODE', 'state')
 ALPHA = float(os.environ.get('ALPHA', '3.0'))
 DL_TOP = int(os.environ.get('DL_TOP', '200'))
 DL_DROP = int(os.environ.get('DL_DROP', '0'))
+DL_CLEAN = int(os.environ.get('DL_CLEAN', '0'))
+CONTRAST_EMIT = os.environ.get('CONTRAST_EMIT', '0') == '1'
 BLEND_STEPS = max(1, int(os.environ.get('BLEND_STEPS', '1')))
+# discriminant steering: target word-cluster minus distract word-cluster
+DISC_TARGET = os.environ.get('DISC_TARGET', '')
+DISC_DISTRACT = os.environ.get('DISC_DISTRACT', '')
 TRACE = os.environ.get('TRACE') == '1'
+# experimental no-insertion proof: forbid the steering TARGETS themselves from
+# ever being sampled (CONCEPT region words / boosted contrast tokens). If a
+# run still carries the theme with ZERO of its target tokens in the output,
+# the transport is synthesis, not insertion.
+CONCEPT_BLOCK = os.environ.get('CONCEPT_BLOCK', '0') == '1'
+BLOCK_WORDS = os.environ.get('BLOCK_WORDS', '')   # strict-block extra word set (held-out test)
+BLOCK_BOOSTED = os.environ.get('BLOCK_BOOSTED', '0') == '1'
 
 
 def main():
@@ -202,6 +215,7 @@ def main():
         cjk_ids = []
         cjk_mode = False
         rep_hist = []
+        cont_emit_done = False
         if CJK_EXCLUDE:
             # build the CJK pool up-front (has to exist before first sample)
             cache = '/tmp/cjk_pool.txt'
@@ -218,6 +232,40 @@ def main():
                 with open(cache, 'w') as f:
                     f.write('\n'.join(map(str, cjk_ids)))
             print(f'  CJK_EXCLUDE: len={len(cjk_ids)} script tokens excluded from sampling')
+        exam_ids = []
+        if EXAM_EXCLUDE:
+            # the exam-template lock: the model's English-exam prior (this model
+            # was trained on massive CN English-exam corpora) makes a short
+            # fragment like 'We walked in the park and' collapse into a cloze
+            # template ('____ A. golf B. football'). These marker tokens are
+            # structurally unreachable in narrative prose but strongly primed by
+            # that prior - same class as CJK eruption. Bar them from sampling so
+            # template-bound seeds must continue narratively.
+            _m = ['____', '___', '__', '_', '________', '______', '[', ']',
+                  '．', '答案', '答案:', '　', '（）', '[ ]', '[  ]']
+            _blocked = {2130, 5973, 563, 62, 3979, 58, 60, 2279, 58883,
+                        9909, 7552, 102349, 25, 22441,}
+            _seen = set()
+            for _s in _m:
+                for _i in tok(_s, add_special_tokens=False).input_ids:
+                    if _i in _blocked and _i not in _seen:
+                        _seen.add(_i); exam_ids.append(_i)
+            # content-wise: ANY token whose decoded content is an underscore run
+            # (len>=2, optional surrounding space/newline) is an exam cloze marker
+            # - never legitimate narrative. Catches fused/space-prefixed variants
+            # that exact-id blocking misses (' ____'=30743, '______'=32671, etc).
+            for _i in range(tok.vocab_size):
+                _d = tok.decode([_i]).strip()
+                if len(_d) >= 2 and set(_d) == {'_'} and _i not in _seen:
+                    _seen.add(_i); exam_ids.append(_i)
+                # singleton bracket tokens (fused with a space) are the OTHER
+                # fusion hole: ' [' is id 508, a different id than bare '['=58.
+                # Block any token whose stripped content is exactly '[' or ']',
+                # plus full-width parens (also fusion-prone: ' （' is 42344,
+                # not bare 9909). Never legitimate narrative content alone.
+                elif _d in ('[', ']', '（', '）') and _i not in _seen:
+                    _seen.add(_i); exam_ids.append(_i)
+            print(f'  EXAM_EXCLUDE: {len(exam_ids)} exam-marker tokens excluded: {exam_ids}')
         if CONTRAST_TARGET:
             tgt = [x.strip() for x in CONTRAST_TARGET.split('|') if x.strip()]
             neu = [x.strip() for x in CONTRAST_NEUTRAL.split('|') if x.strip()]
@@ -252,6 +300,33 @@ def main():
                 m = torch.zeros_like(sig)
                 m[topk] = 1.0
                 sig = sig * m
+                if DL_CLEAN:
+                    # The raw top-K boost is polluted by (a) CJK mass and (b) BPE
+                    # sub-word fragments (aurus/beros/imension) that decode into
+                    # vocabulary-salad when sampled. Filter to CLEAN WORD-BOUNDARY
+                    # tokens only: raw token string starts with the space marker
+                    # (a fresh word, never a mid-word piece) AND decodes to a pure
+                    # ASCII word (excludes CJK, numbers, symbols). Then re-take the
+                    # top-k over the surviving set so the boost is pure English
+                    # vocabulary with no junk tail.
+                    vt = tok.convert_ids_to_tokens(list(range(tok.vocab_size)))
+                    keep = []
+                    for i in topk.tolist():
+                        rt = vt[i] or ''
+                        dt = tok.decode([i]).strip()
+                        if (rt.startswith('\u0120') and dt and
+                                all(('a' <= ch <= 'z') or ('A' <= ch <= 'Z')
+                                    or ch in ("'", '-') for ch in dt) and
+                                len(dt) >= 3):
+                            keep.append(i)
+                    m2 = torch.zeros_like(sig)
+                    m2[keep] = 1.0
+                    sig = sig * m2
+                    k2 = min(k, len(keep))
+                    topk2 = sig.argsort(descending=True)[:k2]
+                    topk = topk2
+                    print(f'  DL_CLEAN: {len(keep)} clean word-boundary tokens '
+                          f'({k2} in final mask)')
                 if DOSE_FLAT:
                     # DOSE_FLAT = the DETERMINISTIC replication of the emergent
                     # EN+ZH mass-sink, with NO foreign language, NO junk pool,
@@ -363,16 +438,34 @@ def main():
                           f'mean|z| signal={sig_z:.2f} pool={pool_z:.2f}')
                 else:
                     # legacy path
-                    drop = int(os.environ.get('DL_DROP', '0'))
-                    if drop > 0:
-                        for _ in range(drop):
-                            dL[dL.argmax()] = 0.0
-                    dL = (dL - dL.mean()) / (dL.std() + 1e-6)
-                    topk2 = dL.argsort(descending=True)[:k]
-                    m2 = torch.zeros_like(dL)
-                    m2[topk2] = 1.0
-                    dL = (dL * m2).to(DEV)
-                    boosted_set = set(topk2.tolist())
+                    if DL_CLEAN:
+                        # DL_CLEAN built the filtered mask over sig; z-score the
+                        # surviving set and mask to it - same shape as legacy, but
+                        # restricted to clean word-boundary tokens.
+                        mz = torch.zeros_like(sig)
+                        mz[topk] = 1.0
+                        dL = ((sig - sig.mean()) / (sig.std() + 1e-6) * mz).to(DEV)
+                        boosted_set = set(topk.tolist())
+                    else:
+                        dL = (dL - dL.mean()) / (dL.std() + 1e-6)
+                        if os.environ.get('DL_FULL') == '1':
+                            # use the ENTIRE 152k-dim contrast (the diffuse 98%):
+                            # the meaningful signal is a global tilt, not the top-k
+                            # spike (measured: top-200 = 2.1% of ||z||^2, mean|z|
+                            # = 0.78 across all dims). Apply the full z unfiltered.
+                            dL = dL.to(DEV)
+                            boosted_set = set()
+                        else:
+                            drop = int(os.environ.get('DL_DROP', '0'))
+                            if drop > 0:
+                                for _ in range(drop):
+                                    dL[dL.argmax()] = 0.0
+                            topk2 = dL.argsort(descending=True)[:k]
+                            m2 = torch.zeros_like(dL)
+                            m2[topk2] = 1.0
+                            dL = (dL * m2).to(DEV)
+                            boosted_set = set(topk2.tolist())
+                boost_block = boosted_set.copy()   # survives the gen-loop wipe (bug 637)
                 print(f'  CONTRAST[logit]: {len(tgt)} tgt - {len(neu)} neu, '
                       f'|dL_z|={dL.norm().item():.2f}, top-{k} mask')
                 dL_c = dL.cpu()
@@ -421,16 +514,79 @@ def main():
             if rows:
                 u_dir = torch.stack(rows).mean(0)
                 print(f'  CONCEPT {ws} -> centroid of {len(rows)} rows')
+        if DISC_TARGET:
+            # discriminant steering: target-cluster centroid MINUS distract-cluster
+            # centroid. Cancels the shared (e.g. beach-like) component so the
+            # direction points at what is UNIQUE to the target cluster - reaches
+            # semantic neighbors (funeral/cemetery/葬) no single anchor contains.
+            dt_ws = [w.strip() for w in DISC_TARGET.split() if w.strip()]
+            dd_ws = [w.strip() for w in DISC_DISTRACT.split() if w.strip()]
+            def _row(w):
+                sp = tok(' ' + w, add_special_tokens=False).input_ids
+                return Wn[int(sp[0])] if len(sp) == 1 else None
+            tr = [_row(w) for w in dt_ws]; tr = [r for r in tr if r is not None]
+            dr = [_row(w) for w in dd_ws]; dr = [r for r in dr if r is not None]
+            if tr and dr:
+                u_disc = (torch.stack(tr).mean(0) - torch.stack(dr).mean(0))
+                u_dir = u_disc
+                print(f'  DISC: {dt_ws} - {dd_ws} -> |u|={u_dir.norm().item():.3f}',
+                      f' (tr={len(tr)} dr={len(dr)})')
         if u_dir is not None:
             u_dir = (u_dir / u_dir.norm()).to(DEV)
             print(f'  dir-target: u_dir norm=1, first dims={u_dir[:3].tolist()}')
 
     region_ids = set()      # single-token CONCEPT rows, for region-emit
-    if TARGET_TYPE == 'dir' and CONCEPT:
-        for w in CONCEPT.split():
-            sp = tok(' ' + w, add_special_tokens=False).input_ids
-            if len(sp) == 1:
-                region_ids.add(int(sp[0]))
+    strict_block_ids = set()   # CONCEPT_BLOCK: exact ids + case/plural/inflection variants
+    if TARGET_TYPE == 'dir':
+        _roots = []
+        if CONCEPT:
+            for w in CONCEPT.split():
+                sp = tok(' ' + w, add_special_tokens=False).input_ids
+                if len(sp) == 1:
+                    region_ids.add(int(sp[0]))
+            if os.environ.get('CONCEPT_BLOCK') == '1':
+                # strict no-insertion: block the concept words in EVERY surface form
+                # (case, plural, -ing/-ed, fused). A concept token leaking through
+                # as 'Ritual' or 'rituals' would make the 'no insertion' test a lie.
+                for w in CONCEPT.split():
+                    d = tok.decode(tok(' ' + w, add_special_tokens=False).input_ids[0]).strip().lower()
+                    if d and d.isalpha() and len(d) >= 3 and d not in _roots:
+                        _roots.append(d)
+        if DISC_TARGET and os.environ.get('CONCEPT_BLOCK') == '1':
+            # no-insertion for discriminant steering: also block the DISC_TARGET
+            # words (every surface form) so the theme in the output is NOT any
+            # steering word - it must be the discriminant's semantic reach.
+            for w in DISC_TARGET.split():
+                sp = tok(' ' + w, add_special_tokens=False).input_ids
+                if len(sp) == 1 and CONCEPT_BLOCK:  # not a region for emit (blocked anyway)
+                    pass
+                d = tok.decode(sp[0]).strip().lower() if sp else ''
+                if d and d.isalpha() and len(d) >= 3 and d not in _roots:
+                    _roots.append(d)
+        if _roots and os.environ.get('CONCEPT_BLOCK') == '1':
+            for _w in _roots:
+                for _v in [_w, _w + 's', _w + 'es', _w + 'ed', _w + 'ing',
+                           _w.capitalize(), _w.capitalize() + 's', _w + 's'.capitalize()]:
+                    for _vs in [_v, ' ' + _v]:
+                        for _i in tok(_vs, add_special_tokens=False).input_ids:
+                            strict_block_ids.add(int(_i))
+            strict_block_ids |= region_ids
+            print(f'  CONCEPT_BLOCK strict: {len(strict_block_ids)} blocked ids',
+                  f' roots={_roots}')
+        if BLOCK_WORDS:
+            # held-out vocabulary test: strictly block these words (all surface
+            # forms) regardless of steering mode, so any theme vocabulary in the
+            # output is NOT the steering set itself.
+            for w in BLOCK_WORDS.split():
+                sp = tok(' ' + w, add_special_tokens=False).input_ids
+                d = tok.decode(sp[0]).strip().lower() if sp else ''
+                if d and d.isalpha() and len(d) >= 3:
+                    for _v in [d, d + 's', d + 'es', d + 'ed', d + 'ing',
+                               d.capitalize(), d.capitalize() + 's', d + 's'.capitalize()]:
+                        for _vs in [_v, ' ' + _v]:
+                            for _i in tok(_vs, add_special_tokens=False).input_ids:
+                                strict_block_ids.add(int(_i))
+            print(f'  BLOCK_WORDS strict: {len(strict_block_ids)} blocked ids total')
 
     def forward(ids, inj_p=None):
         hs = []
@@ -506,6 +662,28 @@ def main():
             # (T5 failure mode) nor be selected. Synthetic pool, not narrative.
             L = L.clone()
             L[cjk_ids] = -50.0
+        if EXAM_EXCLUDE and exam_ids:
+            # bar the exam-template marker tokens (see list at build time).
+            # exam_ids is a main() local captured by this closure; always bound.
+            L = L.clone()
+            L[exam_ids] = -50.0
+        if strict_block_ids:
+            # strict no-insertion proof: the CONCEPT/BLOCK_WORDS words (every
+            # surface form: case, plural, inflected, fused) are forbidden.
+            # The readout is STILL rotated toward their centroid - only the
+            # words themselves can never be sampled.
+            # strict no-insertion proof: the CONCEPT words (every surface form: case,
+            # plural, inflected, fused) are forbidden. The readout is STILL rotated
+            # toward their centroid - only the words themselves can never be sampled.
+            L = L.clone()
+            L[list(strict_block_ids)] = -50.0
+        if BLOCK_BOOSTED and boost_block:
+            # no-insertion proof for CONTRAST mode: the top-k boosted tokens
+            # (the literal steering target list) can never be sampled. Any
+            # theme that still lands is carried by the aggregate direction.
+            # (boost_block survives the boosted_set wipe - see CONTRAST build.)
+            L = L.clone()
+            L[list(boost_block)] = -50.0
         p = torch.softmax(L, 0)
         q = p.clone()
         order = q.argsort(descending=True)
@@ -538,18 +716,35 @@ def main():
     cb_until = -1
     cb_id = None
     boosted_set = set()
+    boost_block = set()   # survives for no-insertion proof (not wiped below)
 
     for step in range(NTOK):
         w_active = None
         pre_frac = 0.0
         is_pre = False
-        contrast_steer = (CONTRAST_TARGET and step >= SW0 and
-                         (CONTRAST_WINDOW == 0 or step < SW0 + CONTRAST_WINDOW))
+        if CONTRAST_EMIT and cont_emit_done:
+            contrast_steer = False
+        else:
+            contrast_steer = (CONTRAST_TARGET and step >= SW0 and
+                             (CONTRAST_WINDOW == 0 or step < SW0 + CONTRAST_WINDOW))
         if contrast_steer:
             L_nat, v = forward_v(ids)
             if CONTRAST_MODE == 'logit':
-                # additive logit contrast: directly raise target-vocab logits
-                L = L_nat + ALPHA * dL
+                # Additive logit contrast. G_BLEND in (0,1] scales the contrast
+                # contribution down (keeps full natural logits); G_RAMP applies
+                # a cosine intensity envelope across [SW0, SW0+CW) so the splice
+                # eases in and out instead of slamming (the dense-cluster
+                # enumeration failure).
+                gb = float(os.environ.get('G_BLEND', '0.0'))
+                ramp = float(os.environ.get('G_RAMP', '0.0'))
+                amp = 1.0
+                if ramp > 0 and CONTRAST_WINDOW > 0:
+                    tprog = (step - SW0) / CONTRAST_WINDOW
+                    amp = 0.5 - 0.5 * math.cos(min(1.0, max(0.0, tprog)) * math.pi)
+                if gb <= 0:
+                    L = L_nat + ALPHA * amp * dL
+                else:
+                    L = L_nat + ALPHA * amp * (1 - gb) * dL
                 if CONTRAST_BLOCK and step < cb_until and cb_id is not None:
                     L = L.clone()
                     L[cb_id] = -30.0       # break boosted-token latch loops
@@ -564,6 +759,11 @@ def main():
                     print(f'      [{step}] contrast cos(v,u)={sim.item():+.3f}')
             nxt = sample(L)
             rep_hist.append(nxt)
+            if CONTRAST_EMIT and nxt in boosted_set:
+                cont_emit_done = True
+                if TRACE:
+                    print(f'      [{step}] CONTRAST_EMIT: {tok.decode([nxt])!r} '
+                          f'sampled, contrast off')
             if CONTRAST_BLOCK and CONTRAST_MODE == 'logit' and nxt in boosted_set:
                 cb_until = step + 1 + CONTRAST_ANTI
                 cb_id = nxt
