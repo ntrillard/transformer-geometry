@@ -38,6 +38,7 @@ import torch, transformers
 
 SEED = int(sys.argv[1]) if len(sys.argv) > 1 else 0
 PHASEA = os.environ.get('PHASEA', '0') == '1'
+REPL = os.environ.get('REPL', '0') == '1'     # 6-cell replication mode
 MODEL = os.environ.get('MODEL', 'Qwen/Qwen2-1.5B')
 NTOK = int(os.environ.get('NTOK', '120'))
 SEEDS = int(os.environ.get('SEEDS', '6'))
@@ -168,7 +169,7 @@ def main():
         print(f'[{time.time()-t0:.0f}s]')
         return
 
-    # ---------- PHASE B: build the delta bank (all rescaled to N_REF) ----------
+    # helpers used by both SWEEP and PHASE B
     def rescale(v):
         n = v.norm()
         return v * (N_REF / n) if n > 1e-9 else v
@@ -177,6 +178,151 @@ def main():
             return v.clone()
         m = torch.zeros(V); m[v.argsort(descending=True)[:k]] = 1.0
         return v * m
+
+    if os.environ.get('SWEEP') == '1':
+        # ------- continuous-K transport sweep (generation) -------
+        print('\n  == CONTINUOUS-K TRANSPORT SWEEP (perz base) ==')
+        h_ids = set()
+        for w in HELD_OUT.split():
+            sp = tok(' '+w, add_special_tokens=False).input_ids
+            if len(sp) == 1: h_ids.add(int(sp[0]))
+        a_ids = set()
+        for w in ANCHORS.split():
+            sp = tok(' '+w, add_special_tokens=False).input_ids
+            if len(sp) == 1: a_ids.add(int(sp[0]))
+        u_ids = set()
+        for w in UNREL.split():
+            sp = tok(' '+w, add_special_tokens=False).input_ids
+            if len(sp) == 1: u_ids.add(int(sp[0]))
+        nH = max(1,len(h_ids)); nA = max(1,len(a_ids)); nU = max(1,len(u_ids))
+
+        def genK(kk, seed):
+            torch.manual_seed(seed)
+            ids = tok(PROMPT, add_special_tokens=False, return_tensors='pt').input_ids.to(DEV)
+            past = None; out_ids = []; dd = rescale(topk_pos(perz, kk)).to(DEV)
+            minr = 10**9
+            with torch.no_grad():
+                for step in range(NTOK):
+                    vc = {}
+                    hk = norm.register_forward_hook(lambda m,i,o: vc.__setitem__('o', o[0,-1,:].float().clone()))
+                    out = model(input_ids=ids, past_key_values=past, use_cache=True)
+                    hk.remove()
+                    if past is None: past = out.past_key_values
+                    L0 = out.logits[0,-1,:].float()
+                    on = (step >= SW0)
+                    L1 = L0 + (dd if on else 0.0)
+                    order1 = L1.argsort(descending=True).tolist()
+                    pos1 = {tid: k for k, tid in enumerate(order1)}
+                    if h_ids: minr = min(minr, min(pos1[i] for i in h_ids))
+                    p = torch.softmax(L1, 0)
+                    q = p.clone(); ooo = q.argsort(descending=True)
+                    kk2 = int((q[ooo].cumsum(0) <= NUCLEUS).sum()) + 1
+                    msk = torch.zeros_like(q); msk[ooo[:kk2]] = 1
+                    qq = (q*msk); qq = qq/qq.sum()
+                    nxt = int(torch.multinomial(qq, 1))
+                    if nxt == eos_id: break
+                    out_ids.append(nxt)
+                    ids = torch.tensor([[nxt]], device=DEV)
+            txt = tok.decode(out_ids)
+            _,_,_,_,ok = score(txt)
+            return ok, minr
+
+        print(f'  {"K":>6} {"transport":>9} {"medMinR":>8} {"R_row":>7}  cos->dLfull')
+        for kk in [10,25,50,100,200,500,1000,2000,0]:
+            R = 0; mrs = []
+            for s in range(SEEDS):
+                ok, mr = genK(kk, SEEDBASE + s)
+                R += int(ok); mrs.append(mr)
+            med = sorted(mrs)[SEEDS//2]
+            dk = rescale(topk_pos(perz, kk))
+            rf = row_frac(dk)
+            cs = (dk @ dL_ref).item()/(dk.norm()*N_REF) if dk.norm() > 1e-9 else float('nan')
+            print(f'  {kk if kk>0 else "V":>6} {R:3d}/{SEEDS:<4} {med:8d} {rf:7.3f}  {cs:+.3f}', flush=True)
+        print(f'[{time.time()-t0:.0f}s]')
+        return
+
+    if os.environ.get('LAMBDA') == '1':
+        # ------- lambda interpolation: rowW-proj (lam=0) -> residual (lam=1) ----
+        print('\n  == LAMBDA INTERPOLATION (constant norm) ==')
+        h_ids = set()
+        for w in HELD_OUT.split():
+            sp = tok(' '+w, add_special_tokens=False).input_ids
+            if len(sp) == 1: h_ids.add(int(sp[0]))
+        a_ids = set()
+        for w in ANCHORS.split():
+            sp = tok(' '+w, add_special_tokens=False).input_ids
+            if len(sp) == 1: a_ids.add(int(sp[0]))
+        u_ids = set()
+        for w in UNREL.split():
+            sp = tok(' '+w, add_special_tokens=False).input_ids
+            if len(sp) == 1: u_ids.add(int(sp[0]))
+        # dL_full (the working top-200). Compute its row-space projection and
+        # its orthogonal residual.
+        p_roww = proj_rowW(dL_ref)
+        resid = dL_ref - p_roww
+        print(f'  ||P_rowW(dL)||={p_roww.norm():.3f}  ||residual||={resid.norm():.3f}  '
+              f'||dL||={dL_ref.norm():.3f}')
+
+        def genVec(vec, seed):
+            torch.manual_seed(seed)
+            dd = rescale(vec).to(DEV)
+            ids = tok(PROMPT, add_special_tokens=False, return_tensors='pt').input_ids.to(DEV)
+            past = None; out_ids = []; minr = 10**9
+            with torch.no_grad():
+                for step in range(NTOK):
+                    vc = {}
+                    hk = norm.register_forward_hook(lambda m,i,o: vc.__setitem__('o', o[0,-1,:].float().clone()))
+                    out = model(input_ids=ids, past_key_values=past, use_cache=True)
+                    hk.remove()
+                    if past is None: past = out.past_key_values
+                    L0 = out.logits[0,-1,:].float()
+                    on = (step >= SW0)
+                    L1 = L0 + (dd if on else 0.0)
+                    order1 = L1.argsort(descending=True).tolist()
+                    pos1 = {tid: k for k, tid in enumerate(order1)}
+                    if h_ids: minr = min(minr, min(pos1[i] for i in h_ids))
+                    p = torch.softmax(L1, 0)
+                    q = p.clone(); ooo = q.argsort(descending=True)
+                    ktt = int((q[ooo].cumsum(0) <= NUCLEUS).sum()) + 1
+                    msk = torch.zeros_like(q); msk[ooo[:ktt]] = 1
+                    qq = (q*msk); qq = qq/qq.sum()
+                    nxt = int(torch.multinomial(qq, 1))
+                    if nxt == eos_id: break
+                    out_ids.append(nxt)
+                    ids = torch.tensor([[nxt]], device=DEV)
+            txt = tok.decode(out_ids)
+            _,_,_,_,ok = score(txt)
+            return ok, minr
+
+        # ---- K x lambda causal surface ----
+        # For each K, d_K = topk_pos(perz, K) defines the chosen sparse coord
+        # set. Decompose d_K = proj_K + resid_K (onto/out of row(W)), then
+        #   vec(K, lam) = (1-lam)*resid_K + lam*proj_K, NORM-MATCHED to N_REF
+        # (= dL_ref) so dose is held fixed across the whole surface.
+        # lam=0 -> pure residual (out-of-row); lam=1 -> pure rowW projection.
+        klist = [int(x) for x in os.environ.get('KLIST', '100,150,200,250,300').split(',')]
+        llist = [float(x) for x in os.environ.get('LLIST', '0,0.5,1').split(',')]
+        print(f'\n  == K x lambda causal surface  (K={klist}, lam={llist}) ==')
+        print(f'  {"K":>5} {"lam":>4} {"transport":>9} {"medMinR":>8} {"R_row":>7} {"cos_ref":>7}')
+        for kk in klist:
+            for lam in llist:
+                dk = topk_pos(perz, kk)
+                pk = proj_rowW(dk)
+                rk = dk - pk
+                vec = (1-lam)*rk + lam*pk
+                vec = rescale(vec)          # fixed dose across all cells
+                R = 0; mrs = []
+                for s in range(SEEDS):
+                    ok, mr = genVec(vec, SEEDBASE + s)
+                    R += int(ok); mrs.append(mr)
+                med = sorted(mrs)[SEEDS//2] if mrs else -1
+                rf = row_frac(vec)
+                cs = (vec @ dL_ref).item()/(vec.norm()*N_REF) if vec.norm()>1e-9 else float('nan')
+                print(f'  {kk:5d} {lam:4.2f} {R:3d}/{SEEDS:<4} {med:8d} {rf:7.3f} {cs:+7.3f}', flush=True)
+        print(f'[{time.time()-t0:.0f}s]')
+        return
+
+    # ---------- PHASE B: build the delta bank (all rescaled to N_REF) ----------
 
     bank = {}
     norms = {'raw': raw, 'cent': cent, 'zs': zs, 'perz': perz}
@@ -226,6 +372,8 @@ def main():
         ids = tok(PROMPT, add_special_tokens=False, return_tensors='pt').input_ids.to(DEV)
         past = None; out_ids = []; dd = delta.to(DEV)
         steps = 0; dH = 0.0; dA = 0.0; dU = 0.0; nH = max(1, len(h_ids)); nA = max(1, len(a_ids)); nU = max(1, len(u_ids))
+        min_rank = 10**9; min_rank_pct = 1.0; top10 = top50 = top100 = 0
+        first_entry = None; cum_logp_H = 0.0
         with torch.no_grad():
             for step in range(NTOK):
                 steps += 1
@@ -244,6 +392,18 @@ def main():
                     if h_ids: dH += sum(ddH[i].item() for i in h_ids)/nH
                     if a_ids: dA += sum(ddH[i].item() for i in a_ids)/nA
                     dU += sum(ddH[i].item() for i in u_ids)/nU
+                    if h_ids: cum_logp_H += sum(lp1[i].item() for i in h_ids)/nH
+                order1 = L1.argsort(descending=True).tolist()
+                pos1 = {tid: k for k, tid in enumerate(order1)}
+                if h_ids:
+                    mr = min(pos1[i] for i in h_ids)
+                    min_rank = min(min_rank, mr)
+                    min_rank_pct = min(min_rank_pct, mr/len(order1))
+                    top10 += sum(1 for i in h_ids if pos1[i] < 10)
+                    top50 += sum(1 for i in h_ids if pos1[i] < 50)
+                    top100 += sum(1 for i in h_ids if pos1[i] < 100)
+                    if first_entry is None and mr < 100:
+                        first_entry = steps
                 p = torch.softmax(L1, 0)
                 q = p.clone(); ooo = q.argsort(descending=True)
                 kk = int((q[ooo].cumsum(0) <= NUCLEUS).sum()) + 1
@@ -256,19 +416,33 @@ def main():
         txt = tok.decode(out_ids)
         h,b,maxr,dist1,ok = score(txt)
         return dict(txt=txt, ok=ok, dH=dH/max(1,steps), dA=dA/max(1,steps),
-                    dU=dU/max(1,steps), maxr=maxr, dist1=dist1)
+                    dU=dU/max(1,steps), maxr=maxr, dist1=dist1,
+                    min_rank=min_rank, min_rank_pct=min_rank_pct,
+                    top10=top10, top50=top50, top100=top100,
+                    first_entry=first_entry, cum_logp_H=cum_logp_H/max(1,steps))
 
-    for name, delta in bank.items():
-        R = 0; agg = {'dH':0., 'dA':0., 'dU':0., 'maxr':0., 'dist1':0.}
+    keys = ['raw_t200', 'perz_t200', 'shuffle200', 'equal200', 'rowW_proj', 'rand200'] if REPL else list(bank.keys())
+    print(f'\n  {"cond":>12} {"transport":>9} {"medMinR":>8} {"med%":>6} {"t10":>4} {"t50":>4} {"t100":>5} {"fstE":>5} {"cumdH":>7} {"maxrun":>6} {"dist1":>6} {"R_row":>6}')
+    for name in keys:
+        delta = bank[name]
+        R = 0; agg = {'dH':0., 'dA':0., 'dU':0., 'maxr':0., 'dist1':0.,
+                      'minr':[], 'pct':[], 't10':0, 't50':0, 't100':0,
+                      'fst':[], 'cum':0.}
         for s in range(SEEDS):
             m = generate(delta, SEEDBASE + s)
             R += int(m['ok'])
             agg['dH'] += m['dH']; agg['dA'] += m['dA']; agg['dU'] += m['dU']
             agg['maxr'] += m['maxr']; agg['dist1'] += m['dist1']
-        for k in agg: agg[k] /= max(1, SEEDS)
+            agg['minr'].append(m['min_rank']); agg['pct'].append(m['min_rank_pct'])
+            agg['t10'] += m['top10']; agg['t50'] += m['top50']; agg['t100'] += m['top100']
+            if m['first_entry'] is not None: agg['fst'].append(m['first_entry'])
+            agg['cum'] += m['cum_logp_H']
+        for k in ('dH','dA','dU','maxr','dist1','cum'): agg[k] /= max(1, SEEDS)
+        mr_med = sorted(agg['minr'])[SEEDS//2] if agg['minr'] else -1
+        pct_med = sorted(agg['pct'])[SEEDS//2] if agg['pct'] else -1
+        fst_med = sorted(agg['fst'])[len(agg['fst'])//2] if agg['fst'] else -1
         rf = row_frac(delta)
-        print(f'  {name:>12} {R:3d}/{SEEDS:<4} {agg["dH"]:+8.2f} {agg["dA"]:+8.2f} '
-              f'{agg["dU"]:+8.2f} {agg["maxr"]:6.1f} {agg["dist1"]:6.2f} {rf:6.3f}',
+        print(f'  {name:>12} {R:3d}/{SEEDS:<4} {mr_med:8d} {pct_med:6.3f} {agg["t10"]:4d} {agg["t50"]:4d} {agg["t100"]:5d} {fst_med:5d} {agg["cum"]:+7.2f} {agg["maxr"]:6.1f} {agg["dist1"]:6.2f} {rf:6.3f}',
               flush=True)
     print(f'[{time.time()-t0:.0f}s]')
 

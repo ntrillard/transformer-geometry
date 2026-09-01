@@ -309,3 +309,111 @@ rowW_proj 0/6    +0.79  -0.29    0.0  0.62  1.000   ← dead (back in rowW)
 > Random/equal/permuted/sparse/row-constrained variants all fail.
 
 *File:* `mechanism_matrix.py`.
+
+---
+
+## Part IV — K × λ causal surface: sparsity and row-space interact
+
+The mechanism statement isolates a *coordinated* object, but does not yet
+separate its two axes. We cleanly manipulate both while holding dose fixed:
+
+**Design.** For each K, `d_K = topk_pos(perz, K)` defines the sparse
+coordinate set. We decompose `d_K = P_row d_K + P_\perp d_K` and set
+`vec(K, λ) = (1-λ)·(d_K − P_row d_K) + λ·P_row d_K`, renormalized to the
+canonical working norm `N_REF = 102.076` in every cell (fixed dose).
+`λ=0` is the pure out-of-row residual; `λ=1` the pure row(W) projection.
+
+**Compact diagnostic** (SEEDS=4, NTOK=60):
+
+```
+K     λ=0       λ=0.5     λ=1
+100   0/4       0/4       0/4
+200   2/4       1/4       0/4      <- localized transport
+500   0/4       0/4       1/4
+```
+
+The effect is a **localized island around K=200**, not a generic function
+of row-space distance. At K=200, cos(dK, dL_ref) ≈ 0.98-1.0 and replacing
+the residual by its row-space projection monotonically suppresses
+transport (2/4 → 1/4 → 0/4).
+
+**Full replication** (SEEDS=30, NTOK=120), K=200 only:
+
+```
+λ       transport   medMinR   R_row   cos_ref
+0.00    4/30        2         0.000   +0.981
+0.25    4/30        1         0.004   +0.992
+0.50    3/30        0         0.038   +1.000
+0.75    6/30        0         0.263   +0.942
+1.00    0/30        23        1.000   +0.195
+```
+
+**Causal reading (careful, not overclaimed).** The clean claim is *not* a
+smooth monotonic dose-response — λ=0.75 peaking at 6/30 is within binomial
+noise (n=30). The causal variable is **existence vs. absence of the
+out-of-row component**: **λ=1, the pure row-space projection, is the unique
+collapsed cell** (0/30, medMinR→23, cos_ref→+0.195), while every λ<1 that
+retains a *nonzero* residual transports at ~3-6/30 with medMinR≈0 and
+cos_ref≈0.94-1.0.
+
+This is a **behavioral discontinuity at the row-space boundary**, not a
+continuous dose-response and not a nonlinearity in the interpolation
+(the λ mixture itself is linear; only the transport behavior jumps at
+λ=1). Projecting the sparse chosen vector back into `row(W)` (the only
+`λ=1` manipulation) crosses out of the reachable set and destroys the
+effect; any retained residual fraction preserves it, at a roughly flat
+3-6/30 plateau. This is itself a negative control: an *amount* of
+out-of-row escape does not predict efficacy — either the coordinate/
+ranking pattern escapes `row(W)` (works) or it is pulled fully inside
+(fails).
+
+**Net mechanism (updated).**
+
+> The generatively effective object is a sparse (K≈200), positively-masked,
+> ranked-magnitude vocabulary contrast vector, applied as a logit offset.
+> Its coordinate/ranking pattern is the semantic carrier; escaping `row(W)`
+> (so it is not cancelled by the hidden-reachable subspace) is *necessary*;
+> but the *amount* of escape, beyond merely nonzero, does not scale efficacy.
+
+**Net mechanism (updated).**
+
+> The generatively effective object is a sparse (K≈200), positively-masked,
+> ranked-magnitude vocabulary contrast vector, applied as a logit offset.
+> Its coordinate/ranking pattern is the semantic carrier; escaping `row(W)`
+> (so it is not cancelled by the hidden-reachable subspace) is *necessary*;
+> but the *amount* of escape, beyond merely nonzero, does not scale efficacy.
+
+---
+
+## Part V — Semantic vs. lexical (`neighbor_probe.py`, SEEDS=30)
+
+The K×λ surface and mechanism matrix established *what* the intervention
+does. This section asks **whether it transports a concept or merely forces
+lexical coordinates**. We hold out three probe classes, all filtered so
+their tokens are **NOT** among the boosted top-200 coordinates (zero direct
+additive boost):
+
+```
+class   UNSTEERED          STEERED
+lex     0/30  rank 45      27/30  rank 0      <- boosted coords: huge lift
+sem     0/30  rank 188     0/30  rank 172     <- unboosted semantic neigh: flat
+unr     18/30 rank 0       16/30 rank 1       <- unboosted unrelated: flat
+```
+
+- Positive control (LEX = tokens decoded from the actual boosted top-200):
+  emission 0/30 → 27/30, best rank 45 → 0. The harness lifts precisely what
+  it directly boosts.
+- Semantic neighbors outside the mask (fiend/wraith/ghoul/apparition/
+  sorcery/incantation/tyranny, all single-token, all NOT in top-200):
+  **0/30 → 0/30, best rank 188 → 172.** No generalization to unboosted
+  concept coordinates.
+- Unrelated frequency-matched control: unchanged (18/30 → 16/30).
+
+**Net claim (honest).** The technique is *sparse ranked **lexical** logit
+steering*: it selectively raises a coordinated set of vocabulary coordinates
+and generation enters that lexical region. It does **not** demonstrably
+transport a *concept* to unboosted coordinates. This is a cleaner, more
+defensible mechanism than semantic transport — and the honest way to describe
+the method to a reviewer.
+
+*Files:* `mechanism_matrix.py` (K×λ surface), `neighbor_probe.py` (lexical-vs-semantic).
