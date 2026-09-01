@@ -1,0 +1,28 @@
+==================== PURE BASELINE A: THE EVENING MARKET ====================
+
+Pure generation | Qwen/Qwen2-1.5B | prompt='The market was closing for the night. Vendors packed their wooden stalls as the last lanterns flickered in the warm breeze. A girl lingered by the spice stall, counting coins in her palm. The smell of frying dough and cinnamon hung over the cobblestones.' | ntok=120 | seed=0
+
+===== PURE / NO STEERING =====
+The market was closing for the night. Vendors packed their wooden stalls as the last lanterns flickered in the warm breeze. A girl lingered by the spice stall, counting coins in her palm. The smell of frying dough and cinnamon hung over the cobblestones.  Finally, her mother accompanied her. They were near the tavern, where the crates of casks and wood bars beckoned. The noise of voices came from a crowded across the street, where a horse hooves’s pace spoke tales of the horses’ length and breadth. A lamp in a neo-classical window at the bar beckoned her to enter.
+Arriving at the Inn, One-Appetite drew the curtains for warmth. It was a smaller place compared to her +(lines) a few doors along. They settled down near a window. The peak of the towers of Belgarthus
+
+[6s] 120 tokens, eos=NO
+==================== PURE BASELINE B: THE MOUNTAIN CABIN ====================
+
+Pure generation | Qwen/Qwen2-1.5B | prompt='Rain drummed against the cabin roof all afternoon. I stoked the fire and watched the shadows stretch across the log walls. The mountain road would be washed out by morning. I poured another cup of coffee and listened to the wind.' | ntok=120 | seed=0
+
+===== PURE / NO STEERING =====
+Rain drummed against the cabin roof all afternoon. I stoked the fire and watched the shadows stretch across the log walls. The mountain road would be washed out by morning. I poured another cup of coffee and listened to the wind.  We hadn’t seen any traffic for a week. The untold stories that must be circulating about City Casey were driving me crazy. A pop-up came up on my across platform. VIRUX. I started waiting for an Xbox 360 for my birthday, but once again the greed of my best friend at work stole that from me. I placed my charger on the fire table and set another cup of coffee. The fire burned up the little project and cooked the Turkish coffee.
+(lines 3–4) For up to two hours, Saturday dragged on. Technically, it was a scheduled
+
+[5s] 120 tokens, eos=NO
+==================== PURE BASELINE C: THE MORNING TRAIN ====================
+
+Pure generation | Qwen/Qwen2-1.5B | prompt='The train pulled out of the station at dawn. Sleeping passengers swayed gently in the grey morning light. The conductor walked the aisle checking tickets. Fields of yellow wheat blurred past the window.' | ntok=120 | seed=0
+
+===== PURE / NO STEERING =====
+The train pulled out of the station at dawn. Sleeping passengers swayed gently in the grey morning light. The conductor walked the aisle checking tickets. Fields of yellow wheat blurred past the window.  We hung from straps while the conductor tied up our luggage.
+As we climbed through a coveous mountain into the air. The first poppies came into view. across Spain. like the daises of the fields.
+At dawn. are crowds trying to see the sunrise. and people taking pictures everywhere. people at the bar. people on tour. We want to enjoy the scene. One of the younger riders starts smoking. an overpowering odor fills our food tents. Someone asks a doctor to a lay down along side up. and the sun is shining.<|endoftext|>
+
+[5s] 113 tokens, eos=YES
