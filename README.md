@@ -2,9 +2,7 @@
   <img src="paper/steeronasphere.png" width="180">
 
   # Steer on a Sphere
-  ### Geometric Control of Transformer Outputs
-
-  **N. Trillard** — August 21, 2026
+  ### messing with transformer outputs using geometry
 
   [![Zenodo](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21954871-blue)](https://doi.org/10.5281/zenodo.21954871)
   [![License](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](LICENSE)
@@ -12,203 +10,100 @@
 
 ---
 
-## How It Works
+## What is this?
 
-Every transformer layer uses RMSNorm, which constrains hidden states near a sphere of radius $\|\gamma_l\|$ — a learned value, not $\sqrt{d}$.
+A playground for bending what a language model writes — using geometry, not prompts, not finetuning.
 
-The LM head gives every token a direction on that sphere. **A tangent step toward any token's direction raises its logit with mathematical guarantee and reaches rank 1 on 97–99% of reachable tokens (Qwen family), with the wrong-target control at ~0%.**
+Hidden states live roughly on a sphere, every token points somewhere on that sphere, and nudging the hidden state toward a token's direction raises that token's probability. Push far enough and it shows up in the output.
 
-```
-  Hidden state h
-       │
-       ▼
-  g_t = W_t − (W_t·ĥ)ĥ    ← tangent toward token t
-       │
-       ▼
-  h' ← normalize on sphere
-       │
-       ▼
-  logits → t ranks #1 within θ° arc
-```
+Detail is in the evals and writeups.
 
----
+## Try it
 
-## Key Results
-
-**Steering geometry** (64 targets × 2 contexts × 4 depth-adaptive layers, fp16, seed 42):
-
-| Model | Arc-reach | Wrong-target | Toward blocker | Median first rank-1 angle |
-|---|---:|---:|---:|---:|
-| Qwen2-1.5B | 99.2% | 0.0% | 34.8% | 8.0° |
-| Qwen2-0.5B | 97.3% | 0.0% | 13.7% | 10.6° |
-| GPT-2 | 90.8% | 0.0% | 5.9% | 11.6° |
-| SmolLM-135M | 67.2% | 0.0% | 2.5% | 9.8° |
-| Pythia-160M | 27.9% | 0.0% | 9.0% | 2.6° |
-
-- Rank acquisition is governed by the LM-head decision partition, not just target alignment: rotating the residual *toward* the strongest blocker collapses success to 3–35%, *away* restores ~100%, at fixed norm and fixed target score.
-- No mid-arc loss: any target that becomes rank-1 along the arc stays rank-1 at the endpoint (verified on all 2,560 cases).
-- The 17° table above is the fixed-budget (α=0.3) view. Sweeping the budget shows the spread is a *shift*, not a ceiling: every family reaches ≥96% rank-1 within a 45° budget (Qwen/GPT-2 100%, Gemma-3-1B 98.4%, Pythia-160M 96.1%); wrong-target/random controls stay 0% at every budget. Pythia mid-layers need ~29° (its entry angles are 28.7–30.7° across layers 0–7) vs 2.4° at the final layer.
-- Shortest route: cone projection gives `theta_cell ≤ theta_author` (e.g. 8.45° vs 10.02° on Qwen2-0.5B).
-- Natural activations sit near a spherical shell (norm std ≈ 7% of mean); actual next-token steps are 2–2.6× larger than a controlled tangent step.
-
-**Cow tipping** — self-reinforcing pit tokens (`0`, `<mask>`, NULL byte, …):
-
-| Finding | Result |
-|---|---|
-| Qwen2-0.5B `"0"` basin | decoder-dependent; sampling breaks it |
-| Qwen2.5-7B strict pit | survives greedy + nucleus sampling; broken only by chat-template context |
-| Best defenses (shallow pits) | repetition cap, output collapse, entropy floor, pit-away steering — 0 false positives |
-| Strict 7B pit | resists sampling AND single-layer steering at α=1.0; only truncation guards + context work |
-
-Full mitigation/false-positive matrices: [`THREAT_MODEL.md`](THREAT_MODEL.md).
-
----
-
-## Narrative Steering (Qwen2-1.5B)
-
-Production scripted-steering tools live at the repo root. Both are minimal, hook-only, run on
-`Qwen/Qwen2-1.5B` (bf16, no quantization).
-
-| File | Purpose |
-|---|---|
-| `gen_pure.py` | **Unsteered baseline** - model + multinomial sampling only (zero hooks). Establishes what the model writes alone for any prompt/seed. |
-| `gen_blendtraj.py` | **Production steerer** - plant each target word as a REAL token in context (space-prefixed single token so it doesn't fuse), then a settle window blending two readout series (natural + a small hold rotation) before handing back to free generation. |
-| `gen_geom.py` | **Pure-geometric steerer (MODE=hold/emit)** - rotation-only readout steering, NO input edit. MODE=emit forces until the word is emitted once then lets go - grammatical usage with no suppression ("diamond ribs", "marble chests"); sub-threshold rotation is a no-op, sustained forcing loops. Words may honestly miss. |
-
-**The winning configuration** (SETTLE=8 is the coherent sweet spot):
-
-```bash
-HF_TOKEN=$TOKEN python3 gen_blendtraj.py Qwen/Qwen2-1.5B \
-    "The office was quiet after hours" "sheep,sushi,elevator"
-# env: LAM=0.4 SETTLE=8 HOLD_ANGLE=4 PLANT0=20 SEED=0
-```
-
-Example output (all three out-of-place words woven in grammatically):
-
-> The office was quiet after hours . The rest of the employees had left to go to their homes.
-> It was a Saturday night and **sheep**ishly I found my way in the door. It was a sleepy
-> evening and just like the five horsemen; I was the one who had to **sushi** for dinner and
-> sleep in bed later than my co-workers... One **elevator** ride later I was seeing the snowy
-> white of a Maine coon...
-
-**Key findings from the exploration** (see `steering-evals/steering_geometry_results/writeup-blendtraj.md`):
-
-1. **The planted real token is 100% of the steering** - the model writes *with* the word in
-   context naturally ("sheep**ishly**", "sushi noodles", "elevator maintenance invoice").
-2. **With blending off (LAM=0), window length is irrelevant** - SETTLE 8/14/20/30 are all
-   byte-identical; the settle branch is pure natural sampling.
-3. **With blending on, SETTLE=8 is most coherent**; 14-20 develop more but loosen the splice;
-   30 over-extends (maintenance-spam tangent).
-4. **More blending is not better** - every added state (pre-insert memories, counterfactual
-   branches, rolling post-insert memories, 3+/5-way simplexes) is stale relative to the live
-   context and blurs the readout at the splice. The two-series blend at LAM=0.4 is the ceiling.
-   All experimental variants are archived in `old/`.
-5. **Pure geometry alone CAN steer grammatically - with emit-once** (`gen_geom.py`,
-   MODE=emit, no suppression): force the rotation until the target token is sampled ONCE,
-   then stop. The word is now in the model's own context, so it weaves it in itself
-   ("diamond ribs", "camel skull", "volcano coffee", "marble chests", "telescope tower Two",
-   "submarine blue") - no input edit, no logit block (the anti-repeat block is byte-
-   identical to none). Honest trade: it can miss (office/sushi at weak settings), and a
-   stronger window stiffens splices. Sub-threshold rotation is still a narrative no-op;
-   sustained rank-1 forcing still degenerate-loops. See `writeup-geom.md`.
-6. **v2: 20% natural logits (G_LAN=0.8) + sentence-aligned windows (SENT=1)** - the blend
-   share never decides landing (byte-identical runs); it keeps the model's own voice
-   (G_LAN=1.0 collapses train into a quiz template). SENT aligns each window to a fresh
-   sentence boundary, which rescues the office/sushi case at the SAME settings (3/3, best
-   splices: "sheepishly", "sushi pink", "elevator keys") but can regress well-placed
-   scenes (train/library). θ=10 remains the hard lever; PRE_STEPS pre-steer is marginal;
-   live-context ADAPT is a dead end (grabs plausible words first). 8/9 scenes, 24/27
-   words vs 0/27 pure baseline. See `writeup-geom-many.md`.
-7. **v3: direction targets (TARGET_TYPE=dir) - where geometry is the ONLY option** -
-   CONCEPT centroids (mean of embedding rows; no target token needed) work after
-   region-emit + BLOCK_REGION kill the loop ("smooth robotic pancakes" from a
-   futuristic-robotic-alien concept, no repetition); full-sentence directions
-   (mean state over the sentence's tokens) shade but do NOT transport a scene -
-   one example is too weak; the literature route is CONTRAST directions (mean of many
-   target states minus neutral states), the same rotation primitive we already use.
-   See `writeup-geom-many.md` v3.
-8. **v4: FULL-SENTENCE/TOPIC steering WORKS - via LOGIT-space contrast** -
-   state-space contrast fails (cos(scene_readout, topic_diff) ~ -0.3, point is nearly
-   opposite); logit-space dL = mean next-token logits(target sents) - mean(next-token
-   logits(neutral sents)), z-scored, top-200 masked, added at ALPHA=2 every step: the
-   scene BENDS mid-narrative (beach -> "a bunch of evil-looking creatures emerging from
-   the surf", free prose, no loop). It is a dial: alpha<2 nothing, alpha 2 clean bend,
-   alpha>2 hijack loop; hostile/dense target vocab degrades to enumeration. Planting
-   cannot insert a topic - this is the geometry-only capability. See writeup v4.
-9. **Dedicated writeup for the two geometry-only capabilities**: concept steering (no
-   target token: centroid of word rows + region-emit/block, "smooth robotic pancakes")
-   and full-sentence/topic steering (logit-space contrast at ALPHA=2, beach bends to
-   dark-fantasy mid-narrative). Everything needed to reproduce, incl. the three failed
-   constructions and the honest robustness limits. `writeup-sentence-concept.md`.
-10. **v5 (the de-latch): reliable topic transport with NO foreign language - REP_PEN/**
-    **REP_COUNT + CONTRAST_WINDOW** (`gen_geom.py`)**. The EN+ZH dark-fantasy transport
-    was never about Chinese: the emergent property is a boost strong enough to tilt a
-    narrative choice but not sustained enough to prime any single token into a repetition
-    latch. Sampler-level anti-priming (`REP_PEN` + `REP_COUNT`: penalize recently-emitted
-    tokens, count-scaled so dense near-synonym clusters collapse) plus windowed contrast
-    application (`CONTRAST_WINDOW`: bound the dose) reproduce the transport for topics that
-    previously latched - farm (CW=18-25: "fence fences for backyard party; we would make
-    people dance all night long") and pirate (CW=50: "shipwreck ship at sea full of captain
-    ship loot. We both took off our shoes to tread on it") - byte-identical on re-run, zero
-    foreign language, zero suppression. Six refuted constructions (DOSE_SINK/DOSE_C/DOSE_
-    FLAT v1-v3/DOSE_CJK/CJK_EXCLUDE/window-alone) and the mechanism statement in Appendix E
-    of `writeup-sentence-concept.md`.
----
-
-## Repository Layout
-
-```
-.
-├── paper/                          # preprint (tex + pdf + figure)
-├── THREAT_MODEL.md                 # threat model + mitigation/false-positive tables
-├── gen_pure.py                     # unsteered baseline (model + multinomial, zero hooks)
-├── gen_blendtraj.py                # production steerer (plant real tokens + settle blend)
-├── old/                            # archived experimental steerers (gen_steer, gen_blend*, ...)
-├── steering-evals/
-│   ├── scripts/                    # canonical measurement harness
-│   │   ├── verify_identity.py            # endpoint identity check (200/200, <1e-10)
-│   │   ├── steering_geometry_test.py     # specificity + residual-latitude controls + angles
-│   │   ├── steering_geometry_test_offarc.py  # null-space off-arc variant (cross-family table)
-│   │   ├── eval_boundary_instruments.py  # theta_author vs theta_cell cone projection
-│   │   ├── eval_manifold_geometry.py     # sphere vs natural-manifold probe
-│   │   ├── eval_defense.py               # pit scan + defensive encoding
-│   │   ├── eval_pit_robustness.py        # decoder-contract robustness matrix
-│   │   ├── eval_7b_strict_pit_gate.py    # strict-pit gate for Qwen2.5-7B (--quant nf4)
-│   │   ├── eval_multi_goal_steering.py   # reach-vs-budget curves + multi-goal battery
-│   │   └── eval_threat_model.py          # mitigations + false positives (+ --quant for 7B)
-│   └── steering_geometry_results/  # raw CSVs + writeups (incl. writeup-blendtraj.md)
-├── requirements.txt
-├── CITATION.cff
-└── LICENSE
-```
-
-## Reproduce
+All the fun stuff runs on `Qwen/Qwen2-1.5B`, no quantization, just hooks:
 
 ```bash
 pip install -r requirements.txt
-cd steering-evals/scripts
 
-python verify_identity.py                                        # endpoint identity
-python steering_geometry_test.py --model Qwen/Qwen2-0.5B-Instruct \
-       --targets 64 --contexts 4 --layer-fracs 0.0,0.33,0.67,0.99
-python eval_boundary_instruments.py --model Qwen/Qwen2-0.5B-Instruct
-python eval_manifold_geometry.py --model Qwen/Qwen2-0.5B-Instruct --layer-idx 8
-python eval_multi_goal_steering.py --model Qwen/Qwen2-0.5B-Instruct \
-       --targets 64 --contexts 2 --layer-fracs 0.0,0.33,0.67,0.99 --plain-prompts \
-       --budget 45
-python eval_pit_robustness.py --model Qwen/Qwen2-0.5B-Instruct --seeds 64
-python eval_threat_model.py --model Qwen/Qwen2.5-7B-Instruct --quant nf4 --pit-id 15
+# baseline — what the model writes alone, no tricks
+python3 gen_pure.py Qwen/Qwen2-1.5B "The office was quiet after hours" 120 0
+
+# the reliable one — plants words as real tokens + a short settle blend
+HF_TOKEN=$TOKEN python3 gen_blendtraj.py Qwen/Qwen2-1.5B \
+    "The office was quiet after hours" "sheep,sushi,elevator"
+# env: LAM=0.4 SETTLE=8 HOLD_ANGLE=4 PLANT0=20 SEED=0
+
+# pure geometry — no input edits at all, just rotates the readout
+# MODE=emit = push until the word appears once, then let go
+G_ANGLE=8 G_LAN=0.9 WINDOW=12 SW0=20 SEED=0 MODE=emit python3 old/gen_geom.py \
+    Qwen/Qwen2-1.5B "The waves crashed gently on the beach" "computer,lantern,trumpet"
+    Qwen/Qwen2-1.5B "The waves crashed gently on the beach" "computer,lantern,trumpet"
 ```
 
-Legacy exploration tooling (rotation sweeps, original proof scripts) was removed in
-the 2026-08-21 consolidation; recover it from git history if needed.
+What those scripts do, in plain English:
 
-## Paper
+| File | What it does |
+|---|---|
+| `gen_pure.py` | Plain sampling. Zero hooks. This is "what would the model do anyway?" |
+| `gen_blendtraj.py` | Drops each target word into context as a real token, runs a short 8-step blend of natural + slightly-steered readouts so the splice doesn't break, then hands control back. Most coherent output. |
+| `old/gen_geom.py` | No input edits. Just rotates the readout toward the target until it pops out once, then stops. Sometimes misses honestly, and pushing too hard loops — but when it lands the grammar is nice ("diamond ribs", "marble chests"). |
 
-📄 [`paper/paper_steer.pdf`](paper/paper_steer.pdf) — full preprint (v2, Aug 21 2026)
+Example — office scene with `sheep,sushi,elevator`:
 
-> Trillard, N. (2026). *Steer on a Sphere: Geometric Control of Transformer Outputs*. Zenodo. [10.5281/zenodo.21954871](https://doi.org/10.5281/zenodo.21954871)
+> The office was quiet after hours . The rest of the employees had left to go to their homes.
+> It was a Saturday night and **sheep**ish Adam Frost sat in his office using his mouse to type.
+> He was just like the other developers, waiting for someone to send him the file **sushi**.ico
+> that he needed for the next game he was working on... Just as **elevator** music played
+> in the background, the file finally came.
+
+All three words land mid-sentence without breaking grammar. That's the whole point — older force-inject tricks made the model "snap back" ("sushi a year ago", "Two people elevator people"). Planting + a short settle window fixes most of that.
+
+## What actually works (short version)
+
+Full story in `steering-evals/steering_geometry_results/` — here's the tl;dr from a bunch of late-night runs (documented in the HF thread):
+
+- **Plant + settle is the workhorse.** Real token in context does ~100% of the work. The blend (LAM=0.4, 8 steps) just keeps the splice smooth. More blending / fancier branches only blur things. Archived the failures in `old/`.
+- **Pure geometry works too, with one rule: stop after one hit.** Push until the word is sampled once, then let go. Same rotation held too long = loops. Too weak = misses honestly. The small bit of natural logits mixed in (10-20%) is what keeps the story from sliding into quiz-template land.
+- **Topic steering is real but different.** Can't plant a whole vibe, so this one uses a logit-space contrast (mean target-next-token minus neutral, top-200, added at low weight). It's a dial: too low = nothing, just right = scene bends mid-narrative ("beach → evil creatures from the surf"), too high = hijack loop.
+- **There's also fun pit-token stuff** (some tokens like `0` love to repeat themselves forever). Defenses + false-positive tables live in [`THREAT_MODEL.md`](THREAT_MODEL.md) if you're into that.
+
+Honest limits: single-token words can get outcompeted by the story, 2-token words (cactus, ketchup) don't fit the single-direction trick, and one prompt (the farm one) collapses into a quiz template even with zero steering — so that's the model, not us.
+
+## Repo map
+
+```
+.
+├── gen_pure.py                   # baseline, no hooks
+├── gen_blendtraj.py              # plant words + settle blend (start here)
+├── old/                          # experimental + probe scripts (gen_geom, falsify_orth*, pivot*, mechanism_matrix, ...)
+├── old/                          # failed variants, kept for honesty
+├── steering-evals/
+│   ├── scripts/                  # measurement harness
+│   └── steering_geometry_results/ # CSVs + longer writeups
+├── paper/                        # preprint tex + pdf (see note below)
+├── THREAT_MODEL.md               # pit tokens + mitigations
+├── CITATION.cff
+└── LICENSE                       # CC BY 4.0
+```
+
+Repro for the measurement side:
+
+```bash
+cd steering-evals/scripts
+python verify_identity.py
+python steering_geometry_test.py --model Qwen/Qwen2-0.5B-Instruct \
+    --targets 64 --contexts 4 --layer-fracs 0.0,0.33,0.67,0.99
+```
+
+Older sweep scripts were removed in the Aug-21 cleanup — check git history if you really want them.
+
+## Longer writeups
+
+- `writeup-blendtraj.md` — plant + settle, what mattered and what didn't
+- `writeup-geom.md` / `writeup-geom-many.md` — pure geometry across 9 scenes (8/9 coherent, 24/27 words vs 0/27 unsteered)
+- `writeup-sentence-concept.md` — concept centroids + full-sentence/topic steering, incl. the 6 things that didn't work
+- HF thread — [Steer on a Sphere](https://discuss.huggingface.co/t/steer-on-a-sphere-geometric-control-of-transformer-outputs/178732/20) — where most of the debugging happened in public
 
 ---
 
-Preprint. The geometric picture is approximate, not a theorem. Steering is a white-box traversal primitive. [CC BY 4.0](LICENSE).
+Note: there's a preprint describing an earlier version of this ([`paper/paper_steer.pdf`](paper/paper_steer.pdf), Zenodo [10.5281/zenodo.21954871](https://doi.org/10.5281/zenodo.21954871)). The repo has moved on since then — trust the scripts + writeups above over the preprint text.
