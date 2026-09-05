@@ -2,7 +2,7 @@
   <img src="paper/steeronasphere.png" width="180">
 
   # Steer on a Sphere
-  ### messing with transformer outputs using geometry
+  ### Geometric Control of Transformer Outputs
 
   [![Zenodo](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21954871-blue)](https://doi.org/10.5281/zenodo.21954871)
   [![License](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](LICENSE)
